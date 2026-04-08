@@ -1,24 +1,222 @@
 backend:
-  name: github
-  repo: Maksimaka7/picsell-site
+  name: git-gateway
   branch: main
-
-publish_mode: editorial_workflow
-media_folder: "static/images/uploads"
-public_folder: "/images/uploads"
 
 locale: "uk"
 
+media_folder: "static/images"
+public_folder: "/images"
+
+# Slug settings
+slug:
+  encoding: "ascii"
+  clean_accents: true
+
 collections:
+  # ════════════════════════════════════════
+  # ГОЛОВНА СТОРІНКА
+  # ════════════════════════════════════════
+  - name: "homepage"
+    label: "🏠 Головна сторінка"
+    files:
+      - name: "index"
+        label: "Головна"
+        file: "content/uk/_index.md"
+        fields:
+          - { label: "Заголовок (H1)", name: "title", widget: "string" }
+          - { label: "SEO Title", name: "seoTitle", widget: "string" }
+          - { label: "SEO Description", name: "seoDescription", widget: "text" }
+          - { label: "OG Title", name: "ogTitle", widget: "string" }
+          - { label: "OG Description", name: "ogDescription", widget: "text" }
+          - { label: "Ключові слова", name: "keywords", widget: "string" }
+
+  # ════════════════════════════════════════
+  # ПРОДУКТИ
+  # ════════════════════════════════════════
+  - name: "products"
+    label: "📦 Продукти"
+    files:
+      - name: "vision-ai"
+        label: "Vision AI"
+        file: "content/uk/vision-ai/_index.md"
+        fields:
+          - { label: "Заголовок (H1)", name: "title", widget: "string" }
+          - { label: "SEO Title", name: "seoTitle", widget: "string" }
+          - { label: "SEO Description", name: "seoDescription", widget: "text" }
+          - { label: "OG Title", name: "ogTitle", widget: "string" }
+          - { label: "OG Description", name: "ogDescription", widget: "text" }
+          - { label: "Ключові слова", name: "keywords", widget: "string" }
+
+      - name: "sales-app"
+        label: "Sales App (SFA)"
+        file: "content/uk/sales-app/_index.md"
+        fields:
+          - { label: "Заголовок (H1)", name: "title", widget: "string" }
+          - { label: "SEO Title", name: "seoTitle", widget: "string" }
+          - { label: "SEO Description", name: "seoDescription", widget: "text" }
+          - { label: "OG Title", name: "ogTitle", widget: "string" }
+          - { label: "OG Description", name: "ogDescription", widget: "text" }
+          - { label: "Ключові слова", name: "keywords", widget: "string" }
+
+      - name: "horeca"
+        label: "HoReCa Intelligence"
+        file: "content/uk/horeca/_index.md"
+        fields:
+          - { label: "Заголовок (H1)", name: "title", widget: "string" }
+          - { label: "SEO Title", name: "seoTitle", widget: "string" }
+          - { label: "SEO Description", name: "seoDescription", widget: "text" }
+          - { label: "OG Title", name: "ogTitle", widget: "string" }
+          - { label: "OG Description", name: "ogDescription", widget: "text" }
+          - { label: "Ключові слова", name: "keywords", widget: "string" }
+
+      - name: "analytics"
+        label: "Analytics"
+        file: "content/uk/analytics/_index.md"
+        fields:
+          - { label: "Заголовок (H1)", name: "title", widget: "string" }
+          - { label: "SEO Title", name: "seoTitle", widget: "string" }
+          - { label: "SEO Description", name: "seoDescription", widget: "text" }
+          - { label: "OG Title", name: "ogTitle", widget: "string" }
+          - { label: "OG Description", name: "ogDescription", widget: "text" }
+          - { label: "Ключові слова", name: "keywords", widget: "string" }
+
+      - name: "radar"
+        label: "Radar"
+        file: "content/uk/radar/_index.md"
+        fields:
+          - { label: "Заголовок (H1)", name: "title", widget: "string" }
+          - { label: "SEO Title", name: "seoTitle", widget: "string" }
+          - { label: "SEO Description", name: "seoDescription", widget: "text" }
+          - { label: "OG Title", name: "ogTitle", widget: "string" }
+          - { label: "OG Description", name: "ogDescription", widget: "text" }
+          - { label: "Ключові слова", name: "keywords", widget: "string" }
+
+  # ════════════════════════════════════════
+  # РІШЕННЯ
+  # ════════════════════════════════════════
+  - name: "solutions"
+    label: "🎯 Рішення"
+    files:
+      - name: "solutions-brands"
+        label: "Для виробників"
+        file: "content/uk/solutions-brands/_index.md"
+        fields:
+          - { label: "Заголовок (H1)", name: "title", widget: "string" }
+          - { label: "SEO Title", name: "seoTitle", widget: "string" }
+          - { label: "SEO Description", name: "seoDescription", widget: "text" }
+          - { label: "OG Title", name: "ogTitle", widget: "string" }
+          - { label: "OG Description", name: "ogDescription", widget: "text" }
+          - { label: "Ключові слова", name: "keywords", widget: "string" }
+
+      - name: "solutions-distributors"
+        label: "Для дистриб'юторів"
+        file: "content/uk/solutions-distributors/_index.md"
+        fields:
+          - { label: "Заголовок (H1)", name: "title", widget: "string" }
+          - { label: "SEO Title", name: "seoTitle", widget: "string" }
+          - { label: "SEO Description", name: "seoDescription", widget: "text" }
+          - { label: "OG Title", name: "ogTitle", widget: "string" }
+          - { label: "OG Description", name: "ogDescription", widget: "text" }
+          - { label: "Ключові слова", name: "keywords", widget: "string" }
+
+      - name: "solutions-horeca"
+        label: "Для HoReCa"
+        file: "content/uk/solutions-horeca/_index.md"
+        fields:
+          - { label: "Заголовок (H1)", name: "title", widget: "string" }
+          - { label: "SEO Title", name: "seoTitle", widget: "string" }
+          - { label: "SEO Description", name: "seoDescription", widget: "text" }
+          - { label: "OG Title", name: "ogTitle", widget: "string" }
+          - { label: "OG Description", name: "ogDescription", widget: "text" }
+          - { label: "Ключові слова", name: "keywords", widget: "string" }
+
+  # ════════════════════════════════════════
+  # КОМПАНІЯ
+  # ════════════════════════════════════════
+  - name: "company"
+    label: "🏢 Компанія"
+    files:
+      - name: "pricing"
+        label: "Ціни"
+        file: "content/uk/pricing/_index.md"
+        fields:
+          - { label: "Заголовок (H1)", name: "title", widget: "string" }
+          - { label: "SEO Title", name: "seoTitle", widget: "string" }
+          - { label: "SEO Description", name: "seoDescription", widget: "text" }
+          - { label: "OG Title", name: "ogTitle", widget: "string" }
+          - { label: "OG Description", name: "ogDescription", widget: "text" }
+          - { label: "Ключові слова", name: "keywords", widget: "string" }
+
+      - name: "case-studies"
+        label: "Кейси"
+        file: "content/uk/case-studies/_index.md"
+        fields:
+          - { label: "Заголовок (H1)", name: "title", widget: "string" }
+          - { label: "SEO Title", name: "seoTitle", widget: "string" }
+          - { label: "SEO Description", name: "seoDescription", widget: "text" }
+          - { label: "OG Title", name: "ogTitle", widget: "string" }
+          - { label: "OG Description", name: "ogDescription", widget: "text" }
+          - { label: "Ключові слова", name: "keywords", widget: "string" }
+
+      - name: "case-lactalis"
+        label: "Кейс Lactalis"
+        file: "content/uk/case-lactalis/_index.md"
+        fields:
+          - { label: "Заголовок (H1)", name: "title", widget: "string" }
+          - { label: "SEO Title", name: "seoTitle", widget: "string" }
+          - { label: "SEO Description", name: "seoDescription", widget: "text" }
+          - { label: "OG Title", name: "ogTitle", widget: "string" }
+          - { label: "OG Description", name: "ogDescription", widget: "text" }
+          - { label: "Ключові слова", name: "keywords", widget: "string" }
+
+      - name: "about"
+        label: "Про нас"
+        file: "content/uk/about/_index.md"
+        fields:
+          - { label: "Заголовок (H1)", name: "title", widget: "string" }
+          - { label: "SEO Title", name: "seoTitle", widget: "string" }
+          - { label: "SEO Description", name: "seoDescription", widget: "text" }
+          - { label: "OG Title", name: "ogTitle", widget: "string" }
+          - { label: "OG Description", name: "ogDescription", widget: "text" }
+          - { label: "Ключові слова", name: "keywords", widget: "string" }
+
+      - name: "demo"
+        label: "Демо"
+        file: "content/uk/demo/_index.md"
+        fields:
+          - { label: "Заголовок (H1)", name: "title", widget: "string" }
+          - { label: "SEO Title", name: "seoTitle", widget: "string" }
+          - { label: "SEO Description", name: "seoDescription", widget: "text" }
+          - { label: "OG Title", name: "ogTitle", widget: "string" }
+          - { label: "OG Description", name: "ogDescription", widget: "text" }
+          - { label: "Ключові слова", name: "keywords", widget: "string" }
+
+  # ════════════════════════════════════════
+  # БЛОГ
+  # ════════════════════════════════════════
   - name: "blog"
-    label: "Блог"
-    folder: "content/blog"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - { label: "Заголовок", name: "title", widget: "string" }
-      - { label: "Дата публікації", name: "date", widget: "datetime" }
-      - { label: "Опис (для SEO та карток)", name: "description", widget: "text" }
-      - { label: "Зображення обкладинки", name: "image", widget: "image", required: false }
-      - { label: "Теги", name: "tags", widget: "list", required: false }
-      - { label: "Текст статті", name: "body", widget: "markdown" }
+    label: "📝 Блог"
+    files:
+      - name: "blog-page"
+        label: "Сторінка блогу (SEO)"
+        file: "content/uk/blog/_index.md"
+        fields:
+          - { label: "Заголовок (H1)", name: "title", widget: "string" }
+          - { label: "SEO Title", name: "seoTitle", widget: "string" }
+          - { label: "SEO Description", name: "seoDescription", widget: "text" }
+          - { label: "OG Title", name: "ogTitle", widget: "string" }
+          - { label: "OG Description", name: "ogDescription", widget: "text" }
+          - { label: "Ключові слова", name: "keywords", widget: "string" }
+
+  # ════════════════════════════════════════
+  # НАЛАШТУВАННЯ САЙТУ
+  # ════════════════════════════════════════
+  - name: "settings"
+    label: "⚙️ Налаштування"
+    files:
+      - name: "site-config"
+        label: "Загальні налаштування"
+        file: "config.toml"
+        fields:
+          - { label: "URL сайту", name: "baseURL", widget: "string" }
+          - { label: "Назва сайту", name: "title", widget: "string" }

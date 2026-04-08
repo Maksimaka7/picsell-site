@@ -1,0 +1,2 @@
+# Redirect Netlify subdomain to custom domain
+https://idyllic-haupia-c797a4.netlify.app/* https://picsell.ai/:splat 301!

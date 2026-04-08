@@ -1,19 +1,53 @@
 baseURL = "https://picsell.ai/"
-languageCode = "uk"
-title = "PICSELL — Vision AI + SFA + HoReCa. Єдина платформа для FMCG"
+title = "PICSELL"
+enableRobotsTXT = true
+enableEmoji = true
+
+defaultContentLanguage = "uk"
+defaultContentLanguageInSubdir = false
+
+[languages]
+  [languages.uk]
+    languageName = "Українська"
+    languageCode = "uk"
+    weight = 1
+    title = "PICSELL — AI-платформа для FMCG"
+    [languages.uk.params]
+      description = "Vision AI + SFA + HoReCa Intelligence для виробників і дистриб'юторів FMCG"
+  [languages.en]
+    languageName = "English"
+    languageCode = "en"
+    weight = 2
+    title = "PICSELL — AI Platform for FMCG"
+    [languages.en.params]
+      description = "Vision AI + SFA + HoReCa Intelligence for FMCG brands and distributors"
 
 [params]
-  description = "PICSELL — All-in-One Sales OS для FMCG: Vision AI 99.9%, польові продажі, HoReCa Intelligence."
-  author = "PICSELL"
+  domain = "picsell.ai"
+  email = "hello@picsell.ai"
+  ogImage = "/images/og-default.png"
 
-[markup.goldmark.renderer]
-  unsafe = true
-
-[outputs]
-  home = ["HTML", "RSS"]
-  section = ["HTML", "RSS"]
+[build]
+  [build.processing]
+    [build.processing.css]
+      minify = true
+    [build.processing.js]
+      minify = true
+    [build.processing.html]
+      minify = true
 
 [sitemap]
   changefreq = "weekly"
   priority = 0.5
-  filename = "sitemap.xml"
+
+[outputFormats]
+  [outputFormats.redirects]
+    baseName = "_redirects"
+    isPlainText = true
+    notAlternative = true
+
+[outputs]
+  home = ["HTML", "redirects"]
+
+[taxonomies]
+# Disable default taxonomies to avoid warnings

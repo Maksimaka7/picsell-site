@@ -1,0 +1,291 @@
+{{ define "head-extra" }}
+<style>
+/* HERO */
+#hero{position:relative;padding:140px 0 var(--s7);background:var(--bg0);overflow:hidden;}
+.dot-grid{position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.05) 1px,transparent 1px);background-size:30px 30px;pointer-events:none;}
+.glow{position:absolute;top:-20%;left:50%;transform:translateX(-50%);width:800px;height:500px;background:radial-gradient(ellipse,rgba(0,87,255,.15) 0%,transparent 65%);filter:blur(50px);pointer-events:none;}
+.hero-inner{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:var(--s7);align-items:start;}
+.hero-left h1{font-size:clamp(36px,5vw,58px);font-weight:900;line-height:1.06;margin-bottom:var(--s3);}
+.hero-left p{font-size:17px;color:var(--t2);line-height:1.7;margin-bottom:var(--s4);}
+.what-happens{display:flex;flex-direction:column;gap:var(--s2);margin-bottom:var(--s4);}
+.wh-item{display:flex;align-items:flex-start;gap:var(--s2);padding:var(--s2) var(--s3);background:var(--bg3);border:1px solid var(--border);border-radius:var(--r3);transition:border-color .3s;}
+.wh-item:hover{border-color:rgba(0,87,255,.3);}
+.wh-icon{font-size:20px;flex-shrink:0;margin-top:2px;}
+.wh-text strong{display:block;font-family:'Geologica',sans-serif;font-weight:700;font-size:15px;margin-bottom:2px;}
+.wh-text span{font-size:13px;color:var(--t2);}
+.trust-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s2);}
+.tm{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r3);padding:14px;text-align:center;}
+.tm-val{font-family:'Geologica',sans-serif;font-weight:900;font-size:22px;color:var(--neon);}
+.tm-label{font-size:11px;color:var(--t2);margin-top:3px;}
+/* FORM */
+.form-card{background:var(--bg3);border:1px solid rgba(0,87,255,.25);border-radius:var(--r4);padding:var(--s5);box-shadow:0 0 60px rgba(0,87,255,.12);}
+.form-card h2{font-family:'Geologica',sans-serif;font-size:22px;font-weight:800;margin-bottom:var(--s3);}
+.form-grid{display:flex;flex-direction:column;gap:var(--s3);}
+.form-row-2{display:grid;grid-template-columns:1fr 1fr;gap:var(--s2);}
+.form-group{display:flex;flex-direction:column;gap:6px;}
+.form-label{font-size:13px;font-weight:500;color:var(--t2);}
+.form-input,.form-select{background:rgba(6,6,8,.9);border:1px solid var(--border);border-radius:var(--r2);padding:12px 16px;font-family:'Inter',sans-serif;font-size:15px;color:var(--t1);transition:border-color .2s,box-shadow .2s;outline:none;width:100%;}
+.form-input::placeholder{color:var(--t3);}
+.form-input:focus,.form-select:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,87,255,.12);}
+.form-select{cursor:pointer;appearance:none;}
+.form-select option{background:var(--bg3);}
+.checkbox-group{display:flex;flex-direction:column;gap:8px;}
+.checkbox-item{display:flex;align-items:center;gap:10px;cursor:pointer;font-size:14px;color:var(--t2);}
+.checkbox-item input[type=checkbox]{width:16px;height:16px;accent-color:var(--blue);}
+.form-note{font-size:12px;color:var(--t3);text-align:center;}
+.form-success{display:none;text-align:center;padding:var(--s5);}
+.form-success h3{font-family:'Geologica',sans-serif;font-size:24px;font-weight:700;margin-bottom:var(--s2);color:var(--neon);}
+.form-success p{color:var(--t2);font-size:15px;line-height:1.7;}
+/* SOCIAL PROOF */
+#proof{background:var(--bg2);padding:var(--s6) 0;}
+.proof-inner{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s3);}
+.pf{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r3);padding:var(--s3);text-align:center;transition:all .3s;}
+.pf:hover{border-color:rgba(0,87,255,.3);}
+.pf-val{font-family:'Geologica',sans-serif;font-weight:900;font-size:28px;color:var(--blue3);}
+.pf-label{font-size:13px;color:var(--t2);margin-top:4px;}
+/* FAQ */
+#faq{background:var(--bg1);padding:var(--s7) 0;}
+.faq-list{max-width:720px;margin:0 auto;display:flex;flex-direction:column;gap:var(--s2);}
+.faq-item{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r3);overflow:hidden;transition:border-color .3s;}
+.faq-item.open{border-color:rgba(0,87,255,.3);}
+.faq-q{display:flex;align-items:center;justify-content:space-between;padding:var(--s3) var(--s4);cursor:pointer;font-family:'Geologica',sans-serif;font-weight:600;font-size:16px;}
+.faq-icon{font-size:20px;color:var(--blue3);flex-shrink:0;transition:transform .3s;}
+.faq-item.open .faq-icon{transform:rotate(45deg);}
+.faq-a{padding:0 var(--s4) var(--s3);font-size:15px;color:var(--t2);line-height:1.7;overflow:hidden;}
+/* LOGOS */
+.logos-row{display:flex;align-items:center;justify-content:center;gap:var(--s4);flex-wrap:wrap;margin-top:var(--s5);}
+.lc{font-family:'Geologica',sans-serif;font-weight:700;font-size:16px;color:var(--t3);padding:8px 18px;border:1px solid var(--border);border-radius:var(--r2);transition:all .3s;}
+.lc:hover{color:var(--t2);}
+/* FOOTER */
+#footer{background:#060608;border-top:1px solid var(--border);padding:var(--s6) 0 var(--s3);}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:var(--s2);}
+.footer-bottom p{font-size:13px;color:var(--t3);}
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.in{opacity:1;transform:translateY(0);}
+.reveal-left{opacity:0;transform:translateX(-30px);transition:opacity .7s ease,transform .7s ease;}
+.reveal-left.in{opacity:1;transform:translateX(0);}
+.reveal-right{opacity:0;transform:translateX(30px);transition:opacity .7s ease,transform .7s ease;}
+.reveal-right.in{opacity:1;transform:translateX(0);}
+@keyframes hFadeUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+.h-anim{opacity:0;animation:hFadeUp .75s ease forwards;}
+.h-d1{animation-delay:.08s;}.h-d2{animation-delay:.2s;}.h-d3{animation-delay:.34s;}.h-d4{animation-delay:.48s;}
+@media(max-width:1024px){.hero-inner{grid-template-columns:1fr;gap:var(--s5);}.proof-inner{grid-template-columns:1fr 1fr;}}
+@media(max-width:768px){.nav-wrap,.nav-r .btn-s{display:none;}.hamburger{display:flex;}.form-row-2{grid-template-columns:1fr;}.trust-meta{grid-template-columns:1fr 1fr;}.proof-inner{grid-template-columns:1fr 1fr;}}
+</style>
+{{ end }}
+
+{{ define "main" }}
+<section id="hero">
+  <div class="dot-grid"></div><div class="glow"></div>
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-left">
+        <div style="margin-bottom:var(--s3);" class="h-anim h-d1">
+          <span style="font-family:'Orbitron',sans-serif;font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);">Замовити демо</span>
+        </div>
+        <h1 class="h-anim h-d2">Побачте PICSELL в дії — за <span class="highlight">30 хвилин</span></h1>
+        <p class="h-anim h-d3">Персональне демо під ваш бізнес. Без скриптів продажів. Без зобов'язань. Тільки реальна система і реальні дані вашого ринку.</p>
+
+        <div class="what-happens h-anim h-d3" style="margin-bottom:var(--s4);">
+          <div style="font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--t3);margin-bottom:var(--s2);">Що буде на демо:</div>
+          <div class="wh-item">
+            <div class="wh-icon">👁️</div>
+            <div class="wh-text"><strong>Live розпізнавання вашого SKU</strong><span>Показуємо систему на реальних фото з вашої категорії</span></div>
+          </div>
+          <div class="wh-item">
+            <div class="wh-icon">📊</div>
+            <div class="wh-text"><strong>Дашборд під ваші KPI</strong><span>Налаштовуємо Power BI під ваші метрики прямо під час дзвінка</span></div>
+          </div>
+          <div class="wh-item">
+            <div class="wh-icon">💰</div>
+            <div class="wh-text"><strong>ROI розрахунок для вашої команди</strong><span>Конкретні цифри економії — не загальні слова</span></div>
+          </div>
+        </div>
+
+        <div class="trust-meta h-anim h-d4">
+          <div class="tm"><div class="tm-val">2 год</div><div class="tm-label">Середній час відповіді</div></div>
+          <div class="tm"><div class="tm-val">30 хв</div><div class="tm-label">Тривалість демо</div></div>
+          <div class="tm"><div class="tm-val">0</div><div class="tm-label">Зобов'язань</div></div>
+        </div>
+
+        <div class="logos-row h-anim h-d4" style="justify-content:flex-start;margin-top:var(--s3);">
+          <div class="lc">Lactalis</div>
+          <div class="lc">Henkel</div>
+          <div class="lc">Bayadera</div>
+        </div>
+      </div>
+
+      <div class="h-anim h-d2">
+        <div class="form-card">
+          <form id="demoForm" name="demo-request" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="demo-request">
+            <p style="display:none;"><label>Don't fill this out: <input name="bot-field"></label></p>
+            <h2>Записатись на демо</h2>
+            <p style="font-size:14px;color:var(--t2);margin-bottom:var(--s3);">Заповніть форму — зв'яжемося за 2 години і узгодимо зручний час.</p>
+            <div class="form-grid">
+              <div class="form-row-2">
+                <div class="form-group">
+                  <label class="form-label">Ім'я та прізвище *</label>
+                  <input type="text" class="form-input" placeholder="Олексій Коваленко" name="name" id="df-name" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Компанія *</label>
+                  <input type="text" class="form-input" placeholder="Назва компанії" name="company" id="df-company" required>
+                </div>
+              </div>
+              <div class="form-row-2">
+                <div class="form-group">
+                  <label class="form-label">Посада</label>
+                  <select class="form-input form-select" name="role" id="df-role">
+                    <option value="" disabled selected>Оберіть посаду</option>
+                    <option>Власник / CEO</option>
+                    <option>Комерційний директор</option>
+                    <option>Brand Manager</option>
+                    <option>National Sales Manager</option>
+                    <option>Trade Marketing</option>
+                    <option>IT директор</option>
+                    <option>Дистриб'ютор</option>
+                    <option>Інше</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">К-сть агентів</label>
+                  <select class="form-input form-select" name="agents" id="df-agents">
+                    <option value="" disabled selected>Виберіть</option>
+                    <option>До 10 агентів</option>
+                    <option>10-50 агентів</option>
+                    <option>50-200 агентів</option>
+                    <option>200-500 агентів</option>
+                    <option>500+ агентів</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-row-2">
+                <div class="form-group">
+                  <label class="form-label">Телефон *</label>
+                  <input type="tel" class="form-input" placeholder="+380 XX XXX XXXX" name="phone" id="df-phone" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Email *</label>
+                  <input type="email" class="form-input" placeholder="your@company.com" name="email" id="df-email" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Що вас цікавить більше всього?</label>
+                <div class="checkbox-group">
+                  <label class="checkbox-item"><input type="checkbox" value="vision"> Vision AI — розпізнавання полиці</label>
+                  <label class="checkbox-item"><input type="checkbox" value="sales"> Sales App — польові команди</label>
+                  <label class="checkbox-item"><input type="checkbox" value="horeca"> HoReCa Intelligence</label>
+                  <label class="checkbox-item"><input type="checkbox" value="analytics"> Analytics — дашборди і AI Copilot</label>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-p btn-full btn-lg">
+                Записатись на демо →
+              </button>
+              <p class="form-note">🔒 Ваші дані в безпеці. Відповімо за 2 години в робочий день. Без спаму.</p>
+            </div>
+          </form>
+          <div class="form-success" id="demoFormSuccess">
+            <div style="font-size:56px;margin-bottom:var(--s3);">🎉</div>
+            <h3>Заявку отримано!</h3>
+            <p>Наш менеджер зв'яжеться з вами протягом <strong style="color:var(--neon);">2 годин</strong> у робочий день.<br><br>Поки чекаєте — подивіться як PICSELL виглядає зсередини:</p>
+            <div style="display:flex;gap:var(--s2);justify-content:center;margin-top:var(--s3);flex-wrap:wrap;">
+              <a href="/vision-ai/" class="btn btn-s" style="font-size:13px;padding:10px 18px;">Vision AI →</a>
+              <a href="/case-studies/" class="btn btn-g" style="font-size:13px;padding:10px 18px;">Кейси →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="proof">
+  <div class="container">
+    <div class="reveal" style="text-align:center;margin-bottom:var(--s4);">
+      <span style="font-family:'Orbitron',sans-serif;font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--t3);">Нам довіряють лідери ринку</span>
+    </div>
+    <div class="proof-inner reveal">
+      <div class="pf"><div class="pf-val">10M+</div><div class="pf-label">SKU розпізнано</div></div>
+      <div class="pf"><div class="pf-val">31K+</div><div class="pf-label">Торгових точок</div></div>
+      <div class="pf"><div class="pf-val">500+</div><div class="pf-label">Активних агентів</div></div>
+      <div class="pf"><div class="pf-val" style="color:var(--neon);">99.9%</div><div class="pf-label">Точність Vision AI</div></div>
+    </div>
+    <div class="logos-row reveal">
+      <div class="lc">Lactalis</div>
+      <div class="lc">Henkel</div>
+      <div class="lc">Bayadera</div>
+      <div class="lc">Schwarzkopf</div>
+      <div class="lc">Nestlé</div>
+      <div class="lc">Diageo</div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:var(--s5);" class="reveal">
+      <span style="font-family:'Orbitron',sans-serif;font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);">FAQ</span>
+      <h2 style="font-family:'Geologica',sans-serif;font-size:clamp(26px,3.5vw,40px);font-weight:800;margin-top:var(--s2);">Питання про демо</h2>
+    </div>
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <div class="faq-q">Чи потрібно готуватись до демо? <span class="faq-icon">+</span></div>
+        <div class="faq-a">Ні. Ми самі готуємо демо під вашу галузь і категорію. Якщо хочете — надішліть список ваших SKU заздалегідь, ми покажемо live розпізнавання вашого бренду. Але це не обов'язково.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Хто буде на дзвінку з боку PICSELL? <span class="faq-icon">+</span></div>
+        <div class="faq-a">Менеджер з продажів + Product Specialist який знає технологію зсередини. Ніяких скриптів — тільки відповіді на ваші запитання і показ реального продукту.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Скільки коштує демо? <span class="faq-icon">+</span></div>
+        <div class="faq-a">Демо — безкоштовне і без зобов'язань. Ціна на продукт залежить від вашої конфігурації — обговоримо після демо коли ви зрозумієте що саме вам потрібно.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Що якщо нас кілька людей з різних відділів? <span class="faq-icon">+</span></div>
+        <div class="faq-a">Відмінно! Ми звикли до групових демо. Зазвичай на дзвінку бувають одночасно комерційний директор, Brand Manager і IT — кожен отримує відповіді на свої питання.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Як швидко можна запустити PICSELL після демо? <span class="faq-icon">+</span></div>
+        <div class="faq-a">Пілот запускаємо за 1-4 тижні залежно від складності інтеграції. Базова конфігурація без ERP-інтеграції — 1 тиждень до перших даних.</div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{ define "scripts" }}
+<script>
+(function(){
+  const h=document.getElementById('header');
+  window.addEventListener('scroll',()=>h.classList.toggle('scrolled',scrollY>30));
+  const hbg=document.getElementById('hamburger'),mn=document.getElementById('mobileNav');
+  hbg.addEventListener('click',()=>{hbg.classList.toggle('open');mn.classList.toggle('open');document.body.style.overflow=mn.classList.contains('open')?'hidden':'';});
+  mn.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{hbg.classList.remove('open');mn.classList.remove('open');document.body.style.overflow='';}));
+  const obs=new IntersectionObserver((e)=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');obs.unobserve(x.target);}});},{threshold:0.05,rootMargin:'0px 0px -25px 0px'});
+  function reg(){document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el=>{const r=el.getBoundingClientRect();if(r.top<window.innerHeight+100&&r.bottom>-100)el.classList.add('in');else obs.observe(el);});}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',reg);else reg();
+  window.addEventListener('load',reg);
+  // FAQ
+  document.querySelectorAll('.faq-item').forEach(item=>{
+    const q=item.querySelector('.faq-q'),a=item.querySelector('.faq-a'),ic=item.querySelector('.faq-icon');
+    a.style.maxHeight='0';a.style.overflow='hidden';a.style.transition='max-height .35s ease';
+    q.addEventListener('click',()=>{
+      const isOpen=item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(i=>{i.classList.remove('open');i.querySelector('.faq-a').style.maxHeight='0';if(i.querySelector('.faq-icon'))i.querySelector('.faq-icon').textContent='+';});
+      if(!isOpen){item.classList.add('open');a.style.maxHeight=a.scrollHeight+'px';if(ic)ic.textContent='−';}
+    });
+  });
+})();
+var demoForm=document.getElementById('demoForm');
+if(demoForm){
+  demoForm.addEventListener('submit',function(ev){
+    ev.preventDefault();
+    var fd=new FormData(demoForm);
+    fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(fd).toString()})
+    .then(function(){demoForm.style.display='none';document.getElementById('demoFormSuccess').style.display='block';})
+    .catch(function(){demoForm.style.display='none';document.getElementById('demoFormSuccess').style.display='block';});
+  });
+}
+</script>
+{{ end }}
