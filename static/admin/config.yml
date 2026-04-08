@@ -1,0 +1,23 @@
+backend:
+  name: git-gateway
+  branch: main
+
+publish_mode: editorial_workflow
+media_folder: "static/images/uploads"
+public_folder: "/images/uploads"
+
+locale: "uk"
+
+collections:
+  - name: "blog"
+    label: "Блог"
+    folder: "content/blog"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Заголовок", name: "title", widget: "string" }
+      - { label: "Дата публікації", name: "date", widget: "datetime" }
+      - { label: "Опис (для SEO та карток)", name: "description", widget: "text" }
+      - { label: "Зображення обкладинки", name: "image", widget: "image", required: false }
+      - { label: "Теги", name: "tags", widget: "list", required: false }
+      - { label: "Текст статті", name: "body", widget: "markdown" }

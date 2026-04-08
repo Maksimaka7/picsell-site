@@ -1,0 +1,19 @@
+baseURL = "https://picsell.ai/"
+languageCode = "uk"
+title = "PICSELL — Vision AI + SFA + HoReCa. Єдина платформа для FMCG"
+
+[params]
+  description = "PICSELL — All-in-One Sales OS для FMCG: Vision AI 99.9%, польові продажі, HoReCa Intelligence."
+  author = "PICSELL"
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+[outputs]
+  home = ["HTML", "RSS"]
+  section = ["HTML", "RSS"]
+
+[sitemap]
+  changefreq = "weekly"
+  priority = 0.5
+  filename = "sitemap.xml"
