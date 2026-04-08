@@ -1,4 +1,4 @@
-baseURL = "https://picsell.ai/"
+baseURL = "https://idyllic-haupia-c797a4.netlify.app/"
 title = "PICSELL"
 enableRobotsTXT = true
 enableEmoji = true
@@ -27,15 +27,6 @@ defaultContentLanguageInSubdir = false
   email = "hello@picsell.ai"
   ogImage = "/images/og-default.png"
 
-[build]
-  [build.processing]
-    [build.processing.css]
-      minify = true
-    [build.processing.js]
-      minify = true
-    [build.processing.html]
-      minify = true
-
 [sitemap]
   changefreq = "weekly"
   priority = 0.5
@@ -50,4 +41,3 @@ defaultContentLanguageInSubdir = false
   home = ["HTML", "redirects"]
 
 [taxonomies]
-# Disable default taxonomies to avoid warnings
