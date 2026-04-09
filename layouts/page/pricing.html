@@ -49,7 +49,7 @@
 .roi-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--s5);align-items:center;}
 .roi-form{display:flex;flex-direction:column;gap:var(--s3);}
 .roi-label{font-size:13px;font-weight:500;color:var(--t2);margin-bottom:6px;}
-.roi-input{background:var(--bg0);border:1px solid var(--border);border-radius:var(--r2);padding:12px 16px;font-family:'Geologica',sans-serif;font-size:17px;font-weight:700;color:var(--t1);outline:none;width:100%;transition:border-color .2s;}
+.roi-input{background:var(--bg0);border:1px solid var(--border);border-radius:var(--r2);padding:12px 16px;font-family:'Geologica',sans-serif;font-size:17px;font-weight:700;color:var(--t1);outline:none;width:100%;box-sizing:border-box;transition:border-color .2s;}
 .roi-input:focus{border-color:var(--blue);}
 .roi-result{background:linear-gradient(135deg,rgba(0,87,255,.08),rgba(0,180,255,.04));border:1px solid rgba(0,87,255,.2);border-radius:var(--r3);padding:var(--s4);text-align:center;}
 .roi-result-title{font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--blue3);margin-bottom:var(--s2);}
@@ -85,7 +85,7 @@
 .h-d1{animation-delay:.08s;}.h-d2{animation-delay:.2s;}.h-d3{animation-delay:.34s;}.h-d4{animation-delay:.48s;}
 .reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease;}.reveal.in{opacity:1;transform:translateY(0);}
 .rd1{transition-delay:.05s;}.rd2{transition-delay:.12s;}.rd3{transition-delay:.19s;}
-@media(max-width:1024px){.plans-grid{grid-template-columns:1fr;max-width:480px;margin:0 auto;}.roi-grid{grid-template-columns:1fr;}.roi-total{font-size:36px;word-break:break-word;}.roi-card{padding:var(--s3);}.footer-grid{grid-template-columns:1fr 1fr;gap:var(--s4);}}
+@media(max-width:1024px){.plans-grid{grid-template-columns:1fr;max-width:480px;margin:0 auto;}.roi-grid{grid-template-columns:1fr;gap:var(--s3);}.roi-total{font-size:32px;}.roi-card{padding:var(--s3);}.roi-result{padding:var(--s3);}.roi-row{font-size:12px;}.roi-row-val{word-break:break-all;}.footer-grid{grid-template-columns:1fr 1fr;gap:var(--s4);}}
 @media(max-width:768px){.nav-wrap,.nav-r .btn-s{display:none;}.hamburger{display:flex;}.trust-row{gap:var(--s3);}.footer-grid{grid-template-columns:1fr;}.cta-btns{flex-direction:column;align-items:center;}}
 </style>
 {{ end }}
