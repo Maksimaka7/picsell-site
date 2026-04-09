@@ -45,7 +45,7 @@
 .ic-y{color:var(--neon);font-size:15px;}.ic-n{color:rgba(255,255,255,.15);font-size:15px;}.ic-p{color:var(--orange);font-size:12px;}
 
 /* ROI CALC */
-.roi-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r4);padding:var(--s5);}
+.roi-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r4);padding:var(--s5);overflow:hidden;max-width:100%;box-sizing:border-box;}
 .roi-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--s5);align-items:center;}
 .roi-form{display:flex;flex-direction:column;gap:var(--s3);}
 .roi-label{font-size:13px;font-weight:500;color:var(--t2);margin-bottom:6px;}
@@ -85,7 +85,7 @@
 .h-d1{animation-delay:.08s;}.h-d2{animation-delay:.2s;}.h-d3{animation-delay:.34s;}.h-d4{animation-delay:.48s;}
 .reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease;}.reveal.in{opacity:1;transform:translateY(0);}
 .rd1{transition-delay:.05s;}.rd2{transition-delay:.12s;}.rd3{transition-delay:.19s;}
-@media(max-width:1024px){.plans-grid{grid-template-columns:1fr;max-width:480px;margin:0 auto;}.roi-grid{grid-template-columns:1fr;}.footer-grid{grid-template-columns:1fr 1fr;gap:var(--s4);}}
+@media(max-width:1024px){.plans-grid{grid-template-columns:1fr;max-width:480px;margin:0 auto;}.roi-grid{grid-template-columns:1fr;}.roi-total{font-size:36px;word-break:break-word;}.roi-card{padding:var(--s3);}.footer-grid{grid-template-columns:1fr 1fr;gap:var(--s4);}}
 @media(max-width:768px){.nav-wrap,.nav-r .btn-s{display:none;}.hamburger{display:flex;}.trust-row{gap:var(--s3);}.footer-grid{grid-template-columns:1fr;}.cta-btns{flex-direction:column;align-items:center;}}
 </style>
 {{ end }}
