@@ -27,6 +27,12 @@ defaultContentLanguageInSubdir = false
   email = "hello@picsell.ai"
   ogImage = "/images/og-default.png"
 
+[permalinks]
+  [permalinks.page]
+    blog = "/blog/:slug/"
+  [permalinks.section]
+    blog = "/blog/"
+
 [sitemap]
   changefreq = "weekly"
   priority = 0.5
