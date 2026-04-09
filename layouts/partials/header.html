@@ -104,9 +104,10 @@ h1,h2,h3,h4{font-family:'Geologica',sans-serif;line-height:1.08;letter-spacing:-
 .hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
 .hamburger.open span:nth-child(2){opacity:0;}
 .hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
-.mobile-nav{display:none;position:fixed;top:72px;left:0;right:0;bottom:0;background:rgba(6,6,8,.98);backdrop-filter:blur(20px);flex-direction:column;align-items:center;justify-content:center;gap:var(--s3);z-index:999;}
+.mobile-nav{display:none;position:fixed;top:72px;left:0;right:0;bottom:0;background:rgba(6,6,8,.98);backdrop-filter:blur(20px);flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:6px;z-index:999;padding:var(--s4) var(--s5);overflow-y:auto;}
 .mobile-nav.open{display:flex;}
-.mobile-nav a{font-family:'Geologica',sans-serif;font-size:26px;font-weight:700;color:var(--t1);transition:color .2s;}
+.mobile-nav a{font-family:'Geologica',sans-serif;font-size:17px;font-weight:400;color:var(--t1);transition:color .2s;}
+.mobile-nav .mob-section{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);margin-top:8px;pointer-events:none;}
 .mobile-nav a:hover{color:var(--blue);}
 
 @media(max-width:768px){
@@ -148,14 +149,20 @@ h1,h2,h3,h4{font-family:'Geologica',sans-serif;line-height:1.08;letter-spacing:-
 <!-- Mobile Nav -->
 <div class="mobile-nav" id="mobileNav">
   <a href="{{ "/" | relLangURL }}">Головна</a>
+  <span class="mob-section">Продукти</span>
   <a href="{{ "/vision-ai/" | relLangURL }}">Vision AI</a>
   <a href="{{ "/sales-app/" | relLangURL }}">Sales App</a>
   <a href="{{ "/horeca/" | relLangURL }}">HoReCa</a>
   <a href="{{ "/analytics/" | relLangURL }}">Analytics</a>
   <a href="{{ "/radar/" | relLangURL }}">Radar</a>
+  <span class="mob-section">Рішення</span>
+  <a href="{{ "/solutions-brands/" | relLangURL }}">Для виробників</a>
+  <a href="{{ "/solutions-distributors/" | relLangURL }}">Для дистриб’юторів</a>
+  <a href="{{ "/solutions-horeca/" | relLangURL }}">Для HoReCa</a>
+  <span class="mob-section">Компанія</span>
   <a href="{{ "/pricing/" | relLangURL }}">Ціни</a>
   <a href="{{ "/case-studies/" | relLangURL }}">Кейси</a>
   <a href="{{ "/blog/" | relLangURL }}">Блог</a>
   <a href="{{ "/about/" | relLangURL }}">Про нас</a>
-  <a href="{{ "/demo/" | relLangURL }}" class="btn btn-p" style="margin-top:8px;">Замовити демо →</a>
+  <a href="{{ "/demo/" | relLangURL }}" class="btn btn-p" style="margin-top:12px;width:100%;text-align:center;">Замовити демо →</a>
 </div>
