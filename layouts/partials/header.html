@@ -82,6 +82,7 @@ h1,h2,h3,h4{font-family:'Geologica',sans-serif;line-height:1.08;letter-spacing:-
 #header.scrolled{background:rgba(8,8,10,.96);border-bottom-color:rgba(0,87,255,.18);}
 .header-inner{display:flex;align-items:center;justify-content:space-between;height:72px;}
 .logo{font-family:'Geologica',sans-serif;font-weight:900;font-size:21px;letter-spacing:-.03em;display:flex;align-items:center;}
+.logo img{height:28px;width:auto;max-width:160px;}
 .logo-plus{color:var(--neon);}
 .nav-wrap{display:flex;align-items:center;gap:var(--s2);}
 .nav-item{position:relative;}
@@ -111,11 +112,12 @@ h1,h2,h3,h4{font-family:'Geologica',sans-serif;line-height:1.08;letter-spacing:-
 @media(max-width:768px){
   .nav-wrap,.nav-r .btn-s{display:none;}
   .hamburger{display:flex;}
+  .logo img{height:22px;max-width:120px;}
 }
 </style>
 
 <header id="header"><div class="container"><div class="header-inner">
-  <a href="{{ "/" | relLangURL }}" class="logo"><img src="/images/Logo-3.svg" alt="PICSELL" style="height:28px;width:auto;"></a>
+  <a href="{{ "/" | relLangURL }}" class="logo"><img src="/images/Logo-3.svg" alt="PICSELL"></a>
   <nav class="nav-wrap">
     <div class="nav-item">
       <span class="nav-link">Продукти <span class="nav-chevron">▾</span></span>
