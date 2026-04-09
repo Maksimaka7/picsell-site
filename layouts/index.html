@@ -16,7 +16,8 @@
 @keyframes pulseDot{0%,100%{box-shadow:0 0 0 0 rgba(200,255,0,.6);}50%{box-shadow:0 0 0 6px rgba(200,255,0,0);}}
 .badge-text{font-family:'Orbitron',sans-serif;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--neon);}
 
-.hero-h1{font-size:clamp(38px,4.8vw,68px);font-weight:900;line-height:1.06;letter-spacing:-.03em;margin-bottom:var(--s3);}
+.hero-h1{font-size:clamp(42px,5.2vw,72px);font-weight:900;line-height:1.1;letter-spacing:-.03em;margin-bottom:var(--s4);}
+.hero-h1 .line{display:block;}
 .hero-sub{font-size:17px;color:var(--t2);line-height:1.7;margin-bottom:var(--s5);max-width:520px;}
 .hero-ctas{display:flex;gap:var(--s2);flex-wrap:wrap;margin-bottom:var(--s5);}
 .hero-trust{display:flex;align-items:center;gap:var(--s2);}
@@ -241,10 +242,10 @@
 /* ═══════════════════════════ RESPONSIVE ═══════════════════════════ */
 @media(max-width:1024px){
   #hero{min-height:auto;align-items:flex-start;}
-  .hero-content{grid-template-columns:1fr;gap:var(--s3);padding:var(--s3) 0 var(--s4);}
+  .hero-content{grid-template-columns:1fr;gap:var(--s4);padding:var(--s4) 0 var(--s4);}
   .hero-right{order:1;}
   .hero-left{order:-1;}
-  .hero-h1{font-size:clamp(32px,7vw,48px);}
+  .hero-h1{font-size:clamp(36px,9vw,52px);}
   .hero-sub{margin-bottom:var(--s3);}
   .hero-eyebrow{margin-bottom:var(--s1);}
   .products-grid{grid-template-columns:repeat(3,1fr);}
@@ -298,8 +299,9 @@
         </div>
 
         <h1 class="hero-h1 h-anim h-d2">
-          <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2L13.5 10.5L22 12L13.5 13.5L12 22L10.5 13.5L2 12L10.5 10.5Z" fill="#0057FF"/></svg>
-          <span style="color:var(--neon)">Бачиш полицю.</span> Керуєш командою. <span style="color:var(--blue)">Виграєш ринок.</span>
+          <span class="line"><span style="color:var(--neon)">Бачиш полицю.</span></span>
+          <span class="line">Керуєш командою.</span>
+          <span class="line"><span style="color:var(--blue)">Виграєш ринок.</span></span>
         </h1>
 
         <p class="hero-sub h-anim h-d3">
