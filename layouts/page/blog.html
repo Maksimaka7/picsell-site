@@ -99,7 +99,27 @@
       </div>
     </div>
 
-    <!-- POSTS GRID -->
+    <!-- DYNAMIC POSTS FROM CMS -->
+    {{ $posts := where site.RegularPages "Params.type" "blog" }}
+    {{ if $posts }}
+    <div class="posts-grid" style="margin-bottom:var(--s5);">
+      {{ range $posts.ByDate.Reverse }}
+      <a href="{{ .Permalink }}" class="post-card reveal" style="text-decoration:none;color:inherit;">
+        <div class="post-thumb">{{ with .Params.categories }}{{ index . 0 }}{{ else }}📝{{ end }}<div class="post-cat">{{ with .Params.categories }}{{ index . 0 }}{{ end }}</div></div>
+        <div class="post-body">
+          <h3 class="post-title">{{ .Title }}</h3>
+          <p class="post-excerpt">{{ with .Params.description }}{{ . | truncate 130 }}{{ else }}{{ .Summary | plainify | truncate 130 }}{{ end }}</p>
+          <div class="post-meta">
+            <span>{{ .Date.Format "02.01.2006" }}{{ with .Params.author }} · {{ . }}{{ end }}</span>
+            <span class="post-read">Читати →</span>
+          </div>
+        </div>
+      </a>
+      {{ end }}
+    </div>
+    {{ end }}
+
+    <!-- STATIC POSTS GRID -->
     <div class="posts-grid" id="postsGrid">
       <div class="post-card reveal rd1" data-category="sfa">
         <div class="post-thumb">&#128242;<div class="post-cat">SFA</div></div>

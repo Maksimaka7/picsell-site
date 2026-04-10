@@ -12,6 +12,7 @@ tags:
   - розпізнавання полиці
   - аудит
 type: "blog"
+url: "/blog/yak-vision-ai-zminuye-merchandising/"
 seoTitle: "Vision AI для мерчандайзингу — як працює розпізнавання полиці | PICSELL"
 seoDescription: "Як Vision AI автоматизує аудит полиці: розпізнавання SKU, Share of Shelf, OOS-детекція. Реальні кейси FMCG-компаній в Україні."
 ---
