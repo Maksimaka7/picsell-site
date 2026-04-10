@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 680 400">
+<title>PICSELL Blog — Perfect Store аудити</title>
+<defs>
+  <linearGradient id="bg3" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#060608"/><stop offset="100%" stop-color="#0C0C12"/></linearGradient>
+  <linearGradient id="blueGlow3" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0057FF" stop-opacity="0.16"/><stop offset="100%" stop-color="#0057FF" stop-opacity="0"/></linearGradient>
+  <clipPath id="rc3"><rect width="680" height="400" rx="12"/></clipPath>
+</defs>
+<g clip-path="url(#rc3)">
+  <rect width="680" height="400" fill="url(#bg3)"/>
+  <pattern id="d3" x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="#FFFFFF" opacity="0.04"/></pattern>
+  <rect width="680" height="400" fill="url(#d3)"/>
+  <ellipse cx="540" cy="280" rx="200" ry="160" fill="url(#blueGlow3)"/>
+  <g transform="translate(360, 50)">
+    <rect x="0" y="0" width="290" height="300" rx="14" fill="#0D0D0F" stroke="#1E1E24" stroke-width="0.8"/>
+    <rect x="0" y="0" width="290" height="44" rx="14" fill="#111114"/>
+    <rect x="0" y="30" width="290" height="14" fill="#111114"/>
+    <rect x="16" y="12" width="90" height="5" rx="2" fill="#2A2A32"/>
+    <text x="195" y="28" fill="#C8FF00" font-family="monospace" font-size="16" font-weight="700">87%</text>
+    <rect x="16" y="60" width="258" height="3" rx="1" fill="#2A2A32"/>
+    <rect x="20" y="42" width="28" height="18" rx="2" fill="#0057FF" opacity="0.85"/>
+    <rect x="52" y="42" width="28" height="18" rx="2" fill="#0057FF" opacity="0.85"/>
+    <rect x="84" y="42" width="28" height="18" rx="2" fill="#0057FF" opacity="0.85"/>
+    <rect x="116" y="42" width="28" height="18" rx="2" fill="#1E1E24" stroke="#FF003D" stroke-width="1" stroke-dasharray="2,2"/>
+    <text x="130" y="54" fill="#FF003D" font-family="monospace" font-size="9" text-anchor="middle">OOS</text>
+    <rect x="148" y="42" width="28" height="18" rx="2" fill="#0057FF" opacity="0.7"/>
+    <rect x="180" y="42" width="28" height="18" rx="2" fill="#0057FF" opacity="0.5"/>
+    <rect x="212" y="42" width="28" height="18" rx="2" fill="#0057FF" opacity="0.85"/>
+    <rect x="244" y="42" width="26" height="18" rx="2" fill="#0057FF" opacity="0.85"/>
+    <rect x="16" y="108" width="258" height="3" rx="1" fill="#2A2A32"/>
+    <rect x="20" y="88" width="32" height="20" rx="2" fill="#FF003D" opacity="0.4"/>
+    <rect x="56" y="88" width="32" height="20" rx="2" fill="#FF003D" opacity="0.4"/>
+    <rect x="92" y="88" width="32" height="20" rx="2" fill="#FF003D" opacity="0.4"/>
+    <rect x="128" y="88" width="32" height="20" rx="2" fill="#FF003D" opacity="0.4"/>
+    <line x1="16" y1="72" x2="274" y2="72" stroke="#C8FF00" stroke-width="1" stroke-opacity="0.6" stroke-dasharray="4,2"/>
+    <polygon points="16,69 22,72 16,75" fill="#C8FF00" opacity="0.6"/>
+    <rect x="16" y="122" width="258" height="4" rx="2" fill="#1A1A1E"/>
+    <rect x="16" y="122" width="165" height="4" rx="2" fill="#0057FF"/>
+    <circle cx="181" cy="124" r="5" fill="#0057FF"/>
+    <text x="190" y="128" fill="#3380FF" font-family="monospace" font-size="10">64%</text>
+    <rect x="16" y="140" width="120" height="50" rx="6" fill="#111114" stroke="#1E1E24" stroke-width="0.5"/>
+    <text x="18" y="172" fill="#C8FF00" font-family="monospace" font-size="18" font-weight="700">87%</text>
+    <rect x="146" y="140" width="60" height="50" rx="6" fill="#FF003D06" stroke="#FF003D20" stroke-width="0.5"/>
+    <text x="150" y="172" fill="#FF003D" font-family="monospace" font-size="18" font-weight="700">2.1%</text>
+    <rect x="216" y="140" width="58" height="50" rx="6" fill="#C8FF0004" stroke="#C8FF0018" stroke-width="0.5"/>
+    <text x="220" y="172" fill="#C8FF00" font-family="monospace" font-size="18" font-weight="700">+5%</text>
+    <rect x="112" y="38" width="36" height="28" rx="3" fill="none" stroke="#C8FF00" stroke-width="1.2" stroke-opacity="0.8"/>
+    <rect x="112" y="38" width="36" height="8" rx="3" fill="#C8FF0020"/>
+    <text x="130" y="44" fill="#C8FF00" font-family="monospace" font-size="6" text-anchor="middle">AI DETECT</text>
+    <rect x="16" y="204" width="258" height="80" rx="8" fill="#111114" stroke="#1E1E24" stroke-width="0.5"/>
+    <rect x="24" y="224" width="230" height="6" rx="3" fill="#1A1A1E"/>
+    <rect x="24" y="224" width="200" height="6" rx="3" fill="#0057FF" opacity="0.7"/>
+    <rect x="24" y="238" width="230" height="6" rx="3" fill="#1A1A1E"/>
+    <rect x="24" y="238" width="145" height="6" rx="3" fill="#FF003D" opacity="0.5"/>
+    <rect x="24" y="252" width="230" height="6" rx="3" fill="#1A1A1E"/>
+    <rect x="24" y="252" width="210" height="6" rx="3" fill="#C8FF00" opacity="0.6"/>
+  </g>
+  <rect x="40" y="48" width="112" height="22" rx="11" fill="#0057FF12" stroke="#0057FF35" stroke-width="0.5"/>
+  <circle cx="54" cy="59" r="3" fill="#0057FF"/>
+  <text x="40" y="128" fill="#FFFFFF" font-family="Georgia, serif" font-size="30" font-weight="700" letter-spacing="-0.5">Perfect Store:</text>
+  <text x="40" y="164" fill="#A0A0B0" font-family="Georgia, serif" font-size="24" font-weight="700">чому</text>
+  <text x="40" y="196" fill="#FF003D" font-family="Georgia, serif" font-size="34" font-weight="700" letter-spacing="-0.5">9 з 10 аудитів</text>
+  <text x="40" y="232" fill="#FFFFFF" font-family="Georgia, serif" font-size="30" font-weight="700" letter-spacing="-0.5">дають хибні</text>
+  <text x="40" y="268" fill="#FFFFFF" font-family="Georgia, serif" font-size="30" font-weight="700" letter-spacing="-0.5">результати</text>
+  <text x="40" y="302" fill="#A0A0B0" font-family="Arial, sans-serif" font-size="13">Ефект спостерігача, частота вимірювань,</text>
+  <text x="40" y="318" fill="#A0A0B0" font-family="Arial, sans-serif" font-size="13">суб'єктивність — і як AI вирішує це</text>
+  <rect x="40" y="338" width="3" height="20" rx="1.5" fill="#0057FF"/>
+  <text x="50" y="352" fill="#666670" font-family="Arial, sans-serif" font-size="12">Vision AI · Perfect Store · 5 хв читання</text>
+  <text x="638" y="376" fill="#333338" font-family="Georgia, serif" font-size="14" font-weight="700" text-anchor="end">PICSELL+</text>
+  <rect x="40" y="36" width="40" height="3" rx="1.5" fill="#0057FF" opacity="0.9"/>
+</g>
+</svg>
