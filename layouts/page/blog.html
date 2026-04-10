@@ -22,7 +22,7 @@
 .posts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s3);}
 .post-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r3);overflow:hidden;display:flex;flex-direction:column;transition:all .3s;}
 .post-card:hover{border-color:rgba(0,87,255,.3);box-shadow:0 8px 40px rgba(0,87,255,.08);transform:translateY(-4px);}
-.post-thumb{background:linear-gradient(135deg,rgba(0,87,255,.1),rgba(0,180,255,.05));display:flex;align-items:center;justify-content:center;height:140px;font-size:48px;position:relative;overflow:hidden;}
+.post-thumb{background:linear-gradient(135deg,rgba(0,87,255,.1),rgba(0,180,255,.05));display:flex;align-items:center;justify-content:center;height:200px;font-size:48px;position:relative;overflow:hidden;}
 .post-cat{position:absolute;bottom:var(--s2);left:var(--s2);font-family:'Orbitron',sans-serif;font-size:8px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;background:rgba(8,8,10,.8);color:var(--blue3);padding:3px 8px;border-radius:4px;}
 .post-body{padding:var(--s3);flex:1;display:flex;flex-direction:column;gap:8px;}
 .post-title{font-family:'Geologica',sans-serif;font-weight:700;font-size:16px;line-height:1.3;}
@@ -105,7 +105,7 @@
     <div class="posts-grid" style="margin-bottom:var(--s5);">
       {{ range $posts.ByDate.Reverse }}
       <a href="{{ .Permalink }}" class="post-card reveal" style="text-decoration:none;color:inherit;">
-        <div class="post-thumb" style="padding:0;overflow:hidden;">{{ with .Params.image }}<img src="{{ . }}" alt="{{ $.Title }}" style="width:100%;height:140px;object-fit:cover;">{{ else }}<div style="display:flex;align-items:center;justify-content:center;height:140px;font-size:48px;">📝</div>{{ end }}<div class="post-cat" style="position:absolute;bottom:8px;left:10px;">{{ with .Params.categories }}{{ index . 0 }}{{ end }}</div></div>
+        <div class="post-thumb" style="padding:0;overflow:hidden;">{{ with .Params.image }}<img src="{{ . }}" alt="{{ $.Title }}" style="width:100%;height:200px;object-fit:contain;background:var(--bg2);">{{ else }}<div style="display:flex;align-items:center;justify-content:center;height:140px;font-size:48px;">📝</div>{{ end }}<div class="post-cat" style="position:absolute;bottom:8px;left:10px;">{{ with .Params.categories }}{{ index . 0 }}{{ end }}</div></div>
         <div class="post-body">
           <h3 class="post-title">{{ .Title }}</h3>
           <p class="post-excerpt">{{ with .Params.description }}{{ . | truncate 130 }}{{ else }}{{ .Summary | plainify | truncate 130 }}{{ end }}</p>
