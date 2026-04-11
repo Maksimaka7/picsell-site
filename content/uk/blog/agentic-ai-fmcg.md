@@ -11,6 +11,7 @@ tags:
   - AI автоматизація
   - цифрова трансформація
   - Excel дистрибуція
+image: "/images/cover-agentic-ai.svg"
 type: "blog"
 layout: "agentic-ai-fmcg"
 url: "/blog/agentic-ai-fmcg/"

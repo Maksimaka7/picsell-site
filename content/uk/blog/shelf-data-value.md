@@ -11,6 +11,7 @@ tags:
   - конкурентна перевага
   - Share of Shelf
   - retail data
+image: "/images/cover-shelf-data.svg"
 type: "blog"
 layout: "shelf-data-value"
 url: "/blog/shelf-data-value/"
