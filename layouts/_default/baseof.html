@@ -5,6 +5,26 @@
 {{ block "head-extra" . }}{{ end }}
 </head>
 <body style="overflow-x:hidden;">
+<!-- Netlify Forms detection (hidden) -->
+<form name="demo-request" netlify netlify-honeypot="bot-field" hidden>
+  <input type="text" name="name">
+  <input type="text" name="company">
+  <select name="role"></select>
+  <select name="agents"></select>
+  <input type="tel" name="phone">
+  <input type="email" name="email">
+  <input type="text" name="bot-field">
+</form>
+<form name="homepage-demo" netlify netlify-honeypot="bot-field" hidden>
+  <input type="text" name="name">
+  <input type="text" name="company">
+  <select name="role"></select>
+  <input type="email" name="email">
+  <input type="text" name="bot-field">
+</form>
+<form name="subscribe" netlify hidden>
+  <input type="email" name="email">
+</form>
 {{ partial "header.html" . }}
 <main>
 {{ block "main" . }}{{ end }}
