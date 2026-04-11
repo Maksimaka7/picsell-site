@@ -58,6 +58,7 @@ exports.handler = async (event) => {
       message = `🔔 <b>Нова заявка з головної!</b>\n\n` +
         `👤 <b>Ім'я:</b> ${data.name || '—'}\n` +
         `🏢 <b>Компанія:</b> ${data.company || '—'}\n` +
+        `📱 <b>Телефон:</b> ${data.phone || '—'}\n` +
         `📧 <b>Email:</b> ${data.email || '—'}\n` +
         `💼 <b>Роль:</b> ${data.role || '—'}\n\n` +
         `📌 Форма: головна сторінка`;
