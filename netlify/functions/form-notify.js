@@ -1,7 +1,7 @@
 const https = require('https');
 
 const BOT_TOKEN = '8769244217:AAHE2dhuAkpdK8F_R3hon_OKT7e1O-U3XU0';
-const CHAT_ID = '504000544';
+const CHAT_ID = '-5255672708'; // PICSELL Заявки group
 
 function sendTelegram(text) {
   return new Promise((resolve, reject) => {
