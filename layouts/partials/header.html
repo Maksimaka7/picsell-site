@@ -111,7 +111,7 @@ h1,h2,h3,h4{font-family:'Geologica',sans-serif;line-height:1.08;letter-spacing:-
 .mobile-nav a:hover{color:var(--blue);}
 
 @media(max-width:768px){
-  .nav-wrap,.nav-r .btn-s{display:none;}
+  .nav-wrap,.nav-r .btn-s,.nav-phone{display:none;}
   .hamburger{display:flex;}
   .logo img{height:22px;max-width:120px;}
 }
@@ -143,7 +143,7 @@ h1,h2,h3,h4{font-family:'Geologica',sans-serif;line-height:1.08;letter-spacing:-
     <a href="{{ "/blog/" | relLangURL }}" class="nav-link">Блог</a>
     <a href="{{ "/about/" | relLangURL }}" class="nav-link">Про нас</a>
   </nav>
-  <div class="nav-r"><a href="tel:+380778809888" class="nav-link" style="color:var(--t1);font-weight:600;font-size:13px;" aria-label="Телефон PICSELL">+380&nbsp;77&nbsp;880&nbsp;98&nbsp;88</a><a href="{{ "/demo/" | relLangURL }}" class="btn btn-p btn-sm">Замовити демо</a><button class="hamburger" id="hamburger" aria-label="Меню"><span></span><span></span><span></span></button></div>
+  <div class="nav-r"><a href="tel:+380778809888" class="nav-link nav-phone" style="color:var(--t1);font-weight:600;font-size:13px;" aria-label="Телефон PICSELL">+380&nbsp;77&nbsp;880&nbsp;98&nbsp;88</a><a href="{{ "/demo/" | relLangURL }}" class="btn btn-p btn-sm">Замовити демо</a><button class="hamburger" id="hamburger" aria-label="Меню"><span></span><span></span><span></span></button></div>
 </div></div></header>
 
 <!-- Mobile Nav -->
