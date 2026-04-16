@@ -903,6 +903,9 @@
             </div>
           </form>
 
+          <div id="mainFormError" style="display:none;padding:var(--s3);background:rgba(255,60,60,.07);border:1px solid rgba(255,60,60,.2);border-radius:var(--r3);margin-top:var(--s2);text-align:center;">
+            <p style="color:#ff6b6b;font-weight:600;">&#9888; Щось пішло не так. Спробуйте ще раз або напишіть на <a href="mailto:hello@picsell.ai" style="color:#ff6b6b;">hello@picsell.ai</a></p>
+          </div>
           <div id="mainFormSuccess" class="form-success">
             <div class="form-success-icon">🎉</div>
             <h3>Дякуємо! Заявку отримано.</h3>
@@ -976,8 +979,17 @@ if(mainForm){
     ev.preventDefault();
     var fd=new FormData(mainForm);
     fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(fd).toString()})
-    .then(function(){mainForm.style.display='none';document.getElementById('mainFormSuccess').style.display='block';})
-    .catch(function(){mainForm.style.display='none';document.getElementById('mainFormSuccess').style.display='block';});
+    .then(function(res){
+      if(res.ok){
+        mainForm.style.display='none';
+        document.getElementById('mainFormSuccess').style.display='block';
+      } else {
+        document.getElementById('mainFormError').style.display='block';
+      }
+    })
+    .catch(function(){
+      document.getElementById('mainFormError').style.display='block';
+    });
   });
 }
 </script>

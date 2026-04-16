@@ -185,6 +185,9 @@
               <p class="form-note">🔒 Ваші дані в безпеці. Відповімо за 2 години в робочий день. Без спаму.</p>
             </div>
           </form>
+          <div id="demoFormError" style="display:none;text-align:center;padding:var(--s4);background:rgba(255,60,60,.07);border:1px solid rgba(255,60,60,.2);border-radius:var(--r3);margin-top:var(--s2);">
+            <p style="color:#ff6b6b;font-weight:600;">&#9888; Щось пішло не так. Спробуйте ще раз або напишіть нам на <a href="mailto:hello@picsell.ai" style="color:#ff6b6b;">hello@picsell.ai</a></p>
+          </div>
           <div class="form-success" id="demoFormSuccess">
             <div style="font-size:56px;margin-bottom:var(--s3);">🎉</div>
             <h3>Заявку отримано!</h3>
@@ -283,8 +286,17 @@ if(demoForm){
     ev.preventDefault();
     var fd=new FormData(demoForm);
     fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(fd).toString()})
-    .then(function(){demoForm.style.display='none';document.getElementById('demoFormSuccess').style.display='block';})
-    .catch(function(){demoForm.style.display='none';document.getElementById('demoFormSuccess').style.display='block';});
+    .then(function(res){
+      if(res.ok){
+        demoForm.style.display='none';
+        document.getElementById('demoFormSuccess').style.display='block';
+      } else {
+        document.getElementById('demoFormError').style.display='block';
+      }
+    })
+    .catch(function(){
+      document.getElementById('demoFormError').style.display='block';
+    });
   });
 }
 </script>
