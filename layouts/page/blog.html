@@ -85,7 +85,7 @@
     {{ $featured := index ($allPosts.ByDate.Reverse) 0 }}
     {{ if $featured }}
     <a href="{{ $featured.Permalink }}" class="featured-card reveal" style="text-decoration:none;color:inherit;">
-      <div class="fc-visual">{{ with $featured.Params.image }}<img src="{{ . }}" alt="{{ $featured.Title }}" style="width:100%;height:100%;object-fit:contain;background:var(--bg2);">{{ else }}<div style="font-size:64px;display:flex;align-items:center;justify-content:center;height:100%;">📝</div>{{ end }}</div>
+      <div class="fc-visual">{{ with $featured.Params.image }}<img loading="lazy" src="{{ . }}" alt="{{ $featured.Title }}" style="width:100%;height:100%;object-fit:contain;background:var(--bg2);">{{ else }}<div style="font-size:64px;display:flex;align-items:center;justify-content:center;height:100%;">📝</div>{{ end }}</div>
       <div class="fc-content">
         <div class="fc-badge">{{ with $featured.Params.categories }}{{ index . 0 }}{{ end }}</div>
         <h2 class="fc-title">{{ $featured.Title }}</h2>
@@ -108,7 +108,7 @@
     <div class="posts-grid" style="margin-bottom:var(--s5);">
       {{ range $posts.ByDate.Reverse }}
       <a href="{{ .Permalink }}" class="post-card reveal" style="text-decoration:none;color:inherit;">
-        <div class="post-thumb" style="padding:0;overflow:hidden;">{{ with .Params.image }}<img src="{{ . }}" alt="{{ $.Title }}" style="width:100%;height:200px;object-fit:contain;background:var(--bg2);">{{ else }}<div style="display:flex;align-items:center;justify-content:center;height:140px;font-size:48px;">📝</div>{{ end }}<div class="post-cat" style="position:absolute;bottom:8px;left:10px;">{{ with .Params.categories }}{{ index . 0 }}{{ end }}</div></div>
+        <div class="post-thumb" style="padding:0;overflow:hidden;">{{ with .Params.image }}<img loading="lazy" src="{{ . }}" alt="{{ $.Title }}" style="width:100%;height:200px;object-fit:contain;background:var(--bg2);">{{ else }}<div style="display:flex;align-items:center;justify-content:center;height:140px;font-size:48px;">📝</div>{{ end }}<div class="post-cat" style="position:absolute;bottom:8px;left:10px;">{{ with .Params.categories }}{{ index . 0 }}{{ end }}</div></div>
         <div class="post-body">
           <h3 class="post-title">{{ .Title }}</h3>
           <p class="post-excerpt">{{ with .Params.description }}{{ . | truncate 130 }}{{ else }}{{ .Summary | plainify | truncate 130 }}{{ end }}</p>
