@@ -148,8 +148,13 @@ h1,h2,h3,h4{font-family:'Geologica',sans-serif;line-height:1.08;letter-spacing:-
     <a href="{{ "/about/" | relLangURL }}" class="nav-link">{{ if eq .Site.Language.Lang "en" }}About{{ else }}Про нас{{ end }}</a>
   </nav>
   <div class="nav-r"><a href="tel:+380778809888" class="nav-link nav-phone" style="color:var(--t1);font-weight:600;font-size:13px;" aria-label="Телефон PICSELL">+380&nbsp;77&nbsp;880&nbsp;98&nbsp;88</a><div class="lang-switch">
-  <span class="lang-btn lang-active">{{ .Site.Language.Lang | upper }}</span>
-  {{ if .Translations }}{{ range .Translations }}<a href="{{ .Permalink }}" class="lang-btn" hreflang="{{ .Language.Lang }}">{{ .Language.Lang | upper }}</a>{{ end }}{{ else }}{{ range .Site.Languages }}{{ if ne .Lang $.Site.Language.Lang }}<a href="{{ if eq .Lang "uk" }}/{{ else }}/{{ .Lang }}/{{ end }}" class="lang-btn" hreflang="{{ .Lang }}">{{ .Lang | upper }}</a>{{ end }}{{ end }}{{ end }}
+  {{ if eq .Site.Language.Lang "uk" }}
+    <span class="lang-btn lang-active" title="Українська">🇺🇦 UA</span>
+    {{ if .Translations }}{{ range .Translations }}<a href="{{ .Permalink }}" class="lang-btn" hreflang="{{ .Language.Lang }}" title="English">🇺🇸 EN</a>{{ end }}{{ else }}<a href="/en/" class="lang-btn" hreflang="en" title="English">🇺🇸 EN</a>{{ end }}
+  {{ else }}
+    {{ if .Translations }}{{ range .Translations }}<a href="{{ .Permalink }}" class="lang-btn" hreflang="{{ .Language.Lang }}" title="Українська">🇺🇦 UA</a>{{ end }}{{ else }}<a href="/" class="lang-btn" hreflang="uk" title="Українська">🇺🇦 UA</a>{{ end }}
+    <span class="lang-btn lang-active" title="English">🇺🇸 EN</span>
+  {{ end }}
 </div><a href="{{ "/demo/" | relLangURL }}" class="btn btn-p btn-sm">{{ if eq .Site.Language.Lang "en" }}Book Demo{{ else }}Замовити демо{{ end }}</a><button class="hamburger" id="hamburger" aria-label="Меню"><span></span><span></span><span></span></button></div>
 </div></div></header>
 
@@ -157,7 +162,13 @@ h1,h2,h3,h4{font-family:'Geologica',sans-serif;line-height:1.08;letter-spacing:-
 <div class="mobile-nav" id="mobileNav">
   <a href="{{ "/" | relLangURL }}">{{ if eq .Site.Language.Lang "en" }}Home{{ else }}Головна{{ end }}</a>
   <div style="display:flex;gap:8px;margin:4px 0;">
-  <span style="font-size:13px;font-weight:700;padding:4px 12px;border-radius:6px;border:1px solid var(--blue);color:var(--blue);">{{ .Site.Language.Lang | upper }}</span>{{ if .Translations }}{{ range .Translations }}<a href="{{ .Permalink }}" style="font-size:13px;font-weight:600;padding:4px 12px;border-radius:6px;border:1px solid var(--border);color:var(--t2);">{{ .Language.Lang | upper }}</a>{{ end }}{{ else }}{{ range .Site.Languages }}{{ if ne .Lang $.Site.Language.Lang }}<a href="{{ if eq .Lang "uk" }}/{{ else }}/{{ .Lang }}/{{ end }}" style="font-size:13px;font-weight:600;padding:4px 12px;border-radius:6px;border:1px solid var(--border);color:var(--t2);">{{ .Lang | upper }}</a>{{ end }}{{ end }}{{ end }}
+  {{ if eq .Site.Language.Lang "uk" }}
+    <span style="font-size:13px;font-weight:700;padding:4px 12px;border-radius:6px;border:1px solid var(--blue);color:var(--blue);">🇺🇦 UA</span>
+    {{ if .Translations }}{{ range .Translations }}<a href="{{ .Permalink }}" style="font-size:13px;font-weight:600;padding:4px 12px;border-radius:6px;border:1px solid var(--border);color:var(--t2);">🇺🇸 EN</a>{{ end }}{{ else }}<a href="/en/" style="font-size:13px;font-weight:600;padding:4px 12px;border-radius:6px;border:1px solid var(--border);color:var(--t2);">🇺🇸 EN</a>{{ end }}
+  {{ else }}
+    {{ if .Translations }}{{ range .Translations }}<a href="{{ .Permalink }}" style="font-size:13px;font-weight:600;padding:4px 12px;border-radius:6px;border:1px solid var(--border);color:var(--t2);">🇺🇦 UA</a>{{ end }}{{ else }}<a href="/" style="font-size:13px;font-weight:600;padding:4px 12px;border-radius:6px;border:1px solid var(--border);color:var(--t2);">🇺🇦 UA</a>{{ end }}
+    <span style="font-size:13px;font-weight:700;padding:4px 12px;border-radius:6px;border:1px solid var(--blue);color:var(--blue);">🇺🇸 EN</span>
+  {{ end }}
 </div>
   <span class="mob-section">{{ if eq .Site.Language.Lang "en" }}Products{{ else }}Продукти{{ end }}</span>
   <a href="{{ "/vision-ai/" | relLangURL }}">Vision AI</a>
