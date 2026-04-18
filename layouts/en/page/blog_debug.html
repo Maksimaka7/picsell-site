@@ -1,0 +1,5 @@
+{{ define "main" }}
+{{ range where site.RegularPages "Params.type" "blog" }}
+<p>{{ .Title }} | Dir={{ .File.Dir }} | Lang={{ .Language.Lang }} | RelPerma={{ .RelPermalink }}</p>
+{{ end }}
+{{ end }}
