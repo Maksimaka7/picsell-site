@@ -1,0 +1,258 @@
+{{ define "head-extra" }}
+<style>
+#hero{position:relative;padding:140px 0 var(--s7);overflow:hidden;background:var(--bg0);}
+.hero-bg{position:absolute;inset:0;pointer-events:none;}
+.dot-grid{position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.05) 1px,transparent 1px);background-size:32px 32px;}
+.glow-neon{position:absolute;top:-15%;left:50%;transform:translateX(-50%);width:900px;height:600px;background:radial-gradient(ellipse,rgba(200,255,0,.07) 0%,rgba(0,87,255,.09) 50%,transparent 70%);filter:blur(60px);}
+.noise{position:absolute;inset:0;opacity:.02;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:200px;}
+.hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:var(--s7);align-items:center;padding:var(--s5) 0;}
+.hero-h1{font-size:clamp(34px,4.5vw,62px);font-weight:900;line-height:1.06;margin-bottom:var(--s3);}
+.hero-sub{font-size:17px;color:var(--t2);line-height:1.7;margin-bottom:var(--s4);}
+.hero-ctas{display:flex;gap:var(--s2);flex-wrap:wrap;margin-bottom:var(--s4);}
+.hero-metrics{display:flex;gap:var(--s4);flex-wrap:wrap;}
+.hm-val{font-family:'Geologica',sans-serif;font-weight:900;font-size:30px;color:var(--neon);}
+.hm-lbl{font-size:12px;color:var(--t2);margin-top:2px;}
+.radar-visual{background:var(--bg3);border:1px solid rgba(200,255,0,.18);border-radius:var(--r4);overflow:hidden;box-shadow:0 0 60px rgba(200,255,0,.06),0 40px 80px rgba(0,0,0,.5);}
+.rv-hdr{background:var(--bg2);border-bottom:1px solid var(--border);padding:12px 20px;display:flex;align-items:center;justify-content:space-between;}
+.rv-dots{display:flex;gap:5px;}.rvd{width:10px;height:10px;border-radius:50%;}.rd{background:#FF5F57;}.ry{background:#FEBC2E;}.rg{background:#28C840;}
+.rv-lbl{font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.12em;color:var(--t2);text-transform:uppercase;}
+.rv-live{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--neon);}
+.rl-dot{width:6px;height:6px;background:var(--neon);border-radius:50%;animation:pdot 1.5s ease-in-out infinite;}
+@keyframes pdot{0%,100%{box-shadow:0 0 0 0 rgba(200,255,0,.6);}50%{box-shadow:0 0 0 6px rgba(200,255,0,0);}}
+.rv-body{padding:var(--s3);}
+.price-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r3);margin-bottom:var(--s2);}
+.pc-hdr{padding:8px 14px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
+.pc-name{font-family:'Geologica',sans-serif;font-weight:700;font-size:13px;}
+.pc-badge{font-family:'Orbitron',sans-serif;font-size:8px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:2px 8px;border-radius:999px;}
+.pcb-dn{background:rgba(255,0,61,.1);color:#FF6680;border:1px solid rgba(255,0,61,.2);}
+.pcb-ok{background:rgba(80,80,90,.15);color:var(--t2);border:1px solid rgba(80,80,90,.2);}
+.pc-body{padding:8px 14px;display:grid;grid-template-columns:repeat(4,1fr);gap:6px;}
+.pcc{text-align:center;}
+.pcc-name{font-size:9px;color:var(--t3);font-family:'Orbitron',sans-serif;letter-spacing:.06em;text-transform:uppercase;margin-bottom:3px;}
+.pcc-val{font-family:'Geologica',sans-serif;font-weight:900;font-size:15px;}
+.pcc-our{color:var(--blue3);}.pcc-low{color:var(--orange);}.pcc-ok{color:var(--t2);}
+.ai-verdict{background:rgba(200,255,0,.05);border:1px solid rgba(200,255,0,.15);border-radius:var(--r2);padding:8px 12px;font-size:11px;color:var(--t2);margin-bottom:var(--s2);}
+.ai-verdict strong{color:var(--neon);}
+.gmap-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r3);padding:var(--s2);}
+.gmc-title{font-family:'Orbitron',sans-serif;font-size:8px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--t2);margin-bottom:8px;}
+.gmc-row{display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid rgba(30,30,36,.8);font-size:11px;}
+.gmc-row:last-child{border-bottom:none;}
+.gmc-name{color:var(--t2);}
+.gmc-status{font-size:10px;font-weight:600;padding:2px 7px;border-radius:999px;}
+.gms-new{background:rgba(200,255,0,.1);color:var(--neon);}
+.gms-val{background:rgba(80,80,90,.15);color:var(--t2);}
+.logos-strip{padding:var(--s3) 0;background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.logos-inner{display:flex;align-items:center;justify-content:center;gap:var(--s5);flex-wrap:wrap;}
+.logo-cl{font-family:'Geologica',sans-serif;font-weight:700;font-size:15px;color:var(--t3);padding:6px 16px;border:1px solid var(--border);border-radius:var(--r2);transition:all .3s;}.logo-cl:hover{color:var(--t2);}
+.logos-pre{font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--t3);}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:var(--s6);align-items:center;}
+.ba-wrap{display:grid;grid-template-columns:1fr 1fr;gap:var(--s4);}
+.ba-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r3);padding:var(--s4);}
+.ba-before{border-top:2px solid var(--red);}.ba-after{border-top:2px solid var(--neon);border-color:rgba(200,255,0,.2);}
+.ba-title{font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:var(--s3);}
+.ba-before .ba-title{color:var(--red);}.ba-after .ba-title{color:var(--neon);}
+.ba-item{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid rgba(30,30,36,.8);font-size:14px;color:var(--t2);}
+.ba-item:last-child{border-bottom:none;}
+.ic-bad{color:var(--red);font-size:14px;flex-shrink:0;}.ic-good{color:var(--neon);font-size:14px;flex-shrink:0;}
+.feat5{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s3);}
+.fc{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r3);padding:var(--s4);transition:all .3s;position:relative;overflow:hidden;}
+.fc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;opacity:0;transition:opacity .3s;}
+.fc-neon::before{background:var(--neon);}.fc-blue::before{background:var(--blue);}
+.fc:hover{border-color:rgba(0,87,255,.3);box-shadow:0 8px 40px rgba(0,87,255,.1);transform:translateY(-4px);}.fc:hover::before{opacity:1;}
+.fc-icon{width:50px;height:50px;border-radius:var(--r3);display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:var(--s3);}
+.fci-n{background:rgba(200,255,0,.07);border:1px solid rgba(200,255,0,.15);}
+.fci-b{background:rgba(0,87,255,.08);border:1px solid rgba(0,87,255,.15);}
+.fc h3{font-family:'Geologica',sans-serif;font-weight:700;font-size:17px;margin-bottom:var(--s2);}
+.fc p{color:var(--t2);font-size:14px;line-height:1.65;}
+.fc-pill{display:inline-flex;align-items:center;gap:5px;margin-top:var(--s2);font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--neon);background:rgba(200,255,0,.07);padding:4px 10px;border-radius:999px;border:1px solid rgba(200,255,0,.18);}
+.case-band{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r4);overflow:hidden;display:grid;grid-template-columns:1fr 2fr;}
+.case-left{padding:var(--s5);border-right:1px solid var(--border);}
+.case-brand{font-family:'Geologica',sans-serif;font-weight:900;font-size:28px;margin-bottom:6px;}
+.case-type{font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--t3);}
+.case-right{padding:var(--s5);}
+.result-pills{display:flex;gap:var(--s2);flex-wrap:wrap;margin-top:var(--s3);}
+.rp{background:rgba(200,255,0,.07);border:1px solid rgba(200,255,0,.18);border-radius:var(--r2);padding:10px 16px;text-align:center;}
+.rp-val{font-family:'Geologica',sans-serif;font-weight:900;font-size:22px;color:var(--neon);}
+.rp-lbl{font-size:11px;color:var(--t2);margin-top:3px;}
+.cta-band{background:linear-gradient(135deg,rgba(200,255,0,.04),rgba(0,87,255,.03));border-top:1px solid rgba(200,255,0,.1);border-bottom:1px solid rgba(0,87,255,.1);padding:var(--s7) 0;text-align:center;}
+.cta-band h2{font-size:clamp(26px,3.5vw,44px);font-weight:800;margin-bottom:var(--s2);}
+.cta-band p{color:var(--t2);font-size:17px;max-width:560px;margin:0 auto var(--s5);line-height:1.65;}
+.cta-btns{display:flex;gap:var(--s2);justify-content:center;flex-wrap:wrap;}
+#footer{background:#060608;border-top:1px solid var(--border);padding:var(--s7) 0 var(--s4);}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:var(--s6);margin-bottom:var(--s6);}
+.footer-brand-desc{color:var(--t2);font-size:14px;line-height:1.7;margin:var(--s2) 0 var(--s3);max-width:270px;}
+.footer-col-title{font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--t3);margin-bottom:var(--s3);}
+.footer-col ul{display:flex;flex-direction:column;gap:10px;}.footer-col ul li a{font-size:14px;color:var(--t2);transition:color .2s;}.footer-col ul li a:hover{color:var(--t1);}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;padding-top:var(--s3);border-top:1px solid var(--border);flex-wrap:wrap;gap:var(--s2);}.footer-bottom p{font-size:13px;color:var(--t3);}
+.footer-social{display:flex;gap:var(--s2);}.soc-btn{width:34px;height:34px;border:1px solid var(--border);border-radius:var(--r2);display:flex;align-items:center;justify-content:center;color:var(--t2);font-size:14px;transition:all .2s;}.soc-btn:hover{border-color:var(--blue);color:var(--blue);}
+@keyframes hFadeUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+.h-anim{opacity:0;animation:hFadeUp .75s ease forwards;}
+.h-d1{animation-delay:.08s;}.h-d2{animation-delay:.2s;}.h-d3{animation-delay:.34s;}.h-d4{animation-delay:.48s;}.h-d5{animation-delay:.63s;}
+.float-anim{animation:float 4s ease-in-out infinite;}
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease;}.reveal.in{opacity:1;transform:translateY(0);}
+.reveal-left{opacity:0;transform:translateX(-30px);transition:opacity .7s ease,transform .7s ease;}.reveal-left.in{opacity:1;transform:translateX(0);}
+.reveal-right{opacity:0;transform:translateX(30px);transition:opacity .7s ease,transform .7s ease;}.reveal-right.in{opacity:1;transform:translateX(0);}
+.rd1{transition-delay:.05s;}.rd2{transition-delay:.12s;}.rd3{transition-delay:.19s;}.rd4{transition-delay:.26s;}.rd5{transition-delay:.33s;}.rd6{transition-delay:.4s;}
+@media(max-width:1024px){.hero-grid,.g2{grid-template-columns:1fr;gap:var(--s4);}.case-band{grid-template-columns:1fr;}.case-left{border-right:none;border-bottom:1px solid var(--border);}.footer-grid{grid-template-columns:1fr 1fr;gap:var(--s4);}}
+@media(max-width:768px){.nav-wrap,.nav-r .btn-s{display:none;}.hamburger{display:flex;}.feat5{grid-template-columns:1fr;}.ba-wrap{grid-template-columns:1fr;}.footer-grid{grid-template-columns:1fr;}.cta-btns{flex-direction:column;align-items:center;}}
+</style>
+{{ end }}
+
+{{ define "main" }}
+<section id="hero">
+  <div class="hero-bg"><div class="dot-grid"></div><div class="glow-neon"></div><div class="noise"></div></div>
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px;" class="h-anim h-d1">
+          <div class="badge-neon">#MarketIntelligence #ROI_Driven</div>
+          <div class="badge-blue">PICSELL Radar</div>
+        </div>
+        <h1 class="hero-h1 h-anim h-d2"><span class="hl-neon">PICSELL Radar</span> —<br>Your Eyes on the Digital Market</h1>
+        <p class="hero-sub h-anim h-d3">Not just data collection — full online intelligence. Automate price monitoring, detect RRP violations in seconds, and find 100+ new HoReCa outlets every month.</p>
+        <div class="hero-ctas h-anim h-d4">
+          <a href="/demo/" class="btn btn-neon btn-lg">Get Demo and ROI Calculation →</a>
+          <a href="/case-studies/" class="btn btn-s">View Case Studies</a>
+        </div>
+        <div class="hero-metrics h-anim h-d5">
+          <div><div class="hm-val">300%</div><div class="hm-lbl">Client ROI</div></div>
+          <div style="width:1px;background:var(--border);height:40px;"></div>
+          <div><div class="hm-val">100%</div><div class="hm-lbl">Automation</div></div>
+          <div style="width:1px;background:var(--border);height:40px;"></div>
+          <div><div class="hm-val" style="color:var(--blue3);">31K+</div><div class="hm-lbl">Outlets in database</div></div>
+        </div>
+      </div>
+
+      <div class="h-anim h-d3 float-anim">
+        <div class="radar-visual">
+          <div class="rv-hdr">
+            <div class="rv-dots"><div class="rvd rd"></div><div class="rvd ry"></div><div class="rvd rg"></div></div>
+            <div class="rv-lbl">Radar · Price Monitor · Live</div>
+            <div class="rv-live"><div class="rl-dot"></div>Scanning</div>
+          </div>
+          <div class="rv-body">
+            <div class="price-card">
+              <div class="pc-hdr"><div class="pc-name">Rum Captain Morgan Spiced Gold 0.7L</div><div class="pc-badge pcb-dn">▼ Competitor alert</div></div>
+              <div class="pc-body">
+                <div class="pcc"><div class="pcc-name">ROZETKA</div><div class="pcc-val pcc-ok">485₴</div></div>
+                <div class="pcc"><div class="pcc-name">WineTime</div><div class="pcc-val pcc-low">415₴</div></div>
+                <div class="pcc"><div class="pcc-name">MAUDAU</div><div class="pcc-val pcc-ok">479₴</div></div>
+                <div class="pcc"><div class="pcc-name">SILPO</div><div class="pcc-val pcc-ok">495₴</div></div>
+              </div>
+            </div>
+            <div class="ai-verdict"><strong>AI Radar Verdict:</strong> WineTime reduced price by 14.4%. We recommend contacting the partner to clarify terms.</div>
+            <div class="gmap-card">
+              <div class="gmc-title">Google Maps Lead Intelligence · Kyiv</div>
+              <div class="gmc-row"><div class="gmc-name">Bar "Legenda", Podil</div><div class="gmc-status gms-new">+ New</div></div>
+              <div class="gmc-row"><div class="gmc-name">Sky Lounge, Obolon</div><div class="gmc-status gms-val">Evaluate</div></div>
+              <div class="gmc-row"><div class="gmc-name">Jazz Club "42", Solomyanka</div><div class="gmc-status gms-new">+ New</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="logos-strip"><div class="container"><div class="logos-inner">
+  <span class="logos-pre">Used by:</span>
+  <div class="logo-cl">Lactalis</div><div class="logo-cl">Bayadera</div><div class="logo-cl">Diageo</div><div class="logo-cl">Pernod Ricard</div>
+</div></div></div>
+
+<section class="section" style="background:var(--bg2);">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="tag">Before and After</span>
+      <h2>Stop Collecting Data <span style="color:var(--red);">Manually</span></h2>
+      <p>"Found something in Telegram, two people browsed pages, clicked through websites — and all of it goes into Excel."</p>
+    </div>
+    <div class="ba-wrap reveal">
+      <div class="ba-card ba-before">
+        <div class="ba-title">✗ Today's Reality</div>
+        <div class="ba-item"><span class="ic-bad">✗</span>Slow and error-prone — manual</div>
+        <div class="ba-item"><span class="ic-bad">✗</span>Unreliable data collection</div>
+        <div class="ba-item"><span class="ic-bad">✗</span>Impossible to scale to 1000+ outlets</div>
+        <div class="ba-item"><span class="ic-bad">✗</span>No complete picture of the market</div>
+      </div>
+      <div class="ba-card ba-after">
+        <div class="ba-title">✓ PICSELL Radar</div>
+        <div class="ba-item"><span class="ic-good">✓</span>Automatic monitoring 24/7/365</div>
+        <div class="ba-item"><span class="ic-good">✓</span>Data in Power BI — daily updates</div>
+        <div class="ba-item"><span class="ic-good">✓</span>Full market coverage automatically</div>
+        <div class="ba-item"><span class="ic-good">✓</span>Online + Offline ecosystem</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--bg1);">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="tag">Features</span>
+      <h2>Monitoring and <span class="hl-neon">Lead Generation</span></h2>
+    </div>
+    <div class="feat5">
+      <div class="fc fc-neon reveal rd1"><div class="fc-icon fci-n">📈</div><h3>Competitive Pricing</h3><p>Competitor prices across chains, regions, and SKUs — automatically every day. RRP violations detected in seconds and sent as Telegram alerts.</p><div class="fc-pill">Daily updates</div></div>
+      <div class="fc fc-blue reveal rd2"><div class="fc-icon fci-b">📊</div><h3>Market Share Tracker</h3><p>Market share dynamics by channel, chain, and region. You see market share in real time — not in a quarterly report.</p><div class="fc-pill">Quarterly dynamics</div></div>
+      <div class="fc fc-neon reveal rd3"><div class="fc-icon fci-n">🎯</div><h3>New Points Discovery</h3><p>New outlets where you're not yet present — automatically via Google Maps API. With contacts and potential assessment.</p><div class="fc-pill">100+ leads/month</div></div>
+      <div class="fc fc-blue reveal rd4"><div class="fc-icon fci-b">📍</div><h3>Google Maps Intelligence</h3><p>Discovery of new bars, restaurants, and cafes via Google Maps API algorithms. Lactalis case: 847 new HoReCa outlets in the first month.</p><div class="fc-pill">847 outlets (Lactalis)</div></div>
+      <div class="fc fc-neon reveal rd5"><div class="fc-icon fci-n">⚡</div><h3>Competitor Alerts</h3><p>Competitor reduced price — alert in 2 min. New product line launched — alert. Chain conditions changed — alert. Telegram, Viber, or Email.</p><div class="fc-pill">Alert in 2 min</div></div>
+      <div class="fc fc-blue reveal rd6"><div class="fc-icon fci-b">📊</div><h3>Weekly AI Report</h3><p>Consolidated analytics for Sales, KAM, and Trade Marketing leaders. Price forecasting via Smart alerts. Automatically.</p><div class="fc-pill">Weekly</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--bg2);">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="tag">Client Case Study</span>
+      <h2><span class="highlight">Lactalis</span> — 847 New HoReCa Outlets in the First Month</h2>
+    </div>
+    <div class="case-band reveal">
+      <div class="case-left">
+        <div class="case-brand">Lactalis</div>
+        <div class="case-type">FMCG Manufacturer · HoReCa Radar</div>
+        <div style="height:1px;background:var(--border);margin:var(--s3) 0;"></div>
+        <p style="font-size:14px;color:var(--t2);line-height:1.7;margin-bottom:var(--s3);">Before Radar: manual data collection from Telegram, TikTok, and websites. The team spent 3 days a week on monitoring — and still had an incomplete picture.</p>
+        <a href="/case-studies/" class="btn btn-g" style="font-size:13px;padding:9px 18px;">Learn More →</a>
+      </div>
+      <div class="case-right">
+        <p style="font-size:15px;color:var(--t2);line-height:1.7;margin-bottom:var(--s3);">"Automated monitoring replaced an entire team that lived in Excel. In the first month, Radar found 847 new HoReCa outlets not in our database. Conversion to new clients — 23%. Tool ROI — 300% per quarter."</p>
+        <div class="result-pills">
+          <div class="rp"><div class="rp-val">847</div><div class="rp-lbl">New outlets</div></div>
+          <div class="rp"><div class="rp-val">23%</div><div class="rp-lbl">Conversion</div></div>
+          <div class="rp"><div class="rp-val">300%</div><div class="rp-lbl">ROI per quarter</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-band">
+  <div class="container"><div class="reveal">
+    <span class="tag" style="display:block;margin-bottom:var(--s2);">Ready to See the Map of Your Market?</span>
+    <h2>We'll Show the Map of Your Market — <span class="hl-neon">live in 30 minutes</span></h2>
+    <p>We'll calculate ROI for your business with specific numbers. Free, no obligations.</p>
+    <div class="cta-btns">
+      <a href="/demo/" class="btn btn-neon btn-lg">Get Demo and ROI →</a>
+      <a href="/pricing/" class="btn btn-g">View Pricing</a>
+    </div>
+  </div></div>
+</div>
+{{ end }}
+
+{{ define "scripts" }}
+<script>
+(function(){
+  var h=document.getElementById('header');
+  window.addEventListener('scroll',function(){if(h)h.classList.toggle('scrolled',scrollY>30);});
+  var hbg=document.getElementById('hamburger'),mn=document.getElementById('mobileNav');
+  if(hbg&&mn){hbg.addEventListener('click',function(){hbg.classList.toggle('open');mn.classList.toggle('open');document.body.style.overflow=mn.classList.contains('open')?'hidden':'';});mn.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){hbg.classList.remove('open');mn.classList.remove('open');document.body.style.overflow='';});});}
+  var obs=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');obs.unobserve(x.target);}});},{threshold:0.05,rootMargin:'0px 0px -25px 0px'});
+  function reg(){document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(function(el){if(el.closest&&el.closest('#hero'))return;var r=el.getBoundingClientRect();if(r.top<window.innerHeight+100&&r.bottom>-100)el.classList.add('in');else obs.observe(el);});}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',reg);else reg();
+  window.addEventListener('load',reg);
+})();
+</script>
+{{ end }}

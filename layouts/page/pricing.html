@@ -90,7 +90,238 @@
 </style>
 {{ end }}
 
-{{ define "main" }}
+{{ define "main" }}{{ if strings.HasPrefix .RelPermalink "/en/" }}
+<section id="hero">
+  <div class="hero-bg"><div class="dot-grid"></div><div class="glow1"></div></div>
+  <div class="container">
+    <div class="hero-inner">
+      <div class="h-anim h-d1"><span class="tag">Pricing</span></div>
+      <h1 class="hero-h1 h-anim h-d2">Start with what you need now — <span class="highlight">scale</span> when you're ready</h1>
+      <p class="hero-sub h-anim h-d3">No hidden payments. No long-term commitments at the start. No costs for what you don't need.</p>
+      <div class="trust-row h-anim h-d4">
+        <div class="trust-item"><div class="trust-val">2-3 mo</div><div class="trust-lbl">Average ROI</div></div>
+        <div style="width:1px;background:var(--border);height:40px;align-self:center;"></div>
+        <div class="trust-item"><div class="trust-val">1 week</div><div class="trust-lbl">To first data</div></div>
+        <div style="width:1px;background:var(--border);height:40px;align-self:center;"></div>
+        <div class="trust-item"><div class="trust-val">0</div><div class="trust-lbl">Hidden payments</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLANS -->
+<section class="section" style="background:var(--bg2);">
+  <div class="container">
+    <div class="plans-grid">
+      <!-- STARTER -->
+      <div class="plan-card reveal rd1">
+        <div class="plan-name">Starter</div>
+        <div class="plan-desc">For small distributors starting automation</div>
+        <div class="plan-price">
+          <div class="plan-price-val" style="color:var(--blue3);">Get pricing</div>
+          <div class="plan-price-per">Custom · based on number of agents</div>
+        </div>
+        <div class="plan-divider"></div>
+        <div class="plan-features">
+          <div class="pf-item active"><span class="pf-check">✓</span>PICSELL Sales App (Field)</div>
+          <div class="pf-item active"><span class="pf-check">✓</span>Smart Orders + routes</div>
+          <div class="pf-item active"><span class="pf-check">✓</span>Basic Store Check</div>
+          <div class="pf-item active"><span class="pf-check">✓</span>Power BI (basic dashboards)</div>
+          <div class="pf-item active"><span class="pf-check">✓</span>Up to 50 sales representatives</div>
+          <div class="pf-item active"><span class="pf-check">✓</span>Onboarding and technical support</div>
+          <div class="pf-item active"><span class="pf-check">✓</span>Offline-First mode</div>
+          <div class="pf-item"><span class="pf-dash">–</span>Vision AI recognition</div>
+          <div class="pf-item"><span class="pf-dash">–</span>HoReCa Intelligence</div>
+          <div class="pf-item"><span class="pf-dash">–</span>AI Copilot</div>
+        </div>
+        <a href="/demo/" class="btn btn-s btn-full">Get pricing →</a>
+      </div>
+
+      <!-- GROWTH (POPULAR) -->
+      <div class="plan-card popular reveal rd2">
+        <div class="popular-badge">★ Most Popular</div>
+        <div class="plan-name" style="color:var(--blue3);">Growth</div>
+        <div class="plan-desc">For manufacturers and distributors scaling up</div>
+        <div class="plan-price">
+          <div class="plan-price-val" style="color:var(--t1);">Get pricing</div>
+          <div class="plan-price-per">Everything in Starter + Vision AI module</div>
+        </div>
+        <div class="plan-divider"></div>
+        <div class="plan-features">
+          <div class="pf-item active"><span class="pf-check">✓</span>Everything from Starter</div>
+          <div class="pf-item active"><span class="pf-check">✓</span><strong>PICSELL Vision AI</strong> (OOS, SoS, prices)</div>
+          <div class="pf-item active"><span class="pf-check">✓</span>Perfect Store module</div>
+          <div class="pf-item active"><span class="pf-check">✓</span>Anti-Fraud system</div>
+          <div class="pf-item active"><span class="pf-check">✓</span>Up to 200 sales representatives</div>
+          <div class="pf-item active"><span class="pf-check">✓</span>Priority support</div>
+          <div class="pf-item active"><span class="pf-check">✓</span>Power BI (advanced dashboards)</div>
+          <div class="pf-item"><span class="pf-dash">–</span>HoReCa Intelligence</div>
+          <div class="pf-item"><span class="pf-dash">–</span>Radar</div>
+          <div class="pf-item"><span class="pf-dash">–</span>AI Copilot</div>
+        </div>
+        <a href="/demo/" class="btn btn-p btn-full">Book Growth Demo →</a>
+      </div>
+
+      <!-- ENTERPRISE -->
+      <div class="plan-card reveal rd3">
+        <div class="plan-name">Enterprise</div>
+        <div class="plan-desc">Full ecosystem for large teams and complex processes</div>
+        <div class="plan-price">
+          <div class="plan-price-val" style="color:var(--neon);">Custom</div>
+          <div class="plan-price-per">Tailored to your business</div>
+        </div>
+        <div class="plan-divider"></div>
+        <div class="plan-features">
+          <div class="pf-item active"><span class="pf-check">✓</span>Everything from Growth</div>
+          <div class="pf-item active"><span class="pf-check">✓</span><strong>HoReCa Intelligence</strong></div>
+          <div class="pf-item active"><span class="pf-check">✓</span><strong>PICSELL Radar</strong> (market intelligence)</div>
+          <div class="pf-item active"><span class="pf-check">✓</span><strong>AI Copilot</strong> (Q2 2026)</div>
+          <div class="pf-item active"><span class="pf-check">✓</span>Unlimited agents</div>
+          <div class="pf-item active"><span class="pf-check">✓</span>Custom ERP/CRM integration</div>
+          <div class="pf-item active"><span class="pf-check">✓</span>Dedicated manager</div>
+          <div class="pf-item active"><span class="pf-check">✓</span>SLA 99.9%</div>
+          <div class="pf-item active"><span class="pf-check">✓</span>Data on secure servers</div>
+          <div class="pf-item active"><span class="pf-check">✓</span>Priority onboarding</div>
+        </div>
+        <a href="/demo/" class="btn btn-g btn-full" style="border-color:rgba(200,255,0,.3);color:var(--neon);">Calculate for My Business →</a>
+      </div>
+    </div>
+
+    <!-- Note -->
+    <div style="text-align:center;margin-top:var(--s4);padding:var(--s3);background:rgba(0,87,255,.04);border:1px solid rgba(0,87,255,.12);border-radius:var(--r3);max-width:680px;margin-left:auto;margin-right:auto;" class="reveal">
+      <div style="font-size:14px;color:var(--t2);line-height:1.7;">💡 Not sure which plan fits? We'll find out — <strong style="color:var(--t1);">in a 15-minute demo</strong>. We'll show only what your business needs.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURE TABLE -->
+<section class="section" style="background:var(--bg1);">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="tag">Detailed Comparison</span>
+      <h2>What's Included in <span class="highlight">Each Plan</span></h2>
+    </div>
+    <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--r4);overflow:hidden;overflow-x:auto;" class="reveal">
+      <table class="feat-table">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Starter</th>
+            <th class="col-pop">Growth ★</th>
+            <th>Enterprise</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td colspan="4" style="background:var(--bg2);font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--t3);padding:10px 20px;">Sales App / SFA</td></tr>
+          <tr><td>Smart Orders (AI hints)</td><td><span class="ic-y">✓</span></td><td class="col-pop"><span class="ic-y">✓</span></td><td><span class="ic-y">✓</span></td></tr>
+          <tr><td>Route Manager (route optimization)</td><td><span class="ic-y">✓</span></td><td class="col-pop"><span class="ic-y">✓</span></td><td><span class="ic-y">✓</span></td></tr>
+          <tr><td>GPS tracking and Supervisor View</td><td><span class="ic-y">✓</span></td><td class="col-pop"><span class="ic-y">✓</span></td><td><span class="ic-y">✓</span></td></tr>
+          <tr><td>CRM 360° (client card, receivables)</td><td><span class="ic-y">✓</span></td><td class="col-pop"><span class="ic-y">✓</span></td><td><span class="ic-y">✓</span></td></tr>
+          <tr><td>Offline-First mode</td><td><span class="ic-y">✓</span></td><td class="col-pop"><span class="ic-y">✓</span></td><td><span class="ic-y">✓</span></td></tr>
+          <tr><td>Number of agents</td><td>up to 50</td><td class="col-pop">up to 200</td><td>Unlimited</td></tr>
+          <tr><td colspan="4" style="background:var(--bg2);font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--t3);padding:10px 20px;">Vision AI</td></tr>
+          <tr><td>OOS Detection + alerts</td><td><span class="ic-n">✗</span></td><td class="col-pop"><span class="ic-y">✓</span></td><td><span class="ic-y">✓</span></td></tr>
+          <tr><td>Share of Shelf analytics</td><td><span class="ic-n">✗</span></td><td class="col-pop"><span class="ic-y">✓</span></td><td><span class="ic-y">✓</span></td></tr>
+          <tr><td>Perfect Store Score</td><td><span class="ic-n">✗</span></td><td class="col-pop"><span class="ic-y">✓</span></td><td><span class="ic-y">✓</span></td></tr>
+          <tr><td>Anti-Fraud system</td><td><span class="ic-n">✗</span></td><td class="col-pop"><span class="ic-y">✓</span></td><td><span class="ic-y">✓</span></td></tr>
+          <tr><td>Price Monitoring (price tags)</td><td><span class="ic-n">✗</span></td><td class="col-pop"><span class="ic-y">✓</span></td><td><span class="ic-y">✓</span></td></tr>
+          <tr><td colspan="4" style="background:var(--bg2);font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--t3);padding:10px 20px;">HoReCa and Radar</td></tr>
+          <tr><td>HoReCa Intelligence</td><td><span class="ic-n">✗</span></td><td class="col-pop"><span class="ic-n">✗</span></td><td><span class="ic-y">✓</span></td></tr>
+          <tr><td>PICSELL Radar (market price intelligence)</td><td><span class="ic-n">✗</span></td><td class="col-pop"><span class="ic-n">✗</span></td><td><span class="ic-y">✓</span></td></tr>
+          <tr><td>AI Copilot (Text-to-SQL)</td><td><span class="ic-n">✗</span></td><td class="col-pop"><span class="ic-n">✗</span></td><td><span class="ic-y">✓</span></td></tr>
+          <tr><td colspan="4" style="background:var(--bg2);font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--t3);padding:10px 20px;">Support and Integration</td></tr>
+          <tr><td>ERP integration (1C, SAP, Oracle)</td><td><span class="ic-p">◐</span> basic</td><td class="col-pop"><span class="ic-y">✓</span></td><td><span class="ic-y">✓</span> custom</td></tr>
+          <tr><td>Dedicated manager</td><td><span class="ic-n">✗</span></td><td class="col-pop"><span class="ic-n">✗</span></td><td><span class="ic-y">✓</span></td></tr>
+          <tr><td>SLA</td><td>Standard</td><td class="col-pop">Priority</td><td>99.9%</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ROI CALCULATOR -->
+<section class="section" style="background:var(--bg2);">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="tag">ROI Calculator</span>
+      <h2>Calculate Your <span class="hl-neon">Savings</span></h2>
+      <p>The average PICSELL client recovers their investment in 2-3 months.</p>
+    </div>
+    <div class="roi-card reveal" id="roiCalc">
+      <div class="roi-grid">
+        <div class="roi-form">
+          <div>
+            <div class="roi-label">Number of field agents</div>
+            <input type="number" class="roi-input" id="roiAgents" value="20" min="1" max="1000" oninput="calcROI()">
+          </div>
+          <div>
+            <div class="roi-label">Average agent salary ($/month)</div>
+            <input type="number" class="roi-input" id="roiSalary" value="800" min="100" max="5000" oninput="calcROI()">
+          </div>
+          <div style="padding:var(--s3);background:rgba(0,87,255,.06);border:1px solid rgba(0,87,255,.15);border-radius:var(--r3);font-size:14px;color:var(--t2);line-height:1.65;">
+            Calculation based on typical PICSELL client results: 15% time savings on routes and $200/agent/month on order errors.
+          </div>
+        </div>
+        <div class="roi-result">
+          <div class="roi-result-title">Your Annual Savings</div>
+          <div class="roi-total" id="roiTotal">$57,600</div>
+          <div class="roi-period">per year with a team of 20 agents</div>
+          <div class="roi-breakdown">
+            <div class="roi-row"><span class="roi-row-key">Route savings (15% of salary)</span><span class="roi-row-val" id="roi1">$28,800</span></div>
+            <div class="roi-row"><span class="roi-row-key">Order error savings</span><span class="roi-row-val" id="roi2">$48,000</span></div>
+            <div class="roi-row"><span class="roi-row-key">Total annual savings</span><span class="roi-row-val" id="roi3">$57,600</span></div>
+          </div>
+          <a href="/demo/" class="btn btn-p btn-full" style="margin-top:var(--s3);">Get Exact Calculation →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" style="background:var(--bg1);">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="tag">FAQ</span>
+      <h2>Questions About <span class="highlight">Plans</span></h2>
+    </div>
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <div class="faq-q">Can I change my plan after launch? <span class="faq-icon">+</span></div>
+        <div class="faq-a">Yes, at any time. Upgrade happens immediately, with no service interruption. Downgrade — at the end of the billing period.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What about ERP integration? How much does it cost? <span class="faq-icon">+</span></div>
+        <div class="faq-a">Basic integration via REST API is included in Growth and Enterprise. Custom integration with 1C, SAP, Oracle is priced individually and typically takes 1-2 weeks.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Is there a free trial period? <span class="faq-icon">+</span></div>
+        <div class="faq-a">We offer a 30-day pilot project with real data. This is not a limited sandbox — it's a full launch across 50 outlets.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Where is data stored? <span class="faq-icon">+</span></div>
+        <div class="faq-a">On secure servers (Enterprise). For other plans — EU hosting with full GDPR compliance. Your data is never shared with third parties.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What support is included in the plans? <span class="faq-icon">+</span></div>
+        <div class="faq-a">Starter: Telegram support, response within 4 hours. Growth: priority support, within 2 hours. Enterprise: dedicated manager + SLA 99.9%.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-band">
+  <div class="container"><div class="reveal">
+    <span class="tag" style="display:block;margin-bottom:var(--s2);">Not sure where to start?</span>
+    <h2>We'll find the right plan in <span class="highlight">15 minutes</span></h2>
+    <p>We'll show only what your business needs — no unnecessary modules, no overpayments.</p>
+    <div class="cta-btns">
+      <a href="/demo/" class="btn btn-p btn-lg">Book a Demo →</a>
+      <a href="/case-studies/" class="btn btn-g">View Case Studies</a>
+    </div>
+  </div></div>
+</div>
+{{ else }}
 <section id="hero">
   <div class="hero-bg"><div class="dot-grid"></div><div class="glow1"></div></div>
   <div class="container">
@@ -321,9 +552,46 @@
     </div>
   </div></div>
 </div>
-{{ end }}
+{{ end }}{{ end }}
 
-{{ define "scripts" }}
+{{ define "scripts" }}{{ if strings.HasPrefix .RelPermalink "/en/" }}
+<script>
+(function(){
+  var h=document.getElementById('header');
+  window.addEventListener('scroll',function(){if(h)h.classList.toggle('scrolled',scrollY>30);});
+  var hbg=document.getElementById('hamburger'),mn=document.getElementById('mobileNav');
+  if(hbg&&mn){hbg.addEventListener('click',function(){hbg.classList.toggle('open');mn.classList.toggle('open');document.body.style.overflow=mn.classList.contains('open')?'hidden':'';});mn.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){hbg.classList.remove('open');mn.classList.remove('open');document.body.style.overflow='';});});}
+  var obs=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');obs.unobserve(x.target);}});},{threshold:0.05,rootMargin:'0px 0px -25px 0px'});
+  function reg(){document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(function(el){var r=el.getBoundingClientRect();if(r.top<window.innerHeight+100&&r.bottom>-100)el.classList.add('in');else obs.observe(el);});}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',reg);else reg();
+  window.addEventListener('load',reg);
+  document.querySelectorAll('.faq-item').forEach(function(item){
+    var q=item.querySelector('.faq-q'),a=item.querySelector('.faq-a'),ic=item.querySelector('.faq-icon');
+    if(!q||!a)return;a.style.maxHeight='0';a.style.overflow='hidden';a.style.transition='max-height .35s ease';
+    q.addEventListener('click',function(){var isOpen=item.classList.contains('open');document.querySelectorAll('.faq-item.open').forEach(function(i){i.classList.remove('open');i.querySelector('.faq-a').style.maxHeight='0';var icon=i.querySelector('.faq-icon');if(icon)icon.textContent='+';});if(!isOpen){item.classList.add('open');a.style.maxHeight=a.scrollHeight+'px';if(ic)ic.textContent=String.fromCharCode(8722);}});
+  });
+})();
+function calcROI(){
+  var agents=parseInt(document.getElementById('roiAgents').value)||0;
+  var salary=parseInt(document.getElementById('roiSalary').value)||0;
+  var route=Math.round(agents*salary*0.15*12);
+  var errors=Math.round(agents*200*12);
+  var total=route+errors;
+  var fmt=function(n){return '$'+n.toLocaleString();};
+  document.getElementById('roi1').textContent=fmt(route);
+  document.getElementById('roi2').textContent=fmt(errors);
+  document.getElementById('roi3').textContent=fmt(total);
+  document.getElementById('roiTotal').textContent=fmt(total);
+  document.querySelector('.roi-period').textContent='per year with a team of '+agents+' agents';
+}
+// Initialize calculator on load
+if(document.readyState==='loading'){
+  document.addEventListener('DOMContentLoaded',calcROI);
+}else{
+  calcROI();
+}
+</script>
+{{ else }}
 <script>
 (function(){
   var h=document.getElementById('header');
@@ -360,4 +628,4 @@ if(document.readyState==='loading'){
   calcROI();
 }
 </script>
-{{ end }}
+{{ end }}{{ end }}

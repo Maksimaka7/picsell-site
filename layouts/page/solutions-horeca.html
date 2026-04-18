@@ -40,7 +40,74 @@
 </style>
 {{ end }}
 
-{{ define "main" }}
+{{ define "main" }}{{ if strings.HasPrefix .RelPermalink "/en/" }}
+<section id="hero">
+  <div class="hero-bg"><div class="dot-grid"></div><div class="glow1"></div><div class="noise"></div></div>
+  <div class="container">
+    <div class="hero-inner">
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:24px;" class="h-anim h-d1">
+        <div class="badge-blue">HoReCa Channel</div>
+        <div class="badge-neon">Unique in Ukraine</div>
+      </div>
+      <h1 class="hero-h1 h-anim h-d2">Your Brand in HoReCa —<br><span class="highlight">Full Control</span> from Delivery to Menu</h1>
+      <p class="hero-sub h-anim h-d3">PICSELL covers the entire HoReCa channel — from menu and competitor price monitoring to lead generation and contract compliance control — automatically.</p>
+      <div class="hero-ctas h-anim h-d4">
+        <a href="/demo/" class="btn btn-neon btn-lg">Get HoReCa Presence Audit →</a>
+        <a href="/horeca/" class="btn btn-s">Learn More About HoReCa Intelligence</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="logos-strip"><div class="container"><div class="logos-inner">
+  <span class="logos-pre">Manufacturers in HoReCa:</span>
+  <div class="logo-cl">Diageo</div><div class="logo-cl">Bayadera</div><div class="logo-cl">Pernod Ricard</div><div class="logo-cl">Henkel</div>
+</div></div></div>
+
+<section class="section" style="background:var(--bg2);">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="tag">What Makes Us Unique</span>
+      <h2>Six Reasons to Choose <span class="highlight">PICSELL HoReCa</span></h2>
+    </div>
+    <div class="features6">
+      <div class="fc reveal rd1"><div class="fc-icon">🍽</div><h3>Menu Intelligence</h3><p>AI reads menus from any format: photo, PDF, Instagram. Full SKU analytics without human involvement.</p><div class="fc-pill">Any Format</div></div>
+      <div class="fc reveal rd2"><div class="fc-icon">📈</div><h3>Price Monitoring</h3><p>Your brand's prices vs competitors across cities and districts. Dumping — automatic alert.</p><div class="fc-pill">Dumping = Alert</div></div>
+      <div class="fc reveal rd3"><div class="fc-icon">📍</div><h3>Lead Generation</h3><p>New venues on the map automatically via Google Maps API. With contacts and potential score.</p><div class="fc-pill">+18% leads/month</div></div>
+      <div class="fc reveal rd4"><div class="fc-icon">🕑</div><h3>Compliance Control</h3><p>Contract conditions are verified automatically across all venues simultaneously. 0 violations missed.</p><div class="fc-pill">0 Violations</div></div>
+      <div class="fc reveal rd5"><div class="fc-icon">🌎</div><h3>Competitive Map</h3><p>Full picture of brand and competitor presence across cities — in one dashboard.</p><div class="fc-pill">1,250+ Venues</div></div>
+      <div class="fc reveal rd6"><div class="fc-icon">🍸</div><h3>Cocktail Analytics</h3><p>Is your brand featured in cocktails and where? Sentiment in Instagram and Telegram — automatically.</p><div class="fc-pill">Social Monitoring</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--bg1);">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="tag">Results</span>
+      <h2>Numbers from Our <span class="hl-neon">HoReCa Clients</span></h2>
+    </div>
+    <div class="result-row reveal">
+      <div class="res-box"><div class="res-val">847</div><div class="res-lbl">new HoReCa outlets in the first month (Lactalis)</div></div>
+      <div class="res-box"><div class="res-val">23%</div><div class="res-lbl">lead-to-client conversion rate</div></div>
+      <div class="res-box"><div class="res-val">300%</div><div class="res-lbl">tool ROI in the first quarter</div></div>
+      <div class="res-box"><div class="res-val">2 min</div><div class="res-lbl">from dumping detection to alert</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-band">
+  <div class="container"><div class="reveal">
+    <span class="tag" style="display:block;margin-bottom:var(--s2);">Free Audit</span>
+    <h2>We'll Show How Many of Your Competitors Are in HoReCa <span class="hl-neon">Right Now</span></h2>
+    <p>Free audit of your brand presence in 50 venues — in a 30-minute demo.</p>
+    <div class="cta-btns">
+      <a href="/demo/" class="btn btn-neon btn-lg">Get Free Audit →</a>
+      <a href="/horeca/" class="btn btn-g">About HoReCa Intelligence</a>
+    </div>
+  </div></div>
+</div>
+{{ else }}
 <section id="hero">
   <div class="hero-bg"><div class="dot-grid"></div><div class="glow1"></div><div class="noise"></div></div>
   <div class="container">
@@ -107,7 +174,7 @@
     </div>
   </div></div>
 </div>
-{{ end }}
+{{ end }}{{ end }}
 
 {{ define "scripts" }}
 <script>

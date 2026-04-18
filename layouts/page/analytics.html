@@ -107,7 +107,185 @@
 </style>
 {{ end }}
 
-{{ define "main" }}
+{{ define "main" }}{{ if strings.HasPrefix .RelPermalink "/en/" }}
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"><div class="dot-grid"></div><div class="glow1"></div><div class="noise"></div></div>
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px;" class="h-anim h-d1">
+          <div class="badge-blue">PICSELL Analytics</div>
+          <div class="badge-neon">AI Copilot · Q2 2026</div>
+        </div>
+        <h1 class="hero-h1 h-anim h-d2">Everyone has data. <span class="highlight">Acting on</span> data — few do. PICSELL Copilot does it for you.</h1>
+        <p class="hero-sub h-anim h-d3">Text-to-SQL — query data in plain language. Trigger alerts — the system finds anomalies itself. Power BI dashboards for every role.</p>
+        <div class="hero-ctas h-anim h-d4">
+          <a href="/demo/" class="btn btn-p btn-lg">Show My Dashboard →</a>
+          <a href="#dashboards" class="btn btn-s">View Dashboard Types</a>
+        </div>
+      </div>
+
+      <div class="h-anim h-d3 float-anim">
+        <div class="chat-mock">
+          <div class="chat-hdr">
+            <div class="chat-avatar">🤖</div>
+            <div><div class="chat-name">PICSELL AI Copilot</div><div class="chat-status">● Online · analyzing 31K outlets</div></div>
+          </div>
+          <div class="chat-body">
+            <div class="msg msg-user">Where are the biggest OOS this week?</div>
+            <div class="msg msg-ai">
+              Most critical OOS this week:
+              <br><strong>▲ ATB network:</strong> 3.2% OOS (+1.4% vs last week)
+              <br><strong>▲ Silpo Obolon:</strong> SKU-018 absent in 12 outlets
+              <br><strong>Recommendation:</strong> urgent audit of 8 outlets
+              <div class="chart-mini">
+                <div class="chart-bars">
+                  <div class="cbar" style="height:55%;"></div><div class="cbar" style="height:40%;"></div><div class="cbar" style="height:75%;"></div><div class="cbar" style="height:50%;"></div><div class="cbar" style="height:65%;"></div><div class="cbar" style="height:35%;"></div><div class="cbar high" style="height:100%;"></div>
+                </div>
+                <div class="chart-lbl">OOS % by day of week</div>
+              </div>
+            </div>
+            <div class="msg msg-user">Which agents are below plan?</div>
+            <div class="msg msg-ai">
+              <strong>3 agents below plan:</strong><br>
+              Petrenko M. — 68% of plan (12/18 outlets)<br>
+              Koval O. — 72% of plan (13/18 outlets)<br>
+              <strong>Reason:</strong> suboptimal route → Route Manager
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOGOS -->
+<div class="logos-strip"><div class="container"><div class="logos-inner">
+  <span class="logos-pre">Used by:</span>
+  <div class="logo-cl">Lactalis</div><div class="logo-cl">Henkel</div><div class="logo-cl">Bayadera</div><div class="logo-cl">Schwarzkopf</div>
+</div></div></div>
+
+<!-- DASHBOARDS TABS -->
+<section id="dashboards" class="section" style="background:var(--bg2);">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="tag">Power BI Dashboards</span>
+      <h2>Every Role Sees <span class="highlight">What They Need</span></h2>
+      <p>One data pipeline — four different views of the business. Everyone sees only what's needed for decisions.</p>
+    </div>
+    <div class="tabs-wrap reveal" id="dashTabs">
+      <div class="tabs-nav">
+        <button class="tab-btn active" onclick="switchTab('exec',this)">Executive</button>
+        <button class="tab-btn" onclick="switchTab('brand',this)">Brand Manager</button>
+        <button class="tab-btn" onclick="switchTab('distr',this)">Distributor</button>
+        <button class="tab-btn" onclick="switchTab('agent',this)">Field Agent</button>
+      </div>
+      <div id="tab-exec" class="tab-panel active">
+        <div style="font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--t3);margin-bottom:var(--s3);">Executive Dashboard — country / region</div>
+        <div class="kpi-4">
+          <div class="kpi-box"><div class="kpi-box-lbl">Total Revenue</div><div class="kpi-box-val kv-blue">₴142M</div><div class="kpi-box-delta delta-up">↑ +12% vs plan</div></div>
+          <div class="kpi-box"><div class="kpi-box-lbl">National SoS</div><div class="kpi-box-val kv-neon">62%</div><div class="kpi-box-delta delta-up">↑ +8% MoM</div></div>
+          <div class="kpi-box"><div class="kpi-box-lbl">OOS National</div><div class="kpi-box-val kv-red">1.8%</div><div class="kpi-box-delta delta-up">↓ -2.4% improved</div></div>
+          <div class="kpi-box"><div class="kpi-box-lbl">Perfect Store</div><div class="kpi-box-val kv-neon">87%</div><div class="kpi-box-delta delta-up">↑ +12% QoQ</div></div>
+        </div>
+        <div class="tab-insight">⚡ AI Insight: <strong style="color:var(--t1);">Western Region</strong> shows anomalous -15% SoS drop in Furshet chain — immediate field audit of 23 outlets recommended.</div>
+      </div>
+      <div id="tab-brand" class="tab-panel">
+        <div style="font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--t3);margin-bottom:var(--s3);">Brand Manager Dashboard</div>
+        <div class="kpi-4">
+          <div class="kpi-box"><div class="kpi-box-lbl">Share of Shelf</div><div class="kpi-box-val kv-blue">57%</div><div class="kpi-box-delta delta-up">↑ +5% MoM</div></div>
+          <div class="kpi-box"><div class="kpi-box-lbl">OOS Rate</div><div class="kpi-box-val kv-red">2.1%</div><div class="kpi-box-delta delta-up">↓ Improving</div></div>
+          <div class="kpi-box"><div class="kpi-box-lbl">Perfect Store</div><div class="kpi-box-val kv-neon">84%</div><div class="kpi-box-delta delta-up">↑ On track</div></div>
+          <div class="kpi-box"><div class="kpi-box-lbl">Price Index</div><div class="kpi-box-val kv-orange">1.02</div><div class="kpi-box-delta" style="color:var(--orange);">⚠ Slight premium</div></div>
+        </div>
+        <div class="tab-insight">📊 Top 3 regions by SoS: Kyiv 67% / Kharkiv 61% / Odesa 54%. <strong style="color:var(--red);">Alert:</strong> Competitor X increased SoS in Odesa by +8%.</div>
+      </div>
+      <div id="tab-distr" class="tab-panel">
+        <div style="font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--t3);margin-bottom:var(--s3);">Distributor Dashboard</div>
+        <div class="kpi-4">
+          <div class="kpi-box"><div class="kpi-box-lbl">Agents online</div><div class="kpi-box-val kv-blue">18/22</div><div class="kpi-box-delta" style="color:var(--t2);">4 offline</div></div>
+          <div class="kpi-box"><div class="kpi-box-lbl">Plan completion</div><div class="kpi-box-val kv-neon">87%</div><div class="kpi-box-delta delta-up">↑ +5% vs last week</div></div>
+          <div class="kpi-box"><div class="kpi-box-lbl">Orders today</div><div class="kpi-box-val kv-blue">143</div><div class="kpi-box-delta delta-up">↑ +22% avg</div></div>
+          <div class="kpi-box"><div class="kpi-box-lbl">Receivables</div><div class="kpi-box-val kv-red">₴380K</div><div class="kpi-box-delta" style="color:var(--orange);">⚠ 3 overdue</div></div>
+        </div>
+        <div class="tab-insight">🗺️ Route of Koval O. is 34% longer than optimal. Supervisor recommendation: reassign 3 outlets in the Obolon district.</div>
+      </div>
+      <div id="tab-agent" class="tab-panel">
+        <div style="font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--t3);margin-bottom:var(--s3);">Field Agent — my day</div>
+        <div class="kpi-4">
+          <div class="kpi-box"><div class="kpi-box-lbl">Outlets today</div><div class="kpi-box-val kv-blue">7/12</div><div class="kpi-box-delta" style="color:var(--t2);">5 remaining</div></div>
+          <div class="kpi-box"><div class="kpi-box-lbl">Orders</div><div class="kpi-box-val kv-neon">₴47K</div><div class="kpi-box-delta delta-up">↑ +18% avg</div></div>
+          <div class="kpi-box"><div class="kpi-box-lbl">OOS detected</div><div class="kpi-box-val kv-red">3</div><div class="kpi-box-delta" style="color:var(--t2);">Alerts sent</div></div>
+          <div class="kpi-box"><div class="kpi-box-lbl">Perfect Store</div><div class="kpi-box-val kv-neon">91%</div><div class="kpi-box-delta delta-up">↑ +4%</div></div>
+        </div>
+        <div class="tab-insight">📍 Next outlet: Silpo Ave. Peremohy. GPS: 2.3 km. Client debt: ₴1,200 — remind during visit.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AI COPILOT + FEATURES -->
+<section class="section" style="background:var(--bg1);">
+  <div class="container">
+    <div class="g2">
+      <div class="reveal-left">
+        <span class="tag" style="display:block;margin-bottom:var(--s2);">AI Copilot · Q2 2026</span>
+        <h2 style="font-size:clamp(26px,3.5vw,44px);font-weight:800;margin-bottom:var(--s3);">The Analyst Who <span class="hl-neon">Never Sleeps</span></h2>
+        <p style="color:var(--t2);font-size:16px;line-height:1.7;margin-bottom:var(--s4);">Ask a question in plain language — get a chart and an answer. PICSELL Copilot analyzes all your data and finds anomalies on its own — before you even ask.</p>
+        <div style="display:flex;flex-direction:column;gap:var(--s2);margin-bottom:var(--s4);">
+          <div style="display:flex;align-items:center;gap:10px;font-size:15px;color:var(--t2);"><span style="color:var(--neon);">✓</span><strong style="color:var(--t1);">Text-to-SQL</strong> — query data without a developer</div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:15px;color:var(--t2);"><span style="color:var(--neon);">✓</span><strong style="color:var(--t1);">Trigger alerts</strong> — anomalies detected automatically</div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:15px;color:var(--t2);"><span style="color:var(--neon);">✓</span><strong style="color:var(--t1);">Telegram / Viber</strong> — alerts wherever you prefer</div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:15px;color:var(--t2);"><span style="color:var(--neon);">✓</span><strong style="color:var(--t1);">Predictive recommendations</strong> — not just data, but actions</div>
+        </div>
+        <div class="badge-neon">Launch Q2 2026</div>
+      </div>
+      <div class="reveal-right">
+        <div class="copilot-card">
+          <div class="copilot-hdr">
+            <div class="copilot-icon">🤖</div>
+            <div><div class="copilot-title">PICSELL AI Copilot</div><div class="copilot-sub">Proactive alerts today (3)</div></div>
+          </div>
+          <div class="alert-cards">
+            <div class="ac ac-red"><div class="ac-dot acd-r"></div><div class="ac-text"><strong>⚠ Anomalous SoS drop</strong><span>Silpo Obolon: -15% over the week. Competitor gained space. Field visit recommended.</span></div></div>
+            <div class="ac ac-neon"><div class="ac-dot acd-n"></div><div class="ac-text"><strong>📈 Sales growth</strong><span>Kharkiv region shows +23% vs plan. Top agent: Koval O. Recommend scaling the approach.</span></div></div>
+            <div class="ac ac-blue"><div class="ac-dot acd-b"></div><div class="ac-text"><strong>💡 Predictive alert</strong><span>ATB Khreshchatyk: expected OOS on SKU-018 in 3 days. Order 24 units now.</span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 FEATURES -->
+<section class="section" style="background:var(--bg2);">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="tag">Analytics Capabilities</span>
+      <h2>From <span class="highlight">Data to Decisions</span> — Without an In-House Analyst</h2>
+    </div>
+    <div class="feat4">
+      <div class="fc fc-blue reveal rd1"><div class="fc-icon fci-b">📊</div><h3>Power BI Dashboards</h3><p>Ready templates for every role: Executive, Brand Manager, Distributor, Field Agent. Customization for your KPIs — no coding. Real-time updates.</p><div class="fc-pill">Real-time data</div></div>
+      <div class="fc fc-neon reveal rd2"><div class="fc-icon fci-n">💬</div><h3>Text-to-SQL Copilot</h3><p>Ask: "Where are the biggest OOS this week?" — get a chart and list of outlets. AI converts the question into a SQL query and returns the answer. No analyst needed.</p><div class="fc-pill">Q2 2026 Launch</div></div>
+      <div class="fc fc-blue reveal rd3"><div class="fc-icon fci-b">🔔</div><h3>Trigger Alerts</h3><p>The system monitors your KPIs and notifies you when something goes wrong. Telegram, Viber, Email — wherever you prefer. Thresholds are configurable.</p><div class="fc-pill">Telegram + Viber</div></div>
+      <div class="fc fc-neon reveal rd4"><div class="fc-icon fci-n">🔗</div><h3>Integrations</h3><p>Power BI, Tableau, Google Looker, Excel export — your dashboard in your tool. REST API to connect to your own analytics and ERP systems.</p><div class="fc-pill">Any BI tool</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-band">
+  <div class="container"><div class="reveal">
+    <span class="tag" style="display:block;margin-bottom:var(--s2);">Ready to See Your Business in One Dashboard?</span>
+    <h2>We'll Show a <span class="highlight">Live Dashboard</span> for Your KPIs — in 30 Minutes</h2>
+    <p>We'll configure Power BI for your role right during the demo. First real data — on launch day.</p>
+    <div class="cta-btns">
+      <a href="/demo/" class="btn btn-p btn-lg">Book Live Demo →</a>
+      <a href="/pricing/" class="btn btn-g">View Pricing</a>
+    </div>
+  </div></div>
+</div>
+{{ else }}
 <!-- HERO -->
 <section id="hero">
   <div class="hero-bg"><div class="dot-grid"></div><div class="glow1"></div><div class="noise"></div></div>
@@ -285,7 +463,7 @@
     </div>
   </div></div>
 </div>
-{{ end }}
+{{ end }}{{ end }}
 
 {{ define "scripts" }}
 <script>

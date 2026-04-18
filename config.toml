@@ -24,7 +24,7 @@ defaultContentLanguageInSubdir = false
 
 [params]
   domain = "picsell.ai"
-  email = "hello@picsell.ai"
+  email = "info@picsell.ai"
   ogImage = "/images/og-default.png"
 
 [permalinks]

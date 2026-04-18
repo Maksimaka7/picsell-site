@@ -174,7 +174,335 @@
 </style>
 {{ end }}
 
-{{ define "main" }}
+{{ define "main" }}{{ if strings.HasPrefix .RelPermalink "/en/" }}
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"><div class="dot-grid"></div><div class="glow1"></div></div>
+
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-left">
+        <div class="hero-eyebrow h-anim h-d1">
+          <div class="badge-blue">PICSELL Vision AI</div>
+          <div class="badge-neon">Proprietary Neural Network</div>
+        </div>
+        <h1 class="hero-h1 h-anim h-d2">
+          Shelf Photo →
+          <span class="highlight">Raw Photos</span> into <span class="highlight">Structured Data</span> in &lt;2 seconds
+        </h1>
+        <p class="hero-sub h-anim h-d3">A proprietary neural network that sees OOS, shelf share, prices, and promotions — automatically. No human factor. No delays.</p>
+
+        <div class="hero-metrics h-anim h-d4">
+          <div class="hm">
+            <div class="hm-val neon">99.9%</div>
+            <div class="hm-label">Recognition<br>Accuracy</div>
+          </div>
+          <div style="width:1px;background:var(--border);height:36px;"></div>
+          <div class="hm">
+            <div class="hm-val">&lt;2s</div>
+            <div class="hm-label">Photo<br>Processing</div>
+          </div>
+          <div style="width:1px;background:var(--border);height:36px;"></div>
+          <div class="hm">
+            <div class="hm-val">📵</div>
+            <div class="hm-label">Offline-<br>First</div>
+          </div>
+          <div style="width:1px;background:var(--border);height:36px;"></div>
+          <div class="hm">
+            <div class="hm-val"><span data-count="10" data-suffix="M+">0</span></div>
+            <div class="hm-label">SKUs<br>Recognized</div>
+          </div>
+        </div>
+
+        <div class="hero-ctas h-anim h-d5">
+          <a href="/demo/" class="btn btn-p btn-lg">Book Vision AI Demo →</a>
+          <a href="#how-sees" class="btn btn-s">See How AI Sees</a>
+        </div>
+      </div>
+
+      <div class="h-anim h-d3">
+        <div class="demo-visual float-anim">
+          <div class="demo-header">
+            <div class="demo-dots"><div class="demo-dot dd-r"></div><div class="demo-dot dd-y"></div><div class="demo-dot dd-g"></div></div>
+            <div class="demo-title-bar">Vision AI · Live Recognition</div>
+            <div class="demo-live"><div class="demo-live-dot"></div>Processing</div>
+          </div>
+          <div class="demo-body">
+            <div class="shelf-section">
+              <div style="font-family:'Orbitron',sans-serif;font-size:8px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--t2);margin-bottom:8px;">Supermarket «Silpo» · Dairy Section</div>
+              <div class="ai-scan-line"></div>
+              <div class="shelf-row-big">
+                <div class="sku-big sb-p">PICSELL<br>SKU-001</div>
+                <div class="sku-big sb-p2">PICSELL<br>SKU-002</div>
+                <div class="sku-big sb-c">Comp.</div>
+                <div class="sku-big sb-p3">PICSELL<br>SKU-003</div>
+                <div class="sku-big sb-c">Comp.</div>
+                <div class="sku-big sb-oos"><div class="sb-oos-label">⚠ OOS</div></div>
+                <div class="sku-big sb-p">PICSELL<br>SKU-005</div>
+              </div>
+              <div class="ai-overlay">
+                <div class="bbox" style="top:28px;left:10px;width:50px;height:82px;"><div class="atag">SKU-001 ✓</div></div>
+                <div class="bbox" style="top:28px;left:66px;width:50px;height:68px;"><div class="atag">SKU-002 ✓</div></div>
+                <div class="bbox bbox-oos" style="top:28px;left:178px;width:50px;height:72px;"><div class="atag atag-r">OOS ⚠</div></div>
+                <div class="bbox" style="top:28px;left:122px;width:50px;height:102px;"><div class="atag atag-g">SKU-003 ✓</div></div>
+              </div>
+            </div>
+          </div>
+          <div class="demo-stats">
+            <div class="dstat"><div class="dstat-val blue">4/7</div><div class="dstat-label">Our SKUs</div></div>
+            <div class="dstat"><div class="dstat-val red">1 OOS</div><div class="dstat-label">Empty</div></div>
+            <div class="dstat"><div class="dstat-val neon">57%</div><div class="dstat-label">Share of Shelf</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOGOS -->
+<div class="logos-strip">
+  <div class="container">
+    <div class="logos-inner">
+      <span style="font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--t3);">Used by:</span>
+      <div class="logo-cl">Nestlé</div>
+      <div class="logo-cl">Diageo</div>
+      <div class="logo-cl">Colgate</div>
+      <div class="logo-cl">Henkel</div>
+      <div class="logo-cl">Lactalis</div>
+      <div class="logo-cl">Bayadera</div>
+    </div>
+  </div>
+</div>
+
+<!-- 6 FEATURES -->
+<section id="how-sees" class="section" style="background:var(--bg2);">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="tag">Vision AI Features</span>
+      <h2>Vision AI Sees <span class="highlight">More</span> Than Just Products</h2>
+      <p>Every photo is a structured report. Six metrics automatically — with no human involvement.</p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feat-card blue-top reveal rd1">
+        <div class="feat-icon feat-icon-red">⛔</div>
+        <h3>OOS Detection</h3>
+        <p>The system automatically detects empty shelf positions and generates an alert. <strong style="color:var(--t1)">From photo to manager notification — 2 minutes.</strong> Not next month, not next week.</p>
+        <div class="feat-metric">⚡ Alert in 2 minutes</div>
+      </div>
+
+      <div class="feat-card blue-top reveal rd2">
+        <div class="feat-icon feat-icon-blue">📊</div>
+        <h3>Share of Shelf</h3>
+        <p>Exact shelf share of your brand in % by each SKU and competitor. <strong style="color:var(--t1)">Dynamic comparison</strong> — weekly, monthly, quarterly. Across every chain and region.</p>
+        <div class="feat-metric">Per outlet</div>
+      </div>
+
+      <div class="feat-card neon-top reveal rd3">
+        <div class="feat-icon feat-icon-neon">💰</div>
+        <h3>Price Monitoring</h3>
+        <p>AI recognizes shelf price tags and <strong style="color:var(--t1)">compares them against recommended prices</strong>. Dumping is detected automatically. Price report across all chains — in real time.</p>
+        <div class="feat-metric">Dumping = auto-alert</div>
+      </div>
+
+      <div class="feat-card neon-top reveal rd4">
+        <div class="feat-icon feat-icon-neon">🏆</div>
+        <h3>Perfect Store Score</h3>
+        <p>Automatic scoring of compliance with shelf standards for each outlet. <strong style="color:var(--t1)">A single metric understood by everyone</strong> — from the field agent to the CEO.</p>
+        <div class="feat-metric">Henkel: 87% Score</div>
+      </div>
+
+      <div class="feat-card red-top reveal rd5">
+        <div class="feat-icon feat-icon-red">🛡️</div>
+        <h3>Anti-Fraud System</h3>
+        <p>GPS tags, photo metadata analysis, gallery upload prohibition, shooting angle verification. <strong style="color:var(--t1)">Fake reports are detected automatically</strong> — the agent won't even notice.</p>
+        <div class="feat-metric">0% Fakes</div>
+      </div>
+
+      <div class="feat-card blue-top reveal rd6">
+        <div class="feat-icon feat-icon-blue">🎯</div>
+        <h3>POSM Control</h3>
+        <p>Presence and correct placement of POS materials — wobblers, shelf talkers, price strips. <strong style="color:var(--t1)">You know which promotional materials are in place</strong>, and which are missing or incorrectly installed.</p>
+        <div class="feat-metric">Promo under control</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECHNOLOGY -->
+<section id="tech" class="section">
+  <div class="container">
+    <div class="tech-grid">
+      <div class="tech-visual reveal-left">
+        <div style="font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--t3);margin-bottom:var(--s3);">How Each Photo Is Processed</div>
+        <div class="pipeline">
+          <div class="pipe-step">
+            <div class="pipe-icon pipe-icon-1">📷</div>
+            <div class="pipe-content"><strong>Shelf Photo</strong><span>AI checks quality right in the app</span></div>
+            <div class="pipe-arrow">→</div>
+          </div>
+          <div class="pipe-sep"><div class="pipe-sep-line"></div></div>
+          <div class="pipe-step">
+            <div class="pipe-icon pipe-icon-2">🔍</div>
+            <div class="pipe-content"><strong>SKU Detection</strong><span>Neural network detects every product</span></div>
+            <div class="pipe-arrow">→</div>
+          </div>
+          <div class="pipe-sep"><div class="pipe-sep-line"></div></div>
+          <div class="pipe-step">
+            <div class="pipe-icon pipe-icon-3">✅</div>
+            <div class="pipe-content"><strong>Human Verification</strong><span>AI + human verification symbiosis</span></div>
+            <div class="pipe-arrow">→</div>
+          </div>
+          <div class="pipe-sep"><div class="pipe-sep-line"></div></div>
+          <div class="pipe-step">
+            <div class="pipe-icon pipe-icon-4">📊</div>
+            <div class="pipe-content"><strong>Structured Data</strong><span>OOS, SoS, prices, Perfect Store Score</span></div>
+            <div class="pipe-arrow">→</div>
+          </div>
+          <div class="pipe-sep"><div class="pipe-sep-line"></div></div>
+          <div class="pipe-step">
+            <div class="pipe-icon pipe-icon-5">⚡</div>
+            <div class="pipe-content"><strong>Alerts → Decisions</strong><span>Power BI dashboard + AI hints</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tech-content reveal-right">
+        <span class="tag" style="display:block;margin-bottom:var(--s2);">Technology</span>
+        <h2>"AI and Human Verification Symbiosis" — that's <span class="highlight">99.9%</span> accuracy</h2>
+        <p>Unlike competitors who rely solely on automation, we combine our neural network with human verification for edge cases. The result is accuracy that cannot be achieved by either method alone.</p>
+
+        <div class="tech-list">
+          <div class="tech-item">
+            <div class="tech-check">✓</div>
+            <div class="tech-text"><strong>Proprietary neural network</strong> — we do not buy APIs from Microsoft, Google, or AWS. Trained on millions of FMCG shelf photos.</div>
+          </div>
+          <div class="tech-item">
+            <div class="tech-check">✓</div>
+            <div class="tech-text"><strong>Offline-First architecture</strong> — critical for field conditions where mobile internet is unreliable. Photos are stored locally and synced when connectivity returns.</div>
+          </div>
+          <div class="tech-item">
+            <div class="tech-check">✓</div>
+            <div class="tech-text"><strong>Any Android</strong> — no expensive device required. Works on budget smartphones from $100.</div>
+          </div>
+          <div class="tech-item">
+            <div class="tech-check">✓</div>
+            <div class="tech-text"><strong>Data on secure servers</strong> — full compliance with GDPR and data protection regulations.</div>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:var(--s2);flex-wrap:wrap;margin-top:var(--s4);">
+          <div class="badge-neon">Proprietary Neural Network</div>
+          <div class="badge-blue">Offline-First</div>
+          <div class="badge-blue">Ukrainian servers</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMPLEMENTATION TIMELINE -->
+<section id="impl" class="section" style="background:var(--bg2);">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="tag">Implementation</span>
+      <h2>From Signature to First Data — <span class="hl-neon">4 weeks</span></h2>
+      <p>Not 6 months like Trax or similar solutions. Four weeks — and your team is already collecting shelf data.</p>
+    </div>
+
+    <div class="timeline">
+      <div class="tl-step reveal rd1">
+        <div class="tl-num">1</div>
+        <div class="tl-week">Week 1</div>
+        <h3>SKU Base and Planogram</h3>
+        <p>We load your SKU database, configure planograms, and connect to your accounting system.</p>
+      </div>
+      <div class="tl-step reveal rd2">
+        <div class="tl-num">2</div>
+        <div class="tl-week">Week 2</div>
+        <h3>Agent Training</h3>
+        <p>Field representative onboarding — 30 minutes per agent. First test photos and result verification.</p>
+      </div>
+      <div class="tl-step reveal rd3">
+        <div class="tl-num">3</div>
+        <div class="tl-week">Week 3</div>
+        <h3>50-Outlet Pilot</h3>
+        <p>Real data from 50 outlets. First OOS alerts. First week's Perfect Store Score already in the dashboard.</p>
+      </div>
+      <div class="tl-step reveal rd4">
+        <div class="tl-num">4</div>
+        <div class="tl-week">Week 4</div>
+        <h3>Full Launch</h3>
+        <p>All outlets online. Automatic alerts active. Last Excel report ever written.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HENKEL CASE -->
+<section id="case-henkel" class="section">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="tag">Client Case Study</span>
+      <h2><span class="highlight">Henkel</span> — Perfect Store in Real Time</h2>
+    </div>
+
+    <div class="case-band reveal">
+      <div>
+        <div class="case-brand">Henkel</div>
+        <div class="case-type">FMCG Manufacturer · Perfect Store</div>
+        <div class="case-divider"></div>
+        <p style="color:var(--t2);font-size:15px;line-height:1.7;margin-bottom:var(--s3);">
+          Challenge: Implement Perfect Store standards and monitor compliance in real time. Before PICSELL — manual checks once a month, results delivered a week later in PowerPoint.
+        </p>
+        <a href="/case-studies/" class="btn btn-g btn-sm">Read Full Case Study →</a>
+      </div>
+
+      <div>
+        <div style="font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--t3);margin-bottom:var(--s3);">Results with PICSELL Vision AI</div>
+        <div class="kpi-pills">
+          <div class="kpi-pill">
+            <div class="kpi-pill-val">87%</div>
+            <div class="kpi-pill-label">Perfect Store Score</div>
+          </div>
+          <div class="kpi-pill">
+            <div class="kpi-pill-val">-91%</div>
+            <div class="kpi-pill-label">Audit time saved</div>
+          </div>
+          <div class="kpi-pill">
+            <div class="kpi-pill-val">Real-time</div>
+            <div class="kpi-pill-label">Shelf Data</div>
+          </div>
+          <div class="kpi-pill">
+            <div class="kpi-pill-val">4 weeks</div>
+            <div class="kpi-pill-label">Implementation</div>
+          </div>
+        </div>
+        <div style="margin-top:var(--s3);padding:var(--s3);background:var(--bg2);border:1px solid var(--border);border-radius:var(--r3);font-size:15px;color:var(--t2);font-style:italic;line-height:1.7;">
+          "Perfect Store prototype in final implementation stage. PICSELL was the first system that showed us the real picture on shelves, not the one we wanted to see."
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta-section" class="section-sm">
+  <div class="container">
+    <div class="cta-box reveal">
+      <span class="tag" style="display:block;margin-bottom:var(--s2);">Ready to See Your SKU in Action?</span>
+      <h2>Book a Vision AI Demo — We'll Show <span class="highlight">Live Recognition</span> of Your SKU</h2>
+      <p>30 minutes. No preparation needed. We load samples of your products ourselves and show how the system works on real photos.</p>
+      <div class="cta-btns">
+        <a href="/demo/" class="btn btn-p btn-lg">Book Live Demo →</a>
+        <a href="/pricing/" class="btn btn-g">View Pricing</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+{{ else }}
 <!-- HERO -->
 <section id="hero">
   <div class="hero-bg"><div class="dot-grid"></div><div class="glow1"></div></div>
@@ -502,7 +830,7 @@
 </section>
 
 <!-- FOOTER -->
-{{ end }}
+{{ end }}{{ end }}
 
 {{ define "scripts" }}
 <script>

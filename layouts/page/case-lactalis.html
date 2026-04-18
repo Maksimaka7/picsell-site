@@ -51,7 +51,134 @@
 </style>
 {{ end }}
 
-{{ define "main" }}
+{{ define "main" }}{{ if strings.HasPrefix .RelPermalink "/en/" }}
+<section class="article-hero">
+  <div class="article-bg"><div class="dot-grid"></div><div class="glow1"></div></div>
+  <div class="container">
+    <div class="article-inner">
+      <div class="article-breadcrumb h-anim h-d1">
+        <a href="/case-studies/">Case Studies</a>
+        <span>›</span>
+        <span>Lactalis</span>
+      </div>
+      <div class="article-meta h-anim h-d1">
+        <div class="art-badge">Case Study</div>
+        <div class="art-badge art-badge-b">Vision AI</div>
+        <div class="art-badge art-badge-b">Sales App</div>
+        <div class="art-badge art-badge-b">Power BI</div>
+        <div class="art-badge art-badge-b">HoReCa Radar</div>
+      </div>
+      <h1 class="article-title h-anim h-d2">Lactalis: From Excel Reports to Real Time — <span class="highlight">Full Transition to PICSELL in 4 Weeks</span></h1>
+      <p class="article-lead h-anim h-d3">The global leader in the dairy industry became the first client to fully transition to the PICSELL ecosystem. Zero manual reports. Shelf data — in real time.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--bg2);padding:var(--s6) 0;">
+  <div class="container">
+    <div class="results-bar reveal">
+      <div class="rb-item"><div class="rb-val">0</div><div class="rb-lbl">manual Excel reports</div></div>
+      <div class="rb-item"><div class="rb-val"><2 min</div><div class="rb-lbl">OOS detection</div></div>
+      <div class="rb-item"><div class="rb-val">847</div><div class="rb-lbl">new HoReCa outlets</div></div>
+      <div class="rb-item"><div class="rb-val">300%</div><div class="rb-lbl">ROI Radar per quarter</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--bg1);">
+  <div class="container">
+    <div class="article-body reveal">
+      <h2>Client Context</h2>
+      <p>Lactalis is one of the world's largest dairy manufacturers. In Ukraine — <strong>12 brands</strong>, <strong>1,500+ SKU</strong>, connected to a retail network of more than <strong>847 outlets</strong>.</p>
+
+      <h2>Challenge</h2>
+      <p>Before PICSELL, the Lactalis team worked using the traditional approach: agents collected data manually, passed it to analysts, and a PowerPoint report appeared 3–5 days later.</p>
+
+      <div class="challenge-box">
+        <strong style="color:var(--red);display:block;margin-bottom:var(--s2);">Key Issues:</strong>
+        <ul>
+          <li>Delay between OOS and response — from 3 days to a week</li>
+          <li>Inability to verify real product availability on the shelf</li>
+          <li>Actual Share of Shelf unknown until the next visit</li>
+          <li>Manual Excel processing took up 20% of analysts' working time</li>
+          <li>HoReCa channel — complete unknown</li>
+        </ul>
+      </div>
+
+      <h2>PICSELL Solution</h2>
+      <p>After negotiations, it was decided to launch the <strong>full PICSELL ecosystem</strong> — without half-measures.</p>
+
+      <div class="solution-box">
+        <strong style="color:var(--blue3);display:block;margin-bottom:var(--s2);">What was implemented:</strong>
+        <ul>
+          <li>PICSELL Vision AI — shelf recognition at 99.9% accuracy</li>
+          <li>PICSELL Sales App — agent's mobile office</li>
+          <li>Power BI dashboards with automated data collection</li>
+          <li>HoReCa Radar — venue monitoring and lead generation</li>
+        </ul>
+      </div>
+
+      <h2>How Implementation Proceeded</h2>
+      <div class="timeline-steps">
+        <div class="tl-step">
+          <div class="tl-num">1</div>
+          <div class="tl-content">
+            <h4>Week 1: Audit & Onboarding</h4>
+            <p>Loading the SKU database, setting up planograms, connecting to Lactalis' accounting system.</p>
+          </div>
+        </div>
+        <div class="tl-step">
+          <div class="tl-num">2</div>
+          <div class="tl-content">
+            <h4>Week 2: Team Training</h4>
+            <p>Onboarding <strong>200+ sales representatives</strong> — 30 minutes per agent. First real photos arrived on the very first day.</p>
+          </div>
+        </div>
+        <div class="tl-step">
+          <div class="tl-num">3</div>
+          <div class="tl-content">
+            <h4>Week 3: Pilot at 50 Outlets</h4>
+            <p>First data in the dashboard. First OOS detected and manager alerts triggered. The team saw the real shelf for the first time.</p>
+          </div>
+        </div>
+        <div class="tl-step">
+          <div class="tl-num">4</div>
+          <div class="tl-content">
+            <h4>Week 4: Full Launch</h4>
+            <p>All outlets online. Automatic alerts active. <strong>The last Excel report written</strong>. Shelf data — in real time.</p>
+          </div>
+        </div>
+      </div>
+
+      <h2>Results</h2>
+      <p>4 weeks after launch, Lactalis got what it was looking for:</p>
+      <ul style="display:flex;flex-direction:column;gap:10px;padding-left:var(--s3);margin:var(--s3) 0;">
+        <li style="color:var(--t2);display:flex;align-items:flex-start;gap:10px;"><span style="color:var(--neon);">✓</span><span><strong style="color:var(--t1);">0 manual Excel reports</strong> — all data automatically in Power BI</span></li>
+        <li style="color:var(--t2);display:flex;align-items:flex-start;gap:10px;"><span style="color:var(--neon);">✓</span><span><strong style="color:var(--t1);">OOS detected in 2 minutes</strong> instead of 3–7 days</span></li>
+        <li style="color:var(--t2);display:flex;align-items:flex-start;gap:10px;"><span style="color:var(--neon);">✓</span><span><strong style="color:var(--t1);">847 new HoReCa outlets</strong> found by Radar in the first month</span></li>
+        <li style="color:var(--t2);display:flex;align-items:flex-start;gap:10px;"><span style="color:var(--neon);">✓</span><span><strong style="color:var(--t1);">23% conversion</strong> of leads into new HoReCa clients</span></li>
+        <li style="color:var(--t2);display:flex;align-items:flex-start;gap:10px;"><span style="color:var(--neon);">✓</span><span><strong style="color:var(--t1);">300% ROI</strong> from the Radar module in the first quarter</span></li>
+      </ul>
+
+      <div class="quote-block">
+        "PICSELL replaced an entire team that lived in Excel. Now we see the real picture for every outlet in real time." — <strong>Oleksandr K., Commercial Director, Lactalis Ukraine</strong>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-band">
+  <div class="container"><div class="reveal">
+    <span class="tag" style="display:block;margin-bottom:var(--s2);">Want the Same Results?</span>
+    <h2>Book a Demo — <span class="highlight">we'll show you how in 30 minutes</span></h2>
+    <p>No preparation. No commitment. Just the real system.</p>
+    <div class="cta-btns">
+      <a href="/demo/" class="btn btn-p btn-lg">Book a Demo →</a>
+      <a href="/case-studies/" class="btn btn-g">All Case Studies</a>
+    </div>
+  </div></div>
+</div>
+{{ else }}
 <section class="article-hero">
   <div class="article-bg"><div class="dot-grid"></div><div class="glow1"></div></div>
   <div class="container">
@@ -178,7 +305,7 @@
     </div>
   </div></div>
 </div>
-{{ end }}
+{{ end }}{{ end }}
 
 {{ define "scripts" }}
 <script>

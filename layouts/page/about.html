@@ -55,7 +55,133 @@
 </style>
 {{ end }}
 
-{{ define "main" }}
+{{ define "main" }}{{ if strings.HasPrefix .RelPermalink "/en/" }}
+<section id="hero">
+  <div class="hero-bg"><div class="dot-grid"></div><div class="glow1"></div><div class="noise"></div></div>
+  <div class="container">
+    <div class="hero-inner">
+      <div class="h-anim h-d1"><span class="tag">About Us</span></div>
+      <h1 class="hero-h1 h-anim h-d2">We're Building <span class="highlight">Sales OS</span> for the FMCG Market — from Ukraine for the World</h1>
+      <p class="hero-sub h-anim h-d3">PICSELL is an Imperia Holding product born from the real pain of the FMCG market. From a simple tool for field teams to a full AI ecosystem.</p>
+      <div class="stats-row h-anim h-d4">
+        <div class="stat-box"><div class="stat-val" data-count="10" data-suffix="M+">0</div><div class="stat-lbl">SKUs Recognized</div></div>
+        <div class="stat-box"><div class="stat-val" data-count="31" data-suffix="K+">0</div><div class="stat-lbl">Outlets</div></div>
+        <div class="stat-box"><div class="stat-val" data-count="500" data-suffix="+">0</div><div class="stat-lbl">Agents Online</div></div>
+        <div class="stat-box"><div class="stat-val" style="color:var(--neon);">99.9%</div><div class="stat-lbl">Vision AI Accuracy</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--bg2);">
+  <div class="container">
+    <div class="sec-head reveal"><span class="tag">Mission</span><h2>Why We Do This</h2></div>
+    <div class="mission-card reveal">
+      <p class="mission-text">"To make every shelf, every restaurant, and every sales agent part of one unified system where data turns into action. To make the FMCG market transparent and manageable — through AI, data, and automation."</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--bg1);">
+  <div class="container">
+    <div class="g2">
+      <div class="reveal-left">
+        <span class="tag" style="display:block;margin-bottom:var(--s2);">Company</span>
+        <h2 style="font-size:clamp(26px,3.5vw,44px);font-weight:800;margin-bottom:var(--s3);">PICSELL — part of <span class="highlight">Imperia Holding</span></h2>
+        <p style="color:var(--t2);font-size:16px;line-height:1.7;margin-bottom:var(--s4);">A team of engineers and FMCG experts from Kyiv. Methodology — SCRUM with 2-week sprints. Every two weeks clients receive new features.</p>
+        <div style="display:flex;flex-direction:column;gap:var(--s2);">
+          <div style="display:flex;align-items:center;gap:10px;"><span style="font-size:20px;">📍</span><div><strong style="color:var(--t1);">Kyiv, Ukraine</strong><br><span style="color:var(--t2);font-size:13px;">Office & R&D Center</span></div></div>
+          <div style="display:flex;align-items:center;gap:10px;"><span style="font-size:20px;">⚡</span><div><strong style="color:var(--t1);">SCRUM · 2-Week Sprints</strong><br><span style="color:var(--t2);font-size:13px;">New features every 2 weeks</span></div></div>
+          <div style="display:flex;align-items:center;gap:10px;"><span style="font-size:20px;">🏠</span><div><strong style="color:var(--t1);">Imperia Holding</strong><br><span style="color:var(--t2);font-size:13px;">Diversified technology group</span></div></div>
+          <div style="display:flex;align-items:center;gap:10px;"><span style="font-size:20px;">📧</span><div><strong><a href="mailto:info@picsell.ai" style="color:var(--blue3);">info@picsell.ai</a></strong><br><span style="color:var(--t2);font-size:13px;">picsell.ai</span></div></div>
+        </div>
+      </div>
+      <div class="reveal-right">
+        <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--r4);padding:var(--s4);">
+          <div style="font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--t3);margin-bottom:var(--s3);">Clients That Trust Us</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--s2);">
+            <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--r3);padding:var(--s3);text-align:center;"><div style="font-family:'Geologica',sans-serif;font-weight:900;font-size:18px;">Lactalis</div><div style="font-size:11px;color:var(--neon);margin-top:4px;">Full Transition</div></div>
+            <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--r3);padding:var(--s3);text-align:center;"><div style="font-family:'Geologica',sans-serif;font-weight:900;font-size:18px;">Henkel</div><div style="font-size:11px;color:var(--blue3);margin-top:4px;">Perfect Store</div></div>
+            <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--r3);padding:var(--s3);text-align:center;"><div style="font-family:'Geologica',sans-serif;font-weight:900;font-size:18px;">Bayadera</div><div style="font-size:11px;color:var(--blue3);margin-top:4px;">Sales App</div></div>
+            <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--r3);padding:var(--s3);text-align:center;"><div style="font-family:'Geologica',sans-serif;font-weight:900;font-size:18px;">Nestlé</div><div style="font-size:11px;color:var(--blue3);margin-top:4px;">Vision AI</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--bg2);">
+  <div class="container">
+    <div class="sec-head reveal"><span class="tag">Technology</span><h2>Why Our Technology Is <span class="highlight">Better</span></h2></div>
+    <div class="tech-grid">
+      <div class="tech-card reveal rd1"><div class="tech-icon">🧠</div><h3>Proprietary Neural Network</h3><p>We don't buy Vision API from third parties. Our neural network is trained on millions of photos of Ukrainian FMCG shelves.</p></div>
+      <div class="tech-card reveal rd2"><div class="tech-icon">😗</div><h3>Offline-First Architecture</h3><p>Critical for Ukraine. All data is stored locally; synchronization is automatic when connection is restored.</p></div>
+      <div class="tech-card reveal rd3"><div class="tech-icon">🇺🇦</div><h3>Data on Ukrainian Servers</h3><p>Full GDPR compliance. Your data is not shared with third parties and remains in Ukraine.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--bg1);">
+  <div class="container">
+    <div class="sec-head reveal"><span class="tag">Team</span><h2>The People Behind <span class="highlight">PICSELL</span></h2></div>
+    <div class="team-grid">
+      <div class="team-card reveal rd1"><div class="team-avatar">🚀</div><div class="team-name">Serhiy Pylypyshen</div><div class="team-role">CEO & Founder</div></div>
+      <div class="team-card reveal rd2"><div class="team-avatar">💰</div><div class="team-name">Ivan Stolyaruk</div><div class="team-role">CFO</div></div>
+      <div class="team-card reveal rd3"><div class="team-avatar">📋</div><div class="team-name">Dmytro Kuznitsov</div><div class="team-role">Project Manager</div></div>
+      <div class="team-card reveal rd4"><div class="team-avatar">📦</div><div class="team-name">Maksym Badzyun</div><div class="team-role">Product Manager</div></div>
+      <div class="team-card reveal rd1"><div class="team-avatar">🤝</div><div class="team-name">Diana Ivanyuk</div><div class="team-role">Client Manager</div></div>
+      <div class="team-card reveal rd2"><div class="team-avatar">⚙️</div><div class="team-name">Armen Tsaturian</div><div class="team-role">Senior DevOps / Lead Engineer</div></div>
+      <div class="team-card reveal rd3"><div class="team-avatar">📊</div><div class="team-name">Artem Korovnichenko</div><div class="team-role">Lead Power BI Engineer</div></div>
+      <div class="team-card reveal rd4"><div class="team-avatar">💻</div><div class="team-name">Oleksandr Venger</div><div class="team-role">Full-Stack Developer</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--bg2);">
+  <div class="container">
+    <div class="sec-head reveal"><span class="tag">PICSELL vs Market</span><h2>Why Companies Choose <span class="highlight">PICSELL</span></h2></div>
+    <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--r4);overflow:hidden;overflow-x:auto;" class="reveal">
+      <table class="comp-table">
+        <thead><tr><th>Criteria</th><th class="our-col">PICSELL ✦</th><th>Vision AI Specialist (UA)</th><th>Image Recognition (UA)</th><th>SFA Platform (UA)</th><th>Global Vision AI</th></tr></thead>
+        <tbody>
+          <tr><td>Vision AI</td><td class="our-col"><span class="ic-y">✓</span> 99.9%</td><td><span class="ic-p">◐</span></td><td><span class="ic-y">✓</span></td><td><span class="ic-n">✗</span></td><td><span class="ic-y">✓</span></td></tr>
+          <tr><td>SFA / Field Sales</td><td class="our-col"><span class="ic-y">✓</span></td><td><span class="ic-p">◐</span></td><td><span class="ic-n">✗</span></td><td><span class="ic-y">✓</span></td><td><span class="ic-n">✗</span></td></tr>
+          <tr><td>HoReCa Intelligence</td><td class="our-col"><span class="ic-y">✓</span></td><td><span class="ic-n">✗</span></td><td><span class="ic-n">✗</span></td><td><span class="ic-n">✗</span></td><td><span class="ic-n">✗</span></td></tr>
+          <tr><td>Offline-First</td><td class="our-col"><span class="ic-y">✓</span></td><td><span class="ic-n">✗</span></td><td><span class="ic-n">✗</span></td><td><span class="ic-p">◐</span></td><td><span class="ic-n">✗</span></td></tr>
+          <tr><td>Implementation</td><td class="our-col"><span class="ic-y">✓</span> 1–4 weeks</td><td><span class="ic-p">◐</span> 2–3 mo</td><td><span class="ic-y">✓</span></td><td><span class="ic-n">✗</span> 6+ mo</td><td><span class="ic-n">✗</span> 3–6 mo</td></tr>
+          <tr><td>Price for SMB</td><td class="our-col"><span class="ic-y">✓</span></td><td><span class="ic-p">◐</span></td><td><span class="ic-y">✓</span></td><td><span class="ic-n">✗</span></td><td><span class="ic-n">✗</span></td></tr>
+          <tr><td>UA Support</td><td class="our-col"><span class="ic-y">✓</span></td><td><span class="ic-y">✓</span></td><td><span class="ic-y">✓</span></td><td><span class="ic-p">◐</span></td><td><span class="ic-n">✗</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--bg1);">
+  <div class="container">
+    <div class="sec-head reveal"><span class="tag">Roadmap 2026-2027</span><h2>Where We're <span class="highlight">Headed</span></h2></div>
+    <div class="roadmap-grid">
+      <div class="rm-card rm-done reveal rd1"><div class="rm-badge">Completed</div><div class="rm-period">2024-2025</div><h3>Vision AI + SFA</h3><p>Proprietary Neural Network 99.9%, Sales App, first clients</div></div>
+      <div class="rm-card rm-done reveal rd2"><div class="rm-badge">Completed</div><div class="rm-period">Q1 2026</div><h3>HoReCa + Radar</h3><p>Menu Intelligence, Google Maps Lead Gen, Price Monitoring</p></div>
+      <div class="rm-card rm-active reveal rd3"><div class="rm-badge">In Progress</div><div class="rm-period">Q2-Q3 2026</div><h3>AI Copilot + UA Scale</h3><p>Text-to-SQL, trigger alerts, cashflow generation</p></div>
+      <div class="rm-card rm-soon reveal rd4"><div class="rm-badge">Planned</div><div class="rm-period">Q4 2026 - 2027</div><h3>Poland, Romania, Kazakhstan</h3><p>Expansion into Central European markets</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-band">
+  <div class="container"><div class="reveal">
+    <span class="tag" style="display:block;margin-bottom:var(--s2);">Building the Future of FMCG Together</span>
+    <h2>Book a <span class="highlight">Demo</span> or Discuss <span class="hl-neon">Partnership</span></h2>
+    <p>info@picsell.ai · picsell.ai · Kyiv, Ukraine</p>
+    <div class="cta-btns">
+      <a href="/demo/" class="btn btn-p btn-lg">Book a Demo →</a>
+      <a href="mailto:info@picsell.ai" class="btn btn-g">info@picsell.ai</a>
+    </div>
+  </div></div>
+</div>
+{{ else }}
 <section id="hero">
   <div class="hero-bg"><div class="dot-grid"></div><div class="glow1"></div><div class="noise"></div></div>
   <div class="container">
@@ -93,7 +219,7 @@
           <div style="display:flex;align-items:center;gap:10px;"><span style="font-size:20px;">&#128205;</span><div><strong style="color:var(--t1);">&#1050;&#1080;&#1111;&#1074;, &#1059;&#1082;&#1088;&#1072;&#1111;&#1085;&#1072;</strong><br><span style="color:var(--t2);font-size:13px;">&#1054;&#1092;&#1110;&#1089; &#1090;&#1072; R&amp;D &#1094;&#1077;&#1085;&#1090;&#1088;</span></div></div>
           <div style="display:flex;align-items:center;gap:10px;"><span style="font-size:20px;">&#9889;</span><div><strong style="color:var(--t1);">SCRUM &#183; 2-&#1090;&#1080;&#1078;&#1085;&#1077;&#1074;&#1110; &#1089;&#1087;&#1088;&#1080;&#1085;&#1090;&#1080;</strong><br><span style="color:var(--t2);font-size:13px;">&#1053;&#1086;&#1074;&#1110; &#1092;&#1110;&#1095;&#1110; &#1082;&#1086;&#1078;&#1085;&#1110; 2 &#1090;&#1080;&#1078;&#1085;&#1110;</span></div></div>
           <div style="display:flex;align-items:center;gap:10px;"><span style="font-size:20px;">&#127968;</span><div><strong style="color:var(--t1);">Imperia Holding</strong><br><span style="color:var(--t2);font-size:13px;">Diversified technology group</span></div></div>
-          <div style="display:flex;align-items:center;gap:10px;"><span style="font-size:20px;">&#128231;</span><div><strong><a href="mailto:hello@picsell.ai" style="color:var(--blue3);">hello@picsell.ai</a></strong><br><span style="color:var(--t2);font-size:13px;">picsell.ai</span></div></div>
+          <div style="display:flex;align-items:center;gap:10px;"><span style="font-size:20px;">&#128231;</span><div><strong><a href="mailto:info@picsell.ai" style="color:var(--blue3);">info@picsell.ai</a></strong><br><span style="color:var(--t2);font-size:13px;">picsell.ai</span></div></div>
         </div>
       </div>
       <div class="reveal-right">
@@ -174,14 +300,14 @@
   <div class="container"><div class="reveal">
     <span class="tag" style="display:block;margin-bottom:var(--s2);">&#1041;&#1091;&#1076;&#1091;&#1108;&#1084;&#1086; &#1084;&#1072;&#1081;&#1073;&#1091;&#1090;&#1085;&#1108; FMCG &#1088;&#1072;&#1079;&#1086;&#1084;</span>
     <h2>&#1047;&#1072;&#1084;&#1086;&#1074;&#1080;&#1090;&#1080; <span class="highlight">&#1076;&#1077;&#1084;&#1086;</span> &#1072;&#1073;&#1086; &#1086;&#1073;&#1075;&#1086;&#1074;&#1086;&#1088;&#1080;&#1090;&#1080; <span class="hl-neon">&#1087;&#1072;&#1088;&#1090;&#1085;&#1077;&#1088;&#1089;&#1090;&#1074;&#1086;</span></h2>
-    <p>hello@picsell.ai &#183; picsell.ai &#183; &#1050;&#1080;&#1111;&#1074;, &#1059;&#1082;&#1088;&#1072;&#1111;&#1085;&#1072;</p>
+    <p>info@picsell.ai &#183; picsell.ai &#183; &#1050;&#1080;&#1111;&#1074;, &#1059;&#1082;&#1088;&#1072;&#1111;&#1085;&#1072;</p>
     <div class="cta-btns">
       <a href="/demo/" class="btn btn-p btn-lg">&#1047;&#1072;&#1084;&#1086;&#1074;&#1080;&#1090;&#1080; &#1076;&#1077;&#1084;&#1086; &#8594;</a>
-      <a href="mailto:hello@picsell.ai" class="btn btn-g">hello@picsell.ai</a>
+      <a href="mailto:info@picsell.ai" class="btn btn-g">info@picsell.ai</a>
     </div>
   </div></div>
 </div>
-{{ end }}
+{{ end }}{{ end }}
 
 {{ define "scripts" }}
 <script>

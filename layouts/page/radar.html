@@ -99,7 +99,148 @@
 </style>
 {{ end }}
 
-{{ define "main" }}
+{{ define "main" }}{{ if strings.HasPrefix .RelPermalink "/en/" }}
+<section id="hero">
+  <div class="hero-bg"><div class="dot-grid"></div><div class="glow-neon"></div><div class="noise"></div></div>
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px;" class="h-anim h-d1">
+          <div class="badge-neon">#MarketIntelligence #ROI_Driven</div>
+          <div class="badge-blue">PICSELL Radar</div>
+        </div>
+        <h1 class="hero-h1 h-anim h-d2"><span class="hl-neon">PICSELL Radar</span> —<br>Your Eyes on the Digital Market</h1>
+        <p class="hero-sub h-anim h-d3">Not just data collection — full online intelligence. Automate price monitoring, detect RRP violations in seconds, and find 100+ new HoReCa outlets every month.</p>
+        <div class="hero-ctas h-anim h-d4">
+          <a href="/demo/" class="btn btn-neon btn-lg">Get Demo and ROI Calculation →</a>
+          <a href="/case-studies/" class="btn btn-s">View Case Studies</a>
+        </div>
+        <div class="hero-metrics h-anim h-d5">
+          <div><div class="hm-val">300%</div><div class="hm-lbl">Client ROI</div></div>
+          <div style="width:1px;background:var(--border);height:40px;"></div>
+          <div><div class="hm-val">100%</div><div class="hm-lbl">Automation</div></div>
+          <div style="width:1px;background:var(--border);height:40px;"></div>
+          <div><div class="hm-val" style="color:var(--blue3);">31K+</div><div class="hm-lbl">Outlets in database</div></div>
+        </div>
+      </div>
+
+      <div class="h-anim h-d3 float-anim">
+        <div class="radar-visual">
+          <div class="rv-hdr">
+            <div class="rv-dots"><div class="rvd rd"></div><div class="rvd ry"></div><div class="rvd rg"></div></div>
+            <div class="rv-lbl">Radar · Price Monitor · Live</div>
+            <div class="rv-live"><div class="rl-dot"></div>Scanning</div>
+          </div>
+          <div class="rv-body">
+            <div class="price-card">
+              <div class="pc-hdr"><div class="pc-name">Rum Captain Morgan Spiced Gold 0.7L</div><div class="pc-badge pcb-dn">▼ Competitor alert</div></div>
+              <div class="pc-body">
+                <div class="pcc"><div class="pcc-name">ROZETKA</div><div class="pcc-val pcc-ok">485₴</div></div>
+                <div class="pcc"><div class="pcc-name">WineTime</div><div class="pcc-val pcc-low">415₴</div></div>
+                <div class="pcc"><div class="pcc-name">MAUDAU</div><div class="pcc-val pcc-ok">479₴</div></div>
+                <div class="pcc"><div class="pcc-name">SILPO</div><div class="pcc-val pcc-ok">495₴</div></div>
+              </div>
+            </div>
+            <div class="ai-verdict"><strong>AI Radar Verdict:</strong> WineTime reduced price by 14.4%. We recommend contacting the partner to clarify terms.</div>
+            <div class="gmap-card">
+              <div class="gmc-title">Google Maps Lead Intelligence · Kyiv</div>
+              <div class="gmc-row"><div class="gmc-name">Bar "Legenda", Podil</div><div class="gmc-status gms-new">+ New</div></div>
+              <div class="gmc-row"><div class="gmc-name">Sky Lounge, Obolon</div><div class="gmc-status gms-val">Evaluate</div></div>
+              <div class="gmc-row"><div class="gmc-name">Jazz Club "42", Solomyanka</div><div class="gmc-status gms-new">+ New</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="logos-strip"><div class="container"><div class="logos-inner">
+  <span class="logos-pre">Used by:</span>
+  <div class="logo-cl">Lactalis</div><div class="logo-cl">Bayadera</div><div class="logo-cl">Diageo</div><div class="logo-cl">Pernod Ricard</div>
+</div></div></div>
+
+<section class="section" style="background:var(--bg2);">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="tag">Before and After</span>
+      <h2>Stop Collecting Data <span style="color:var(--red);">Manually</span></h2>
+      <p>"Found something in Telegram, two people browsed pages, clicked through websites — and all of it goes into Excel."</p>
+    </div>
+    <div class="ba-wrap reveal">
+      <div class="ba-card ba-before">
+        <div class="ba-title">✗ Today's Reality</div>
+        <div class="ba-item"><span class="ic-bad">✗</span>Slow and error-prone — manual</div>
+        <div class="ba-item"><span class="ic-bad">✗</span>Unreliable data collection</div>
+        <div class="ba-item"><span class="ic-bad">✗</span>Impossible to scale to 1000+ outlets</div>
+        <div class="ba-item"><span class="ic-bad">✗</span>No complete picture of the market</div>
+      </div>
+      <div class="ba-card ba-after">
+        <div class="ba-title">✓ PICSELL Radar</div>
+        <div class="ba-item"><span class="ic-good">✓</span>Automatic monitoring 24/7/365</div>
+        <div class="ba-item"><span class="ic-good">✓</span>Data in Power BI — daily updates</div>
+        <div class="ba-item"><span class="ic-good">✓</span>Full market coverage automatically</div>
+        <div class="ba-item"><span class="ic-good">✓</span>Online + Offline ecosystem</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--bg1);">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="tag">Features</span>
+      <h2>Monitoring and <span class="hl-neon">Lead Generation</span></h2>
+    </div>
+    <div class="feat5">
+      <div class="fc fc-neon reveal rd1"><div class="fc-icon fci-n">📈</div><h3>Competitive Pricing</h3><p>Competitor prices across chains, regions, and SKUs — automatically every day. RRP violations detected in seconds and sent as Telegram alerts.</p><div class="fc-pill">Daily updates</div></div>
+      <div class="fc fc-blue reveal rd2"><div class="fc-icon fci-b">📊</div><h3>Market Share Tracker</h3><p>Market share dynamics by channel, chain, and region. You see market share in real time — not in a quarterly report.</p><div class="fc-pill">Quarterly dynamics</div></div>
+      <div class="fc fc-neon reveal rd3"><div class="fc-icon fci-n">🎯</div><h3>New Points Discovery</h3><p>New outlets where you're not yet present — automatically via Google Maps API. With contacts and potential assessment.</p><div class="fc-pill">100+ leads/month</div></div>
+      <div class="fc fc-blue reveal rd4"><div class="fc-icon fci-b">📍</div><h3>Google Maps Intelligence</h3><p>Discovery of new bars, restaurants, and cafes via Google Maps API algorithms. Lactalis case: 847 new HoReCa outlets in the first month.</p><div class="fc-pill">847 outlets (Lactalis)</div></div>
+      <div class="fc fc-neon reveal rd5"><div class="fc-icon fci-n">⚡</div><h3>Competitor Alerts</h3><p>Competitor reduced price — alert in 2 min. New product line launched — alert. Chain conditions changed — alert. Telegram, Viber, or Email.</p><div class="fc-pill">Alert in 2 min</div></div>
+      <div class="fc fc-blue reveal rd6"><div class="fc-icon fci-b">📊</div><h3>Weekly AI Report</h3><p>Consolidated analytics for Sales, KAM, and Trade Marketing leaders. Price forecasting via Smart alerts. Automatically.</p><div class="fc-pill">Weekly</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--bg2);">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="tag">Client Case Study</span>
+      <h2><span class="highlight">Lactalis</span> — 847 New HoReCa Outlets in the First Month</h2>
+    </div>
+    <div class="case-band reveal">
+      <div class="case-left">
+        <div class="case-brand">Lactalis</div>
+        <div class="case-type">FMCG Manufacturer · HoReCa Radar</div>
+        <div style="height:1px;background:var(--border);margin:var(--s3) 0;"></div>
+        <p style="font-size:14px;color:var(--t2);line-height:1.7;margin-bottom:var(--s3);">Before Radar: manual data collection from Telegram, TikTok, and websites. The team spent 3 days a week on monitoring — and still had an incomplete picture.</p>
+        <a href="/case-studies/" class="btn btn-g" style="font-size:13px;padding:9px 18px;">Learn More →</a>
+      </div>
+      <div class="case-right">
+        <p style="font-size:15px;color:var(--t2);line-height:1.7;margin-bottom:var(--s3);">"Automated monitoring replaced an entire team that lived in Excel. In the first month, Radar found 847 new HoReCa outlets not in our database. Conversion to new clients — 23%. Tool ROI — 300% per quarter."</p>
+        <div class="result-pills">
+          <div class="rp"><div class="rp-val">847</div><div class="rp-lbl">New outlets</div></div>
+          <div class="rp"><div class="rp-val">23%</div><div class="rp-lbl">Conversion</div></div>
+          <div class="rp"><div class="rp-val">300%</div><div class="rp-lbl">ROI per quarter</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-band">
+  <div class="container"><div class="reveal">
+    <span class="tag" style="display:block;margin-bottom:var(--s2);">Ready to See the Map of Your Market?</span>
+    <h2>We'll Show the Map of Your Market — <span class="hl-neon">live in 30 minutes</span></h2>
+    <p>We'll calculate ROI for your business with specific numbers. Free, no obligations.</p>
+    <div class="cta-btns">
+      <a href="/demo/" class="btn btn-neon btn-lg">Get Demo and ROI →</a>
+      <a href="/pricing/" class="btn btn-g">View Pricing</a>
+    </div>
+  </div></div>
+</div>
+{{ else }}
 <section id="hero">
   <div class="hero-bg"><div class="dot-grid"></div><div class="glow-neon"></div><div class="noise"></div></div>
   <div class="container">
@@ -240,7 +381,7 @@
     </div>
   </div></div>
 </div>
-{{ end }}
+{{ end }}{{ end }}
 
 {{ define "scripts" }}
 <script>

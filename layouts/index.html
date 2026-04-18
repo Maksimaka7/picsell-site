@@ -276,7 +276,649 @@
 </style>
 {{ end }}
 
-{{ define "main" }}
+{{ define "main" }}{{ if strings.HasPrefix .RelPermalink "/en/" }}
+<!-- ══════════════════ HERO ══════════════════ -->
+<section id="hero">
+  <div class="hero-bg">
+    <div class="dot-grid"></div>
+    <div class="glow1"></div>
+    <div class="glow2"></div>
+    <div class="glow3"></div>
+    <div class="noise"></div>
+  </div>
+
+  <div class="container">
+    <div class="hero-content">
+      <!-- LEFT -->
+      <div class="hero-left">
+        <div class="hero-eyebrow h-anim h-d1">
+          <div class="hero-badge">
+            <div class="badge-dot"></div>
+            <span class="badge-text">All-in-One Sales OS · FMCG</span>
+          </div>
+        </div>
+
+        <h1 class="hero-h1 h-anim h-d2">
+          <span class="line"><span style="color:var(--neon)">See the Shelf.</span></span>
+          <span class="line">Lead the Team.</span>
+          <span class="line"><span style="color:var(--blue)">Win the Market.</span></span>
+        </h1>
+
+        <p class="hero-sub h-anim h-d3">
+          AI Platform for FMCG: shelf recognition, SFA, and HoReCa analytics — all in one solution
+        </p>
+
+        <div class="hero-ctas h-anim h-d4">
+          <a href="/demo/" class="btn btn-p btn-lg">Book a Demo →</a>
+          <a href="#how" class="btn btn-s">See How It Works</a>
+        </div>
+
+        <div class="hero-trust h-anim h-d5">
+          <div class="trust-avatars">
+            <div class="trust-avatar">L</div>
+            <div class="trust-avatar">H</div>
+            <div class="trust-avatar">B</div>
+            <div class="trust-avatar">S</div>
+          </div>
+          <div class="trust-text">Trusted by <strong>Lactalis, Henkel, Bayadera</strong> and others</div>
+        </div>
+      </div>
+
+      <!-- RIGHT — animated dashboard -->
+      <div class="hero-right h-anim h-d3">
+        <div class="hero-dashboard float-anim">
+          <div class="dash-header">
+            <div class="dash-dots">
+              <div class="dash-dot dash-dot-r"></div>
+              <div class="dash-dot dash-dot-y"></div>
+              <div class="dash-dot dash-dot-g"></div>
+            </div>
+            <div class="dash-title">PICSELL · Live Dashboard</div>
+            <div class="dash-status">
+              <div class="dash-status-dot"></div>
+              <span>Real-time</span>
+            </div>
+          </div>
+
+          <div class="dash-body">
+            <div class="kpi-row">
+              <div class="kpi-card">
+                <div class="kpi-label">Share of Shelf</div>
+                <div class="kpi-val blue">62%</div>
+                <div class="kpi-delta up">↑ +8% vs last month</div>
+              </div>
+              <div class="kpi-card">
+                <div class="kpi-label">OOS Rate</div>
+                <div class="kpi-val red">1.8%</div>
+                <div class="kpi-delta up">↓ -2.4% improvement</div>
+              </div>
+              <div class="kpi-card">
+                <div class="kpi-label">Perfect Store</div>
+                <div class="kpi-val neon">87%</div>
+                <div class="kpi-delta up">↑ +12% this quarter</div>
+              </div>
+            </div>
+
+            <div class="shelf-vis">
+              <div class="shelf-label">Real-time shelf — ATB Kyiv, Khreshchatyk St.</div>
+              <div class="ai-scan"></div>
+
+              <div class="shelf-row">
+                <div class="sku sku-p">PICSELL</div>
+                <div class="sku sku-p2">PICSELL</div>
+                <div class="sku sku-c">Comp.</div>
+                <div class="sku sku-p3">PICSELL</div>
+                <div class="sku sku-c">Comp.</div>
+                <div class="sku sku-p">PICSELL</div>
+              </div>
+              <div class="shelf-row">
+                <div class="sku sku-p2">PICSELL</div>
+                <div class="sku sku-oos"><div class="oos-label">OOS!</div></div>
+                <div class="sku sku-c">Comp.</div>
+                <div class="sku sku-p">PICSELL</div>
+                <div class="sku sku-p3">PICSELL</div>
+                <div class="sku sku-c">Comp.</div>
+              </div>
+
+              <!-- AI bboxes -->
+              <div style="position:absolute;inset:0;pointer-events:none;">
+                <div class="ai-bbox" style="top:42px;left:8px;width:42px;height:56px;">
+                  <div class="ai-tag">SKU-001</div>
+                </div>
+                <div class="ai-bbox ai-bbox-oos" style="top:100px;left:52px;width:42px;height:54px;">
+                  <div class="ai-tag ai-tag-r">⚠ OOS</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="alert-row" style="display:flex;flex-direction:column;gap:5px;margin-top:10px;">
+              <div class="alert-item">
+                <div class="alert-dot"></div>
+                <span><strong style="color:#fff">ATB Khreshchatyk:</strong> OOS on SKU-018 — urgent replenishment recommended</span>
+              </div>
+              <div class="alert-item alert-neon">
+                <div class="alert-dot"></div>
+                <span><strong style="color:#fff">Silpo Obolon:</strong> Perfect Store Score rose to 91% after audit</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stats below dashboard -->
+        <div class="hero-stats">
+          <div class="hstat">
+            <div class="hstat-val"><span data-count="10" data-suffix="M+">0</span></div>
+            <div class="hstat-label">SKUs processed</div>
+          </div>
+          <div class="hstat">
+            <div class="hstat-val"><span data-count="31" data-suffix="K+">0</span></div>
+            <div class="hstat-label">Outlets</div>
+          </div>
+          <div class="hstat">
+            <div class="hstat-val"><span data-count="99" data-suffix=".9%">0</span></div>
+            <div class="hstat-label">AI Accuracy</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ LOGOS STRIP ══════════════════ -->
+<div class="logos-strip">
+  <div class="container">
+    <div class="logos-inner">
+      <span class="logos-pre">Trusted by:</span>
+      <div class="logo-client">Lactalis</div>
+      <div class="logo-client">Henkel</div>
+      <div class="logo-client">Bayadera</div>
+      <div class="logo-client">Schwarzkopf</div>
+      <div class="logo-client">Nestlé</div>
+      <div class="logo-client">Diageo</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ PAIN POINTS ══════════════════ -->
+<section id="pain" class="section">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="tag">Market Challenges</span>
+      <h2>Where Business <span class="highlight">Loses Money</span> Every Day</h2>
+      <p>Every FMCG manufacturer and distributor faces these problems. The question is: how much does it cost to ignore them for another year?</p>
+    </div>
+
+    <div class="pain-grid">
+      <div class="pain-card reveal rd1">
+        <div class="pain-icon">⏱️</div>
+        <h3>"You'll know about OOS not in a month — in 2 minutes or never"</h3>
+        <p>An empty shelf = a customer lost forever. Without real-time control, you see this only in next month's report — when a competitor has already taken your spot.</p>
+      </div>
+      <div class="pain-card reveal rd2">
+        <div class="pain-icon">🕵️</div>
+        <h3>"Fake photos, GPS manipulation — you pay for work that nobody controls"</h3>
+        <p>An agent reports 20 visits. How many were real? GPS can be faked. Photos can be taken from old ones. Excel reports — submitted from last week. You will never know.</p>
+      </div>
+      <div class="pain-card reveal rd3">
+        <div class="pain-icon">📉</div>
+        <h3>"Competitors are displacing your brand every day — you'll find out at the quarterly meeting"</h3>
+        <p>While your Brand Manager prepares a PowerPoint report, a competitor has grown their shelf share by 15% in key chains. Syndicated data is expensive and always lagging.</p>
+      </div>
+      <div class="pain-card reveal rd4">
+        <div class="pain-icon">🍾</div>
+        <h3>"After delivery to HoReCa — darkness begins. Where is the product? What does it cost on the menu?"</h3>
+        <p>You deliver to a restaurant and... silence. Is your product on the menu? At what price? How many competitors are nearby? Who hasn't become your client yet? Without PICSELL — you'll never know.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ HOW IT WORKS ══════════════════ -->
+<section id="how" class="section" style="background:var(--bg1);">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="tag">How It Works</span>
+      <h2>From Photo to Decision — in <span class="hl-neon">&lt;2 seconds</span></h2>
+      <p>Three simple steps. No complex deployments. First data — on day one.</p>
+    </div>
+
+    <div class="steps-wrap">
+      <div class="step-card reveal rd1">
+        <div class="step-num">01</div>
+        <div class="step-emoji">📷</div>
+        <h3>Agent takes a photo</h3>
+        <p>A sales rep opens PICSELL and photographs the shelf or menu. <strong style="color:var(--t1)">AI checks photo quality right in the app</strong> — before upload. Offline mode: everything is saved locally.</p>
+        <div class="step-time">⚡ 30 seconds per outlet</div>
+      </div>
+
+      <div class="step-card reveal rd2">
+        <div class="step-num">02</div>
+        <div class="step-emoji">🧠</div>
+        <h3>AI Analyzes Automatically</h3>
+        <p>Our neural network recognizes <strong style="color:var(--t1)">every SKU, OOS, prices, Share of Shelf, and promotional materials</strong> in seconds. 99.9% accuracy through the combination of AI and human verification.</p>
+        <div class="step-time">⚡ &lt;2 seconds processing</div>
+      </div>
+
+      <div class="step-card reveal rd3">
+        <div class="step-num">03</div>
+        <div class="step-emoji">⚡</div>
+        <h3>Data → Decision</h3>
+        <p>Power BI dashboard updates in real time. <strong style="color:var(--t1)">AI agent generates trigger alerts</strong>: "ATB shows anomalous shelf share drop — urgent audit recommended".</p>
+        <div class="step-time">⚡ Alert within 2 minutes</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ PRODUCTS ══════════════════ -->
+<section id="products" class="section" style="background:var(--bg2);">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="tag">Products</span>
+      <h2>Modular <span class="highlight">Ecosystem</span></h2>
+      <p>Take only what you need now. Scale — when ready. Everything integrated into one platform.</p>
+    </div>
+
+    <div class="products-grid">
+      <a href="/vision-ai/" class="prod-card reveal rd1">
+        <div class="prod-icon">👁️</div>
+        <h3>Vision AI</h3>
+        <p>Shelf recognition: OOS, Share of Shelf, prices, Perfect Store — automatically</p>
+        <div class="prod-tag prod-tag-blue">99.9% accuracy</div>
+        <div class="prod-arrow">→</div>
+      </a>
+      <a href="/sales-app/" class="prod-card reveal rd2">
+        <div class="prod-icon">📱</div>
+        <h3>Sales App</h3>
+        <p>Agent mobile office: orders, routes, merchandising, CRM — offline</p>
+        <div class="prod-tag prod-tag-blue">500+ agents</div>
+        <div class="prod-arrow">→</div>
+      </a>
+      <a href="/horeca/" class="prod-card reveal rd3">
+        <div class="prod-icon">🍽️</div>
+        <h3>HoReCa Intelligence</h3>
+        <p>Menu, price, and competitor monitoring across thousands of venues — automatically</p>
+        <div class="prod-tag prod-tag-neon">Exclusive to PICSELL</div>
+        <div class="prod-arrow">→</div>
+      </a>
+      <a href="/analytics/" class="prod-card reveal rd4">
+        <div class="prod-icon">📊</div>
+        <h3>Analytics</h3>
+        <p>Power BI dashboards + AI Copilot that finds anomalies and recommends actions automatically</p>
+        <div class="prod-tag prod-tag-blue">AI Copilot</div>
+        <div class="prod-arrow">→</div>
+      </a>
+      <a href="/radar/" class="prod-card reveal rd5">
+        <div class="prod-icon">📡</div>
+        <h3>Radar</h3>
+        <p>Market monitoring: competitor prices, new outlets, geographic analytics</p>
+        <div class="prod-tag prod-tag-neon">300% ROI</div>
+        <div class="prod-arrow">→</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ SOLUTIONS BY ROLE ══════════════════ -->
+<section id="solutions" class="section">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="tag">Solutions by Role</span>
+      <h2>Choose Your <span class="highlight">Solution</span></h2>
+    </div>
+
+    <div class="sol-grid">
+      <div class="sol-card reveal rd1">
+        <div class="sol-emoji">🏭</div>
+        <div class="sol-for">For Manufacturer / Brand</div>
+        <h3>Your brand in control across every SKU, region, and channel</h3>
+        <p class="sol-desc">Share of Shelf, OOS Detection, Perfect Store Score, Anti-Fraud — all in real time. No fake reports.</p>
+        <div class="sol-features">
+          <div class="sol-feat"><span class="sol-feat-icon">✓</span>OOS alert in 2 minutes</div>
+          <div class="sol-feat"><span class="sol-feat-icon">✓</span>Planogram compliance control</div>
+          <div class="sol-feat"><span class="sol-feat-icon">✓</span>Anti-Fraud: GPS + photo verification</div>
+        </div>
+        <a href="/solutions-brands/" class="sol-link">View Solution →</a>
+      </div>
+
+      <div class="sol-card reveal rd2">
+        <div class="sol-emoji">🚚</div>
+        <div class="sol-for">For Distributor</div>
+        <h3>More visits, lower costs — mobile office for agents</h3>
+        <p class="sol-desc">Smart routes, real-time orders, Supervisor View, CRM 360° — everything the field team needs.</p>
+        <div class="sol-features">
+          <div class="sol-feat"><span class="sol-feat-icon">✓</span>+40% visits through smart routing</div>
+          <div class="sol-feat"><span class="sol-feat-icon">✓</span>-3 hours/day on agent routine</div>
+          <div class="sol-feat"><span class="sol-feat-icon">✓</span>Offline-First: critical for the field</div>
+        </div>
+        <a href="/solutions-distributors/" class="sol-link">View Solution →</a>
+      </div>
+
+      <div class="sol-card reveal rd3">
+        <div class="sol-emoji">🥂</div>
+        <div class="sol-for">For HoReCa Channel</div>
+        <h3>Your competitors are already in 200 restaurants — you'll know first</h3>
+        <p class="sol-desc">Menu Intelligence, Competitive Map, Price Monitoring, Lead Generation — no competitor in Ukraine has an equivalent.</p>
+        <div class="sol-features">
+          <div class="sol-feat"><span class="sol-feat-icon">✓</span>AI reads menus from photos, PDFs, Instagram</div>
+          <div class="sol-feat"><span class="sol-feat-icon">✓</span>We find new outlets automatically</div>
+          <div class="sol-feat"><span class="sol-feat-icon">✓</span>Competitor prices in real time</div>
+        </div>
+        <a href="/solutions-horeca/" class="sol-link">View Solution →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ METRICS ══════════════════ -->
+<section id="metrics" class="section" style="background:var(--bg2);">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="tag">Our Scale</span>
+      <h2>Numbers That <span class="highlight">Market Leaders</span> Trust</h2>
+    </div>
+
+    <div class="metrics-grid reveal">
+      <div class="metric-box">
+        <div class="metric-val"><span data-count="10" data-suffix="M+">0</span></div>
+        <div class="metric-label">SKUs recognized</div>
+        <div class="metric-sub">and counting</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-val"><span data-count="31" data-suffix="K+">0</span></div>
+        <div class="metric-label">Outlets covered</div>
+        <div class="metric-sub">across Ukraine</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-val"><span data-count="500" data-suffix="+">0</span></div>
+        <div class="metric-label">Sales Representatives</div>
+        <div class="metric-sub">actively online</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-val" style="color:var(--neon);">99.9<span style="font-size:.6em;color:var(--neon);">%</span></div>
+        <div class="metric-label">Vision AI Accuracy</div>
+        <div class="metric-sub">proprietary neural network</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ COMPARISON TABLE ══════════════════ -->
+<section id="compare" class="section">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="tag">Why PICSELL</span>
+      <h2>Comparison with <span class="highlight">Typical Solutions</span></h2>
+      <p>We are the only platform with Vision AI + SFA + HoReCa + Offline-First in a single product.</p>
+    </div>
+
+    <div class="table-wrap reveal">
+      <table class="comp-table">
+        <thead>
+          <tr>
+            <th>Platform</th>
+            <th class="picsell-col">PICSELL ✦</th>
+            <th>Vision AI Specialist (UA)</th>
+            <th>Image Recognition (UA)</th>
+            <th>SFA Platform (UA)</th>
+            <th>Global Vision AI</th>
+            <th>SFA Solution (EU)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Vision AI Recognition</td>
+            <td class="picsell-col"><span class="picsell-badge-cell"><span class="ic-yes">✓</span> 99.9%</span></td>
+            <td><span class="ic-part">◐</span> partial</td>
+            <td><span class="ic-yes">✓</span></td>
+            <td><span class="ic-no">✗</span></td>
+            <td><span class="ic-yes">✓</span></td>
+            <td><span class="ic-no">✗</span></td>
+          </tr>
+          <tr>
+            <td>SFA / Field Sales</td>
+            <td class="picsell-col"><span class="ic-yes">✓</span></td>
+            <td><span class="ic-part">◐</span> basic</td>
+            <td><span class="ic-no">✗</span></td>
+            <td><span class="ic-yes">✓</span></td>
+            <td><span class="ic-no">✗</span></td>
+            <td><span class="ic-yes">✓</span></td>
+          </tr>
+          <tr>
+            <td>HoReCa Intelligence</td>
+            <td class="picsell-col"><span class="ic-yes">✓</span></td>
+            <td><span class="ic-no">✗</span></td>
+            <td><span class="ic-no">✗</span></td>
+            <td><span class="ic-no">✗</span></td>
+            <td><span class="ic-no">✗</span></td>
+            <td><span class="ic-no">✗</span></td>
+          </tr>
+          <tr>
+            <td>Offline-First Mode</td>
+            <td class="picsell-col"><span class="ic-yes">✓</span></td>
+            <td><span class="ic-no">✗</span></td>
+            <td><span class="ic-no">✗</span></td>
+            <td><span class="ic-part">◐</span></td>
+            <td><span class="ic-no">✗</span></td>
+            <td><span class="ic-part">◐</span></td>
+          </tr>
+          <tr>
+            <td>SMB Pricing</td>
+            <td class="picsell-col"><span class="ic-yes">✓</span> affordable</td>
+            <td><span class="ic-part">◐</span></td>
+            <td><span class="ic-yes">✓</span></td>
+            <td><span class="ic-no">✗</span> expensive</td>
+            <td><span class="ic-no">✗</span> enterprise</td>
+            <td><span class="ic-part">◐</span></td>
+          </tr>
+          <tr>
+            <td>Implementation</td>
+            <td class="picsell-col"><span class="ic-yes">✓</span> 1-4 weeks</td>
+            <td><span class="ic-part">◐</span> 2-3 mo</td>
+            <td><span class="ic-yes">✓</span></td>
+            <td><span class="ic-no">✗</span> 6+ mo</td>
+            <td><span class="ic-no">✗</span> 3-6 mo</td>
+            <td><span class="ic-part">◐</span> 2-4 mo</td>
+          </tr>
+          <tr>
+            <td>Local Support</td>
+            <td class="picsell-col"><span class="ic-yes">✓</span></td>
+            <td><span class="ic-yes">✓</span></td>
+            <td><span class="ic-yes">✓</span></td>
+            <td><span class="ic-part">◐</span></td>
+            <td><span class="ic-no">✗</span></td>
+            <td><span class="ic-no">✗</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="table-note">
+        <span class="table-note-icon">ℹ️</span>
+        <span>PICSELL — the only platform with all 7 criteria. <span style="color:var(--neon);">✓</span> = full support &nbsp;|&nbsp; <span style="color:var(--orange);">◐</span> = partial &nbsp;|&nbsp; <span style="opacity:.4">✗</span> = absent</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ CASE STUDY ══════════════════ -->
+<section id="case" class="section" style="background:var(--bg2);">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="tag">Client Case Study</span>
+      <h2>Real Results. <span class="highlight">Real Numbers.</span></h2>
+    </div>
+
+    <div class="case-card reveal">
+      <div class="case-left">
+        <div>
+          <div class="case-tag">Dairy Industry · First Full Migration</div>
+          <div class="case-logo" style="margin-top:8px;">Lactalis</div>
+        </div>
+
+        <h3>From Excel Reports to Real Time — Full Migration to PICSELL in 4 Weeks</h3>
+
+        <div class="case-quote">
+          "First PICSELL client with full ecosystem migration. Zero manual reports. Shelf data — in real time, no Excel, no delays."
+        </div>
+
+        <div class="case-results">
+          <div class="case-res-item">
+            <div class="case-res-val">0</div>
+            <div class="case-res-label">Manual Excel Reports</div>
+          </div>
+          <div class="case-res-item">
+            <div class="case-res-val">&lt;2 min</div>
+            <div class="case-res-label">OOS Detection</div>
+          </div>
+          <div class="case-res-item">
+            <div class="case-res-val">100%</div>
+            <div class="case-res-label">Real-time Data</div>
+          </div>
+        </div>
+
+        <a href="/case-lactalis/" class="btn btn-s btn-sm">Read Full Case Study →</a>
+      </div>
+
+      <div class="case-right">
+        <div class="tag" style="margin-bottom:var(--s2);">How the Implementation Went</div>
+        <div class="case-timeline">
+          <div class="case-tl-item">
+            <div class="case-tl-num">1</div>
+            <div class="case-tl-text">
+              <strong>Week 1: Audit and Onboarding</strong>
+              Loaded the SKU database, connected to the accounting system, configured planograms.
+            </div>
+          </div>
+          <div class="case-tl-item">
+            <div class="case-tl-num">2</div>
+            <div class="case-tl-text">
+              <strong>Week 2: Team Training</strong>
+              Sales rep onboarding — 30 minutes per agent. First real photos taken.
+            </div>
+          </div>
+          <div class="case-tl-item">
+            <div class="case-tl-num">3</div>
+            <div class="case-tl-text">
+              <strong>Week 3: Pilot — 50 Outlets</strong>
+              First data in dashboard. First OOS detected. First alerts sent to managers.
+            </div>
+          </div>
+          <div class="case-tl-item">
+            <div class="case-tl-num">4</div>
+            <div class="case-tl-text">
+              <strong>Week 4: Full Launch</strong>
+              All outlets online. Last Excel report written. Shelf data — in real time.
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:var(--s2);flex-wrap:wrap;margin-top:var(--s3);">
+          <div class="badge-neon">Vision AI</div>
+          <div class="badge-blue">Sales App</div>
+          <div class="badge-blue">Power BI</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:var(--s4);">
+      <a href="/case-studies/" class="btn btn-g">View All Case Studies →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ CTA FORM ══════════════════ -->
+<section id="cta" class="section">
+  <div class="container">
+    <div class="cta-inner">
+      <div class="cta-left reveal-left">
+        <span class="tag" style="display:block;margin-bottom:var(--s2);">Book a Demo</span>
+        <h2>
+          <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2L13.5 10.5L22 12L13.5 13.5L12 22L10.5 13.5L2 12L10.5 10.5Z" fill="#0057FF"/></svg>
+          Ready to See Your Shelf Differently?
+        </h2>
+        <p>Book a personalized demo — we'll show how PICSELL works for your specific business. No sales scripts. No obligations.</p>
+
+        <div class="cta-perks">
+          <div class="cta-perk"><span class="cta-perk-icon">✓</span>Live recognition of your SKU on a real shelf</div>
+          <div class="cta-perk"><span class="cta-perk-icon">✓</span>Dashboard configured for your KPIs — right during the demo</div>
+          <div class="cta-perk"><span class="cta-perk-icon">✓</span>ROI calculation for your team — specific numbers</div>
+          <div class="cta-perk"><span class="cta-perk-icon">✓</span>Response within 2 hours on business days</div>
+        </div>
+
+        <!-- Trust logos -->
+        <div style="margin-top:var(--s4);">
+          <div style="font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--t3);margin-bottom:var(--s2);">Already using:</div>
+          <div style="display:flex;gap:var(--s2);flex-wrap:wrap;">
+            <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:8px 16px;font-size:13px;font-family:'Geologica',sans-serif;font-weight:700;color:var(--t2);">Lactalis</div>
+            <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:8px 16px;font-size:13px;font-family:'Geologica',sans-serif;font-weight:700;color:var(--t2);">Henkel</div>
+            <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:8px 16px;font-size:13px;font-family:'Geologica',sans-serif;font-weight:700;color:var(--t2);">Bayadera</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal-right">
+        <div class="form-card">
+          <form id="mainForm" name="homepage-demo" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="homepage-demo">
+            <p style="display:none;"><label>Don't fill this out: <input name="bot-field"></label></p>
+            <h3 style="font-family:'Geologica',sans-serif;font-size:20px;font-weight:700;margin-bottom:var(--s3);">Book Your Personalized Demo</h3>
+            <div class="form-grid">
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">Name *</label>
+                  <input type="text" class="form-input" placeholder="John" name="name" id="fi-name" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Company *</label>
+                  <input type="text" class="form-input" placeholder="Company name" name="company" id="fi-company" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Your Role</label>
+                <select class="form-input form-select" name="role" id="fi-role">
+                  <option value="" disabled selected>Select role</option>
+                  <option>Owner / CEO</option>
+                  <option>Commercial Director</option>
+                  <option>Brand Manager</option>
+                  <option>National Sales Manager</option>
+                  <option>Trade Marketing</option>
+                  <option>IT Director</option>
+                  <option>Distributor</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">Phone *</label>
+                  <input type="tel" class="form-input" placeholder="+380 XX XXX XXXX" name="phone" id="fi-phone" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Email *</label>
+                  <input type="email" class="form-input" placeholder="your@company.com" name="email" id="fi-email" required>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-p btn-full">
+                Book a Demo →
+              </button>
+              <p class="form-note">🔒 We respond within 2 hours on business days. No obligations. No sales scripts.</p>
+            </div>
+          </form>
+
+          <div id="mainFormError" style="display:none;padding:var(--s3);background:rgba(255,60,60,.07);border:1px solid rgba(255,60,60,.2);border-radius:var(--r3);margin-top:var(--s2);text-align:center;">
+            <p style="color:#ff6b6b;font-weight:600;">&#9888; Something went wrong. Please try again or write to <a href="mailto:info@picsell.ai" style="color:#ff6b6b;">info@picsell.ai</a></p>
+          </div>
+          <div id="mainFormSuccess" class="form-success">
+            <div class="form-success-icon">🎉</div>
+            <h3>Thank you! Request received.</h3>
+            <p>Our manager will contact you within 2 hours on a business day. We're preparing a personalized demo for your business.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ FOOTER ══════════════════ -->
+{{ else }}
 <!-- ══════════════════ HERO ══════════════════ -->
 <section id="hero">
   <div class="hero-bg">
@@ -904,7 +1546,7 @@
           </form>
 
           <div id="mainFormError" style="display:none;padding:var(--s3);background:rgba(255,60,60,.07);border:1px solid rgba(255,60,60,.2);border-radius:var(--r3);margin-top:var(--s2);text-align:center;">
-            <p style="color:#ff6b6b;font-weight:600;">&#9888; Щось пішло не так. Спробуйте ще раз або напишіть на <a href="mailto:hello@picsell.ai" style="color:#ff6b6b;">hello@picsell.ai</a></p>
+            <p style="color:#ff6b6b;font-weight:600;">&#9888; Щось пішло не так. Спробуйте ще раз або напишіть на <a href="mailto:info@picsell.ai" style="color:#ff6b6b;">info@picsell.ai</a></p>
           </div>
           <div id="mainFormSuccess" class="form-success">
             <div class="form-success-icon">🎉</div>
@@ -918,7 +1560,7 @@
 </section>
 
 <!-- ══════════════════ FOOTER ══════════════════ -->
-{{ end }}
+{{ end }}{{ end }}
 
 {{ define "scripts" }}
 <script>

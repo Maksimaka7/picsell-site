@@ -43,7 +43,138 @@
 </style>
 {{ end }}
 
-{{ define "main" }}
+{{ define "main" }}{{ if strings.HasPrefix .RelPermalink "/en/" }}
+<section id="hero">
+  <div class="hero-bg"><div class="dot-grid"></div><div class="glow1"></div><div class="noise"></div></div>
+  <div class="container">
+    <div class="hero-inner">
+      <div class="h-anim h-d1"><span class="tag">Case Studies</span></div>
+      <h1 class="hero-h1 h-anim h-d2">Real Results. <span class="highlight">Real Clients.</span> Real Numbers.</h1>
+      <p class="hero-sub h-anim h-d3">The scale trusted by FMCG market leaders in Ukraine.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--bg2);">
+  <div class="container">
+    <div class="cases-grid">
+      <!-- LACTALIS -->
+      <div class="case-card reveal">
+        <div class="cc-brand-panel">
+          <div>
+            <div class="cc-logo">Lactalis</div>
+            <div class="cc-industry">Dairy Industry</div>
+            <div class="cc-tags">
+              <div class="cc-tag"><span style="color:var(--neon);">✓</span> Vision AI</div>
+              <div class="cc-tag"><span style="color:var(--neon);">✓</span> Sales App</div>
+              <div class="cc-tag"><span style="color:var(--neon);">✓</span> Power BI Analytics</div>
+              <div class="cc-tag"><span style="color:var(--neon);">✓</span> HoReCa Radar</div>
+            </div>
+          </div>
+          <div style="display:inline-flex;align-items:center;gap:6px;font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;background:rgba(200,255,0,.08);color:var(--neon);padding:5px 12px;border-radius:999px;border:1px solid rgba(200,255,0,.22);margin-top:var(--s3);">First Full Adoption</div>
+        </div>
+        <div class="cc-content">
+          <div class="cc-section-title">Challenge</div>
+          <p class="cc-text">Replace manual shelf data collection with automated, build unified analytics, eliminate Excel reporting.</p>
+          <div class="cc-section-title">Solution</div>
+          <p class="cc-text">Full transition to the PICSELL ecosystem: Vision AI + Sales App + Power BI dashboards + HoReCa Radar with automated data collection.</p>
+          <div class="cc-results">
+            <div class="cc-result"><div class="ccr-val">0</div><div class="ccr-lbl">manual Excel reports</div></div>
+            <div class="cc-result"><div class="ccr-val"><2 min</div><div class="ccr-lbl">OOS detection</div></div>
+            <div class="cc-result"><div class="ccr-val">847</div><div class="ccr-lbl">new HoReCa outlets</div></div>
+            <div class="cc-result"><div class="ccr-val">300%</div><div class="ccr-lbl">ROI Radar per quarter</div></div>
+          </div>
+          <a href="/case-lactalis/" class="btn btn-p" style="font-size:13px;padding:10px 20px;">Read Full Case Study →</a>
+        </div>
+      </div>
+
+      <!-- HENKEL -->
+      <div class="case-card reveal">
+        <div class="cc-brand-panel">
+          <div>
+            <div class="cc-logo">Henkel</div>
+            <div class="cc-industry">FMCG Manufacturer</div>
+            <div class="cc-tags">
+              <div class="cc-tag"><span style="color:var(--neon);">✓</span> Vision AI</div>
+              <div class="cc-tag"><span style="color:var(--neon);">✓</span> Perfect Store Module</div>
+              <div class="cc-tag"><span style="color:var(--neon);">✓</span> Anti-Fraud</div>
+            </div>
+          </div>
+          <div style="display:inline-flex;align-items:center;gap:6px;font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;background:rgba(0,87,255,.1);color:#7AACFF;padding:5px 12px;border-radius:999px;border:1px solid rgba(0,87,255,.25);margin-top:var(--s3);">Final Implementation</div>
+        </div>
+        <div class="cc-content">
+          <div class="cc-section-title">Challenge</div>
+          <p class="cc-text">Implement Perfect Store standards and monitor compliance in real time across the entire distribution network.</p>
+          <div class="cc-section-title">Solution</div>
+          <p class="cc-text">PICSELL Vision AI + Perfect Store module. Automatic scoring of every outlet across all brand KPIs.</p>
+          <div class="cc-results">
+            <div class="cc-result"><div class="ccr-val">87%</div><div class="ccr-lbl">Perfect Store Score</div></div>
+            <div class="cc-result"><div class="ccr-val">-91%</div><div class="ccr-lbl">audit time saved</div></div>
+            <div class="cc-result"><div class="ccr-val">Real-time</div><div class="ccr-lbl">shelf data</div></div>
+          </div>
+          <a href="/case-studies/" class="btn btn-g" style="font-size:13px;padding:10px 20px;">Learn More (no NDA) →</a>
+        </div>
+      </div>
+
+      <!-- BAYADERA -->
+      <div class="case-card reveal">
+        <div class="cc-brand-panel">
+          <div>
+            <div class="cc-logo">Bayadera</div>
+            <div class="cc-industry">Alcoholic Beverages</div>
+            <div class="cc-tags">
+              <div class="cc-tag"><span style="color:var(--neon);">✓</span> Sales App (Field)</div>
+              <div class="cc-tag"><span style="color:var(--neon);">✓</span> HoReCa Intelligence</div>
+              <div class="cc-tag"><span style="color:var(--neon);">✓</span> Route Manager</div>
+            </div>
+          </div>
+          <div style="display:inline-flex;align-items:center;gap:6px;font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;background:rgba(0,87,255,.1);color:#7AACFF;padding:5px 12px;border-radius:999px;border:1px solid rgba(0,87,255,.25);margin-top:var(--s3);">Active Implementation</div>
+        </div>
+        <div class="cc-content">
+          <div class="cc-section-title">Challenge</div>
+          <p class="cc-text">Field team automation and HoReCa channel monitoring for alcoholic beverage brands across Ukraine.</p>
+          <div class="cc-section-title">Solution</div>
+          <p class="cc-text">PICSELL Sales App + HoReCa Intelligence. First pilot launch of HoReCa Intelligence in the alcoholic beverages category.</p>
+          <div class="cc-results">
+            <div class="cc-result"><div class="ccr-val">+40%</div><div class="ccr-lbl">visits per day</div></div>
+            <div class="cc-result"><div class="ccr-val">Active</div><div class="ccr-lbl">rollout</div></div>
+          </div>
+          <div style="font-size:13px;color:var(--t3);margin-top:var(--s2);">Full case study — after pilot completion</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--bg1);padding:var(--s6) 0;">
+  <div class="container">
+    <div class="social-proof reveal">
+      <div style="font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--t3);margin-bottom:var(--s4);">Trusted by Market Leaders</div>
+      <div style="display:flex;align-items:center;justify-content:center;gap:var(--s5);flex-wrap:wrap;margin-bottom:var(--s4);">
+        <div style="font-family:'Geologica',sans-serif;font-weight:700;font-size:18px;color:var(--t3);">Lactalis</div>
+        <div style="font-family:'Geologica',sans-serif;font-weight:700;font-size:18px;color:var(--t3);">Henkel</div>
+        <div style="font-family:'Geologica',sans-serif;font-weight:700;font-size:18px;color:var(--t3);">Bayadera</div>
+        <div style="font-family:'Geologica',sans-serif;font-weight:700;font-size:18px;color:var(--t3);">Schwarzkopf</div>
+        <div style="font-family:'Geologica',sans-serif;font-weight:700;font-size:18px;color:var(--t3);">Nestlé</div>
+        <div style="font-family:'Geologica',sans-serif;font-weight:700;font-size:18px;color:var(--t3);">Diageo</div>
+      </div>
+      <p style="font-size:15px;color:var(--t2);">From dairy to alcohol and cosmetics — all types of FMCG manufacturers</p>
+    </div>
+  </div>
+</section>
+
+<div class="cta-band">
+  <div class="container"><div class="reveal">
+    <span class="tag" style="display:block;margin-bottom:var(--s2);">Want the Same Results?</span>
+    <h2>We'll Show You How — <span class="highlight">in 30 Minutes of Demo</span></h2>
+    <p>No preparation. No commitment. Just a real system and real data.</p>
+    <div class="cta-btns">
+      <a href="/demo/" class="btn btn-p btn-lg">Book a Demo →</a>
+      <a href="/pricing/" class="btn btn-g">View Pricing</a>
+    </div>
+  </div></div>
+</div>
+{{ else }}
 <section id="hero">
   <div class="hero-bg"><div class="dot-grid"></div><div class="glow1"></div><div class="noise"></div></div>
   <div class="container">
@@ -174,7 +305,7 @@
     </div>
   </div></div>
 </div>
-{{ end }}
+{{ end }}{{ end }}
 
 {{ define "scripts" }}
 <script>

@@ -106,7 +106,183 @@
 </style>
 {{ end }}
 
-{{ define "main" }}
+{{ define "main" }}{{ if strings.HasPrefix .RelPermalink "/en/" }}
+<section id="hero">
+  <div class="hero-bg"><div class="dot-grid"></div><div class="glow1"></div><div class="noise"></div></div>
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px;" class="h-anim h-d1">
+          <div class="badge-blue">Solutions for Distributors</div>
+          <div class="badge-neon">500+ agents already in the system</div>
+        </div>
+        <h1 class="hero-h1 h-anim h-d2">More Visits. Lower Costs. <span class="highlight">Full Control</span> of Your Field Team.</h1>
+        <p class="hero-sub h-anim h-d3">PICSELL Field — the mobile office for your sales agent. Error-free orders, optimized routes, GPS control, and CRM 360° in one Offline-First app.</p>
+        <div class="hero-ctas h-anim h-d4">
+          <a href="/demo/" class="btn btn-p btn-lg">Calculate ROI for Your Team →</a>
+          <a href="/sales-app/" class="btn btn-s">Learn More About Sales App</a>
+        </div>
+        <div class="hero-metrics h-anim h-d5">
+          <div class="hm-box"><div class="hm-val">+40%</div><div class="hm-lbl">Visits per Day</div></div>
+          <div class="hm-box"><div class="hm-val">-3 hrs</div><div class="hm-lbl">Agent Routine Saved</div></div>
+          <div class="hm-box"><div class="hm-val">0</div><div class="hm-lbl">Order Errors</div></div>
+        </div>
+      </div>
+
+      <div class="h-anim h-d3 float-anim">
+        <div class="agent-dash">
+          <div class="ad-hdr">
+            <div class="ad-dots"><div class="add addr"></div><div class="add addy"></div><div class="add addg"></div></div>
+            <div class="ad-title">Supervisor View · Team Online</div>
+            <div class="ad-live"><div class="adl-dot"></div>18/22 online</div>
+          </div>
+          <div class="ad-body">
+            <div class="route-track">
+              <div class="rt-title">Route · Koval O. · Today</div>
+              <div class="rt-stops">
+                <div class="rt-stop done"><span class="rts-icon">✓</span><span class="rts-name">ATB Khreshchatyk</span><span class="rts-badge rtsb-done">₴12,450</span></div>
+                <div class="rt-stop done"><span class="rts-icon">✓</span><span class="rts-name">Silpo Obolon</span><span class="rts-badge rtsb-done">₴8,200</span></div>
+                <div class="rt-stop active"><span class="rts-icon">▶</span><span class="rts-name">Fora Peremohy Ave.</span><span class="rts-badge rtsb-active">Here Now</span></div>
+                <div class="rt-stop pending"><span class="rts-icon">○</span><span class="rts-name">METRO Kyiv</span><span class="rts-badge rtsb-pending">14:30</span></div>
+              </div>
+            </div>
+            <div class="agent-kpis">
+              <div class="akpi"><div class="akpi-val av-neon">7/12</div><div class="akpi-lbl">Outlets</div></div>
+              <div class="akpi"><div class="akpi-val av-blue">₴47K</div><div class="akpi-lbl">Orders</div></div>
+              <div class="akpi"><div class="akpi-val av-neon">0</div><div class="akpi-lbl">OOS Missed</div></div>
+              <div class="akpi"><div class="akpi-val av-blue">91%</div><div class="akpi-lbl">KPI Plan</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="logos-strip"><div class="container"><div class="logos-inner">
+  <span class="logos-pre">Trusted by Distributors:</span>
+  <div class="logo-cl">Bayadera</div><div class="logo-cl">Henkel</div><div class="logo-cl">Lactalis</div><div class="logo-cl">Schwarzkopf</div>
+</div></div></div>
+
+<!-- 4 PAINS -->
+<section class="section" style="background:var(--bg2);">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="tag">Distributor Pain Points</span>
+      <h2>Four Problems That <span style="color:var(--red);">Cost You</span> Every Day</h2>
+    </div>
+    <div class="pains-4">
+      <div class="pain-card reveal rd1">
+        <div class="pain-icon">⏰</div>
+        <h3>30% of agent work time — reports and Excel instead of selling</h3>
+        <p>Manual order entry, calls to check stock, Excel report preparation — 2–3 hours of daily routine per agent.</p>
+        <div class="pain-solve"><span class="ps-arrow">→</span><div class="ps-text"><strong>Smart Orders:</strong> AI generates orders in 30 seconds based on stock and sales trends</div></div>
+      </div>
+      <div class="pain-card reveal rd2">
+        <div class="pain-icon">🗺️</div>
+        <h3>Routes are built from memory — stops get skipped or duplicated</h3>
+        <p>A non-optimal route means 1–2 extra hours on the road + missed clients. It's not the agent's fault — it's the lack of a system.</p>
+        <div class="pain-solve"><span class="ps-arrow">→</span><div class="ps-text"><strong>Route Manager:</strong> route optimization in 1 click, 40% time savings</div></div>
+      </div>
+      <div class="pain-card reveal rd3">
+        <div class="pain-icon">🔍</div>
+        <h3>The supervisor doesn't know where the agent is or what they actually did</h3>
+        <p>GPS off, reports arrive in the evening. Fake check-ins. Skipped stops. You're paying for work nobody monitors.</p>
+        <div class="pain-solve"><span class="ps-arrow">→</span><div class="ps-text"><strong>Supervisor View:</strong> live team map and GPS verification of every visit</div></div>
+      </div>
+      <div class="pain-card reveal rd4">
+        <div class="pain-icon">💳</div>
+        <h3>Accounts receivable keeps growing — no systematic control</h3>
+        <p>Client debts are scattered across notebooks, WhatsApp, and the manager's head. When to call, whom to call — always an unanswered question.</p>
+        <div class="pain-solve"><span class="ps-arrow">→</span><div class="ps-text"><strong>CRM 360°:</strong> receivables, contacts, and order history at hand — offline</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 SOLUTIONS -->
+<section class="section" style="background:var(--bg1);">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="tag">PICSELL Solves This</span>
+      <h2>Four Solutions for <span class="highlight">Maximum Efficiency</span></h2>
+    </div>
+    <div class="sols-4">
+      <div class="sol-item reveal rd1"><div class="sol-icon">🧠</div><div class="sol-content"><h3>Smart Routes → +40% Visits</h3><p>AI optimizes routes considering distance, client priority, and outlet working hours. Drag-and-drop adjustments directly on the map.</p><div class="sol-pill">Saves 1–2 hrs/day</div></div></div>
+      <div class="sol-item reveal rd2"><div class="sol-icon">📋</div><div class="sol-content"><h3>Auto Reports → -3 hrs/day of Routine</h3><p>Orders are generated automatically. Visit reports with one tap. Photos, checklists, merchandising — in one flow.</p><div class="sol-pill">Zero Excel Reports</div></div></div>
+      <div class="sol-item reveal rd3"><div class="sol-icon">👁️</div><div class="sol-content"><h3>Supervisor View → 100% Transparency</h3><p>Live map of your entire team, GPS confirmation of every visit, real-time KPI tracking. Anomaly = instant alert.</p><div class="sol-pill">GPS Verification</div></div></div>
+      <div class="sol-item reveal rd4"><div class="sol-icon">💳</div><div class="sol-content"><h3>CRM 360° → Receivables Control</h3><p>Full client history, debts, contacts, and notes — offline on the agent's device. Receivable reminders — automatic.</p><div class="sol-pill">Offline-First</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ERP -->
+<section class="section-sm section" style="background:var(--bg2);padding:var(--s6) 0;">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="tag">ERP Integration</span>
+      <h2>We connect to <span class="highlight">your system</span> — we don't replace it</h2>
+      <p>Integration time: 1–2 weeks. Your data stays in your system.</p>
+    </div>
+    <div class="erp-grid reveal">
+      <div class="erp-item">1C: Enterprise</div>
+      <div class="erp-item">SAP</div>
+      <div class="erp-item">Microsoft Dynamics 365</div>
+      <div class="erp-item">Oracle</div>
+      <div class="erp-item">BAS / LIGA</div>
+      <div class="erp-item">Custom ERP via REST API</div>
+    </div>
+  </div>
+</section>
+
+<!-- ROI CALC -->
+<section class="section" style="background:var(--bg1);">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="tag">ROI Calculator</span>
+      <h2>Calculate Your <span class="hl-neon">Savings</span></h2>
+    </div>
+    <div class="g2 reveal">
+      <div class="roi-form">
+        <div>
+          <div class="roi-lbl">Number of Sales Agents: <span class="roi-val" id="agentsVal">20</span></div>
+          <input type="range" class="roi-range" id="agentsRange" min="5" max="500" value="20" oninput="updateROI()">
+        </div>
+        <div>
+          <div class="roi-lbl">Average Agent Salary ($/mo): <span class="roi-val" id="salaryVal">800</span></div>
+          <input type="range" class="roi-range" id="salaryRange" min="300" max="3000" value="800" step="50" oninput="updateROI()">
+        </div>
+        <div style="padding:var(--s3);background:rgba(0,87,255,.06);border:1px solid rgba(0,87,255,.15);border-radius:var(--r3);font-size:14px;color:var(--t2);line-height:1.7;">
+          Calculation: 15% savings on routes + $200/agent/mo on order errors. Based on real PICSELL client data.
+        </div>
+      </div>
+      <div class="roi-result-card">
+        <div class="roi-res-title">Your Annual Savings</div>
+        <div class="roi-big" id="roiBig">$57,600</div>
+        <div class="roi-sub" id="roiSub">with a team of 20 agents</div>
+        <div class="roi-rows">
+          <div class="roi-row"><span class="rr-key">Routes (15% salary × 12 mo)</span><span class="rr-val" id="r1">$28,800</span></div>
+          <div class="roi-row"><span class="rr-key">Order errors ($200 × 12 mo)</span><span class="rr-val" id="r2">$48,000</span></div>
+          <div class="roi-row"><span class="rr-key">Total annual savings</span><span class="rr-val" id="r3">$57,600</span></div>
+        </div>
+        <a href="/demo/" class="btn btn-p btn-full" style="margin-top:var(--s3);">Get a Precise Calculation →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-band">
+  <div class="container"><div class="reveal">
+    <span class="tag" style="display:block;margin-bottom:var(--s2);">Ready to See the System in Action?</span>
+    <h2>We'll Calculate ROI for Your Team — <span class="highlight">Free in 30 Minutes</span></h2>
+    <p>We show a live demo with your number of agents. Real numbers, not general talk.</p>
+    <div class="cta-btns">
+      <a href="/demo/" class="btn btn-p btn-lg">Book a Demo →</a>
+      <a href="/sales-app/" class="btn btn-g">Learn More About Sales App</a>
+    </div>
+  </div></div>
+</div>
+{{ else }}
 <section id="hero">
   <div class="hero-bg"><div class="dot-grid"></div><div class="glow1"></div><div class="noise"></div></div>
   <div class="container">
@@ -282,9 +458,43 @@
     </div>
   </div></div>
 </div>
-{{ end }}
+{{ end }}{{ end }}
 
-{{ define "scripts" }}
+{{ define "scripts" }}{{ if strings.HasPrefix .RelPermalink "/en/" }}
+<script>
+(function(){
+  var h=document.getElementById('header');
+  window.addEventListener('scroll',function(){if(h)h.classList.toggle('scrolled',scrollY>30);});
+  var hbg=document.getElementById('hamburger'),mn=document.getElementById('mobileNav');
+  if(hbg&&mn){hbg.addEventListener('click',function(){hbg.classList.toggle('open');mn.classList.toggle('open');document.body.style.overflow=mn.classList.contains('open')?'hidden':'';});mn.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){hbg.classList.remove('open');mn.classList.remove('open');document.body.style.overflow='';});});}
+  var obs=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');obs.unobserve(x.target);}});},{threshold:0.05,rootMargin:'0px 0px -25px 0px'});
+  function reg(){document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(function(el){if(el.closest&&el.closest('#hero'))return;var r=el.getBoundingClientRect();if(r.top<window.innerHeight+100&&r.bottom>-100)el.classList.add('in');else obs.observe(el);});}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',reg);else reg();
+  window.addEventListener('load',reg);
+})();
+function updateROI(){
+  var a=parseInt(document.getElementById('agentsRange').value)||0;
+  var s=parseInt(document.getElementById('salaryRange').value)||0;
+  document.getElementById('agentsVal').textContent=a;
+  document.getElementById('salaryVal').textContent=s;
+  var r1=Math.round(a*s*0.15*12);
+  var r2=Math.round(a*200*12);
+  var total=r1+r2;
+  var f=function(n){return '$'+n.toLocaleString();};
+  document.getElementById('r1').textContent=f(r1);
+  document.getElementById('r2').textContent=f(r2);
+  document.getElementById('r3').textContent=f(total);
+  document.getElementById('roiBig').textContent=f(total);
+  document.getElementById('roiSub').textContent='with a team of '+a+' agents';
+}
+// Initialize ROI calculator on load
+if(document.readyState==='loading'){
+  document.addEventListener('DOMContentLoaded',updateROI);
+}else{
+  updateROI();
+}
+</script>
+{{ else }}
 <script>
 (function(){
   var h=document.getElementById('header');
@@ -318,4 +528,4 @@ if(document.readyState==='loading'){
   updateROI();
 }
 </script>
-{{ end }}
+{{ end }}{{ end }}

@@ -1,0 +1,524 @@
+{{ define "head-extra" }}
+<style>
+/* HERO */
+#hero{position:relative;padding:140px 0 var(--s7);overflow:hidden;background:var(--bg0);}
+.hero-bg{position:absolute;inset:0;pointer-events:none;}
+.dot-grid{position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.05) 1px,transparent 1px);background-size:30px 30px;}
+.glow1{position:absolute;top:-20%;left:50%;transform:translateX(-50%);width:800px;height:600px;background:radial-gradient(ellipse,rgba(0,87,255,.18) 0%,transparent 65%);filter:blur(50px);}
+.hero-inner{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:var(--s7);align-items:center;}
+.hero-eyebrow{display:flex;align-items:center;gap:var(--s2);margin-bottom:var(--s3);}
+.hero-h1{font-size:clamp(36px,5vw,64px);font-weight:900;line-height:1.06;margin-bottom:var(--s3);}
+.hero-sub{font-size:17px;color:var(--t2);line-height:1.7;margin-bottom:var(--s4);}
+.hero-metrics{display:flex;gap:var(--s4);flex-wrap:wrap;margin-bottom:var(--s5);}
+.hm{display:flex;align-items:center;gap:8px;}
+.hm-val{font-family:'Geologica',sans-serif;font-weight:900;font-size:20px;color:var(--t1);}
+.hm-val.neon{color:var(--neon);}
+.hm-label{font-size:12px;color:var(--t2);}
+.hero-ctas{display:flex;gap:var(--s2);flex-wrap:wrap;}
+
+/* Demo visual */
+.demo-visual{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r4);overflow:hidden;box-shadow:0 0 80px rgba(0,87,255,.18),0 40px 80px rgba(0,0,0,.5);}
+.demo-header{background:var(--bg2);border-bottom:1px solid var(--border);padding:12px 20px;display:flex;align-items:center;justify-content:space-between;}
+.demo-dots{display:flex;gap:6px;}
+.demo-dot{width:10px;height:10px;border-radius:50%;}
+.dd-r{background:#FF5F57;}.dd-y{background:#FEBC2E;}.dd-g{background:#28C840;}
+.demo-title-bar{font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.14em;color:var(--t2);text-transform:uppercase;}
+.demo-live{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--neon);}
+.demo-live-dot{width:6px;height:6px;background:var(--neon);border-radius:50%;animation:pulseDot 1.5s ease-in-out infinite;}
+@keyframes pulseDot{0%,100%{box-shadow:0 0 0 0 rgba(200,255,0,.6);}50%{box-shadow:0 0 0 6px rgba(200,255,0,0);}}
+.demo-body{padding:var(--s3);position:relative;}
+.shelf-section{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r3);padding:var(--s2);position:relative;overflow:hidden;min-height:180px;}
+.shelf-row-big{display:flex;gap:6px;align-items:flex-end;padding:10px 0;}
+.sku-big{border-radius:6px;border:2px solid transparent;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:8px 4px;font-size:8px;font-weight:700;flex:1;}
+.sb-p{background:rgba(0,87,255,.2);border-color:rgba(0,87,255,.5);color:#7AACFF;height:80px;}
+.sb-p2{background:rgba(0,87,255,.14);border-color:rgba(0,87,255,.35);color:#7AACFF;height:65px;}
+.sb-p3{background:rgba(0,87,255,.24);border-color:rgba(0,87,255,.55);color:#7AACFF;height:100px;}
+.sb-c{background:rgba(80,80,90,.25);border-color:rgba(80,80,90,.3);color:var(--t2);height:55px;}
+.sb-oos{background:rgba(255,0,61,.06);border:2px dashed rgba(255,0,61,.4);height:70px;position:relative;}
+.sb-oos-label{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Orbitron',sans-serif;font-size:7px;font-weight:700;color:var(--red);white-space:nowrap;}
+.ai-scan-line{position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent 0%,rgba(0,87,255,.3) 20%,rgba(0,212,255,1) 50%,rgba(0,87,255,.3) 80%,transparent 100%);animation:scanV 3s linear infinite;}
+@keyframes scanV{0%{top:20px;}100%{top:calc(100% - 20px);}}
+.ai-overlay{position:absolute;inset:0;pointer-events:none;}
+.bbox{position:absolute;border:2px solid var(--blue);border-radius:4px;animation:bb 2.5s ease-in-out infinite;}
+.bbox-oos{border-color:var(--red);animation:bb 1.8s ease-in-out infinite;}
+@keyframes bb{0%,100%{opacity:1;}50%{opacity:.2;}}
+.atag{position:absolute;top:-18px;left:0;background:var(--blue);color:#fff;font-family:'Orbitron',sans-serif;font-size:7px;font-weight:700;padding:2px 6px;border-radius:2px;white-space:nowrap;}
+.atag-r{background:var(--red);}
+.atag-g{background:#28C840;}
+
+.demo-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border-top:1px solid var(--border);}
+.dstat{background:var(--bg3);padding:12px;text-align:center;}
+.dstat-val{font-family:'Geologica',sans-serif;font-weight:900;font-size:20px;}
+.dstat-val.blue{color:var(--blue3);}
+.dstat-val.neon{color:var(--neon);}
+.dstat-val.red{color:var(--red);}
+.dstat-label{font-size:10px;color:var(--t2);margin-top:3px;font-family:'Orbitron',sans-serif;letter-spacing:.06em;text-transform:uppercase;}
+
+/* HOW IT SEES */
+#how-sees{background:var(--bg2);}
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s3);}
+.feat-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r3);padding:var(--s4);transition:all .3s;position:relative;overflow:hidden;}
+.feat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;opacity:0;transition:opacity .3s;}
+.feat-card.blue-top::before{background:var(--blue);}
+.feat-card.neon-top::before{background:var(--neon);}
+.feat-card.red-top::before{background:var(--red);}
+.feat-card:hover{border-color:rgba(0,87,255,.3);box-shadow:0 8px 40px rgba(0,87,255,.1);transform:translateY(-4px);}
+.feat-card:hover::before{opacity:1;}
+.feat-icon{width:50px;height:50px;border-radius:var(--r3);display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:var(--s3);}
+.feat-icon-blue{background:rgba(0,87,255,.1);border:1px solid rgba(0,87,255,.2);}
+.feat-icon-neon{background:rgba(200,255,0,.08);border:1px solid rgba(200,255,0,.2);}
+.feat-icon-red{background:rgba(255,0,61,.08);border:1px solid rgba(255,0,61,.15);}
+.feat-card h3{font-family:'Geologica',sans-serif;font-weight:700;font-size:17px;margin-bottom:var(--s2);}
+.feat-card p{color:var(--t2);font-size:14px;line-height:1.65;}
+.feat-metric{display:inline-flex;align-items:center;gap:5px;margin-top:var(--s2);font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--neon);background:rgba(200,255,0,.07);padding:4px 10px;border-radius:999px;border:1px solid rgba(200,255,0,.18);}
+
+/* TECH SECTION */
+#tech{background:var(--bg1);}
+.tech-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--s7);align-items:center;}
+.tech-visual{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r4);padding:var(--s4);}
+.pipeline{display:flex;flex-direction:column;gap:var(--s2);}
+.pipe-step{display:flex;align-items:center;gap:var(--s2);padding:var(--s2);border-radius:var(--r2);background:var(--bg2);border:1px solid var(--border);transition:all .3s;}
+.pipe-step:hover{border-color:rgba(0,87,255,.3);}
+.pipe-icon{width:36px;height:36px;border-radius:var(--r2);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+.pipe-icon-1{background:rgba(0,87,255,.12);}.pipe-icon-2{background:rgba(0,212,255,.1);}.pipe-icon-3{background:rgba(200,255,0,.08);}.pipe-icon-4{background:rgba(255,92,0,.1);}.pipe-icon-5{background:rgba(200,255,0,.12);}
+.pipe-content strong{font-size:13px;font-family:'Geologica',sans-serif;font-weight:700;}
+.pipe-content span{display:block;font-size:12px;color:var(--t2);}
+.pipe-arrow{display:flex;align-items:center;justify-content:center;color:var(--t3);font-size:14px;margin-left:auto;}
+.pipe-sep{display:flex;align-items:center;gap:var(--s2);padding-left:18px;}
+.pipe-sep-line{width:2px;height:16px;background:linear-gradient(to bottom,rgba(0,87,255,.4),rgba(0,87,255,.1));border-radius:2px;}
+.tech-content h2{font-size:clamp(28px,3.5vw,42px);font-weight:800;margin-bottom:var(--s3);}
+.tech-content p{color:var(--t2);line-height:1.7;margin-bottom:var(--s3);}
+.tech-list{display:flex;flex-direction:column;gap:var(--s2);}
+.tech-item{display:flex;align-items:flex-start;gap:var(--s2);}
+.tech-check{color:var(--neon);font-size:14px;margin-top:3px;flex-shrink:0;}
+.tech-text{font-size:15px;color:var(--t2);}
+.tech-text strong{color:var(--t1);}
+
+/* TIMELINE */
+#impl{background:var(--bg2);}
+.timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s3);position:relative;}
+.timeline::before{content:'';position:absolute;top:28px;left:12.5%;right:12.5%;height:1px;background:linear-gradient(90deg,rgba(0,87,255,.5),rgba(0,180,255,.5));z-index:0;}
+.tl-step{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r3);padding:var(--s3);text-align:center;position:relative;z-index:1;transition:all .3s;}
+.tl-step:hover{border-color:rgba(0,87,255,.3);box-shadow:0 8px 30px rgba(0,87,255,.1);}
+.tl-num{width:56px;height:56px;background:var(--grad-blue);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto var(--s2);font-family:'Orbitron',sans-serif;font-size:16px;font-weight:900;color:#fff;box-shadow:0 0 24px rgba(0,87,255,.5);}
+.tl-week{font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--blue3);margin-bottom:6px;}
+.tl-step h3{font-family:'Geologica',sans-serif;font-weight:700;font-size:15px;margin-bottom:6px;}
+.tl-step p{font-size:13px;color:var(--t2);line-height:1.55;}
+
+/* CASE */
+#case-henkel{background:var(--bg1);}
+.case-band{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r4);padding:var(--s5);display:grid;grid-template-columns:1fr 2fr;gap:var(--s5);align-items:center;}
+.case-brand{font-family:'Geologica',sans-serif;font-weight:900;font-size:32px;letter-spacing:-.02em;margin-bottom:6px;}
+.case-type{font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--t3);}
+.case-divider{height:1px;background:var(--border);margin:var(--s3) 0;}
+.kpi-pills{display:flex;gap:var(--s2);flex-wrap:wrap;}
+.kpi-pill{background:rgba(200,255,0,.07);border:1px solid rgba(200,255,0,.18);border-radius:var(--r2);padding:8px 14px;text-align:center;}
+.kpi-pill-val{font-family:'Geologica',sans-serif;font-weight:900;font-size:22px;color:var(--neon);}
+.kpi-pill-label{font-size:11px;color:var(--t2);margin-top:2px;}
+
+/* CTA */
+#cta-section{background:linear-gradient(135deg,rgba(0,87,255,.06) 0%,rgba(0,40,120,.04) 100%);border-top:1px solid rgba(0,87,255,.12);border-bottom:1px solid rgba(0,87,255,.12);}
+.cta-box{text-align:center;padding:var(--s7) 0;}
+.cta-box h2{font-size:clamp(26px,3.5vw,42px);font-weight:800;margin-bottom:var(--s2);}
+.cta-box p{color:var(--t2);font-size:17px;max-width:540px;margin:0 auto var(--s5);line-height:1.65;}
+.cta-btns{display:flex;gap:var(--s2);justify-content:center;flex-wrap:wrap;}
+
+/* FOOTER */
+#footer{background:#060608;border-top:1px solid var(--border);padding:var(--s7) 0 var(--s4);}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:var(--s6);margin-bottom:var(--s6);}
+.footer-brand-desc{color:var(--t2);font-size:14px;line-height:1.7;margin:var(--s2) 0 var(--s3);max-width:270px;}
+.footer-col-title{font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--t3);margin-bottom:var(--s3);}
+.footer-col ul{display:flex;flex-direction:column;gap:10px;}
+.footer-col ul li a{font-size:14px;color:var(--t2);transition:color .2s;}
+.footer-col ul li a:hover{color:var(--t1);}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;padding-top:var(--s3);border-top:1px solid var(--border);flex-wrap:wrap;gap:var(--s2);}
+.footer-bottom p{font-size:13px;color:var(--t3);}
+.soc-btn{width:34px;height:34px;border:1px solid var(--border);border-radius:var(--r2);display:flex;align-items:center;justify-content:center;color:var(--t2);font-size:14px;transition:all .2s;}
+.soc-btn:hover{border-color:var(--blue);color:var(--blue);}
+
+@keyframes hFadeUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+.h-anim{opacity:0;animation:hFadeUp .75s ease forwards;}
+.h-d1{animation-delay:.08s;}.h-d2{animation-delay:.2s;}.h-d3{animation-delay:.34s;}.h-d4{animation-delay:.48s;}.h-d5{animation-delay:.63s;}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+.float-anim{animation:float 4s ease-in-out infinite;}
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.in{opacity:1;transform:translateY(0);}
+.reveal-left{opacity:0;transform:translateX(-30px);transition:opacity .7s ease,transform .7s ease;}
+.reveal-left.in{opacity:1;transform:translateX(0);}
+.reveal-right{opacity:0;transform:translateX(30px);transition:opacity .7s ease,transform .7s ease;}
+.reveal-right.in{opacity:1;transform:translateX(0);}
+.rd1{transition-delay:.05s;}.rd2{transition-delay:.12s;}.rd3{transition-delay:.19s;}.rd4{transition-delay:.26s;}.rd5{transition-delay:.33s;}.rd6{transition-delay:.4s;}
+
+/* Logos strip */
+.logos-strip{padding:var(--s3) 0;background:var(--bg2);border-bottom:1px solid var(--border);}
+.logos-inner{display:flex;align-items:center;justify-content:center;gap:var(--s5);flex-wrap:wrap;}
+.logo-cl{font-family:'Geologica',sans-serif;font-weight:700;font-size:15px;color:var(--t3);padding:6px 16px;border:1px solid var(--border);border-radius:var(--r2);transition:all .3s;}
+.logo-cl:hover{color:var(--t2);border-color:rgba(0,87,255,.3);}
+
+@media(max-width:1024px){
+  .hero-inner,.tech-grid{grid-template-columns:1fr;gap:var(--s4);}
+  .features-grid{grid-template-columns:1fr 1fr;}
+  .timeline{grid-template-columns:1fr 1fr;}
+  .timeline::before{display:none;}
+  .case-band{grid-template-columns:1fr;}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:var(--s4);}
+}
+@media(max-width:768px){
+  .nav-wrap,.nav-r .btn-s{display:none;}
+  .hamburger{display:flex;}
+  .features-grid,.timeline{grid-template-columns:1fr;}
+  .footer-grid{grid-template-columns:1fr;}
+  .hero-ctas{flex-direction:column;align-items:flex-start;}
+  .hero-metrics{flex-direction:column;gap:var(--s2);}
+}
+</style>
+{{ end }}
+
+{{ define "main" }}
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"><div class="dot-grid"></div><div class="glow1"></div></div>
+
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-left">
+        <div class="hero-eyebrow h-anim h-d1">
+          <div class="badge-blue">PICSELL Vision AI</div>
+          <div class="badge-neon">Proprietary Neural Network</div>
+        </div>
+        <h1 class="hero-h1 h-anim h-d2">
+          Shelf Photo →
+          <span class="highlight">Raw Photos</span> into <span class="highlight">Structured Data</span> in &lt;2 seconds
+        </h1>
+        <p class="hero-sub h-anim h-d3">A proprietary neural network that sees OOS, shelf share, prices, and promotions — automatically. No human factor. No delays.</p>
+
+        <div class="hero-metrics h-anim h-d4">
+          <div class="hm">
+            <div class="hm-val neon">99.9%</div>
+            <div class="hm-label">Recognition<br>Accuracy</div>
+          </div>
+          <div style="width:1px;background:var(--border);height:36px;"></div>
+          <div class="hm">
+            <div class="hm-val">&lt;2s</div>
+            <div class="hm-label">Photo<br>Processing</div>
+          </div>
+          <div style="width:1px;background:var(--border);height:36px;"></div>
+          <div class="hm">
+            <div class="hm-val">📵</div>
+            <div class="hm-label">Offline-<br>First</div>
+          </div>
+          <div style="width:1px;background:var(--border);height:36px;"></div>
+          <div class="hm">
+            <div class="hm-val"><span data-count="10" data-suffix="M+">0</span></div>
+            <div class="hm-label">SKUs<br>Recognized</div>
+          </div>
+        </div>
+
+        <div class="hero-ctas h-anim h-d5">
+          <a href="/demo/" class="btn btn-p btn-lg">Book Vision AI Demo →</a>
+          <a href="#how-sees" class="btn btn-s">See How AI Sees</a>
+        </div>
+      </div>
+
+      <div class="h-anim h-d3">
+        <div class="demo-visual float-anim">
+          <div class="demo-header">
+            <div class="demo-dots"><div class="demo-dot dd-r"></div><div class="demo-dot dd-y"></div><div class="demo-dot dd-g"></div></div>
+            <div class="demo-title-bar">Vision AI · Live Recognition</div>
+            <div class="demo-live"><div class="demo-live-dot"></div>Processing</div>
+          </div>
+          <div class="demo-body">
+            <div class="shelf-section">
+              <div style="font-family:'Orbitron',sans-serif;font-size:8px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--t2);margin-bottom:8px;">Supermarket «Silpo» · Dairy Section</div>
+              <div class="ai-scan-line"></div>
+              <div class="shelf-row-big">
+                <div class="sku-big sb-p">PICSELL<br>SKU-001</div>
+                <div class="sku-big sb-p2">PICSELL<br>SKU-002</div>
+                <div class="sku-big sb-c">Comp.</div>
+                <div class="sku-big sb-p3">PICSELL<br>SKU-003</div>
+                <div class="sku-big sb-c">Comp.</div>
+                <div class="sku-big sb-oos"><div class="sb-oos-label">⚠ OOS</div></div>
+                <div class="sku-big sb-p">PICSELL<br>SKU-005</div>
+              </div>
+              <div class="ai-overlay">
+                <div class="bbox" style="top:28px;left:10px;width:50px;height:82px;"><div class="atag">SKU-001 ✓</div></div>
+                <div class="bbox" style="top:28px;left:66px;width:50px;height:68px;"><div class="atag">SKU-002 ✓</div></div>
+                <div class="bbox bbox-oos" style="top:28px;left:178px;width:50px;height:72px;"><div class="atag atag-r">OOS ⚠</div></div>
+                <div class="bbox" style="top:28px;left:122px;width:50px;height:102px;"><div class="atag atag-g">SKU-003 ✓</div></div>
+              </div>
+            </div>
+          </div>
+          <div class="demo-stats">
+            <div class="dstat"><div class="dstat-val blue">4/7</div><div class="dstat-label">Our SKUs</div></div>
+            <div class="dstat"><div class="dstat-val red">1 OOS</div><div class="dstat-label">Empty</div></div>
+            <div class="dstat"><div class="dstat-val neon">57%</div><div class="dstat-label">Share of Shelf</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOGOS -->
+<div class="logos-strip">
+  <div class="container">
+    <div class="logos-inner">
+      <span style="font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--t3);">Used by:</span>
+      <div class="logo-cl">Nestlé</div>
+      <div class="logo-cl">Diageo</div>
+      <div class="logo-cl">Colgate</div>
+      <div class="logo-cl">Henkel</div>
+      <div class="logo-cl">Lactalis</div>
+      <div class="logo-cl">Bayadera</div>
+    </div>
+  </div>
+</div>
+
+<!-- 6 FEATURES -->
+<section id="how-sees" class="section" style="background:var(--bg2);">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="tag">Vision AI Features</span>
+      <h2>Vision AI Sees <span class="highlight">More</span> Than Just Products</h2>
+      <p>Every photo is a structured report. Six metrics automatically — with no human involvement.</p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feat-card blue-top reveal rd1">
+        <div class="feat-icon feat-icon-red">⛔</div>
+        <h3>OOS Detection</h3>
+        <p>The system automatically detects empty shelf positions and generates an alert. <strong style="color:var(--t1)">From photo to manager notification — 2 minutes.</strong> Not next month, not next week.</p>
+        <div class="feat-metric">⚡ Alert in 2 minutes</div>
+      </div>
+
+      <div class="feat-card blue-top reveal rd2">
+        <div class="feat-icon feat-icon-blue">📊</div>
+        <h3>Share of Shelf</h3>
+        <p>Exact shelf share of your brand in % by each SKU and competitor. <strong style="color:var(--t1)">Dynamic comparison</strong> — weekly, monthly, quarterly. Across every chain and region.</p>
+        <div class="feat-metric">Per outlet</div>
+      </div>
+
+      <div class="feat-card neon-top reveal rd3">
+        <div class="feat-icon feat-icon-neon">💰</div>
+        <h3>Price Monitoring</h3>
+        <p>AI recognizes shelf price tags and <strong style="color:var(--t1)">compares them against recommended prices</strong>. Dumping is detected automatically. Price report across all chains — in real time.</p>
+        <div class="feat-metric">Dumping = auto-alert</div>
+      </div>
+
+      <div class="feat-card neon-top reveal rd4">
+        <div class="feat-icon feat-icon-neon">🏆</div>
+        <h3>Perfect Store Score</h3>
+        <p>Automatic scoring of compliance with shelf standards for each outlet. <strong style="color:var(--t1)">A single metric understood by everyone</strong> — from the field agent to the CEO.</p>
+        <div class="feat-metric">Henkel: 87% Score</div>
+      </div>
+
+      <div class="feat-card red-top reveal rd5">
+        <div class="feat-icon feat-icon-red">🛡️</div>
+        <h3>Anti-Fraud System</h3>
+        <p>GPS tags, photo metadata analysis, gallery upload prohibition, shooting angle verification. <strong style="color:var(--t1)">Fake reports are detected automatically</strong> — the agent won't even notice.</p>
+        <div class="feat-metric">0% Fakes</div>
+      </div>
+
+      <div class="feat-card blue-top reveal rd6">
+        <div class="feat-icon feat-icon-blue">🎯</div>
+        <h3>POSM Control</h3>
+        <p>Presence and correct placement of POS materials — wobblers, shelf talkers, price strips. <strong style="color:var(--t1)">You know which promotional materials are in place</strong>, and which are missing or incorrectly installed.</p>
+        <div class="feat-metric">Promo under control</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECHNOLOGY -->
+<section id="tech" class="section">
+  <div class="container">
+    <div class="tech-grid">
+      <div class="tech-visual reveal-left">
+        <div style="font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--t3);margin-bottom:var(--s3);">How Each Photo Is Processed</div>
+        <div class="pipeline">
+          <div class="pipe-step">
+            <div class="pipe-icon pipe-icon-1">📷</div>
+            <div class="pipe-content"><strong>Shelf Photo</strong><span>AI checks quality right in the app</span></div>
+            <div class="pipe-arrow">→</div>
+          </div>
+          <div class="pipe-sep"><div class="pipe-sep-line"></div></div>
+          <div class="pipe-step">
+            <div class="pipe-icon pipe-icon-2">🔍</div>
+            <div class="pipe-content"><strong>SKU Detection</strong><span>Neural network detects every product</span></div>
+            <div class="pipe-arrow">→</div>
+          </div>
+          <div class="pipe-sep"><div class="pipe-sep-line"></div></div>
+          <div class="pipe-step">
+            <div class="pipe-icon pipe-icon-3">✅</div>
+            <div class="pipe-content"><strong>Human Verification</strong><span>AI + human verification symbiosis</span></div>
+            <div class="pipe-arrow">→</div>
+          </div>
+          <div class="pipe-sep"><div class="pipe-sep-line"></div></div>
+          <div class="pipe-step">
+            <div class="pipe-icon pipe-icon-4">📊</div>
+            <div class="pipe-content"><strong>Structured Data</strong><span>OOS, SoS, prices, Perfect Store Score</span></div>
+            <div class="pipe-arrow">→</div>
+          </div>
+          <div class="pipe-sep"><div class="pipe-sep-line"></div></div>
+          <div class="pipe-step">
+            <div class="pipe-icon pipe-icon-5">⚡</div>
+            <div class="pipe-content"><strong>Alerts → Decisions</strong><span>Power BI dashboard + AI hints</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tech-content reveal-right">
+        <span class="tag" style="display:block;margin-bottom:var(--s2);">Technology</span>
+        <h2>"AI and Human Verification Symbiosis" — that's <span class="highlight">99.9%</span> accuracy</h2>
+        <p>Unlike competitors who rely solely on automation, we combine our neural network with human verification for edge cases. The result is accuracy that cannot be achieved by either method alone.</p>
+
+        <div class="tech-list">
+          <div class="tech-item">
+            <div class="tech-check">✓</div>
+            <div class="tech-text"><strong>Proprietary neural network</strong> — we do not buy APIs from Microsoft, Google, or AWS. Trained on millions of FMCG shelf photos.</div>
+          </div>
+          <div class="tech-item">
+            <div class="tech-check">✓</div>
+            <div class="tech-text"><strong>Offline-First architecture</strong> — critical for field conditions where mobile internet is unreliable. Photos are stored locally and synced when connectivity returns.</div>
+          </div>
+          <div class="tech-item">
+            <div class="tech-check">✓</div>
+            <div class="tech-text"><strong>Any Android</strong> — no expensive device required. Works on budget smartphones from $100.</div>
+          </div>
+          <div class="tech-item">
+            <div class="tech-check">✓</div>
+            <div class="tech-text"><strong>Data on secure servers</strong> — full compliance with GDPR and data protection regulations.</div>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:var(--s2);flex-wrap:wrap;margin-top:var(--s4);">
+          <div class="badge-neon">Proprietary Neural Network</div>
+          <div class="badge-blue">Offline-First</div>
+          <div class="badge-blue">Ukrainian servers</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMPLEMENTATION TIMELINE -->
+<section id="impl" class="section" style="background:var(--bg2);">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="tag">Implementation</span>
+      <h2>From Signature to First Data — <span class="hl-neon">4 weeks</span></h2>
+      <p>Not 6 months like Trax or similar solutions. Four weeks — and your team is already collecting shelf data.</p>
+    </div>
+
+    <div class="timeline">
+      <div class="tl-step reveal rd1">
+        <div class="tl-num">1</div>
+        <div class="tl-week">Week 1</div>
+        <h3>SKU Base and Planogram</h3>
+        <p>We load your SKU database, configure planograms, and connect to your accounting system.</p>
+      </div>
+      <div class="tl-step reveal rd2">
+        <div class="tl-num">2</div>
+        <div class="tl-week">Week 2</div>
+        <h3>Agent Training</h3>
+        <p>Field representative onboarding — 30 minutes per agent. First test photos and result verification.</p>
+      </div>
+      <div class="tl-step reveal rd3">
+        <div class="tl-num">3</div>
+        <div class="tl-week">Week 3</div>
+        <h3>50-Outlet Pilot</h3>
+        <p>Real data from 50 outlets. First OOS alerts. First week's Perfect Store Score already in the dashboard.</p>
+      </div>
+      <div class="tl-step reveal rd4">
+        <div class="tl-num">4</div>
+        <div class="tl-week">Week 4</div>
+        <h3>Full Launch</h3>
+        <p>All outlets online. Automatic alerts active. Last Excel report ever written.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HENKEL CASE -->
+<section id="case-henkel" class="section">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="tag">Client Case Study</span>
+      <h2><span class="highlight">Henkel</span> — Perfect Store in Real Time</h2>
+    </div>
+
+    <div class="case-band reveal">
+      <div>
+        <div class="case-brand">Henkel</div>
+        <div class="case-type">FMCG Manufacturer · Perfect Store</div>
+        <div class="case-divider"></div>
+        <p style="color:var(--t2);font-size:15px;line-height:1.7;margin-bottom:var(--s3);">
+          Challenge: Implement Perfect Store standards and monitor compliance in real time. Before PICSELL — manual checks once a month, results delivered a week later in PowerPoint.
+        </p>
+        <a href="/case-studies/" class="btn btn-g btn-sm">Read Full Case Study →</a>
+      </div>
+
+      <div>
+        <div style="font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--t3);margin-bottom:var(--s3);">Results with PICSELL Vision AI</div>
+        <div class="kpi-pills">
+          <div class="kpi-pill">
+            <div class="kpi-pill-val">87%</div>
+            <div class="kpi-pill-label">Perfect Store Score</div>
+          </div>
+          <div class="kpi-pill">
+            <div class="kpi-pill-val">-91%</div>
+            <div class="kpi-pill-label">Audit time saved</div>
+          </div>
+          <div class="kpi-pill">
+            <div class="kpi-pill-val">Real-time</div>
+            <div class="kpi-pill-label">Shelf Data</div>
+          </div>
+          <div class="kpi-pill">
+            <div class="kpi-pill-val">4 weeks</div>
+            <div class="kpi-pill-label">Implementation</div>
+          </div>
+        </div>
+        <div style="margin-top:var(--s3);padding:var(--s3);background:var(--bg2);border:1px solid var(--border);border-radius:var(--r3);font-size:15px;color:var(--t2);font-style:italic;line-height:1.7;">
+          "Perfect Store prototype in final implementation stage. PICSELL was the first system that showed us the real picture on shelves, not the one we wanted to see."
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta-section" class="section-sm">
+  <div class="container">
+    <div class="cta-box reveal">
+      <span class="tag" style="display:block;margin-bottom:var(--s2);">Ready to See Your SKU in Action?</span>
+      <h2>Book a Vision AI Demo — We'll Show <span class="highlight">Live Recognition</span> of Your SKU</h2>
+      <p>30 minutes. No preparation needed. We load samples of your products ourselves and show how the system works on real photos.</p>
+      <div class="cta-btns">
+        <a href="/demo/" class="btn btn-p btn-lg">Book Live Demo →</a>
+        <a href="/pricing/" class="btn btn-g">View Pricing</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+{{ end }}
+
+{{ define "scripts" }}
+<script>
+(function(){
+  const h=document.getElementById('header');
+  window.addEventListener('scroll',()=>h.classList.toggle('scrolled',scrollY>30));
+  const hbg=document.getElementById('hamburger'),mn=document.getElementById('mobileNav');
+  hbg.addEventListener('click',()=>{hbg.classList.toggle('open');mn.classList.toggle('open');document.body.style.overflow=mn.classList.contains('open')?'hidden':'';});
+  mn.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{hbg.classList.remove('open');mn.classList.remove('open');document.body.style.overflow='';}));
+  const obs=new IntersectionObserver((e)=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');obs.unobserve(x.target);}});},{threshold:0.05,rootMargin:'0px 0px -25px 0px'});
+  function reg(){document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el=>{const r=el.getBoundingClientRect();if(r.top<window.innerHeight+100&&r.bottom>-100)el.classList.add('in');else obs.observe(el);});}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',reg);else reg();
+  window.addEventListener('load',reg);
+  function animC(el){const t=parseFloat(el.dataset.count||0);const s=el.dataset.suffix||'';const isF=String(t).includes('.');let st=null;function f(ts){if(!st)st=ts;const p=Math.min((ts-st)/1800,1);const e=1-Math.pow(1-p,3);el.textContent=(isF?(t*e).toFixed(1):Math.floor(t*e))+s;if(p<1)requestAnimationFrame(f);}requestAnimationFrame(f);}
+  const cobs=new IntersectionObserver((e)=>{e.forEach(x=>{if(x.isIntersecting&&!x.target.dataset.counted){x.target.dataset.counted='1';animC(x.target);cobs.unobserve(x.target);}});},{threshold:0.3});
+  setTimeout(()=>document.querySelectorAll('[data-count]').forEach(c=>cobs.observe(c)),1200);
+})();
+</script>
+{{ end }}

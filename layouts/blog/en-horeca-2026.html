@@ -1,0 +1,219 @@
+{{ define "head-extra" }}
+<style>
+
+:root{--bg0:#060608;--bg1:#0D0D0F;--bg2:#111114;--bg3:#1A1A1E;--border:#1E1E24;--blue:#0057FF;--blue2:#0066FF;--blue3:#3380FF;--neon:#C8FF00;--red:#FF003D;--orange:#FF5C00;--t1:#FFFFFF;--t2:#A0A0B0;--t3:#50505A;--s2:16px;--s3:24px;--s4:32px;--s5:48px;--s6:64px;--s7:96px;--r2:8px;--r3:12px;--r4:16px;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;}
+body{background:var(--bg1);color:var(--t1);font-family:'Inter',sans-serif;font-size:17px;line-height:1.7;overflow-x:hidden;}
+a{text-decoration:none;color:var(--blue3);}a:hover{color:var(--t1);}
+#header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(8,8,10,.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:all .3s;}
+.header-inner{display:flex;align-items:center;justify-content:space-between;height:68px;max-width:1240px;margin:0 auto;padding:0 var(--s3);}
+.logo{font-family:'Geologica',sans-serif;font-weight:900;font-size:20px;letter-spacing:-.03em;color:var(--t1);}.logo-plus{color:var(--neon);}
+.nav-links{display:flex;gap:var(--s3);}.nav-links a{font-size:14px;font-weight:500;color:var(--t2);transition:color .2s;}.nav-links a:hover{color:var(--t1);}
+.btn-demo{display:inline-flex;align-items:center;gap:6px;background:var(--blue);color:#fff;font-family:'Geologica',sans-serif;font-weight:600;font-size:13px;padding:9px 18px;border-radius:var(--r2);transition:all .25s;}.btn-demo:hover{background:var(--blue2);color:#fff;transform:translateY(-1px);}
+.article-wrap{max-width:780px;margin:0 auto;padding:0 var(--s3);}
+.sidebar-wrap{max-width:1140px;margin:0 auto;padding:0 var(--s3);display:grid;grid-template-columns:1fr 300px;gap:var(--s6);}
+.article-hero{padding:120px 0 var(--s6);background:var(--bg0);position:relative;overflow:hidden;}
+.dot-grid{position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.045) 1px,transparent 1px);background-size:30px 30px;}
+.glow{position:absolute;top:-20%;left:50%;transform:translateX(-50%);width:700px;height:500px;background:radial-gradient(ellipse,rgba(0,87,255,.14) 0%,transparent 65%);filter:blur(50px);}
+.hero-inner{position:relative;z-index:2;}
+.breadcrumb{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--t3);margin-bottom:var(--s3);}.breadcrumb a{color:var(--blue3);}.breadcrumb span{color:var(--t3);}
+.art-category{display:inline-flex;align-items:center;font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;background:rgba(200,255,0,.08);color:#C8FF00;padding:4px 12px;border-radius:999px;border:1px solid #C8FF0044;margin-bottom:var(--s3);}
+.art-title{font-family:'Geologica',sans-serif;font-size:clamp(30px,4vw,48px);font-weight:900;line-height:1.08;letter-spacing:-.02em;margin-bottom:var(--s3);color:var(--t1);}
+.art-lead{font-size:19px;color:var(--t2);line-height:1.65;margin-bottom:var(--s4);max-width:680px;}
+.art-meta{display:flex;align-items:center;gap:var(--s3);flex-wrap:wrap;}.art-meta-item{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--t3);}.art-meta-dot{width:4px;height:4px;background:var(--border);border-radius:50%;}
+.article-section{padding:var(--s7) 0;background:var(--bg1);}
+.article-body{font-size:17px;line-height:1.8;color:var(--t2);}
+.article-body h2{font-family:'Geologica',sans-serif;font-weight:800;font-size:clamp(22px,3vw,30px);color:var(--t1);margin:var(--s6) 0 var(--s3);letter-spacing:-.02em;padding-top:var(--s2);border-top:1px solid var(--border);}
+.article-body h2:first-child{border-top:none;margin-top:0;}
+.article-body h3{font-family:'Geologica',sans-serif;font-weight:700;font-size:20px;color:var(--t1);margin:var(--s4) 0 var(--s2);}
+.article-body p{margin-bottom:var(--s3);color:var(--t2);}.article-body strong{color:var(--t1);}.article-body em{font-style:italic;color:var(--t2);}
+.key-number{background:linear-gradient(135deg,rgba(0,87,255,.08),rgba(0,180,255,.04));border:1px solid rgba(0,87,255,.2);border-radius:var(--r3);padding:var(--s4);margin:var(--s4) 0;display:flex;align-items:flex-start;gap:var(--s3);}.kn-val{font-family:'Geologica',sans-serif;font-weight:900;font-size:48px;color:var(--neon);line-height:1;flex-shrink:0;}.kn-text h4{font-family:'Geologica',sans-serif;font-weight:700;font-size:17px;color:var(--t1);margin-bottom:4px;}.kn-text p{font-size:14px;color:var(--t2);line-height:1.6;margin:0;}
+.warn-box{background:rgba(255,0,61,.04);border:1px solid rgba(255,0,61,.15);border-left:3px solid var(--red);border-radius:var(--r3);padding:var(--s3) var(--s4);margin:var(--s3) 0;}.warn-box .warn-title{font-family:'Geologica',sans-serif;font-weight:700;font-size:15px;color:var(--red);margin-bottom:8px;}.warn-box p{font-size:15px;color:var(--t2);margin:0;}
+.good-box{background:rgba(200,255,0,.04);border:1px solid rgba(200,255,0,.15);border-left:3px solid var(--neon);border-radius:var(--r3);padding:var(--s3) var(--s4);margin:var(--s3) 0;}.good-box .good-title{font-family:'Geologica',sans-serif;font-weight:700;font-size:15px;color:var(--neon);margin-bottom:8px;}.good-box p{font-size:15px;color:var(--t2);margin:0;}
+.checklist{display:flex;flex-direction:column;gap:10px;margin:var(--s3) 0;}.cl-item{display:flex;align-items:flex-start;gap:12px;padding:12px var(--s3);background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);}.cl-icon{font-size:16px;flex-shrink:0;margin-top:2px;}.cl-text{font-size:15px;color:var(--t2);line-height:1.6;}.cl-text strong{color:var(--t1);}
+.sign-bad .cl-icon{color:var(--red);}.sign-good .cl-icon{color:var(--neon);}
+.quote-pull{font-family:'Geologica',sans-serif;font-size:22px;font-weight:700;line-height:1.4;color:var(--t1);border-left:3px solid var(--blue);padding:var(--s3) var(--s4);margin:var(--s5) 0;background:var(--bg3);border-radius:0 var(--r3) var(--r3) 0;}
+.data-table{width:100%;border-collapse:collapse;margin:var(--s4) 0;border-radius:var(--r3);overflow:hidden;}.data-table th{font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--t3);padding:12px 18px;text-align:left;border-bottom:1px solid var(--border);background:var(--bg2);}.data-table td{padding:13px 18px;border-bottom:1px solid rgba(30,30,36,.7);font-size:14px;color:var(--t2);}.data-table td:first-child{font-weight:600;color:var(--t1);}.data-table tr:last-child td{border-bottom:none;}.data-table .good{color:var(--neon);}.data-table .bad{color:var(--red);}.data-table .mid{color:var(--orange);}
+.insight-box{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r3);padding:var(--s4);margin:var(--s4) 0;}.ib-label{font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--blue3);margin-bottom:var(--s2);}.ib-text{font-size:15px;color:var(--t2);line-height:1.65;}
+.toc{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r3);padding:var(--s4);margin-bottom:var(--s5);}.toc-title{font-family:'Orbitron',sans-serif;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--t3);margin-bottom:var(--s2);}.toc ol{padding-left:var(--s3);display:flex;flex-direction:column;gap:8px;}.toc ol li{font-size:14px;color:var(--t2);}.toc ol li a{color:var(--blue3);transition:color .2s;}.toc ol li a:hover{color:var(--t1);}
+.sidebar{position:sticky;top:88px;display:flex;flex-direction:column;gap:var(--s3);}.sb-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r3);padding:var(--s3);}.sb-title{font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--t3);margin-bottom:var(--s2);}.sb-links{display:flex;flex-direction:column;gap:8px;}.sb-link{font-size:13px;color:var(--t2);padding:8px 10px;border-radius:var(--r2);background:var(--bg2);transition:all .2s;display:block;}.sb-link:hover{color:var(--t1);}
+.sb-cta{background:linear-gradient(135deg,rgba(0,87,255,.12),rgba(0,180,255,.06));border:1px solid rgba(0,87,255,.25);border-radius:var(--r3);padding:var(--s3);text-align:center;}.sb-cta h4{font-family:'Geologica',sans-serif;font-weight:700;font-size:16px;color:var(--t1);margin-bottom:8px;line-height:1.35;}.sb-cta p{font-size:13px;color:var(--t2);margin-bottom:var(--s2);line-height:1.55;}.sb-cta a{display:block;background:var(--blue);color:#fff;font-family:'Geologica',sans-serif;font-weight:600;font-size:13px;padding:11px;border-radius:var(--r2);text-align:center;transition:all .25s;}.sb-cta a:hover{background:var(--blue2);color:#fff;}
+.bottom-cta{background:linear-gradient(135deg,rgba(0,87,255,.08),rgba(0,40,120,.05));border-top:1px solid rgba(0,87,255,.15);border-bottom:1px solid rgba(0,87,255,.15);padding:var(--s6) 0;text-align:center;margin-top:var(--s6);}.bottom-cta h2{font-family:'Geologica',sans-serif;font-size:clamp(24px,3vw,36px);font-weight:800;margin-bottom:var(--s2);}.bottom-cta p{color:var(--t2);font-size:16px;max-width:500px;margin:0 auto var(--s4);line-height:1.65;}.bottom-cta .btns{display:flex;gap:var(--s2);justify-content:center;flex-wrap:wrap;}
+.btn-p{display:inline-flex;align-items:center;gap:8px;background:var(--blue);color:#fff;font-family:'Geologica',sans-serif;font-weight:600;font-size:15px;padding:14px 28px;border-radius:var(--r2);transition:all .25s;text-decoration:none;}.btn-p:hover{background:var(--blue2);color:#fff;transform:translateY(-2px);}
+.btn-g{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--t2);font-family:'Geologica',sans-serif;font-weight:600;font-size:15px;padding:14px 28px;border-radius:var(--r2);border:1px solid var(--border);transition:all .25s;text-decoration:none;}.btn-g:hover{color:var(--t1);}
+.related-section{background:var(--bg2);padding:var(--s6) 0;}.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s3);max-width:1140px;margin:0 auto;padding:0 var(--s3);}.related-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r3);padding:var(--s3);transition:all .3s;text-decoration:none;display:block;}.related-card:hover{border-color:rgba(0,87,255,.3);transform:translateY(-3px);}.rc-cat{font-family:'Orbitron',sans-serif;font-size:8px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--blue3);margin-bottom:8px;}.rc-title{font-family:'Geologica',sans-serif;font-weight:700;font-size:15px;color:var(--t1);margin-bottom:6px;line-height:1.35;}.rc-meta{font-size:12px;color:var(--t3);}
+#footer{background:#060608;border-top:1px solid var(--border);padding:var(--s4) 0;}.footer-inner{max-width:1240px;margin:0 auto;padding:0 var(--s3);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:var(--s2);}.footer-inner p{font-size:13px;color:var(--t3);}.footer-links{display:flex;gap:var(--s3);}.footer-links a{font-size:13px;color:var(--t3);transition:color .2s;}.footer-links a:hover{color:var(--t2);}
+@media(max-width:1024px){.sidebar-wrap{grid-template-columns:1fr;}.sidebar{position:relative;top:0;}}
+@media(max-width:768px){.nav-links,.btn-demo{display:none;}.related-grid{grid-template-columns:1fr;}.key-number{flex-direction:column;}.kn-val{font-size:36px;}}
+
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"HoReCa Channel 2026: Where FMCG Brands Win and Lose","description":"Analysis of 1,250+ bars and restaurants shows the trends and surprising findings. Where brands win: speed of reaction, lead generation, contract compliance. Where they lose: field agents only, no monitoring system.","author":{"@type":"Organization","name":"PICSELL"},"publisher":{"@type":"Organization","name":"PICSELL","url":"https://picsell.ai"},"datePublished":"2026-04-01","mainEntityOfPage":{"@type":"WebPage","@id":"https://picsell.ai/en/blog/horeca-channel-2026"}}
+</script>
+{{ end }}
+
+{{ define "main" }}
+<section class="article-hero">
+  <div style="position:absolute;inset:0;pointer-events:none;"><div class="dot-grid"></div><div class="glow"></div></div>
+  <div class="article-wrap">
+    <div class="hero-inner">
+      <div class="breadcrumb"><a href="/en/">Home</a><span>›</span><a href="/en/blog/">Blog</a><span>›</span><span>HoReCa</span></div>
+      <div class="art-category">HoReCa</div>
+      <h1 class="art-title">HoReCa Channel 2026: Where FMCG Brands Win and Lose</h1>
+      <p class="art-lead">The on-trade market is recovering faster than expected. Competition for menu placement is intensifying. Analysis of 1,250+ venues shows who is winning, who is losing — and why the difference is not about budget, but about systems.</p>
+      <div class="art-meta">
+        <div class="art-meta-item">📅 April 2026</div>
+        <div class="art-meta-dot"></div>
+        <div class="art-meta-item">⏱ 7 min read</div>
+        <div class="art-meta-dot"></div>
+        <div class="art-meta-item">✍️ PICSELL Team</div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="article-section">
+  <div class="sidebar-wrap">
+    <main>
+      <div class="toc">
+        <div class="toc-title">Table of Contents</div>
+        <ol><li><a href="#reality">HoReCa in 2026: What Has Changed</a></li><li><a href="#winners">Where Brands Win: 4 Strategies</a></li><li><a href="#losers">Where Brands Lose: 3 Mistakes</a></li><li><a href="#data">Real Data from PICSELL Clients</a></li><li><a href="#practical">Practical Action Plan</a></li></ol>
+      </div>
+      <div class="article-body">
+
+        <h2 id="reality">HoReCa in 2026: What Has Changed</h2>
+        <p>The on-trade market is recovering faster than anticipated. In major cities, the number of active HoReCa venues has already exceeded pre-disruption levels in several segments. <strong>The number of new bars and cafés in key European cities grew 23% in 2025.</strong></p>
+
+        <p>For FMCG manufacturers this means one thing: the HoReCa channel is critical again — and competition for menu positions intensifies daily. Yet most brands still manage the HoReCa channel the old way: a trade agent visits venues once a month, records what's on the menu, and brings back a report in Excel.</p>
+
+        <div class="warn-box">
+          <div class="warn-title">⚠ The Fundamental Problem</div>
+          <p>By the time your agent visits a venue, a competitor has already dropped their price. By the time you prepare your report, a new bar has opened and signed three competitors. You receive data <strong>with a lag of 2 weeks to a month</strong> — and make decisions based on yesterday's reality.</p>
+        </div>
+
+        <h2 id="winners">Where Brands Win: 4 Winning Strategies</h2>
+
+        <h3>1. Speed of Reaction to Price Changes</h3>
+        <p>One of the biggest challenges in HoReCa is <strong>price dumping</strong>. A competitor cuts prices across 15 venues in a chain — and you find out next month. By then your brand is already "expensive" in the minds of bartenders and buyers.</p>
+
+        <div class="key-number">
+          <div class="kn-val">72 hrs</div>
+          <div class="kn-text">
+            <h4>— average reaction time to competitor dumping without a system</h4>
+            <p>With PICSELL Radar — 2 minutes. An alert arrives when the system detects a material price gap between your brand and competitors in the same venues.</p>
+          </div>
+        </div>
+
+        <h3>2. Lead Generation: Who Finds New Venues First</h3>
+        <p>According to our platform data, <strong>47% of new HoReCa venues sign with the first supplier to offer a partnership</strong>. The one who arrives first wins. Everyone else shares the remainder.</p>
+
+        <p>Winning brands systematically monitor new venue openings via Google Maps API and reach new bars and restaurants in their first month of operation.</p>
+
+        <h3>3. Monitoring Contract Compliance</h3>
+        <p>A typical HoReCa contract specifies: your brand on the menu, a minimum sale price, category exclusivity. But <strong>who checks compliance?</strong> In most companies — no one. Or an agent once a quarter.</p>
+
+        <div class="data-table">
+          <thead><tr><th>Contract Condition</th><th>Without Monitoring</th><th>With PICSELL HoReCa</th></tr></thead>
+          <tbody>
+            <tr><td>Menu presence</td><td class="bad">Checked quarterly</td><td class="good">Automated weekly</td></tr>
+            <tr><td>Minimum sale price</td><td class="bad">Unknown</td><td class="good">Daily monitoring</td></tr>
+            <tr><td>Category exclusivity</td><td class="bad">Found out by chance</td><td class="good">Alert on violation</td></tr>
+            <tr><td>Menu position</td><td class="bad">Nobody checks</td><td class="good">AI reads menus automatically</td></tr>
+          </tbody>
+        </div>
+
+        <h3>4. Cocktail Analytics: Brands That Know Where They Are Being Used</h3>
+        <p>The most progressive spirits brands already analyse <strong>which cocktails feature their product</strong> and where those cocktails are trending. This unlocks a unique advantage: instead of "put us on the menu" — "here is the cocktail trending in bars like yours right now, and here's exactly why our brand fits".</p>
+
+        <h2 id="losers">Where Brands Lose: 3 Systemic Mistakes</h2>
+
+        <h3>Mistake #1: Relying Solely on Field Agents</h3>
+        <p>A field agent physically cannot monitor 200+ venues weekly. He visits each venue once a month at best. In a month, the venue may have changed its menu, head chef, concept and owner.</p>
+
+        <div class="good-box">
+          <div class="good-title">✓ The Right Model</div>
+          <p>Agents — for negotiation and personal relationships. Automated system — for monitoring between visits. Together they deliver <strong>full channel coverage without adding headcount</strong>.</p>
+        </div>
+
+        <h3>Mistake #2: Not Measuring Real HoReCa Market Share</h3>
+        <p>When we ask Brand Managers "what is your market share in HoReCa?" — the answer is usually either "we don't know exactly" or "figures from syndicated research" three months old. But syndicated data costs tens of thousands of dollars and gives no breakdown by individual venue or city district.</p>
+
+        <h3>Mistake #3: Ignoring New Venue Formats</h3>
+        <p>Coffee shops, coworking cafés, food courts in business centres, dark kitchens — all of these formats are growing fast and are traditionally "invisible" to distributors using a classic HoReCa approach. Yet the number of such venues in major cities more than doubled in 2024–2025.</p>
+
+        <h2 id="data">Real Data: What We See Across PICSELL Clients</h2>
+
+        <div class="insight-box">
+          <div class="ib-label">PICSELL HoReCa Pilot Data · 2024–2025</div>
+          <div class="ib-text">
+            <strong style="color:var(--neon);">847</strong> new HoReCa venues found for Lactalis in the first month of Radar — venues that were not in the company's database. Conversion to new customers — 23%.<br><br>
+            <strong style="color:var(--neon);">18%</strong> — average monthly lead growth for clients with active Google Maps Lead Intelligence.<br><br>
+            <strong style="color:var(--neon);">42%</strong> — average category market share in venues with an active contract (vs 28% in venues without monitoring).
+          </div>
+        </div>
+
+        <h2 id="practical">Practical Plan: How to Restructure Your HoReCa Approach</h2>
+
+        <h3>Step 1: Understand Your Real Venue Base</h3>
+        <p>First, an audit. How many venues are in your database? When was it last updated? How many venues opened in the past year that you don't have? Run Google Maps Intelligence — the results will surprise you.</p>
+
+        <h3>Step 2: Automate Monitoring Between Visits</h3>
+        <p>Define the KPIs you want to track: menu presence, price, position. Set up automatic data collection for these metrics. Agents no longer need to spend time "copying the menu" — the system does it automatically.</p>
+
+        <h3>Step 3: Focus Agents on Leads and Negotiation</h3>
+        <p>Redirect agents' time freed from routine monitoring toward visiting new venues and negotiating expanded presence. This is what the system cannot do instead of a person — but the person should be doing <em>only this</em>.</p>
+
+        <div class="quote-pull">"HoReCa is not a channel where you can place a product and forget about it. It's a living market that changes every week. Only those with a monitoring system see the real picture."</div>
+
+        <p>The HoReCa channel in 2026 is an opportunity for those who build systems, and a threat for those who rely on monthly Excel reports. The difference between them is not budget — it's approach.</p>
+
+      </div>
+      <div class="bottom-cta">
+        <h2>Ready to See the Real Picture?</h2>
+        <p>Book a 30-minute demo — we'll show you how PICSELL solves these problems on real data.</p>
+        <div class="btns">
+          <a href="/en/demo/" class="btn-p">Book a Demo &#8594;</a>
+          <a href="/en/case-studies/" class="btn-g">View Case Studies</a>
+        </div>
+      </div>
+    </main>
+    <aside>
+      <div class="sidebar">
+        <div class="sb-cta">
+          <h4>Want to see PICSELL in action?</h4>
+          <p>30 minutes — concrete numbers for your business.</p>
+          <a href="/en/demo/">Book a Demo &#8594;</a>
+        </div>
+        <div class="sb-card"><div class="sb-title">HoReCa Numbers</div><div style="display:flex;flex-direction:column;gap:12px;"><div style="background:var(--bg2);border-radius:var(--r2);padding:12px;"><div style="font-family:'Geologica',sans-serif;font-weight:900;font-size:28px;color:var(--neon);">847</div><div style="font-size:12px;color:var(--t2);margin-top:3px;">new venues found for Lactalis in one month</div></div><div style="background:var(--bg2);border-radius:var(--r2);padding:12px;"><div style="font-family:'Geologica',sans-serif;font-weight:900;font-size:28px;color:var(--blue3);">23%</div><div style="font-size:12px;color:var(--t2);margin-top:3px;">lead-to-customer conversion</div></div><div style="background:var(--bg2);border-radius:var(--r2);padding:12px;"><div style="font-family:'Geologica',sans-serif;font-weight:900;font-size:28px;color:var(--neon);">2 min</div><div style="font-size:12px;color:var(--t2);margin-top:3px;">from competitor dumping to alert</div></div></div></div>
+        <div class="sb-card">
+          <div class="sb-title">Useful Resources</div>
+          <div class="sb-links">
+            <a href="/en/horeca/" class="sb-link">🍽️ PICSELL HoReCa Intelligence</a><a href="/en/solutions-horeca/" class="sb-link">🥂 Solutions for HoReCa Channel</a><a href="/en/radar/" class="sb-link">📡 PICSELL Radar</a>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </div>
+</section>
+<section class="related-section">
+  <div style="max-width:1140px;margin:0 auto;padding:0 var(--s3);">
+    <div style="font-family:'Orbitron',sans-serif;font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--t3);margin-bottom:var(--s4);">Read Also</div>
+    <div class="related-grid">
+      <a href="/en/blog/sfa-field-team-productivity/" class="related-card"><div class="rc-cat">SFA</div><div class="rc-title">5 Signs Your Field Team Wastes 30% of Their Time</div><div class="rc-meta">March 2026 · 6 min</div></a>
+      <a href="/en/blog/perfect-store-audit-accuracy/" class="related-card"><div class="rc-cat">Vision AI</div><div class="rc-title">Perfect Store: Why 9 in 10 Audits Deliver False Results</div><div class="rc-meta">March 2026 · 5 min</div></a>
+      <a href="/en/case-lactalis/" class="related-card"><div class="rc-cat">Case Study</div><div class="rc-title">Lactalis: From Excel to Real-Time in 4 Weeks</div><div class="rc-meta">February 2025 · 10 min</div></a>
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{ define "scripts" }}
+<script>
+(function(){
+  var h=document.getElementById('header');
+  window.addEventListener('scroll',function(){if(h)h.classList.toggle('scrolled',scrollY>30);});
+  var hb=document.getElementById('hamburger'),mn=document.getElementById('mobileNav');
+  if(hb&&mn){hb.addEventListener('click',function(){hb.classList.toggle('open');mn.classList.toggle('open');});}
+  if(mn){mn.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){if(hb)hb.classList.remove('open');mn.classList.remove('open');});});}
+})();
+</script>
+{{ end }}

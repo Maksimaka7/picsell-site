@@ -57,7 +57,100 @@
 </style>
 {{ end }}
 
-{{ define "main" }}
+{{ define "main" }}{{ if strings.HasPrefix .RelPermalink "/en/" }}
+<section id="hero">
+  <div class="hero-bg"><div class="dot-grid"></div><div class="glow1"></div><div class="noise"></div></div>
+  <div class="container">
+    <div class="hero-inner">
+      <div class="h-anim h-d1"><span class="tag">Blog</span></div>
+      <h1 class="hero-h1 h-anim h-d2">FMCG Market Insights from the Team Building <span class="highlight">Sales OS</span></h1>
+      <p class="hero-sub h-anim h-d3">No marketing fluff — just practice, numbers, and real experience.</p>
+
+      <div class="filter-row h-anim h-d4">
+        <button class="filter-btn active" onclick="filterPosts('all',this)">All</button>
+        <button class="filter-btn" onclick="filterPosts('analytics',this)">Market Analytics</button>
+        <button class="filter-btn" onclick="filterPosts('case',this)">Case Studies</button>
+        <button class="filter-btn" onclick="filterPosts('tech',this)">Technology</button>
+        <button class="filter-btn" onclick="filterPosts('sfa',this)">SFA</button>
+        <button class="filter-btn" onclick="filterPosts('horeca',this)">HoReCa</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--bg2);">
+  <div class="container">
+    <!-- FEATURED: latest article -->
+    {{ $allPosts := where site.RegularPages "Params.type" "blog" }}
+    {{ $featured := index ($allPosts.ByDate.Reverse) 0 }}
+    {{ if $featured }}
+    <a href="{{ $featured.Permalink }}" class="featured-card reveal" style="text-decoration:none;color:inherit;">
+      <div class="fc-visual">{{ with $featured.Params.image }}<img loading="lazy" src="{{ . }}" alt="{{ $featured.Title }}" style="width:100%;height:100%;object-fit:contain;background:var(--bg2);">{{ else }}<div style="font-size:64px;display:flex;align-items:center;justify-content:center;height:100%;">📝</div>{{ end }}</div>
+      <div class="fc-content">
+        <div class="fc-badge">{{ with $featured.Params.categories }}{{ index . 0 }}{{ end }}</div>
+        <h2 class="fc-title">{{ $featured.Title }}</h2>
+        <p class="fc-excerpt">{{ with $featured.Params.description }}{{ . | truncate 200 }}{{ else }}{{ $featured.Summary | plainify | truncate 200 }}{{ end }}</p>
+        <div class="fc-meta">
+          <span>{{ $featured.Date.Format "02.01.2006" }}</span>
+          <span>·</span>
+          <span>{{ with $featured.Params.readingTime }}{{ . }} min read{{ end }}</span>
+          <span>·</span>
+          <span>{{ with $featured.Params.author }}{{ . }}{{ end }}</span>
+        </div>
+        <span class="btn btn-p" style="font-size:13px;padding:10px 20px;margin-top:var(--s2);display:inline-flex;">Read Article →</span>
+      </div>
+    </a>
+    {{ end }}
+
+        <!-- DYNAMIC POSTS FROM CMS -->
+    {{ $posts := where site.RegularPages "Params.type" "blog" }}
+    {{ if $posts }}
+    <div class="posts-grid" style="margin-bottom:var(--s5);">
+      {{ range $posts.ByDate.Reverse }}
+      <a href="{{ .Permalink }}" class="post-card reveal" style="text-decoration:none;color:inherit;">
+        <div class="post-thumb" style="padding:0;overflow:hidden;">{{ with .Params.image }}<img loading="lazy" src="{{ . }}" alt="{{ $.Title }}" style="width:100%;height:200px;object-fit:contain;background:var(--bg2);">{{ else }}<div style="display:flex;align-items:center;justify-content:center;height:140px;font-size:48px;">📝</div>{{ end }}<div class="post-cat" style="position:absolute;bottom:8px;left:10px;">{{ with .Params.categories }}{{ index . 0 }}{{ end }}</div></div>
+        <div class="post-body">
+          <h3 class="post-title">{{ .Title }}</h3>
+          <p class="post-excerpt">{{ with .Params.description }}{{ . | truncate 130 }}{{ else }}{{ .Summary | plainify | truncate 130 }}{{ end }}</p>
+          <div class="post-meta">
+            <span>{{ .Date.Format "02.01.2006" }}{{ with .Params.author }} · {{ . }}{{ end }}</span>
+            <span class="post-read">Read →</span>
+          </div>
+        </div>
+      </a>
+      {{ end }}
+    </div>
+    {{ end }}
+
+
+    <!-- SUBSCRIBE -->
+<section class="section" style="background:var(--bg1);">
+  <div class="container">
+    <div class="subscribe-card reveal">
+      <h2>Get 1 FMCG market insight per week — <span class="highlight">no spam</span></h2>
+      <p>Only the core of FMCG analytics, case studies, and practical tips. Join 800+ FMCG executives in Ukraine.</p>
+      <form class="subscribe-form" name="subscribe" method="POST" data-netlify="true">
+        <input type="hidden" name="form-name" value="subscribe"/>
+        <input type="email" class="subscribe-input" placeholder="your@company.com" id="subEmail" name="email"/>
+        <button class="btn btn-p" type="submit">Subscribe</button>
+      </form>
+      <div class="subscribe-note" id="subNote">Click — and you'll receive your first insight next Monday</div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-band">
+  <div class="container"><div class="reveal">
+    <span class="tag" style="display:block;margin-bottom:var(--s2);">Ready to Transform Your Business?</span>
+    <h2>Book a Personal Demo of <span class="highlight">PICSELL</span></h2>
+    <p>30 minutes — and you'll see your shelf differently.</p>
+    <div class="cta-btns">
+      <a href="/demo/" class="btn btn-p btn-lg">Book a Demo →</a>
+      <a href="/case-studies/" class="btn btn-g">View Case Studies</a>
+    </div>
+  </div></div>
+</div>
+{{ else }}
 <section id="hero">
   <div class="hero-bg"><div class="dot-grid"></div><div class="glow1"></div><div class="noise"></div></div>
   <div class="container">
@@ -150,9 +243,36 @@
     </div>
   </div></div>
 </div>
-{{ end }}
+{{ end }}{{ end }}
 
-{{ define "scripts" }}
+{{ define "scripts" }}{{ if strings.HasPrefix .RelPermalink "/en/" }}
+<script>
+(function(){
+  var h=document.getElementById('header');
+  window.addEventListener('scroll',function(){if(h)h.classList.toggle('scrolled',scrollY>30);});
+  var hbg=document.getElementById('hamburger'),mn=document.getElementById('mobileNav');
+  if(hbg&&mn){hbg.addEventListener('click',function(){hbg.classList.toggle('open');mn.classList.toggle('open');document.body.style.overflow=mn.classList.contains('open')?'hidden':'';});mn.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){hbg.classList.remove('open');mn.classList.remove('open');document.body.style.overflow='';});});}
+  var obs=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');obs.unobserve(x.target);}});},{threshold:0.05,rootMargin:'0px 0px -25px 0px'});
+  function reg(){document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(function(el){var r=el.getBoundingClientRect();if(r.top<window.innerHeight+100&&r.bottom>-100)el.classList.add('in');else obs.observe(el);});}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',reg);else reg();
+  window.addEventListener('load',reg);
+})();
+function filterPosts(cat,btn){
+  document.querySelectorAll('.filter-btn').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+  document.querySelectorAll('.post-card,[data-category]').forEach(function(p){
+    p.style.display=(cat==='all'||p.dataset.category===cat)?'':'none';
+  });
+}
+function handleSubscribe(){
+  var e=document.getElementById('subEmail').value.trim();
+  if(!e||!e.includes('@')){alert('Please enter a valid email.');return;}
+  document.getElementById('subNote').textContent='✓ Thank you! Your first insight is coming next Monday.';
+  document.getElementById('subEmail').value='';
+  document.getElementById('subEmail').disabled=true;
+}
+</script>
+{{ else }}
 <script>
 (function(){
   var h=document.getElementById('header');
@@ -179,4 +299,4 @@ function handleSubscribe(){
   document.getElementById('subEmail').disabled=true;
 }
 </script>
-{{ end }}
+{{ end }}{{ end }}
