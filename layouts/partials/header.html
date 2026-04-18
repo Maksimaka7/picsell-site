@@ -125,27 +125,27 @@ h1,h2,h3,h4{font-family:'Geologica',sans-serif;line-height:1.08;letter-spacing:-
   <a href="{{ "/" | relLangURL }}" class="logo"><img loading="eager" src="/images/Logo-3.svg" alt="PICSELL"></a>
   <nav class="nav-wrap">
     <div class="nav-item">
-      <span class="nav-link">Продукти <span class="nav-chevron">▾</span></span>
+      <span class="nav-link">{{ if eq .Site.Language.Lang "en" }}Products{{ else }}Продукти{{ end }} <span class="nav-chevron">▾</span></span>
       <div class="dropdown">
-        <a href="{{ "/vision-ai/" | relLangURL }}" class="dd-item"><span class="dd-icon">👁️</span><span class="dd-text"><strong>Vision AI</strong><span>Розпізнавання полиці 99.9%</span></span></a>
-        <a href="{{ "/sales-app/" | relLangURL }}" class="dd-item"><span class="dd-icon">📱</span><span class="dd-text"><strong>Sales App</strong><span>Автоматизація польових продажів</span></span></a>
-        <a href="{{ "/horeca/" | relLangURL }}" class="dd-item"><span class="dd-icon">🍽️</span><span class="dd-text"><strong>HoReCa Intelligence</strong><span>Моніторинг меню та закладів</span></span></a>
+        <a href="{{ "/vision-ai/" | relLangURL }}" class="dd-item"><span class="dd-icon">👁️</span><span class="dd-text"><strong>Vision AI</strong><span>{{ if eq .Site.Language.Lang "en" }}Shelf recognition 99.9%{{ else }}Розпізнавання полиці 99.9%{{ end }}</span></span></a>
+        <a href="{{ "/sales-app/" | relLangURL }}" class="dd-item"><span class="dd-icon">📱</span><span class="dd-text"><strong>Sales App</strong><span>{{ if eq .Site.Language.Lang "en" }}Field sales automation{{ else }}Автоматизація польових продажів{{ end }}</span></span></a>
+        <a href="{{ "/horeca/" | relLangURL }}" class="dd-item"><span class="dd-icon">🍽️</span><span class="dd-text"><strong>HoReCa Intelligence</strong><span>{{ if eq .Site.Language.Lang "en" }}Menu & venue monitoring{{ else }}Моніторинг меню та закладів{{ end }}</span></span></a>
         <a href="{{ "/analytics/" | relLangURL }}" class="dd-item"><span class="dd-icon">📊</span><span class="dd-text"><strong>Analytics</strong><span>Power BI + AI Copilot</span></span></a>
-        <a href="{{ "/radar/" | relLangURL }}" class="dd-item"><span class="dd-icon">📡</span><span class="dd-text"><strong>Radar</strong><span>Конкурентна розвідка</span></span></a>
+        <a href="{{ "/radar/" | relLangURL }}" class="dd-item"><span class="dd-icon">📡</span><span class="dd-text"><strong>Radar</strong><span>{{ if eq .Site.Language.Lang "en" }}Competitive intelligence{{ else }}Конкурентна розвідка{{ end }}</span></span></a>
       </div>
     </div>
     <div class="nav-item">
-      <span class="nav-link">Рішення <span class="nav-chevron">▾</span></span>
+      <span class="nav-link">{{ if eq .Site.Language.Lang "en" }}Solutions{{ else }}Рішення{{ end }} <span class="nav-chevron">▾</span></span>
       <div class="dropdown">
-        <a href="{{ "/solutions-brands/" | relLangURL }}" class="dd-item"><span class="dd-icon">🏭</span><span class="dd-text"><strong>Для виробників</strong><span>Контроль полиці по SKU</span></span></a>
-        <a href="{{ "/solutions-distributors/" | relLangURL }}" class="dd-item"><span class="dd-icon">🚚</span><span class="dd-text"><strong>Для дистриб'юторів</strong><span>Більше візитів, менше витрат</span></span></a>
-        <a href="{{ "/solutions-horeca/" | relLangURL }}" class="dd-item"><span class="dd-icon">🥂</span><span class="dd-text"><strong>Для HoReCa каналу</strong><span>Моніторинг присутності в закладах</span></span></a>
+        <a href="{{ "/solutions-brands/" | relLangURL }}" class="dd-item"><span class="dd-icon">🏭</span><span class="dd-text"><strong>{{ if eq .Site.Language.Lang "en" }}For Brands{{ else }}Для виробників{{ end }}</strong><span>{{ if eq .Site.Language.Lang "en" }}Shelf control by SKU{{ else }}Контроль полиці по SKU{{ end }}</span></span></a>
+        <a href="{{ "/solutions-distributors/" | relLangURL }}" class="dd-item"><span class="dd-icon">🚚</span><span class="dd-text"><strong>{{ if eq .Site.Language.Lang "en" }}For Distributors{{ else }}Для дистриб'юторів{{ end }}</strong><span>{{ if eq .Site.Language.Lang "en" }}More visits, less cost{{ else }}Більше візитів, менше витрат{{ end }}</span></span></a>
+        <a href="{{ "/solutions-horeca/" | relLangURL }}" class="dd-item"><span class="dd-icon">🥂</span><span class="dd-text"><strong>{{ if eq .Site.Language.Lang "en" }}For HoReCa{{ else }}Для HoReCa каналу{{ end }}</strong><span>{{ if eq .Site.Language.Lang "en" }}Brand presence in venues{{ else }}Моніторинг присутності в закладах{{ end }}</span></span></a>
       </div>
     </div>
-    <a href="{{ "/pricing/" | relLangURL }}" class="nav-link">Ціни</a>
-    <a href="{{ "/case-studies/" | relLangURL }}" class="nav-link">Кейси</a>
-    <a href="{{ "/blog/" | relLangURL }}" class="nav-link">Блог</a>
-    <a href="{{ "/about/" | relLangURL }}" class="nav-link">Про нас</a>
+    <a href="{{ "/pricing/" | relLangURL }}" class="nav-link">{{ if eq .Site.Language.Lang "en" }}Pricing{{ else }}Ціни{{ end }}</a>
+    <a href="{{ "/case-studies/" | relLangURL }}" class="nav-link">{{ if eq .Site.Language.Lang "en" }}Cases{{ else }}Кейси{{ end }}</a>
+    <a href="{{ "/blog/" | relLangURL }}" class="nav-link">Blog</a>
+    <a href="{{ "/about/" | relLangURL }}" class="nav-link">{{ if eq .Site.Language.Lang "en" }}About{{ else }}Про нас{{ end }}</a>
   </nav>
   <div class="nav-r"><a href="tel:+380778809888" class="nav-link nav-phone" style="color:var(--t1);font-weight:600;font-size:13px;" aria-label="Телефон PICSELL">+380&nbsp;77&nbsp;880&nbsp;98&nbsp;88</a><div class="lang-switch">{{ range .Site.Languages }}<a href="{{ if eq .Lang "uk" }}/{{ else }}/{{ .Lang }}/{{ end }}" class="lang-btn{{ if eq $.Site.Language.Lang .Lang }} lang-active{{ end }}" hreflang="{{ .Lang }}">{{ .Lang | upper }}</a>{{ end }}</div><a href="{{ "/demo/" | relLangURL }}" class="btn btn-p btn-sm">{{ if eq .Site.Language.Lang "en" }}Book Demo{{ else }}Замовити демо{{ end }}</a><button class="hamburger" id="hamburger" aria-label="Меню"><span></span><span></span><span></span></button></div>
 </div></div></header>
@@ -154,7 +154,7 @@ h1,h2,h3,h4{font-family:'Geologica',sans-serif;line-height:1.08;letter-spacing:-
 <div class="mobile-nav" id="mobileNav">
   <a href="{{ "/" | relLangURL }}">{{ if eq .Site.Language.Lang "en" }}Home{{ else }}Головна{{ end }}</a>
   <div style="display:flex;gap:8px;margin:4px 0;">{{ range .Site.Languages }}<a href="{{ if eq .Lang "uk" }}/{{ else }}/{{ .Lang }}/{{ end }}" style="font-size:13px;font-weight:600;padding:4px 12px;border-radius:6px;border:1px solid var(--border);color:{{ if eq $.Site.Language.Lang .Lang }}var(--blue){{ else }}var(--t2){{ end }};">{{ .Lang | upper }}</a>{{ end }}</div>
-  <span class="mob-section">Продукти</span>
+  <span class="mob-section">{{ if eq .Site.Language.Lang "en" }}Products{{ else }}Продукти{{ end }}</span>
   <a href="{{ "/vision-ai/" | relLangURL }}">Vision AI</a>
   <a href="{{ "/sales-app/" | relLangURL }}">Sales App</a>
   <a href="{{ "/horeca/" | relLangURL }}">HoReCa</a>
