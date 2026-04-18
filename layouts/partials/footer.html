@@ -25,7 +25,7 @@
   <div class="footer-grid">
     <div class="footer-brand">
       <a href="{{ "/" | relLangURL }}" class="logo"><img loading="eager" src="/images/Logo-3.svg" alt="PICSELL" style="height:24px;width:auto;"></a>
-      <p class="footer-brand-desc">{{ if eq .Site.Language.Lang "en" }}Sales OS for the FMCG market. Vision AI + field sales + HoReCa Intelligence — in one platform. Built in Ukraine 🇺🇦{{ else }}Sales OS для FMCG ринку. Vision AI + польові продажі + HoReCa Intelligence — в одній платформі. Зроблено в Україні 🇺🇦{{ end }}</p>
+      <p class="footer-brand-desc">{{ if strings.HasPrefix .RelPermalink "/en/" }}Sales OS for the FMCG market. Vision AI + field sales + HoReCa Intelligence — in one platform. Built in Ukraine 🇺🇦{{ else }}Sales OS для FMCG ринку. Vision AI + польові продажі + HoReCa Intelligence — в одній платформі. Зроблено в Україні 🇺🇦{{ end }}</p>
       <div class="footer-social">
         <a href="https://www.linkedin.com/company/picsell-ai" target="_blank" rel="noopener" class="soc-btn" title="LinkedIn" aria-label="PICSELL LinkedIn">in</a>
         <a href="https://t.me/PicSell_ua_bot" target="_blank" rel="noopener" class="soc-btn" title="Telegram" aria-label="PICSELL Telegram">✈</a>
@@ -33,7 +33,7 @@
       </div>
     </div>
     <div class="footer-col">
-      <div class="footer-col-title">{{ if eq .Site.Language.Lang "en" }}Products{{ else }}Продукти{{ end }}</div>
+      <div class="footer-col-title">{{ if strings.HasPrefix .RelPermalink "/en/" }}Products{{ else }}Продукти{{ end }}</div>
       <ul>
         <li><a href="{{ "/vision-ai/" | relLangURL }}">Vision AI</a></li>
         <li><a href="{{ "/sales-app/" | relLangURL }}">Sales App</a></li>
@@ -43,31 +43,31 @@
       </ul>
     </div>
     <div class="footer-col">
-      <div class="footer-col-title">{{ if eq .Site.Language.Lang "en" }}Solutions{{ else }}Рішення{{ end }}</div>
+      <div class="footer-col-title">{{ if strings.HasPrefix .RelPermalink "/en/" }}Solutions{{ else }}Рішення{{ end }}</div>
       <ul>
-        <li><a href="{{ "/solutions-brands/" | relLangURL }}">{{ if eq .Site.Language.Lang "en" }}For Brands{{ else }}Для виробників{{ end }}</a></li>
-<li><a href="{{ "/solutions-distributors/" | relLangURL }}">{{ if eq .Site.Language.Lang "en" }}For Distributors{{ else }}Для дистриб'юторів{{ end }}</a></li>
+        <li><a href="{{ "/solutions-brands/" | relLangURL }}">{{ if strings.HasPrefix .RelPermalink "/en/" }}For Brands{{ else }}Для виробників{{ end }}</a></li>
+<li><a href="{{ "/solutions-distributors/" | relLangURL }}">{{ if strings.HasPrefix .RelPermalink "/en/" }}For Distributors{{ else }}Для дистриб'юторів{{ end }}</a></li>
         <li><a href="{{ "/solutions-horeca/" | relLangURL }}">For HoReCa</a></li>
       </ul>
     </div>
     <div class="footer-col">
-      <div class="footer-col-title">{{ if eq .Site.Language.Lang "en" }}Company{{ else }}Компанія{{ end }}</div>
+      <div class="footer-col-title">{{ if strings.HasPrefix .RelPermalink "/en/" }}Company{{ else }}Компанія{{ end }}</div>
       <ul>
-        <li><a href="{{ "/pricing/" | relLangURL }}">{{ if eq .Site.Language.Lang "en" }}Pricing{{ else }}Ціни{{ end }}</a></li>
-        <li><a href="{{ "/case-studies/" | relLangURL }}">{{ if eq .Site.Language.Lang "en" }}Cases{{ else }}Кейси{{ end }}</a></li>
+        <li><a href="{{ "/pricing/" | relLangURL }}">{{ if strings.HasPrefix .RelPermalink "/en/" }}Pricing{{ else }}Ціни{{ end }}</a></li>
+        <li><a href="{{ "/case-studies/" | relLangURL }}">{{ if strings.HasPrefix .RelPermalink "/en/" }}Cases{{ else }}Кейси{{ end }}</a></li>
         <li><a href="{{ "/blog/" | relLangURL }}">Blog</a></li>
-        <li><a href="{{ "/about/" | relLangURL }}">{{ if eq .Site.Language.Lang "en" }}About{{ else }}Про нас{{ end }}</a></li>
-        <li><a href="{{ "/demo/" | relLangURL }}">{{ if eq .Site.Language.Lang "en" }}Demo{{ else }}Демо{{ end }}</a></li>
+        <li><a href="{{ "/about/" | relLangURL }}">{{ if strings.HasPrefix .RelPermalink "/en/" }}About{{ else }}Про нас{{ end }}</a></li>
+        <li><a href="{{ "/demo/" | relLangURL }}">{{ if strings.HasPrefix .RelPermalink "/en/" }}Demo{{ else }}Демо{{ end }}</a></li>
         <li><a href="mailto:{{ site.Params.email }}">{{ site.Params.email }}</a></li>
         <li><a href="tel:+380778809888">+380 77 880 98 88</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <p>{{ if eq .Site.Language.Lang "en" }}© 2026 PICSELL by Imperia Holding. All rights reserved.{{ else }}© 2026 PICSELL by Imperia Holding. Всі права захищені.{{ end }}</p>
+    <p>{{ if strings.HasPrefix .RelPermalink "/en/" }}© 2026 PICSELL by Imperia Holding. All rights reserved.{{ else }}© 2026 PICSELL by Imperia Holding. Всі права захищені.{{ end }}</p>
     <div style="display:flex;gap:var(--s3);">
-      <a href="/privacy/" style="font-size:13px;color:var(--t3);">{{ if eq .Site.Language.Lang "en" }}Privacy Policy{{ else }}Політика конфіденційності{{ end }}</a>
-      <a href="/terms/" style="font-size:13px;color:var(--t3);">{{ if eq .Site.Language.Lang "en" }}Terms of Use{{ else }}Умови використання{{ end }}</a>
+      <a href="/privacy/" style="font-size:13px;color:var(--t3);">{{ if strings.HasPrefix .RelPermalink "/en/" }}Privacy Policy{{ else }}Політика конфіденційності{{ end }}</a>
+      <a href="/terms/" style="font-size:13px;color:var(--t3);">{{ if strings.HasPrefix .RelPermalink "/en/" }}Terms of Use{{ else }}Умови використання{{ end }}</a>
     </div>
   </div>
 </div></footer>
