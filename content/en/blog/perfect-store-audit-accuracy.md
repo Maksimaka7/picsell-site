@@ -5,7 +5,7 @@ author: "PICSELL Team"
 description: "Why 9 in 10 manual Perfect Store audits contain errors and how Vision AI delivers an objective picture across all trade outlets."
 categories: [Vision AI]
 tags: [Perfect Store, shelf audit, Vision AI, merchandising, FMCG]
-image: "/images/cover-perfect-store.svg"
+image: "/images/en-cover-perfect-store.svg"
 type: "blog"
 layout: "en-perfect-store-audit"
 url: "/en/blog/perfect-store-audit-accuracy/"

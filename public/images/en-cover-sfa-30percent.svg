@@ -1,0 +1,74 @@
+<svg width="1200" height="630" viewBox="0 0 680 400" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>PICSELL Blog — 5 Signs Your Field Team</title>
+<defs>
+  <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" stop-color="#060608"/>
+    <stop offset="100%" stop-color="#0D0D12"/>
+  </linearGradient>
+  <linearGradient id="gl" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" stop-color="#0057FF" stop-opacity="0.16"/>
+    <stop offset="100%" stop-color="#0057FF" stop-opacity="0"/>
+  </linearGradient>
+  <clipPath id="cr"><rect width="680" height="400" rx="12"/></clipPath>
+</defs>
+<g clip-path="url(#cr)">
+  <rect width="680" height="400" fill="url(#bg)"/>
+  <pattern id="dots" x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse">
+    <circle cx="1" cy="1" r="1" fill="#FFFFFF" opacity="0.042"/>
+  </pattern>
+  <rect width="680" height="400" fill="url(#dots)"/>
+  
+  <ellipse cx="160" cy="200" rx="180" ry="160" fill="url(#gl)"/>
+  <g transform="translate(400,55)">
+    <rect x="0" y="0" width="210" height="310" rx="20" fill="#111114" stroke="#1E1E24" stroke-width="1"/>
+    <rect x="8" y="16" width="194" height="278" rx="14" fill="#0D0D0F"/>
+    <rect x="8" y="16" width="194" height="44" rx="14" fill="#111114"/>
+    <rect x="8" y="44" width="194" height="16" fill="#111114"/>
+    <circle cx="30" cy="38" r="8" fill="#1A1A1E"/>
+    <rect x="44" y="30" width="60" height="5" rx="2" fill="#222228"/>
+    <rect x="108" y="30" width="80" height="16" rx="8" fill="#C8FF0018" stroke="#C8FF0035" stroke-width="0.5"/>
+    <circle cx="120" cy="38" r="3" fill="#C8FF00"/>
+    <rect x="127" y="35" width="50" height="5" rx="2" fill="#C8FF0070"/>
+    <line x1="30" y1="76" x2="30" y2="200" stroke="#1E1E24" stroke-width="1.5" stroke-dasharray="3,3"/>
+    <circle cx="30" cy="86" r="7" fill="#C8FF00"/>
+    <rect x="44" y="82" width="90" height="6" rx="3" fill="#222228"/>
+    <rect x="44" y="92" width="64" height="4" rx="2" fill="#1A1A1E"/>
+    <rect x="140" y="82" width="54" height="12" rx="6" fill="#C8FF0018" stroke="#C8FF0030" stroke-width="0.5"/>
+    <circle cx="30" cy="130" r="7" fill="#0057FF"/>
+    <circle cx="30" cy="130" r="11" fill="none" stroke="#0057FF" stroke-width="1" stroke-opacity="0.3"/>
+    <rect x="44" y="125" width="75" height="6" rx="3" fill="#222228"/>
+    <rect x="44" y="135" width="50" height="4" rx="2" fill="#1A1A1E"/>
+    <rect x="140" y="124" width="54" height="12" rx="6" fill="#0057FF18" stroke="#0057FF35" stroke-width="0.5"/>
+    <circle cx="30" cy="170" r="7" fill="#1E1E24" stroke="#2A2A32" stroke-width="1"/>
+    <rect x="44" y="165" width="65" height="6" rx="3" fill="#1A1A1E"/>
+    <rect x="14" y="220" width="88" height="56" rx="8" fill="#111114" stroke="#1E1E24" stroke-width="0.5"/>
+    <text x="20" y="253" fill="#C8FF00" font-family="monospace" font-size="14" font-weight="700">+40%</text>
+    <rect x="20" y="257" width="60" height="4" rx="2" fill="#1A1A1E"/>
+    <rect x="110" y="220" width="88" height="56" rx="8" fill="#111114" stroke="#1E1E24" stroke-width="0.5"/>
+    <text x="116" y="253" fill="#3380FF" font-family="monospace" font-size="14" font-weight="700">7/12</text>
+    <rect x="116" y="257" width="60" height="4" rx="2" fill="#1A1A1E"/>
+    <rect x="14" y="284" width="184" height="22" rx="6" fill="#FF003D08" stroke="#FF003D25" stroke-width="0.5"/>
+    <circle cx="24" cy="295" r="4" fill="#FF003D"/>
+    <rect x="33" y="291" width="90" height="4" rx="2" fill="#FF003D40"/>
+  </g>
+  <!-- Accent bar top-left -->
+  <rect x="40" y="36" width="40" height="3" rx="1.5" fill="#C8FF00" opacity="0.9"/>
+  <!-- Category badge -->
+  <rect x="40" y="46" width="108" height="20" rx="10" fill="#3380FF12" stroke="#3380FF35" stroke-width="0.5"/>
+  <circle cx="53" cy="56" r="3" fill="#3380FF"/>
+  <text x="62" y="60" fill="#3380FF" font-family="Arial, sans-serif" font-size="9" font-weight="700" letter-spacing="0.1em" text-transform="uppercase">SFA</text>
+  <!-- Lines -->
+  <text x="40" y="126" fill="#FFFFFF" font-family="Georgia, serif" font-size="30" font-weight="700" letter-spacing="-0.4">5 Signs Your</text>
+  <text x="40" y="162" fill="#FFFFFF" font-family="Georgia, serif" font-size="30" font-weight="700" letter-spacing="-0.4">Field Team</text>
+  <text x="40" y="198" fill="#C8FF00" font-family="Georgia, serif" font-size="30" font-weight="700" letter-spacing="-0.4">Wastes 30%</text>
+  <text x="40" y="234" fill="#FFFFFF" font-family="Georgia, serif" font-size="30" font-weight="700" letter-spacing="-0.4">of Their Time</text>
+  <!-- Sub -->
+  <text x="40" y="276" fill="#A0A0B0" font-family="Arial, sans-serif" font-size="13">A checklist for FMCG sales directors.</text>
+  <text x="40" y="294" fill="#A0A0B0" font-family="Arial, sans-serif" font-size="13">Fix this today — free your team to sell.</text>
+  <!-- Meta -->
+  <rect x="40" y="332" width="3" height="20" rx="1.5" fill="#C8FF00"/>
+  <text x="50" y="348" fill="#666670" font-family="Arial, sans-serif" font-size="12">SFA · Field Sales · 6 min read</text>
+  <!-- Logo -->
+  <text x="638" y="380" fill="#282828" font-family="Georgia, serif" font-size="14" font-weight="700" text-anchor="end">PICSELL+</text>
+</g>
+</svg>

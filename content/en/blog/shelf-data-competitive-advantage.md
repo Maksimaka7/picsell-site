@@ -5,7 +5,7 @@ author: "PICSELL Team"
 description: "The AI-in-retail market will reach $164 billion by 2030. Shelf data has become a strategic asset more valuable than any advertising campaign."
 categories: [Trends]
 tags: [shelf data, retail data, competitive advantage, Vision AI, FMCG, AI retail]
-image: "/images/cover-shelf-data.svg"
+image: "/images/en-cover-shelf-data.svg"
 type: "blog"
 layout: "en-shelf-data-value"
 url: "/en/blog/shelf-data-competitive-advantage/"

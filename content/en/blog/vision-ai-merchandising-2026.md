@@ -5,7 +5,7 @@ author: "PICSELL Team"
 description: "Vision AI automates shelf audits, detects OOS in real time, and raises Share of Shelf. How field teams are cutting audit time by 40% and saving $200 per agent per month."
 categories: [Vision AI]
 tags: [merchandising, AI, shelf recognition, audit, OOS, Share of Shelf, FMCG]
-image: "/images/cover-vision-ai.svg"
+image: "/images/en-cover-vision-ai.svg"
 type: "blog"
 layout: "en-yak-vision-ai-zminuye-merchandising"
 url: "/en/blog/vision-ai-merchandising-2026/"

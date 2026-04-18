@@ -11,7 +11,7 @@ tags:
   - field sales
   - mobile app
   - FMCG
-image: "/images/cover-offline-first.svg"
+image: "/images/en-cover-offline-first.svg"
 type: "blog"
 layout: "en-offline-first-ukraine"
 url: "/en/blog/offline-first-field-sales/"

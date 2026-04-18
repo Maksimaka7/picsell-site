@@ -11,7 +11,7 @@ tags:
   - SFA system
   - sales automation
   - FMCG
-image: "/images/cover-sfa-30percent.svg"
+image: "/images/en-cover-sfa-30percent.svg"
 type: "blog"
 layout: "en-sfa-30percent-waste"
 url: "/en/blog/sfa-field-team-productivity/"

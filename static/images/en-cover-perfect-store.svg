@@ -1,0 +1,90 @@
+<svg width="1200" height="630" viewBox="0 0 680 400" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>PICSELL Blog — Perfect Store: Why 9 in 10</title>
+<defs>
+  <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" stop-color="#060608"/>
+    <stop offset="100%" stop-color="#0C0C12"/>
+  </linearGradient>
+  <linearGradient id="gl" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" stop-color="#0057FF" stop-opacity="0.15"/>
+    <stop offset="100%" stop-color="#0057FF" stop-opacity="0"/>
+  </linearGradient>
+  <clipPath id="cr"><rect width="680" height="400" rx="12"/></clipPath>
+</defs>
+<g clip-path="url(#cr)">
+  <rect width="680" height="400" fill="url(#bg)"/>
+  <pattern id="dots" x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse">
+    <circle cx="1" cy="1" r="1" fill="#FFFFFF" opacity="0.042"/>
+  </pattern>
+  <rect width="680" height="400" fill="url(#dots)"/>
+  
+  <ellipse cx="545" cy="290" rx="200" ry="160" fill="url(#gl)"/>
+  <g transform="translate(358,48)">
+    <rect x="0" y="0" width="295" height="305" rx="14" fill="#0D0D0F" stroke="#1E1E24" stroke-width="0.8"/>
+    <rect x="0" y="0" width="295" height="44" rx="14" fill="#111114"/>
+    <rect x="0" y="30" width="295" height="14" fill="#111114"/>
+    <rect x="16" y="12" width="90" height="5" rx="2" fill="#2A2A32"/>
+    <text x="215" y="27" fill="#C8FF00" font-family="monospace" font-size="16" font-weight="700">87%</text>
+    <rect x="16" y="60" width="263" height="3" rx="1" fill="#2A2A32"/>
+    <rect x="20" y="42" width="28" height="18" rx="2" fill="#0057FF" opacity="0.85"/>
+    <rect x="52" y="42" width="28" height="18" rx="2" fill="#0057FF" opacity="0.85"/>
+    <rect x="84" y="42" width="28" height="18" rx="2" fill="#0057FF" opacity="0.85"/>
+    <rect x="116" y="42" width="28" height="18" rx="2" fill="#1E1E24" stroke="#FF003D" stroke-width="1" stroke-dasharray="2,2"/>
+    <text x="130" y="54" fill="#FF003D" font-family="monospace" font-size="9" text-anchor="middle">OOS</text>
+    <rect x="148" y="42" width="28" height="18" rx="2" fill="#0057FF" opacity="0.7"/>
+    <rect x="180" y="42" width="28" height="18" rx="2" fill="#0057FF" opacity="0.5"/>
+    <rect x="212" y="42" width="28" height="18" rx="2" fill="#0057FF" opacity="0.85"/>
+    <rect x="244" y="42" width="28" height="18" rx="2" fill="#0057FF" opacity="0.85"/>
+    <rect x="16" y="108" width="263" height="3" rx="1" fill="#2A2A32"/>
+    <rect x="20" y="88" width="34" height="20" rx="2" fill="#FF003D" opacity="0.4"/>
+    <rect x="58" y="88" width="34" height="20" rx="2" fill="#FF003D" opacity="0.4"/>
+    <rect x="96" y="88" width="34" height="20" rx="2" fill="#FF003D" opacity="0.4"/>
+    <rect x="134" y="88" width="34" height="20" rx="2" fill="#FF003D" opacity="0.4"/>
+    <rect x="172" y="88" width="34" height="20" rx="2" fill="#FF003D" opacity="0.25"/>
+    <line x1="16" y1="72" x2="279" y2="72" stroke="#C8FF00" stroke-width="1" stroke-opacity="0.6" stroke-dasharray="4,2"/>
+    <polygon points="16,69 22,72 16,75" fill="#C8FF00" opacity="0.6"/>
+    <rect x="16" y="122" width="263" height="4" rx="2" fill="#1A1A1E"/>
+    <rect x="16" y="122" width="168" height="4" rx="2" fill="#0057FF"/>
+    <circle cx="184" cy="124" r="5" fill="#0057FF"/>
+    <text x="194" y="128" fill="#3380FF" font-family="monospace" font-size="10">64%</text>
+    <rect x="16" y="142" width="122" height="52" rx="6" fill="#111114" stroke="#1E1E24" stroke-width="0.5"/>
+    <text x="20" y="174" fill="#C8FF00" font-family="monospace" font-size="20" font-weight="700">87%</text>
+    <rect x="16" y="142" width="36" height="12" rx="3" fill="#2A2A32" y="136"/>
+    <rect x="148" y="142" width="62" height="52" rx="6" fill="#FF003D06" stroke="#FF003D20" stroke-width="0.5"/>
+    <text x="152" y="174" fill="#FF003D" font-family="monospace" font-size="20" font-weight="700">2.1%</text>
+    <rect x="220" y="142" width="58" height="52" rx="6" fill="#C8FF0004" stroke="#C8FF0018" stroke-width="0.5"/>
+    <text x="224" y="174" fill="#C8FF00" font-family="monospace" font-size="20" font-weight="700">+5%</text>
+    <rect x="116" y="38" width="36" height="28" rx="3" fill="none" stroke="#C8FF00" stroke-width="1.2" stroke-opacity="0.8"/>
+    <rect x="116" y="38" width="36" height="8" fill="#C8FF0020"/>
+    <text x="134" y="44" fill="#C8FF00" font-family="monospace" font-size="6" text-anchor="middle">AI SCAN</text>
+    <rect x="16" y="206" width="263" height="84" rx="8" fill="#111114" stroke="#1E1E24" stroke-width="0.5"/>
+    <rect x="24" y="226" width="238" height="6" rx="3" fill="#1A1A1E"/>
+    <rect x="24" y="226" width="206" height="6" rx="3" fill="#0057FF" opacity="0.7"/>
+    <rect x="24" y="240" width="238" height="6" rx="3" fill="#1A1A1E"/>
+    <rect x="24" y="240" width="148" height="6" rx="3" fill="#FF003D" opacity="0.5"/>
+    <rect x="24" y="254" width="238" height="6" rx="3" fill="#1A1A1E"/>
+    <rect x="24" y="254" width="218" height="6" rx="3" fill="#C8FF00" opacity="0.6"/>
+    <rect x="24" y="268" width="238" height="6" rx="3" fill="#1A1A1E"/>
+    <rect x="24" y="268" width="174" height="6" rx="3" fill="#0057FF" opacity="0.5"/>
+  </g>
+  <!-- Accent bar top-left -->
+  <rect x="40" y="36" width="40" height="3" rx="1.5" fill="#0057FF" opacity="0.9"/>
+  <!-- Category badge -->
+  <rect x="40" y="46" width="108" height="20" rx="10" fill="#3380FF12" stroke="#3380FF35" stroke-width="0.5"/>
+  <circle cx="53" cy="56" r="3" fill="#3380FF"/>
+  <text x="62" y="60" fill="#3380FF" font-family="Arial, sans-serif" font-size="9" font-weight="700" letter-spacing="0.1em" text-transform="uppercase">VISION AI</text>
+  <!-- Lines -->
+  <text x="40" y="126" fill="#FFFFFF" font-family="Georgia, serif" font-size="30" font-weight="700" letter-spacing="-0.4">Perfect Store:</text>
+  <text x="40" y="162" fill="#FFFFFF" font-family="Georgia, serif" font-size="30" font-weight="700" letter-spacing="-0.4">Why 9 in 10</text>
+  <text x="40" y="198" fill="#0057FF" font-family="Georgia, serif" font-size="30" font-weight="700" letter-spacing="-0.4">Audits Give</text>
+  <text x="40" y="234" fill="#FFFFFF" font-family="Georgia, serif" font-size="30" font-weight="700" letter-spacing="-0.4">False Results</text>
+  <!-- Sub -->
+  <text x="40" y="276" fill="#A0A0B0" font-family="Arial, sans-serif" font-size="13">Observer effect, frequency, subjectivity —</text>
+  <text x="40" y="294" fill="#A0A0B0" font-family="Arial, sans-serif" font-size="13">and how AI fixes all three automatically.</text>
+  <!-- Meta -->
+  <rect x="40" y="332" width="3" height="20" rx="1.5" fill="#0057FF"/>
+  <text x="50" y="348" fill="#666670" font-family="Arial, sans-serif" font-size="12">Vision AI · Perfect Store · 5 min read</text>
+  <!-- Logo -->
+  <text x="638" y="380" fill="#282828" font-family="Georgia, serif" font-size="14" font-weight="700" text-anchor="end">PICSELL+</text>
+</g>
+</svg>

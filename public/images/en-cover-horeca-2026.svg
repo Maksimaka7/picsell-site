@@ -1,0 +1,87 @@
+<svg width="1200" height="630" viewBox="0 0 680 400" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>PICSELL Blog — HoReCa Channel 2026: Where</title>
+<defs>
+  <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" stop-color="#060608"/>
+    <stop offset="100%" stop-color="#0A0A0E"/>
+  </linearGradient>
+  <linearGradient id="gl" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" stop-color="#C8FF00" stop-opacity="0.08"/>
+    <stop offset="100%" stop-color="#C8FF00" stop-opacity="0"/>
+  </linearGradient>
+  <clipPath id="cr"><rect width="680" height="400" rx="12"/></clipPath>
+</defs>
+<g clip-path="url(#cr)">
+  <rect width="680" height="400" fill="url(#bg)"/>
+  <pattern id="dots" x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse">
+    <circle cx="1" cy="1" r="1" fill="#FFFFFF" opacity="0.042"/>
+  </pattern>
+  <rect width="680" height="400" fill="url(#dots)"/>
+  
+  <ellipse cx="530" cy="200" rx="220" ry="180" fill="url(#gl)"/>
+  <g transform="translate(355,38)">
+    <rect x="0" y="0" width="295" height="324" rx="14" fill="#0D0D0F" stroke="#1E1E24" stroke-width="0.8"/>
+    <rect x="0" y="0" width="295" height="44" rx="14" fill="#111114"/>
+    <rect x="0" y="30" width="295" height="14" fill="#111114"/>
+    <rect x="16" y="12" width="80" height="5" rx="2" fill="#2A2A32"/>
+    <rect x="216" y="12" width="62" height="18" rx="9" fill="#C8FF0015" stroke="#C8FF0035" stroke-width="0.5"/>
+    <circle cx="227" cy="21" r="3" fill="#C8FF00"/>
+    <rect x="235" y="17" width="36" height="7" rx="3" fill="#C8FF0060"/>
+    <line x1="16" y1="60" x2="279" y2="60" stroke="#1A1A1E" stroke-width="0.5"/>
+    <line x1="16" y1="90" x2="279" y2="90" stroke="#1A1A1E" stroke-width="0.5"/>
+    <line x1="16" y1="120" x2="279" y2="120" stroke="#1A1A1E" stroke-width="0.5"/>
+    <line x1="16" y1="150" x2="279" y2="150" stroke="#1A1A1E" stroke-width="0.5"/>
+    <line x1="60" y1="56" x2="60" y2="180" stroke="#1A1A1E" stroke-width="0.5"/>
+    <line x1="110" y1="56" x2="110" y2="180" stroke="#1A1A1E" stroke-width="0.5"/>
+    <line x1="160" y1="56" x2="160" y2="180" stroke="#1A1A1E" stroke-width="0.5"/>
+    <line x1="210" y1="56" x2="210" y2="180" stroke="#1A1A1E" stroke-width="0.5"/>
+    <circle cx="45" cy="75" r="8" fill="#0057FF" opacity="0.9"/>
+    <circle cx="45" cy="75" r="13" fill="#0057FF" opacity="0.15"/>
+    <circle cx="140" cy="95" r="8" fill="#0057FF" opacity="0.9"/>
+    <circle cx="140" cy="95" r="13" fill="#0057FF" opacity="0.15"/>
+    <circle cx="80" cy="140" r="8" fill="#0057FF" opacity="0.9"/>
+    <circle cx="200" cy="70" r="8" fill="#0057FF" opacity="0.9"/>
+    <circle cx="245" cy="130" r="8" fill="#0057FF" opacity="0.9"/>
+    <circle cx="90" cy="75" r="5" fill="#FF003D" opacity="0.7"/>
+    <circle cx="170" cy="120" r="5" fill="#FF003D" opacity="0.7"/>
+    <circle cx="120" cy="160" r="5" fill="#FF003D" opacity="0.7"/>
+    <circle cx="35" cy="155" r="6" fill="#C8FF00"/>
+    <circle cx="35" cy="155" r="12" fill="#C8FF00" opacity="0.15"/>
+    <circle cx="180" cy="55" r="6" fill="#C8FF00"/>
+    <circle cx="180" cy="55" r="12" fill="#C8FF00" opacity="0.15"/>
+    <circle cx="26" cy="202" r="5" fill="#0057FF"/>
+    <rect x="37" y="198" width="44" height="5" rx="2" fill="#2A2A32"/>
+    <circle cx="105" cy="202" r="4" fill="#FF003D"/>
+    <rect x="115" y="198" width="50" height="5" rx="2" fill="#2A2A32"/>
+    <circle cx="190" cy="202" r="5" fill="#C8FF00"/>
+    <rect x="201" y="198" width="42" height="5" rx="2" fill="#2A2A32"/>
+    <rect x="16" y="222" width="263" height="38" rx="8" fill="#FF003D06" stroke="#FF003D20" stroke-width="0.5"/>
+    <circle cx="30" cy="241" r="5" fill="#FF003D"/>
+    <rect x="42" y="232" width="110" height="5" rx="2" fill="#FF003D35"/>
+    <rect x="42" y="243" width="170" height="4" rx="2" fill="#1E1E24"/>
+    <rect x="16" y="268" width="263" height="38" rx="8" fill="#C8FF0004" stroke="#C8FF0018" stroke-width="0.5"/>
+    <circle cx="30" cy="287" r="5" fill="#C8FF00"/>
+    <rect x="42" y="278" width="130" height="5" rx="2" fill="#C8FF0030"/>
+    <rect x="42" y="289" width="160" height="4" rx="2" fill="#1E1E24"/>
+  </g>
+  <!-- Accent bar top-left -->
+  <rect x="40" y="36" width="40" height="3" rx="1.5" fill="#C8FF00" opacity="0.9"/>
+  <!-- Category badge -->
+  <rect x="40" y="46" width="108" height="20" rx="10" fill="#C8FF0012" stroke="#C8FF0035" stroke-width="0.5"/>
+  <circle cx="53" cy="56" r="3" fill="#C8FF00"/>
+  <text x="62" y="60" fill="#C8FF00" font-family="Arial, sans-serif" font-size="9" font-weight="700" letter-spacing="0.1em" text-transform="uppercase">HORECA · ANALYTICS</text>
+  <!-- Lines -->
+  <text x="40" y="126" fill="#FFFFFF" font-family="Georgia, serif" font-size="30" font-weight="700" letter-spacing="-0.4">HoReCa Channel</text>
+  <text x="40" y="162" fill="#FFFFFF" font-family="Georgia, serif" font-size="30" font-weight="700" letter-spacing="-0.4">2026: Where</text>
+  <text x="40" y="198" fill="#C8FF00" font-family="Georgia, serif" font-size="30" font-weight="700" letter-spacing="-0.4">FMCG Brands</text>
+  <text x="40" y="234" fill="#FFFFFF" font-family="Georgia, serif" font-size="30" font-weight="700" letter-spacing="-0.4">Win and Lose</text>
+  <!-- Sub -->
+  <text x="40" y="276" fill="#A0A0B0" font-family="Arial, sans-serif" font-size="13">Analysis of 1,250+ bars and restaurants.</text>
+  <text x="40" y="294" fill="#A0A0B0" font-family="Arial, sans-serif" font-size="13">Trends and strategies that actually work.</text>
+  <!-- Meta -->
+  <rect x="40" y="332" width="3" height="20" rx="1.5" fill="#C8FF00"/>
+  <text x="50" y="348" fill="#666670" font-family="Arial, sans-serif" font-size="12">HoReCa · Market Analytics · 7 min read</text>
+  <!-- Logo -->
+  <text x="638" y="380" fill="#282828" font-family="Georgia, serif" font-size="14" font-weight="700" text-anchor="end">PICSELL+</text>
+</g>
+</svg>

@@ -10,7 +10,7 @@ tags:
   - on-trade
   - FMCG distribution
   - menu monitoring
-image: "/images/cover-horeca-2026.svg"
+image: "/images/en-cover-horeca-2026.svg"
 type: "blog"
 layout: "en-horeca-2026"
 url: "/en/blog/horeca-channel-2026/"
