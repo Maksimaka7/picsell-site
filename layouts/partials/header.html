@@ -109,11 +109,15 @@ h1,h2,h3,h4{font-family:'Geologica',sans-serif;line-height:1.08;letter-spacing:-
 .mobile-nav a{font-family:'Geologica',sans-serif;font-size:17px;font-weight:400;color:var(--t1);transition:color .2s;}
 .mobile-nav .mob-section{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);margin-top:8px;pointer-events:none;}
 .mobile-nav a:hover{color:var(--blue);}
+.lang-switch{display:flex;align-items:center;gap:4px;margin-right:8px;}
+.lang-btn{font-size:12px;font-weight:600;padding:4px 8px;border-radius:6px;color:var(--t2);border:1px solid var(--border);transition:all .2s;}
+.lang-btn:hover,.lang-active{color:var(--t1);border-color:var(--blue);background:rgba(0,87,255,.08);}
 
 @media(max-width:768px){
   .nav-wrap,.nav-r .btn-s,.nav-phone{display:none;}
   .hamburger{display:flex;}
   .logo img{height:22px;max-width:120px;}
+  .lang-switch{display:none;}
 }
 </style>
 
@@ -143,26 +147,27 @@ h1,h2,h3,h4{font-family:'Geologica',sans-serif;line-height:1.08;letter-spacing:-
     <a href="{{ "/blog/" | relLangURL }}" class="nav-link">Блог</a>
     <a href="{{ "/about/" | relLangURL }}" class="nav-link">Про нас</a>
   </nav>
-  <div class="nav-r"><a href="tel:+380778809888" class="nav-link nav-phone" style="color:var(--t1);font-weight:600;font-size:13px;" aria-label="Телефон PICSELL">+380&nbsp;77&nbsp;880&nbsp;98&nbsp;88</a><a href="{{ "/demo/" | relLangURL }}" class="btn btn-p btn-sm">Замовити демо</a><button class="hamburger" id="hamburger" aria-label="Меню"><span></span><span></span><span></span></button></div>
+  <div class="nav-r"><a href="tel:+380778809888" class="nav-link nav-phone" style="color:var(--t1);font-weight:600;font-size:13px;" aria-label="Телефон PICSELL">+380&nbsp;77&nbsp;880&nbsp;98&nbsp;88</a><div class="lang-switch">{{ range .Site.Languages }}<a href="{{ if eq .Lang "uk" }}/{{ else }}/{{ .Lang }}/{{ end }}" class="lang-btn{{ if eq $.Site.Language.Lang .Lang }} lang-active{{ end }}" hreflang="{{ .Lang }}">{{ .Lang | upper }}</a>{{ end }}</div><a href="{{ "/demo/" | relLangURL }}" class="btn btn-p btn-sm">{{ if eq .Site.Language.Lang "en" }}Book Demo{{ else }}Замовити демо{{ end }}</a><button class="hamburger" id="hamburger" aria-label="Меню"><span></span><span></span><span></span></button></div>
 </div></div></header>
 
 <!-- Mobile Nav -->
 <div class="mobile-nav" id="mobileNav">
-  <a href="{{ "/" | relLangURL }}">Головна</a>
+  <a href="{{ "/" | relLangURL }}">{{ if eq .Site.Language.Lang "en" }}Home{{ else }}Головна{{ end }}</a>
+  <div style="display:flex;gap:8px;margin:4px 0;">{{ range .Site.Languages }}<a href="{{ if eq .Lang "uk" }}/{{ else }}/{{ .Lang }}/{{ end }}" style="font-size:13px;font-weight:600;padding:4px 12px;border-radius:6px;border:1px solid var(--border);color:{{ if eq $.Site.Language.Lang .Lang }}var(--blue){{ else }}var(--t2){{ end }};">{{ .Lang | upper }}</a>{{ end }}</div>
   <span class="mob-section">Продукти</span>
   <a href="{{ "/vision-ai/" | relLangURL }}">Vision AI</a>
   <a href="{{ "/sales-app/" | relLangURL }}">Sales App</a>
   <a href="{{ "/horeca/" | relLangURL }}">HoReCa</a>
   <a href="{{ "/analytics/" | relLangURL }}">Analytics</a>
   <a href="{{ "/radar/" | relLangURL }}">Radar</a>
-  <span class="mob-section">Рішення</span>
-  <a href="{{ "/solutions-brands/" | relLangURL }}">Для виробників</a>
-  <a href="{{ "/solutions-distributors/" | relLangURL }}">Для дистриб’юторів</a>
-  <a href="{{ "/solutions-horeca/" | relLangURL }}">Для HoReCa</a>
-  <span class="mob-section">Компанія</span>
-  <a href="{{ "/pricing/" | relLangURL }}">Ціни</a>
-  <a href="{{ "/case-studies/" | relLangURL }}">Кейси</a>
-  <a href="{{ "/blog/" | relLangURL }}">Блог</a>
-  <a href="{{ "/about/" | relLangURL }}">Про нас</a>
-  <a href="{{ "/demo/" | relLangURL }}" class="btn btn-p" style="margin-top:12px;width:100%;text-align:center;">Замовити демо →</a>
+  <span class="mob-section">{{ if eq .Site.Language.Lang "en" }}Solutions{{ else }}Рішення{{ end }}</span>
+  <a href="{{ "/solutions-brands/" | relLangURL }}">{{ if eq .Site.Language.Lang "en" }}For Brands{{ else }}Для виробників{{ end }}</a>
+  <a href="{{ "/solutions-distributors/" | relLangURL }}">{{ if eq .Site.Language.Lang "en" }}For Distributors{{ else }}Для дистриб'юторів{{ end }}</a>
+  <a href="{{ "/solutions-horeca/" | relLangURL }}">For HoReCa</a>
+  <span class="mob-section">{{ if eq .Site.Language.Lang "en" }}Company{{ else }}Компанія{{ end }}</span>
+  <a href="{{ "/pricing/" | relLangURL }}">{{ if eq .Site.Language.Lang "en" }}Pricing{{ else }}Ціни{{ end }}</a>
+  <a href="{{ "/case-studies/" | relLangURL }}">{{ if eq .Site.Language.Lang "en" }}Cases{{ else }}Кейси{{ end }}</a>
+  <a href="{{ "/blog/" | relLangURL }}">Blog</a>
+  <a href="{{ "/about/" | relLangURL }}">{{ if eq .Site.Language.Lang "en" }}About{{ else }}Про нас{{ end }}</a>
+  <a href="{{ "/demo/" | relLangURL }}" class="btn btn-p" style="margin-top:12px;width:100%;text-align:center;">{{ if eq .Site.Language.Lang "en" }}Book Demo →{{ else }}Замовити демо →{{ end }}</a>
 </div>
