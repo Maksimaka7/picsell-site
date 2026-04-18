@@ -1,4 +1,39 @@
 {{ define "head-extra" }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "PICSELL",
+  "url": "https://picsell.ai",
+  "logo": "https://picsell.ai/images/Logo-3.svg",
+  "description": "AI-платформа для FMCG: Vision AI розпізнавання полиці, SFA автоматизація польових продажів, HoReCa Intelligence.",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web, iOS, Android",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD",
+    "description": "Демо за запитом"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "PICSELL",
+    "url": "https://picsell.ai",
+    "logo": "https://picsell.ai/images/Logo-3.svg",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+380778809888",
+      "email": "info@picsell.ai",
+      "contactType": "sales",
+      "availableLanguage": ["Ukrainian", "English"]
+    },
+    "sameAs": [
+      "https://www.linkedin.com/company/picsell-ai",
+      "https://t.me/PicSell_ua_bot"
+    ]
+  }
+}
+</script>
 <style>
 #hero{position:relative;min-height:100vh;display:flex;align-items:flex-start;padding-top:72px;overflow:hidden;}
 .hero-bg{position:absolute;inset:0;pointer-events:none;}

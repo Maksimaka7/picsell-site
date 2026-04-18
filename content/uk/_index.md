@@ -1,7 +1,7 @@
 ---
 translationKey: "homepage"
 title: "Бачиш полицю. Керуєш командою. Виграєш ринок."
-seoTitle: "PICSELL — Vision AI + SFA + HoReCa для FMCG"
+seoTitle: "PICSELL — AI Vision і SFA для FMCG | Контроль полиці і польові продажі"
 seoDescription: "AI-платформа для FMCG: розпізнавання полиці 99.9%, автоматизація польових продажів і HoReCa-аналітика. Замовте демо сьогодні."
 ogTitle: "PICSELL — AI-платформа для FMCG"
 ogDescription: "Vision AI + SFA + HoReCa Intelligence в одному рішенні для виробників і дистриб'юторів FMCG."
