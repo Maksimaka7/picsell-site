@@ -1,4 +1,11 @@
 {{ define "head-extra" }}
+{{ if strings.HasPrefix .RelPermalink "/en/" }}
+<title>PICSELL — AI Shelf Recognition &amp; SFA Platform for FMCG | Vision AI, OOS Detection</title>
+<meta name="description" content="PICSELL: AI shelf recognition platform for FMCG brands and distributors. Vision AI detects OOS, tracks Share of Shelf and Perfect Store compliance. SFA + HoReCa Intelligence.">
+{{ else }}
+<title>PICSELL — AI Vision і SFA для FMCG | Контроль полиці і польові продажі</title>
+<meta name="description" content="AI-платформа для FMCG: розпізнавання полиці 99.9%, автоматизація польових продажів і HoReCa-аналітика. OOS-детекція, Share of Shelf, Perfect Store. Замовте демо.">
+{{ end }}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
