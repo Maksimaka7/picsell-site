@@ -1,4 +1,5 @@
 ---
+translationKey: "about"
 title: "PICSELL: AI Platform for FMCG, Built in Ukraine"
 seoTitle: "About PICSELL — AI Company for FMCG | PICSELL"
 seoDescription: "PICSELL is a Ukrainian AI company building Vision AI, Sales Force Automation, and HoReCa Intelligence for FMCG brands and distributors worldwide."

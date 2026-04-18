@@ -1,4 +1,5 @@
 ---
+translationKey: "pricing"
 title: "Тарифи PICSELL: Прозорі ціни для FMCG бізнесу"
 seoTitle: "Ціни PICSELL — Тарифи SFA, Vision AI, HoReCa"
 seoDescription: "Прозорі тарифи на Vision AI, SFA і HoReCa Intelligence для FMCG. Оберіть пакет або замовте індивідуальний розрахунок вартості."

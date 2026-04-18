@@ -1,4 +1,5 @@
 ---
+translationKey: "solutions-brands"
 title: "Рішення для виробників FMCG: Ваш бренд під контролем"
 seoTitle: "Рішення для виробників FMCG — PICSELL"
 seoDescription: "Контроль бренду на полиці і в HoReCa для FMCG-виробників: Vision AI, SFA і аналітика. Виконуйте стандарти Perfect Store щодня."

@@ -1,4 +1,5 @@
 ---
+translationKey: "homepage"
 title: "See the Shelf. Lead the Team. Win the Market."
 seoTitle: "PICSELL — Vision AI + SFA + HoReCa for FMCG | PICSELL"
 seoDescription: "AI platform for FMCG: 99.9% shelf recognition accuracy, field sales automation, and HoReCa analytics. Book a demo today and transform retail execution."

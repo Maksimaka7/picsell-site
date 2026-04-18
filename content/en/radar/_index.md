@@ -1,4 +1,5 @@
 ---
+translationKey: "radar"
 title: "Radar: Competitive Intelligence & Market Monitoring"
 seoTitle: "PICSELL Radar — FMCG Competitive Intelligence | PICSELL"
 seoDescription: "Competitor price monitoring and market intelligence for FMCG: track rival shelf activity and HoReCa presence across all channels. Book a demo."

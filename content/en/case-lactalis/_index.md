@@ -1,4 +1,5 @@
 ---
+translationKey: "case-lactalis"
 title: "Lactalis Case Study: Vision AI for Shelf Control"
 seoTitle: "Lactalis × PICSELL Case Study — Vision AI for FMCG | PICSELL"
 seoDescription: "How Lactalis deployed Vision AI for shelf monitoring: results, growth metrics, and field team automation with PICSELL. Read the full case study."

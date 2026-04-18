@@ -1,4 +1,5 @@
 ---
+translationKey: "horeca"
 title: "HoReCa Intelligence: Your Brand in Every Menu"
 seoTitle: "HoReCa Intelligence — Restaurant Channel Monitoring | PICSELL"
 seoDescription: "Brand presence monitoring across restaurants and bars: menu audits, HoReCa analytics for FMCG. Discover where your brand actually appears."

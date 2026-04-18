@@ -1,4 +1,5 @@
 ---
+translationKey: "vision-ai"
 title: "Vision AI: Розпізнавання полиці для FMCG"
 seoTitle: "Vision AI для FMCG — Розпізнавання полиці"
 seoDescription: "Автоматичний моніторинг полиці з точністю 99.9%: OOS, Share of Shelf, планограма. AI-аудит торгової точки за 60 секунд."

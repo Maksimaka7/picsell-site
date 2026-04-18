@@ -1,4 +1,5 @@
 ---
+translationKey: "demo"
 title: "Book a Demo: See PICSELL in Action"
 seoTitle: "Book a PICSELL Demo — Vision AI for FMCG | PICSELL"
 seoDescription: "Book a free PICSELL demo: we'll show Vision AI, SFA, and HoReCa Intelligence using your data. Response within 24 hours. Start transforming retail today."

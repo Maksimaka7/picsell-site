@@ -1,4 +1,5 @@
 ---
+translationKey: "solutions-distributors"
 title: "Рішення для дистриб'юторів: Автоматизація FMCG"
 seoTitle: "Рішення для дистриб'юторів FMCG — PICSELL"
 seoDescription: "Автоматизація дистрибуції FMCG: SFA для торгових представників, аналітика КРІ та контроль торгових точок в одній платформі."

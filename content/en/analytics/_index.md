@@ -1,4 +1,5 @@
 ---
+translationKey: "analytics"
 title: "FMCG Analytics: Real-Time Dashboards & BI"
 seoTitle: "FMCG Analytics — Real-Time BI Dashboards | PICSELL"
 seoDescription: "BI dashboards for FMCG: distributor KPIs, Perfect Store score, field sales analytics, and real-time shelf data. Drive decisions with live insights."

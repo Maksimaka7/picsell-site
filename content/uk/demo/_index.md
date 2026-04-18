@@ -1,4 +1,5 @@
 ---
+translationKey: "demo"
 title: "Замовте демо: Побачте PICSELL у дії"
 seoTitle: "Замовити демо PICSELL — Vision AI для FMCG"
 seoDescription: "Замовте безкоштовне демо PICSELL: покажемо Vision AI, SFA і HoReCa Intelligence на ваших даних. Відповідь протягом 24 годин."

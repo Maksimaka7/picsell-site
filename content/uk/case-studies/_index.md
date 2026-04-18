@@ -1,4 +1,5 @@
 ---
+translationKey: "case-studies"
 title: "Кейси PICSELL: Реальні результати для FMCG"
 seoTitle: "Кейси FMCG — Результати впровадження PICSELL"
 seoDescription: "Реальні кейси впровадження Vision AI та SFA у FMCG: зростання продажів, скорочення OOS і підвищення ефективності польових команд."

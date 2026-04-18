@@ -1,4 +1,5 @@
 ---
+translationKey: "solutions-distributors"
 title: "Solutions for Distributors: FMCG Distribution Automation"
 seoTitle: "Solutions for FMCG Distributors — Distribution Automation | PICSELL"
 seoDescription: "FMCG distribution automation: sales force automation for field reps, KPI analytics, and outlet control in one platform. Boost secondary sales."

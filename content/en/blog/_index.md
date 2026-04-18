@@ -1,4 +1,5 @@
 ---
+translationKey: "blog"
 title: "PICSELL Blog: FMCG Analytics, AI & Insights"
 seoTitle: "PICSELL Blog — FMCG Analytics & Vision AI Insights | PICSELL"
 seoDescription: "FMCG blog: Vision AI trends, retail execution software, HoReCa analytics, Perfect Store strategies, and field sales automation insights. Read first."

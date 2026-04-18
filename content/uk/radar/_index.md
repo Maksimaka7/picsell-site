@@ -1,4 +1,5 @@
 ---
+translationKey: "radar"
 title: "Radar: Конкурентна розвідка та моніторинг ринку"
 seoTitle: "PICSELL Radar — Конкурентна розвідка FMCG"
 seoDescription: "Моніторинг цін конкурентів і Market Intelligence для FMCG: відстежуйте активності суперників на полицях і в HoReCa. Замовте демо."

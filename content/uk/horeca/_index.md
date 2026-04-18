@@ -1,4 +1,5 @@
 ---
+translationKey: "horeca"
 title: "HoReCa Intelligence: Ваш бренд у кожному меню"
 seoTitle: "HoReCa Intelligence — Моніторинг ресторанного каналу"
 seoDescription: "Моніторинг представленості бренду в ресторанах і барах: аудит меню, HoReCa-аналітика FMCG. Дізнайтеся, де ваш бренд є насправді."

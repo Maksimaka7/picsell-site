@@ -1,4 +1,5 @@
 ---
+translationKey: "sales-app"
 title: "SFA: Field Sales Automation for FMCG"
 seoTitle: "Sales Force Automation FMCG — Mobile SFA App | PICSELL"
 seoDescription: "Mobile SFA app for FMCG field sales reps: route planning, order management, KPI tracking, and visit control. Field sales automation from day one."

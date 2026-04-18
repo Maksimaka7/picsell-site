@@ -1,4 +1,5 @@
 ---
+translationKey: "case-studies"
 title: "PICSELL Case Studies: Real Results for FMCG"
 seoTitle: "FMCG Case Studies — PICSELL Implementation Results | PICSELL"
 seoDescription: "Real FMCG case studies: Vision AI and SFA implementations driving sales growth, OOS reduction, and field team efficiency. See proven results."

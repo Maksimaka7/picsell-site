@@ -1,4 +1,5 @@
 ---
+translationKey: "solutions-brands"
 title: "Solutions for FMCG Brands: Your Brand Under Control"
 seoTitle: "Solutions for FMCG Brands — Brand Execution Control | PICSELL"
 seoDescription: "Brand execution control on shelf and in HoReCa for FMCG manufacturers: Vision AI, field sales automation, and analytics. Achieve Perfect Store every day."

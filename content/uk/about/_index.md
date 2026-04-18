@@ -1,4 +1,5 @@
 ---
+translationKey: "about"
 title: "PICSELL: AI-платформа для FMCG, створена в Україні"
 seoTitle: "PICSELL — AI-компанія для FMCG в Україні"
 seoDescription: "PICSELL — українська AI-компанія: розробляємо Vision AI, SFA і HoReCa Intelligence для FMCG-виробників і дистриб'юторів. Наша місія."

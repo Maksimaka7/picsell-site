@@ -1,4 +1,5 @@
 ---
+translationKey: "analytics"
 title: "FMCG Аналітика: Дашборди та BI в реальному часі"
 seoTitle: "FMCG Аналітика — Дашборди та BI для бізнесу"
 seoDescription: "BI-дашборди для FMCG: KPI дистриб'ютора, Perfect Store score, аналітика польових продажів і полиці в реальному часі. Спробуйте."

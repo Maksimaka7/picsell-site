@@ -1,4 +1,5 @@
 ---
+translationKey: "solutions-horeca"
 title: "Рішення для HoReCa: Контроль ресторанного каналу"
 seoTitle: "Рішення для HoReCa каналу FMCG — PICSELL"
 seoDescription: "Комплексний моніторинг HoReCa для FMCG-брендів: аудит меню, контроль представленості і HoReCa-аналітика по всій мережі. Дізнайтесь."
