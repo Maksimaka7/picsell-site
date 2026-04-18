@@ -81,10 +81,13 @@
 <section class="section" style="background:var(--bg2);">
   <div class="container">
     <!-- FEATURED: latest article -->
+    {{ $isEN := strings.HasPrefix .RelPermalink "/en/" }}
     {{ $allPosts := slice }}
     {{ range where site.RegularPages "Params.type" "blog" }}
-      {{ if eq .Language.Lang $.Site.Language.Lang }}
-        {{ $allPosts = $allPosts | append . }}
+      {{ if $isEN }}
+        {{ if strings.HasPrefix .RelPermalink "/en/" }}{{ $allPosts = $allPosts | append . }}{{ end }}
+      {{ else }}
+        {{ if not (strings.HasPrefix .RelPermalink "/en/") }}{{ $allPosts = $allPosts | append . }}{{ end }}
       {{ end }}
     {{ end }}
     {{ $featured := index ($allPosts.ByDate.Reverse) 0 }}
@@ -179,10 +182,13 @@
 <section class="section" style="background:var(--bg2);">
   <div class="container">
     <!-- FEATURED: найновіша стаття -->
+    {{ $isEN := strings.HasPrefix .RelPermalink "/en/" }}
     {{ $allPosts := slice }}
     {{ range where site.RegularPages "Params.type" "blog" }}
-      {{ if eq .Language.Lang $.Site.Language.Lang }}
-        {{ $allPosts = $allPosts | append . }}
+      {{ if $isEN }}
+        {{ if strings.HasPrefix .RelPermalink "/en/" }}{{ $allPosts = $allPosts | append . }}{{ end }}
+      {{ else }}
+        {{ if not (strings.HasPrefix .RelPermalink "/en/") }}{{ $allPosts = $allPosts | append . }}{{ end }}
       {{ end }}
     {{ end }}
     {{ $featured := index ($allPosts.ByDate.Reverse) 0 }}
