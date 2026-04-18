@@ -48,6 +48,36 @@
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'"/>
 <noscript><link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap" rel="stylesheet"/></noscript>
 
+<!-- Language persistence: redirect nav links to /en/ when on EN version -->
+<script>
+(function(){
+  var isEN = window.location.pathname.indexOf('/en/') === 0;
+  if(!isEN) return;
+  document.addEventListener('DOMContentLoaded', function(){
+    var links = document.querySelectorAll('a[href]');
+    links.forEach(function(a){
+      var href = a.getAttribute('href');
+      if(!href) return;
+      // Skip: already /en/, external, anchors, tel, mailto, admin, images
+      if(href.indexOf('/en/') === 0) return;
+      if(href.indexOf('http') === 0) return;
+      if(href.indexOf('#') === 0) return;
+      if(href.indexOf('tel:') === 0) return;
+      if(href.indexOf('mailto:') === 0) return;
+      if(href.indexOf('/admin') === 0) return;
+      if(href.indexOf('/images') === 0) return;
+      if(href.indexOf('/privacy') === 0) return;
+      if(href.indexOf('/terms') === 0) return;
+      if(href.indexOf('/blog/') === 0) return; // blog articles are UK only
+      // Convert /slug/ to /en/slug/
+      if(href.match(/^\/[a-z]/)){ 
+        a.setAttribute('href', '/en' + href);
+      }
+    });
+  });
+})();
+</script>
+
 <!-- Netlify Identity: only load on /admin/ -->
 <script>
 if(window.location.pathname.indexOf('/admin')===0){
