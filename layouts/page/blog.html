@@ -81,7 +81,12 @@
 <section class="section" style="background:var(--bg2);">
   <div class="container">
     <!-- FEATURED: latest article -->
-    {{ $allPosts := where site.RegularPages "Params.type" "blog" }}
+    {{ $allPosts := slice }}
+    {{ range where site.RegularPages "Params.type" "blog" }}
+      {{ if eq .Language.Lang $.Site.Language.Lang }}
+        {{ $allPosts = $allPosts | append . }}
+      {{ end }}
+    {{ end }}
     {{ $featured := index ($allPosts.ByDate.Reverse) 0 }}
     {{ if $featured }}
     <a href="{{ $featured.Permalink }}" class="featured-card reveal" style="text-decoration:none;color:inherit;">
@@ -103,7 +108,7 @@
     {{ end }}
 
         <!-- DYNAMIC POSTS FROM CMS -->
-    {{ $posts := where site.RegularPages "Params.type" "blog" }}
+    {{ $posts := $allPosts }}
     {{ if $posts }}
     <div class="posts-grid" style="margin-bottom:var(--s5);">
       {{ range $posts.ByDate.Reverse }}
@@ -174,7 +179,12 @@
 <section class="section" style="background:var(--bg2);">
   <div class="container">
     <!-- FEATURED: найновіша стаття -->
-    {{ $allPosts := where site.RegularPages "Params.type" "blog" }}
+    {{ $allPosts := slice }}
+    {{ range where site.RegularPages "Params.type" "blog" }}
+      {{ if eq .Language.Lang $.Site.Language.Lang }}
+        {{ $allPosts = $allPosts | append . }}
+      {{ end }}
+    {{ end }}
     {{ $featured := index ($allPosts.ByDate.Reverse) 0 }}
     {{ if $featured }}
     <a href="{{ $featured.Permalink }}" class="featured-card reveal" style="text-decoration:none;color:inherit;">
@@ -196,7 +206,7 @@
     {{ end }}
 
         <!-- DYNAMIC POSTS FROM CMS -->
-    {{ $posts := where site.RegularPages "Params.type" "blog" }}
+    {{ $posts := $allPosts }}
     {{ if $posts }}
     <div class="posts-grid" style="margin-bottom:var(--s5);">
       {{ range $posts.ByDate.Reverse }}
