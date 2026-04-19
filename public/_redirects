@@ -1,2 +1,14 @@
 # Redirect Netlify subdomain to custom domain
 https://idyllic-haupia-c797a4.netlify.app/* https://picsell.ai/:splat 301!
+
+# Redirect old /ua/ and /ru/ paths → Ukrainian version
+/ua /  301
+/ua/ / 301
+/ua/* / 301
+/ru / 301
+/ru/ / 301
+/ru/* / 301
+
+# Redirect old blog articles
+/ru/blog/* /blog/ 301
+/ua/blog/* /blog/ 301
