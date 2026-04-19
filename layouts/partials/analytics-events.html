@@ -1,0 +1,92 @@
+<script>
+(function(){
+  if(typeof gtag !== 'function') return;
+
+  // ── 1. PHONE CLICKS ─────────────────────────────────────────
+  document.querySelectorAll('a[href^="tel:"]').forEach(function(el){
+    el.addEventListener('click', function(){
+      gtag('event', 'phone_click', {
+        'event_category': 'engagement',
+        'event_label': el.getAttribute('href').replace('tel:',''),
+        'value': 1
+      });
+    });
+  });
+
+  // ── 2. CTA BUTTON CLICKS ("Замовити демо" / "Book Demo") ────
+  document.querySelectorAll('a[href*="/demo/"], .btn-p').forEach(function(el){
+    el.addEventListener('click', function(){
+      gtag('event', 'cta_click', {
+        'event_category': 'engagement',
+        'event_label': el.innerText.trim().substring(0,50),
+        'page_location': window.location.href
+      });
+    });
+  });
+
+  // ── 3. DEMO FORM SUBMIT ──────────────────────────────────────
+  var demoForm = document.getElementById('demoForm');
+  if(demoForm){
+    demoForm.addEventListener('submit', function(){
+      gtag('event', 'generate_lead', {
+        'event_category': 'conversion',
+        'event_label': 'demo_request',
+        'value': 1,
+        'currency': 'USD'
+      });
+    });
+  }
+
+  // ── 4. HOMEPAGE FORM SUBMIT ──────────────────────────────────
+  var mainForm = document.getElementById('mainForm');
+  if(mainForm){
+    mainForm.addEventListener('submit', function(){
+      gtag('event', 'generate_lead', {
+        'event_category': 'conversion',
+        'event_label': 'homepage_demo',
+        'value': 1,
+        'currency': 'USD'
+      });
+    });
+  }
+
+  // ── 5. BLOG SUBSCRIBE ────────────────────────────────────────
+  var subForm = document.querySelector('form[name="subscribe"]');
+  if(subForm){
+    subForm.addEventListener('submit', function(){
+      gtag('event', 'sign_up', {
+        'event_category': 'engagement',
+        'event_label': 'blog_subscribe'
+      });
+    });
+  }
+
+  // ── 6. EMAIL CLICKS ──────────────────────────────────────────
+  document.querySelectorAll('a[href^="mailto:"]').forEach(function(el){
+    el.addEventListener('click', function(){
+      gtag('event', 'email_click', {
+        'event_category': 'engagement',
+        'event_label': el.getAttribute('href').replace('mailto:','')
+      });
+    });
+  });
+
+  // ── 7. SCROLL DEPTH (25/50/75/100%) ─────────────────────────
+  var scrollDepths = [25, 50, 75, 100];
+  var scrollFired = {};
+  window.addEventListener('scroll', function(){
+    var scrollPct = Math.round((window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100);
+    scrollDepths.forEach(function(depth){
+      if(scrollPct >= depth && !scrollFired[depth]){
+        scrollFired[depth] = true;
+        gtag('event', 'scroll_depth', {
+          'event_category': 'engagement',
+          'event_label': depth + '%',
+          'non_interaction': true
+        });
+      }
+    });
+  }, {passive: true});
+
+})();
+</script>
