@@ -88,5 +88,63 @@
     });
   }, {passive: true});
 
+  // ── 8. SOCIAL MEDIA CLICKS ───────────────────────────────────
+  var socialMap = {
+    'linkedin.com': 'linkedin',
+    'x.com': 'twitter',
+    'twitter.com': 'twitter',
+    'instagram.com': 'instagram',
+    't.me': 'telegram',
+    'youtube.com': 'youtube'
+  };
+  document.querySelectorAll('a[href]').forEach(function(el){
+    var href = el.getAttribute('href') || '';
+    Object.keys(socialMap).forEach(function(domain){
+      if(href.indexOf(domain) !== -1){
+        el.addEventListener('click', function(){
+          gtag('event', 'social_click', {
+            'event_category': 'engagement',
+            'event_label': socialMap[domain],
+            'page_location': window.location.href
+          });
+        });
+      }
+    });
+  });
+
+  // ── 9. PRICING PAGE CLICKS ───────────────────────────────────
+  document.querySelectorAll('a[href*="/pricing/"]').forEach(function(el){
+    el.addEventListener('click', function(){
+      gtag('event', 'pricing_click', {
+        'event_category': 'engagement',
+        'event_label': el.innerText.trim().substring(0,50),
+        'page_location': window.location.href
+      });
+    });
+  });
+
+  // ── 10. OUTBOUND LINKS ───────────────────────────────────────
+  document.querySelectorAll('a[href^="http"]').forEach(function(el){
+    if(el.hostname && el.hostname !== window.location.hostname){
+      el.addEventListener('click', function(){
+        gtag('event', 'outbound_click', {
+          'event_category': 'engagement',
+          'event_label': el.href,
+          'non_interaction': false
+        });
+      });
+    }
+  });
+
+  // ── 11. VIDEO / DEMO WATCH ───────────────────────────────────
+  document.querySelectorAll('a[href*="youtube"], a[href*="youtu.be"], button[data-video]').forEach(function(el){
+    el.addEventListener('click', function(){
+      gtag('event', 'video_click', {
+        'event_category': 'engagement',
+        'event_label': el.getAttribute('href') || el.getAttribute('data-video') || 'video'
+      });
+    });
+  });
+
 })();
 </script>
