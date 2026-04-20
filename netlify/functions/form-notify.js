@@ -1,15 +1,20 @@
 const https = require('https');
 
 const BOT_TOKEN = '8769244217:AAHE2dhuAkpdK8F_R3hon_OKT7e1O-U3XU0';
-const CHAT_ID = '-5255672708'; // PICSELL Заявки group
+const CHAT_ID = '-1003956968407'; // PICSELL Заявки forum
+const THREAD_ZAYAVKY = 6; // Тема: Заявки
+const THREAD_ANALITYKA = 4; // Тема: Аналітика
+const THREAD_DAIJEST = 2; // Тема: Дайджест
 
-function sendTelegram(text) {
+function sendTelegram(text, threadId) {
   return new Promise((resolve, reject) => {
-    const body = JSON.stringify({
+    const payload = {
       chat_id: CHAT_ID,
       text: text,
       parse_mode: 'HTML'
-    });
+    };
+    if (threadId) payload.message_thread_id = threadId;
+    const body = JSON.stringify(payload);
 
     const options = {
       hostname: 'api.telegram.org',
@@ -72,7 +77,8 @@ exports.handler = async (event) => {
         Object.entries(data).map(([k, v]) => `${k}: ${v}`).join('\n');
     }
 
-    await sendTelegram(message);
+    const threadId = (form_name === 'subscribe') ? THREAD_ANALITYKA : THREAD_ZAYAVKY;
+    await sendTelegram(message, threadId);
 
     return {
       statusCode: 200,
