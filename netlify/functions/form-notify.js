@@ -60,7 +60,7 @@ exports.handler = async (event) => {
         `📌 Форма: /demo`;
 
     } else if (form_name === 'homepage-demo') {
-      message = `🔔 <b>Нова заявка з головної!</b>\n\n` +
+      message = `🔔 <b>Нова заявка з головної! ${langFlag}</b>\n\n` +
         `👤 <b>Ім'я:</b> ${data.name || '—'}\n` +
         `🏢 <b>Компанія:</b> ${data.company || '—'}\n` +
         `📱 <b>Телефон:</b> ${data.phone || '—'}\n` +
@@ -69,7 +69,7 @@ exports.handler = async (event) => {
         `📌 Форма: головна сторінка`;
 
     } else if (form_name === 'subscribe') {
-      message = `📬 <b>Нова підписка на блог!</b>\n\n` +
+      message = `📬 <b>Нова підписка на блог! ${langFlag}</b>\n\n` +
         `📧 <b>Email:</b> ${data.email || '—'}`;
 
     } else {
