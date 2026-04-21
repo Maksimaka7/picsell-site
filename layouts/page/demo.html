@@ -174,10 +174,10 @@
               <div class="form-group">
                 <label class="form-label">What interests you most?</label>
                 <div class="checkbox-group">
-                  <label class="checkbox-item"><input type="checkbox" value="vision"> Vision AI — shelf recognition</label>
-                  <label class="checkbox-item"><input type="checkbox" value="sales"> Sales App — field teams</label>
-                  <label class="checkbox-item"><input type="checkbox" value="horeca"> HoReCa Intelligence</label>
-                  <label class="checkbox-item"><input type="checkbox" value="analytics"> Analytics — dashboards and AI Copilot</label>
+                  <label class="checkbox-item"><input type="checkbox" name="interests" value="Vision AI — shelf recognition"> Vision AI — shelf recognition</label>
+                  <label class="checkbox-item"><input type="checkbox" name="interests" value="Sales App — field teams"> Sales App — field teams</label>
+                  <label class="checkbox-item"><input type="checkbox" name="interests" value="HoReCa Intelligence"> HoReCa Intelligence</label>
+                  <label class="checkbox-item"><input type="checkbox" name="interests" value="Analytics — dashboards and AI Copilot"> Analytics — dashboards and AI Copilot</label>
                 </div>
               </div>
               <button type="submit" class="btn btn-p btn-full btn-lg">
@@ -356,10 +356,10 @@
               <div class="form-group">
                 <label class="form-label">Що вас цікавить більше всього?</label>
                 <div class="checkbox-group">
-                  <label class="checkbox-item"><input type="checkbox" value="vision"> Vision AI — розпізнавання полиці</label>
-                  <label class="checkbox-item"><input type="checkbox" value="sales"> Sales App — польові команди</label>
-                  <label class="checkbox-item"><input type="checkbox" value="horeca"> HoReCa Intelligence</label>
-                  <label class="checkbox-item"><input type="checkbox" value="analytics"> Analytics — дашборди і AI Copilot</label>
+                  <label class="checkbox-item"><input type="checkbox" name="interests" value="Vision AI — розпізнавання полиці"> Vision AI — розпізнавання полиці</label>
+                  <label class="checkbox-item"><input type="checkbox" name="interests" value="Sales App — польові команди"> Sales App — польові команди</label>
+                  <label class="checkbox-item"><input type="checkbox" name="interests" value="HoReCa Intelligence"> HoReCa Intelligence</label>
+                  <label class="checkbox-item"><input type="checkbox" name="interests" value="Analytics — дашборди і AI Copilot"> Analytics — дашборди і AI Copilot</label>
                 </div>
               </div>
               <button type="submit" class="btn btn-p btn-full btn-lg">
@@ -463,24 +463,33 @@
     });
   });
 })();
-var demoForm=document.getElementById('demoForm');
-if(demoForm){
-  demoForm.addEventListener('submit',function(ev){
-    ev.preventDefault();
-    var fd=new FormData(demoForm);
-    fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(fd).toString()})
-    .then(function(res){
-      if(res.ok){
-        demoForm.style.display='none';
-        document.getElementById('demoFormSuccess').style.display='block';
-      } else {
-        document.getElementById('demoFormError').style.display='block';
-      }
-    })
-    .catch(function(){
-      document.getElementById('demoFormError').style.display='block';
-    });
+function submitDemoForm(form) {
+  var fd = new FormData(form);
+  // Збираємо чекбокси вручну (URLSearchParams не передає множинні значення)
+  var checked = Array.from(form.querySelectorAll('input[name="interests"]:checked')).map(function(cb){ return cb.value; });
+  fd.delete('interests');
+  if (checked.length > 0) fd.append('interests', checked.join(', '));
+  fetch('/', {method:'POST', headers:{'Content-Type':'application/x-www-form-urlencoded'}, body: new URLSearchParams(fd).toString()})
+  .then(function(res){
+    if(res.ok){
+      form.style.display='none';
+      var successEl = form.parentNode.querySelector('.form-success, #demoFormSuccess');
+      if(successEl) successEl.style.display='block';
+    } else {
+      var errEl = form.parentNode.querySelector('#demoFormError, .form-error');
+      if(errEl) errEl.style.display='block';
+    }
+  })
+  .catch(function(){
+    var errEl = form.parentNode.querySelector('#demoFormError, .form-error');
+    if(errEl) errEl.style.display='block';
   });
 }
+document.querySelectorAll('form[name="demo-request"]').forEach(function(form){
+  form.addEventListener('submit', function(ev){
+    ev.preventDefault();
+    submitDemoForm(form);
+  });
+});
 </script>
 {{ end }}

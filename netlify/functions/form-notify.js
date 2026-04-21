@@ -47,17 +47,26 @@ exports.handler = async (event) => {
     const payload = JSON.parse(event.body);
     const { form_name, data } = payload;
 
+    // Визначаємо мову та прапорець
+    const lang = data.lang || 'uk';
+    const langFlag = lang === 'en' ? '🇺🇸 EN' : '🇺🇦 UA';
+    const langLabel = lang === 'en' ? 'English site' : 'Українська версія';
+
+    // Інтереси з чекбоксів
+    const interests = data.interests ? `\n🎯 <b>Інтереси:</b> ${data.interests}` : '';
+
     let message = '';
 
     if (form_name === 'demo-request') {
-      message = `🔔 <b>Нова заявка на демо!</b>\n\n` +
+      message = `🔔 <b>Нова заявка на демо! ${langFlag}</b>\n\n` +
         `👤 <b>Ім'я:</b> ${data.name || '—'}\n` +
         `🏢 <b>Компанія:</b> ${data.company || '—'}\n` +
         `📱 <b>Телефон:</b> ${data.phone || '—'}\n` +
         `📧 <b>Email:</b> ${data.email || '—'}\n` +
         `💼 <b>Роль:</b> ${data.role || '—'}\n` +
-        `👥 <b>Агентів:</b> ${data.agents || '—'}\n\n` +
-        `📌 Форма: /demo`;
+        `👥 <b>Агентів:</b> ${data.agents || '—'}` +
+        interests +
+        `\n\n📌 <b>Форма:</b> /demo — ${langLabel}`;
 
     } else if (form_name === 'homepage-demo') {
       message = `🔔 <b>Нова заявка з головної! ${langFlag}</b>\n\n` +
@@ -65,15 +74,17 @@ exports.handler = async (event) => {
         `🏢 <b>Компанія:</b> ${data.company || '—'}\n` +
         `📱 <b>Телефон:</b> ${data.phone || '—'}\n` +
         `📧 <b>Email:</b> ${data.email || '—'}\n` +
-        `💼 <b>Роль:</b> ${data.role || '—'}\n\n` +
-        `📌 Форма: головна сторінка`;
+        `💼 <b>Роль:</b> ${data.role || '—'}` +
+        interests +
+        `\n\n📌 <b>Форма:</b> Головна сторінка — ${langLabel}`;
 
     } else if (form_name === 'subscribe') {
       message = `📬 <b>Нова підписка на блог! ${langFlag}</b>\n\n` +
-        `📧 <b>Email:</b> ${data.email || '—'}`;
+        `📧 <b>Email:</b> ${data.email || '—'}\n` +
+        `📌 <b>Версія:</b> ${langLabel}`;
 
     } else {
-      message = `📋 <b>Нова форма:</b> ${form_name}\n\n` +
+      message = `📋 <b>Нова форма:</b> ${form_name} ${langFlag}\n\n` +
         Object.entries(data).map(([k, v]) => `${k}: ${v}`).join('\n');
     }
 
