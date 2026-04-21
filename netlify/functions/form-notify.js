@@ -55,6 +55,23 @@ exports.handler = async (event) => {
     // Інтереси з чекбоксів
     const interests = data.interests ? `\n🎯 <b>Інтереси:</b> ${data.interests}` : '';
 
+    // Джерело трафіку
+    const sourceEmoji = {
+      'google': '🔍', 'google / organic': '🔍', 'google / cpc': '💰',
+      'linkedin': '💼', 'facebook': '📘', 'instagram': '📸',
+      'twitter': '🐦', 'telegram': '✈️',
+      'direct': '🔗', 'referral': '🌐'
+    };
+    const src = data.utm_source || 'direct';
+    const medium = data.utm_medium || '';
+    const campaign = data.utm_campaign || '';
+    const landingPage = data.landing_page || '';
+    const emoji = sourceEmoji[src.toLowerCase()] || sourceEmoji[medium.toLowerCase()] || '🌐';
+    let trafficLine = `\n${emoji} <b>Джерело:</b> ${src}`;
+    if(medium && medium !== src) trafficLine += ` / ${medium}`;
+    if(campaign) trafficLine += ` — <i>${campaign}</i>`;
+    if(landingPage && landingPage !== '/demo/' && landingPage !== '/en/demo/') trafficLine += `\n📍 <b>Входив з:</b> ${landingPage}`;
+
     let message = '';
 
     if (form_name === 'demo-request') {
@@ -65,7 +82,7 @@ exports.handler = async (event) => {
         `📧 <b>Email:</b> ${data.email || '—'}\n` +
         `💼 <b>Роль:</b> ${data.role || '—'}\n` +
         `👥 <b>Агентів:</b> ${data.agents || '—'}` +
-        interests +
+        interests + trafficLine +
         `\n\n📌 <b>Форма:</b> /demo — ${langLabel}`;
 
     } else if (form_name === 'homepage-demo') {
@@ -75,13 +92,13 @@ exports.handler = async (event) => {
         `📱 <b>Телефон:</b> ${data.phone || '—'}\n` +
         `📧 <b>Email:</b> ${data.email || '—'}\n` +
         `💼 <b>Роль:</b> ${data.role || '—'}` +
-        interests +
+        interests + trafficLine +
         `\n\n📌 <b>Форма:</b> Головна сторінка — ${langLabel}`;
 
     } else if (form_name === 'subscribe') {
       message = `📬 <b>Нова підписка на блог! ${langFlag}</b>\n\n` +
         `📧 <b>Email:</b> ${data.email || '—'}\n` +
-        `📌 <b>Версія:</b> ${langLabel}`;
+        `📌 <b>Версія:</b> ${langLabel}` + trafficLine;
 
     } else {
       message = `📋 <b>Нова форма:</b> ${form_name} ${langFlag}\n\n` +

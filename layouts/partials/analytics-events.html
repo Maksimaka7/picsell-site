@@ -1,4 +1,74 @@
 <script>
+// ── UTM & SOURCE TRACKING ─────────────────────────────────────────────────
+(function(){
+  // 1. Зчитуємо UTM з поточного URL
+  var params = new URLSearchParams(window.location.search);
+  var utmFields = ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'];
+  var stored = {};
+  try { stored = JSON.parse(sessionStorage.getItem('picsell_utm') || '{}'); } catch(e){}
+
+  // Якщо в URL є хоч один UTM — перезаписуємо sessionStorage
+  var hasUtm = utmFields.some(function(f){ return params.get(f); });
+  if(hasUtm){
+    utmFields.forEach(function(f){ if(params.get(f)) stored[f] = params.get(f); });
+    try { sessionStorage.setItem('picsell_utm', JSON.stringify(stored)); } catch(e){}
+  }
+
+  // 2. Визначаємо джерело через referrer (якщо UTM немає)
+  function getSource(){
+    var s = stored.utm_source || '';
+    if(s) return s;
+    var ref = document.referrer || '';
+    if(!ref) return 'direct';
+    if(ref.indexOf('google') !== -1) return 'google';
+    if(ref.indexOf('bing') !== -1 || ref.indexOf('yahoo') !== -1) return 'bing/yahoo';
+    if(ref.indexOf('linkedin') !== -1) return 'linkedin';
+    if(ref.indexOf('facebook') !== -1 || ref.indexOf('fb.com') !== -1) return 'facebook';
+    if(ref.indexOf('instagram') !== -1) return 'instagram';
+    if(ref.indexOf('twitter') !== -1 || ref.indexOf('x.com') !== -1) return 'twitter';
+    if(ref.indexOf('t.me') !== -1 || ref.indexOf('telegram') !== -1) return 'telegram';
+    try { var d = new URL(ref).hostname; return d || 'referral'; } catch(e){ return 'referral'; }
+  }
+
+  // 3. Перед відправкою кожної форми — додаємо hidden поля з UTM
+  function injectUtmFields(form){
+    var src = getSource();
+    var medium = stored.utm_medium || (document.referrer ? 'referral' : 'direct');
+    var campaign = stored.utm_campaign || '';
+    var landingPage = sessionStorage.getItem('picsell_landing') || window.location.pathname;
+
+    var fields = {
+      'utm_source': src,
+      'utm_medium': medium,
+      'utm_campaign': campaign,
+      'landing_page': landingPage
+    };
+    if(stored.utm_content) fields['utm_content'] = stored.utm_content;
+    if(stored.utm_term) fields['utm_term'] = stored.utm_term;
+
+    Object.keys(fields).forEach(function(key){
+      if(!form.querySelector('input[name="' + key + '"]')){
+        var inp = document.createElement('input');
+        inp.type = 'hidden';
+        inp.name = key;
+        inp.value = fields[key];
+        form.appendChild(inp);
+      }
+    });
+  }
+
+  // Зберігаємо першу сторінку входу (landing page)
+  if(!sessionStorage.getItem('picsell_landing')){
+    try { sessionStorage.setItem('picsell_landing', window.location.pathname); } catch(e){}
+  }
+
+  // Вішаємо inject на всі форми перед submit
+  document.querySelectorAll('form').forEach(function(form){
+    form.addEventListener('submit', function(){ injectUtmFields(form); }, true);
+  });
+})();
+// ── END UTM TRACKING ──────────────────────────────────────────────────────
+
 (function(){
   if(typeof gtag !== 'function') return;
 
