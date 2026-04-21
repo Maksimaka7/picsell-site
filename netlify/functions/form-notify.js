@@ -13,49 +13,63 @@ const NOTION_DB_ID = '64216545d7aa422a92902ee7749a1d43'; // Клієнти та 
 function createNotionLead(data) {
   if (!NOTION_TOKEN) return Promise.resolve(null);
   const lang = data.lang || 'uk';
-  const src = data.utm_source || 'direct';
+  const src = (data.utm_source || 'direct').toLowerCase();
 
-  // Маппінг джерела на поле Джерело
+  // Джерело — точні назви з бази
   let dzherelo = 'Inbound';
   if (src === 'linkedin') dzherelo = 'LinkedIn';
   else if (src === 'referral') dzherelo = 'Referral';
   else if (src === 'cold') dzherelo = 'Cold Outreach';
 
+  const today = new Date().toISOString().split('T')[0];
+
+  const notesArr = [
+    data.role    ? `Роль: ${data.role}` : '',
+    data.agents  ? `Агентів: ${data.agents}` : '',
+    data.interests ? `Інтереси: ${data.interests}` : '',
+    data.landing_page ? `Landing: ${data.landing_page}` : '',
+    data.utm_medium ? `Medium: ${data.utm_medium}` : ''
+  ].filter(Boolean).join(' | ');
+
+  // Продукти з чекбоксів
+  let products = [];
+  if (data.interests) {
+    const il = data.interests.toLowerCase();
+    if (il.includes('vision')) products.push('Vision AI');
+    if (il.includes('sales app') || il.includes('польові') || il.includes('field')) products.push('SFA');
+    if (il.includes('horeca')) products.push('HoReCa Radar');
+    if (il.includes('analytics') || il.includes('дашборд')) products.push('Analytics');
+    products = [...new Set(products)];
+  }
+
+  // Будуємо properties згідно Notion API v1
   const properties = {
-    'Компанія': { title: [{ text: { content: data.company || 'Невідомо' } }] },
-    'Контактна особа': { rich_text: [{ text: { content: data.name || '' } }] },
+    'Компанія': {
+      title: [{ type: 'text', text: { content: data.company || 'Невідомо' } }]
+    },
+    'Контактна особа': {
+      rich_text: [{ type: 'text', text: { content: data.name || '' } }]
+    },
     'Email': { email: data.email || null },
     'Телефон': { phone_number: data.phone || null },
     'Статус': { select: { name: '🔍 Лід' } },
     'Пріоритет': { select: { name: '⚡ Теплий' } },
     'Джерело': { select: { name: dzherelo } },
     'Mova': { select: { name: lang === 'en' ? 'EN' : 'UA' } },
-    'UTM Source': { rich_text: [{ text: { content: src } }] },
-    'Нотатки': { rich_text: [{ text: { content: [
-      data.role ? `Роль: ${data.role}` : '',
-      data.agents ? `Агентів: ${data.agents}` : '',
-      data.interests ? `Інтереси: ${data.interests}` : '',
-      data.landing_page ? `Landing: ${data.landing_page}` : ''
-    ].filter(Boolean).join(' | ') } }] },
-    'Наступний крок': { rich_text: [{ text: { content: 'Зателефонувати / написати для призначення демо' } }] },
-    'Дата першого контакту': { date: { start: new Date().toISOString().split('T')[0] } }
+    'UTM Source': {
+      rich_text: [{ type: 'text', text: { content: data.utm_source || 'direct' } }]
+    },
+    'Нотатки': {
+      rich_text: [{ type: 'text', text: { content: notesArr } }]
+    },
+    'Наступний крок': {
+      rich_text: [{ type: 'text', text: { content: 'Зателефонувати / написати для призначення демо' } }]
+    },
+    'Дата першого контакту': { date: { start: today } }
   };
 
-  if (data.interests) {
-    const productMap = {
-      'vision ai': 'Vision AI', 'vision': 'Vision AI',
-      'sales app': 'SFA', 'sfa': 'SFA', 'польові': 'SFA', 'field': 'SFA',
-      'horeca': 'HoReCa Radar',
-      'analytics': 'Analytics', 'дашборд': 'Analytics'
-    };
-    const interestLower = data.interests.toLowerCase();
-    const matchedProducts = Object.entries(productMap)
-      .filter(([key]) => interestLower.includes(key))
-      .map(([, val]) => val);
-    const uniqueProducts = [...new Set(matchedProducts)];
-    if (uniqueProducts.length > 0) {
-      properties['Продукти'] = { multi_select: uniqueProducts.map(name => ({ name })) };
-    }
+  if (products.length > 0) {
+    properties['Продукти'] = { multi_select: products.map(name => ({ name })) };
   }
 
   const body = JSON.stringify({
@@ -78,9 +92,15 @@ function createNotionLead(data) {
     const req = https.request(options, (res) => {
       let d = '';
       res.on('data', c => d += c);
-      res.on('end', () => resolve(JSON.parse(d)));
+      res.on('end', () => {
+        try {
+          const r = JSON.parse(d);
+          if (r.object === 'error') console.error('Notion API error:', r.message);
+          resolve(r);
+        } catch(e) { resolve(null); }
+      });
     });
-    req.on('error', (e) => { console.error('Notion error:', e); resolve(null); });
+    req.on('error', (e) => { console.error('Notion request error:', e); resolve(null); });
     req.write(body);
     req.end();
   });
