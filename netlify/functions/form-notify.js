@@ -6,6 +6,86 @@ const THREAD_ZAYAVKY = 6; // Тема: Заявки
 const THREAD_ANALITYKA = 4; // Тема: Аналітика
 const THREAD_DAIJEST = 2; // Тема: Дайджест
 
+// Notion CRM integration
+const NOTION_TOKEN = process.env.NOTION_TOKEN;
+const NOTION_DB_ID = '64216545d7aa422a92902ee7749a1d43'; // Клієнти та Угоди
+
+function createNotionLead(data) {
+  if (!NOTION_TOKEN) return Promise.resolve(null);
+  const lang = data.lang || 'uk';
+  const src = data.utm_source || 'direct';
+
+  // Маппінг джерела на поле Джерело
+  let dzherelo = 'Inbound';
+  if (src === 'linkedin') dzherelo = 'LinkedIn';
+  else if (src === 'referral') dzherelo = 'Referral';
+  else if (src === 'cold') dzherelo = 'Cold Outreach';
+
+  const properties = {
+    'Компанія': { title: [{ text: { content: data.company || 'Невідомо' } }] },
+    'Контактна особа': { rich_text: [{ text: { content: data.name || '' } }] },
+    'Email': { email: data.email || null },
+    'Телефон': { phone_number: data.phone || null },
+    'Статус': { select: { name: '🔍 Лід' } },
+    'Пріоритет': { select: { name: '⚡ Теплий' } },
+    'Джерело': { select: { name: dzherelo } },
+    'Mova': { select: { name: lang === 'en' ? 'EN' : 'UA' } },
+    'UTM Source': { rich_text: [{ text: { content: src } }] },
+    'Нотатки': { rich_text: [{ text: { content: [
+      data.role ? `Роль: ${data.role}` : '',
+      data.agents ? `Агентів: ${data.agents}` : '',
+      data.interests ? `Інтереси: ${data.interests}` : '',
+      data.landing_page ? `Landing: ${data.landing_page}` : ''
+    ].filter(Boolean).join(' | ') } }] },
+    'Наступний крок': { rich_text: [{ text: { content: 'Зателефонувати / написати для призначення демо' } }] },
+    'Дата першого контакту': { date: { start: new Date().toISOString().split('T')[0] } }
+  };
+
+  if (data.interests) {
+    const productMap = {
+      'vision ai': 'Vision AI', 'vision': 'Vision AI',
+      'sales app': 'SFA', 'sfa': 'SFA', 'польові': 'SFA', 'field': 'SFA',
+      'horeca': 'HoReCa Radar',
+      'analytics': 'Analytics', 'дашборд': 'Analytics'
+    };
+    const interestLower = data.interests.toLowerCase();
+    const matchedProducts = Object.entries(productMap)
+      .filter(([key]) => interestLower.includes(key))
+      .map(([, val]) => val);
+    const uniqueProducts = [...new Set(matchedProducts)];
+    if (uniqueProducts.length > 0) {
+      properties['Продукти'] = { multi_select: uniqueProducts.map(name => ({ name })) };
+    }
+  }
+
+  const body = JSON.stringify({
+    parent: { database_id: NOTION_DB_ID },
+    properties
+  });
+
+  return new Promise((resolve) => {
+    const options = {
+      hostname: 'api.notion.com',
+      path: '/v1/pages',
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${NOTION_TOKEN}`,
+        'Content-Type': 'application/json',
+        'Notion-Version': '2022-06-28',
+        'Content-Length': Buffer.byteLength(body)
+      }
+    };
+    const req = https.request(options, (res) => {
+      let d = '';
+      res.on('data', c => d += c);
+      res.on('end', () => resolve(JSON.parse(d)));
+    });
+    req.on('error', (e) => { console.error('Notion error:', e); resolve(null); });
+    req.write(body);
+    req.end();
+  });
+}
+
 function sendTelegram(text, threadId) {
   return new Promise((resolve, reject) => {
     const payload = {
@@ -106,7 +186,13 @@ exports.handler = async (event) => {
     }
 
     const threadId = (form_name === 'subscribe') ? THREAD_ANALITYKA : THREAD_ZAYAVKY;
-    await sendTelegram(message, threadId);
+
+    // Паралельно: Telegram + Notion CRM
+    const tasks = [sendTelegram(message, threadId)];
+    if (form_name === 'demo-request' || form_name === 'homepage-demo') {
+      tasks.push(createNotionLead(data));
+    }
+    await Promise.allSettled(tasks);
 
     return {
       statusCode: 200,
