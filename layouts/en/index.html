@@ -979,6 +979,7 @@ if(mainForm){
   mainForm.addEventListener('submit',function(ev){
     ev.preventDefault();
     var fd=new FormData(mainForm);
+    // 1) Netlify Forms — залишаємо як було
     fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(fd).toString()})
     .then(function(res){
       if(res.ok){
@@ -991,6 +992,30 @@ if(mainForm){
     .catch(function(){
       document.getElementById('mainFormError').style.display='block';
     });
+    // 2) Supabase leads — паралельно, не блокує UX
+    try{
+      var utm={};
+      try{utm=JSON.parse(sessionStorage.getItem('picsell_utm')||'{}');}catch(e){}
+      fetch('https://iblorvxgiashmdnfzbbs.supabase.co/functions/v1/submit-lead',{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({
+          full_name:fd.get('name')||'',
+          email:fd.get('email')||'',
+          phone:fd.get('phone')||'',
+          company:fd.get('company')||'',
+          message:fd.get('message')||'',
+          interests:fd.get('interests')||'',
+          source:'picsell.ai',
+          lang:'en',
+          utm_source:utm.utm_source||'direct',
+          utm_medium:utm.utm_medium||'direct',
+          utm_campaign:utm.utm_campaign||'',
+          utm_content:utm.utm_content||'',
+          landing_page:sessionStorage.getItem('picsell_landing')||window.location.pathname
+        })
+      }).catch(function(){});
+    }catch(e){}
   });
 }
 </script>
