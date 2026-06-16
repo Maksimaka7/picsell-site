@@ -10,6 +10,62 @@ const THREAD_DAIJEST = 2; // Тема: Дайджест
 const NOTION_TOKEN = process.env.NOTION_TOKEN;
 const NOTION_DB_ID = '64216545d7aa422a92902ee7749a1d43'; // Клієнти та Угоди
 
+// PICSELL Command Center (Supabase) — omni-channel lead + inbox conversation.
+// Parallel to Telegram + Notion; failures here never block the form response.
+// Set CC_FORM_SECRET in Netlify env to match Supabase FORM_SECRET (optional but recommended).
+const CC_FORM_SECRET = process.env.CC_FORM_SECRET || '';
+
+function submitToCommandCenter(formName, data) {
+  // Map site form -> Command Center inbound_forms config id.
+  let formId = 'contact-us';
+  if (formName === 'demo-request') formId = 'demo';
+  else if (formName === 'homepage-demo') formId = 'homepage';
+
+  const payload = JSON.stringify({
+    form_id: formId,
+    full_name: data.name || '',
+    company: data.company || null,
+    position: data.role || null,
+    email: data.email || null,
+    phone: data.phone || null,
+    agents: data.agents || null,
+    interests: data.interests || null,
+    message: data.message || null,
+    utm_source: data.utm_source || null,
+    utm_medium: data.utm_medium || null,
+    utm_campaign: data.utm_campaign || null,
+    landing_page: data.landing_page || null,
+  });
+
+  return new Promise((resolve) => {
+    const headers = {
+      'Content-Type': 'application/json',
+      'Content-Length': Buffer.byteLength(payload),
+    };
+    if (CC_FORM_SECRET) headers['X-Form-Secret'] = CC_FORM_SECRET;
+    const options = {
+      hostname: 'iblorvxgiashmdnfzbbs.supabase.co',
+      path: '/functions/v1/inbound-lead-capture',
+      method: 'POST',
+      headers,
+    };
+    const req = https.request(options, (res) => {
+      let d = '';
+      res.on('data', c => d += c);
+      res.on('end', () => {
+        try {
+          const r = JSON.parse(d);
+          if (!r || r.ok !== true) console.error('CC capture error:', d);
+          resolve(r);
+        } catch (e) { resolve(null); }
+      });
+    });
+    req.on('error', (e) => { console.error('CC request error:', e); resolve(null); });
+    req.write(payload);
+    req.end();
+  });
+}
+
 function createNotionLead(data) {
   if (!NOTION_TOKEN) return Promise.resolve(null);
   const lang = data.lang || 'uk';
@@ -207,10 +263,11 @@ exports.handler = async (event) => {
 
     const threadId = (form_name === 'subscribe') ? THREAD_ANALITYKA : THREAD_ZAYAVKY;
 
-    // Паралельно: Telegram + Notion CRM
+    // Паралельно: Telegram + Notion CRM + Command Center (Supabase)
     const tasks = [sendTelegram(message, threadId)];
     if (form_name === 'demo-request' || form_name === 'homepage-demo') {
       tasks.push(createNotionLead(data));
+      tasks.push(submitToCommandCenter(form_name, data));
     }
     await Promise.allSettled(tasks);
 
