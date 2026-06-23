@@ -1,0 +1,104 @@
+{{ $en := strings.HasPrefix .RelPermalink "/en/" }}
+<!-- ══════════════════ SCREEN 5 — UNIQUE BAND · HoReCa + Radar (§8) ══════════════════ -->
+<style>
+#unique{background:var(--bg2);}
+.uniq-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--s4);}
+.uniq-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r4);padding:var(--s5);position:relative;overflow:hidden;display:flex;flex-direction:column;gap:var(--s3);transition:border-color .3s,box-shadow .3s,transform .3s;}
+.uniq-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--acc);}
+.uniq-card:hover{transform:translateY(-4px);box-shadow:0 16px 50px rgba(15,30,55,.09);}
+.uniq-card.horeca{--acc:#7C3AED;}
+.uniq-card.radar{--acc:#E8850C;}
+.uniq-eyebrow{font-family:'Orbitron',sans-serif;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--acc);}
+.uniq-card h3{font-family:'Geologica',sans-serif;font-weight:800;font-size:22px;line-height:1.2;margin-top:6px;}
+.uniq-badge{display:inline-flex;align-items:center;gap:7px;width:fit-content;font-family:'Orbitron',sans-serif;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--acc);background:rgba(232,133,12,.10);border:1px solid rgba(232,133,12,.28);padding:4px 12px;border-radius:999px;margin-top:8px;}
+.live-dot{width:6px;height:6px;border-radius:50%;background:var(--acc);animation:uniqPulse 1.6s ease-in-out infinite;}
+@keyframes uniqPulse{0%,100%{box-shadow:0 0 0 0 rgba(232,133,12,.55);}50%{box-shadow:0 0 0 5px rgba(232,133,12,0);}}
+.uniq-kpi{background:var(--bg1);border:1px solid var(--border);border-radius:var(--r3);padding:var(--s3);}
+.uniq-kpi-h{font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--t3);margin-bottom:12px;}
+/* Share of Menu bars */
+.som-row{display:grid;grid-template-columns:96px 1fr 36px;align-items:center;gap:10px;margin-bottom:9px;font-size:12px;color:var(--t2);}
+.som-row b{font-family:'Geologica',sans-serif;font-weight:800;color:var(--t1);text-align:right;font-size:12px;}
+.som-bar{height:9px;background:var(--bg2);border-radius:99px;overflow:hidden;}
+.som-bar i{display:block;height:100%;border-radius:99px;}
+.som-row.me .som-bar i{background:#7C3AED;}
+.som-row.comp .som-bar i{background:#9AA0AB;}
+.som-row.other .som-bar i{background:#CFCCC4;}
+/* metric chips */
+.uniq-mchips{display:flex;gap:10px;margin-top:14px;}
+.mchip2{flex:1;background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:8px 11px;}
+.mchip2 span{display:block;font-size:9px;color:var(--t3);font-family:'Orbitron',sans-serif;letter-spacing:.08em;text-transform:uppercase;margin-bottom:2px;}
+.mchip2 b{font-family:'Geologica',sans-serif;font-weight:800;font-size:16px;color:var(--t1);}
+/* Radar price rows */
+.price-row{display:grid;grid-template-columns:48px 1fr auto auto;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--border);font-size:12px;}
+.price-row:last-child{border-bottom:none;}
+.price-row .net{font-family:'Geologica',sans-serif;font-weight:700;color:var(--t1);font-size:11px;}
+.price-row .sku{color:var(--t2);}
+.price-row .pr{font-family:'Geologica',sans-serif;font-weight:800;color:var(--t1);}
+.price-row .dl{font-weight:700;font-size:11px;white-space:nowrap;}
+.price-row .dl.down{color:#FF003D;}
+.price-row .dl.up{color:#4E9A00;}
+/* capability chips */
+.uniq-caps{display:flex;flex-wrap:wrap;gap:8px;}
+.uniq-cap{font-size:12px;font-weight:600;color:var(--t2);background:var(--bg1);border:1px solid var(--border);border-radius:999px;padding:6px 13px;}
+.uniq-more{display:inline-flex;align-items:center;gap:6px;color:var(--acc);font-weight:700;font-size:14px;margin-top:auto;transition:gap .2s;}
+.uniq-more:hover{gap:11px;}
+@media(max-width:820px){.uniq-grid{grid-template-columns:1fr;}}
+</style>
+
+<section id="unique" class="section">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="tag">{{ if $en }}Unique to PICSELL{{ else }}Унікально в PICSELL{{ end }}</span>
+      <h2>{{ if $en }}Market intelligence <span class="highlight">competitors don't have</span>{{ else }}Ринкова розвідка, <span class="highlight">якої немає в конкурентів</span>{{ end }}</h2>
+    </div>
+
+    <div class="uniq-grid">
+      <!-- ── HoReCa Intelligence (purple) ── -->
+      <div class="uniq-card horeca reveal rd1">
+        <div>
+          <span class="uniq-eyebrow">HoReCa Intelligence</span>
+          <h3>{{ if $en }}Own the bar and restaurant{{ else }}Контролюй бар і ресторан{{ end }}</h3>
+        </div>
+        <div class="uniq-kpi">
+          <div class="uniq-kpi-h">Share of Menu</div>
+          <div class="som-row me"><span>{{ if $en }}Our brand{{ else }}Наш бренд{{ end }}</span><div class="som-bar"><i style="width:48%"></i></div><b>48%</b></div>
+          <div class="som-row comp"><span>{{ if $en }}Competitor{{ else }}Конкурент{{ end }}</span><div class="som-bar"><i style="width:31%"></i></div><b>31%</b></div>
+          <div class="som-row other"><span>{{ if $en }}Others{{ else }}Інші{{ end }}</span><div class="som-bar"><i style="width:21%"></i></div><b>21%</b></div>
+          <div class="uniq-mchips">
+            <div class="mchip2"><span>Coverage</span><b>72%</b></div>
+            <div class="mchip2"><span>Visibility</span><b>64%</b></div>
+          </div>
+        </div>
+        <div class="uniq-caps">
+          <span class="uniq-cap">Distribution</span>
+          <span class="uniq-cap">Pricing compliance</span>
+          <span class="uniq-cap">{{ if $en }}Cocktail menus{{ else }}Коктейльні карти{{ end }}</span>
+        </div>
+        <a href="{{ "/horeca/" | relLangURL }}" class="uniq-more">{{ if $en }}Explore HoReCa →{{ else }}Дізнатись більше →{{ end }}</a>
+      </div>
+
+      <!-- ── Radar (amber) ── -->
+      <div class="uniq-card radar reveal rd2">
+        <div>
+          <span class="uniq-eyebrow">Radar</span>
+          <span class="uniq-badge"><i class="live-dot"></i>{{ if $en }}live · 7 networks · ~50 stores{{ else }}live · 7 мереж · ~50 магазинів{{ end }}</span>
+          <h3>{{ if $en }}See the entire competitor market{{ else }}Бачиш увесь ринок конкурентів{{ end }}</h3>
+        </div>
+        <div class="uniq-kpi">
+          <div class="uniq-kpi-h">{{ if $en }}Competitor prices{{ else }}Ціни конкурентів{{ end }}</div>
+          <div class="price-row"><span class="net">АТБ</span><span class="sku">Persil 2.4kg</span><span class="pr">₴289</span><span class="dl down">↓ 4%</span></div>
+          <div class="price-row"><span class="net">{{ if $en }}EVA{{ else }}ЕВА{{ end }}</span><span class="sku">Somat All-in-1</span><span class="pr">₴154</span><span class="dl up">↑ 3%</span></div>
+          <div class="price-row"><span class="net">{{ if $en }}Silpo{{ else }}Сільпо{{ end }}</span><span class="sku">Gallina Blanca</span><span class="pr">₴42</span><span class="dl down">↓ 2%</span></div>
+          <div class="price-row"><span class="net">Fora</span><span class="sku">Domestos 1L</span><span class="pr">₴98</span><span class="dl up">↑ 5%</span></div>
+          <div class="uniq-mchips">
+            <div class="mchip2"><span>{{ if $en }}New outlets{{ else }}Нові точки{{ end }}</span><b>+12</b></div>
+            <div class="mchip2"><span>{{ if $en }}Assortment{{ else }}Асортимент{{ end }}</span><b>1.4k SKU</b></div>
+          </div>
+        </div>
+        <a href="{{ "/radar/" | relLangURL }}" class="uniq-more">{{ if $en }}Explore Radar →{{ else }}Дізнатись більше →{{ end }}</a>
+      </div>
+    </div>
+
+    <p style="text-align:center;color:var(--t3);font-size:12px;margin-top:var(--s4);">{{ if $en }}Figures shown are illustrative.{{ else }}Показники наведено для прикладу.{{ end }}</p>
+  </div>
+</section>
