@@ -164,12 +164,23 @@
 .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:var(--r4);border:1px solid var(--border);opacity:0;transition:opacity .5s ease;z-index:3;}
 .hero-video.ready{opacity:1;}
 
-/* Logos strip */
-.logos-strip{padding:var(--s5) 0;background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
-.logos-inner{display:flex;align-items:center;justify-content:center;gap:var(--s6);flex-wrap:wrap;}
-.logo-client{font-family:'Geologica',sans-serif;font-weight:700;font-size:17px;color:var(--t3);letter-spacing:.04em;padding:8px 20px;border:1px solid var(--border);border-radius:var(--r2);transition:all .3s;}
-.logo-client:hover{color:var(--t2);border-color:rgba(0,87,255,.3);background:rgba(0,87,255,.05);}
-.logos-pre{font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--t3);margin-right:var(--s3);}
+/* Screen 2 — Trust strip (text wordmark placeholders until real client logos supplied) */
+.logos-strip{padding:var(--s6) 0;background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.logos-caption{text-align:center;font-family:'Orbitron',sans-serif;font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--t3);margin-bottom:var(--s4);}
+.logos-inner{display:flex;align-items:center;justify-content:center;gap:var(--s4) var(--s6);flex-wrap:wrap;}
+.logo-client{font-family:'Geologica',sans-serif;font-weight:700;font-size:21px;letter-spacing:.02em;color:var(--t3);opacity:.6;filter:grayscale(1);transition:color .3s,opacity .3s,filter .3s,transform .3s;cursor:default;}
+.logo-client:hover{color:var(--t1);opacity:1;filter:grayscale(0);transform:translateY(-2px);}
+
+/* ═══════════════════════════ SCREEN 10 — SECURITY / TRUST BAND ═══════════════════════════ */
+#security{background:#FAFAF8;}
+.sec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s3);}
+.sec-item{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r3);padding:var(--s4);display:flex;flex-direction:column;gap:12px;transition:border-color .3s,box-shadow .3s,transform .3s;}
+.sec-item:hover{border-color:rgba(0,87,255,.25);box-shadow:0 8px 30px rgba(15,30,55,.06);transform:translateY(-2px);}
+.sec-ico{width:46px;height:46px;border-radius:var(--r2);background:rgba(0,87,255,.07);border:1px solid rgba(0,87,255,.15);display:flex;align-items:center;justify-content:center;color:var(--blue);flex-shrink:0;}
+.sec-ico svg{width:22px;height:22px;}
+.sec-item h3{font-family:'Geologica',sans-serif;font-weight:700;font-size:16px;line-height:1.3;}
+.sec-item p{color:var(--t2);font-size:14px;line-height:1.6;}
+@media(max-width:768px){.sec-grid{grid-template-columns:1fr;}}
 
 /* ═══════════════════════════ PAIN SECTION ═══════════════════════════ */
 #pain{background:var(--bg2);}
@@ -496,11 +507,11 @@
   </div>
 </section>
 
-<!-- ══════════════════ LOGOS STRIP ══════════════════ -->
+<!-- ══════════════════ SCREEN 2 — TRUST LOGOS ══════════════════ -->
 <div class="logos-strip">
   <div class="container">
+    <p class="logos-caption">Trusted by</p>
     <div class="logos-inner">
-      <span class="logos-pre">Trusted by:</span>
       <div class="logo-client">Lactalis</div>
       <div class="logo-client">Henkel</div>
       <div class="logo-client">Bayadera</div>
@@ -897,6 +908,49 @@
   </div>
 </section>
 
+<!-- ══════════════════ SCREEN 10 — SECURITY / TRUST BAND ══════════════════ -->
+<section id="security" class="section">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="tag">Security &amp; Trust</span>
+      <h2>Your data, <span class="highlight">protected</span></h2>
+      <p>EU infrastructure, role-based access and GDPR-ready practices — we claim only what is true.</p>
+    </div>
+    <div class="sec-grid">
+      <div class="sec-item reveal rd1">
+        <div class="sec-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6-5.7-6-10a6 6 0 1 1 12 0c0 4.3-6 10-6 10z"/><circle cx="12" cy="11" r="2.4"/></svg></div>
+        <h3>Data in the EU (Frankfurt)</h3>
+        <p>Hosting and databases located in Frankfurt, EU.</p>
+      </div>
+      <div class="sec-item reveal rd2">
+        <div class="sec-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div>
+        <h3>Encryption</h3>
+        <p>Data encrypted in transit and at rest; keys kept in a vault.</p>
+      </div>
+      <div class="sec-item reveal rd3">
+        <div class="sec-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 7.6-7 9-4-1.4-7-4.5-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <h3>Role-based access (RLS)</h3>
+        <p>Row-Level Security — every user sees only their own data.</p>
+      </div>
+      <div class="sec-item reveal rd4">
+        <div class="sec-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l4 4v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M9.5 13l2 2 3.5-3.5"/></svg></div>
+        <h3>GDPR-ready</h3>
+        <p>Built with GDPR requirements in mind (not a certification claim).</p>
+      </div>
+      <div class="sec-item reveal rd5">
+        <div class="sec-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v12c0 1.7 3.1 3 7 3s7-1.3 7-3V6"/><path d="M5 12c0 1.7 3.1 3 7 3s7-1.3 7-3"/></svg></div>
+        <h3>Backups</h3>
+        <p>Regular automated backups of your data.</p>
+      </div>
+      <div class="sec-item reveal rd6">
+        <div class="sec-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13v-1a8 8 0 0 1 16 0v1"/><rect x="2.5" y="13" width="4.5" height="6" rx="1.6"/><rect x="17" y="13" width="4.5" height="6" rx="1.6"/><path d="M20 19a3.5 3.5 0 0 1-3.5 3H13"/></svg></div>
+        <h3>Local support (UA)</h3>
+        <p>Support in Ukrainian from a local team.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ══════════════════ CTA FORM ══════════════════ -->
 <section id="cta" class="section">
   <div class="container">
@@ -1124,11 +1178,11 @@
   </div>
 </section>
 
-<!-- ══════════════════ LOGOS STRIP ══════════════════ -->
+<!-- ══════════════════ SCREEN 2 — TRUST LOGOS ══════════════════ -->
 <div class="logos-strip">
   <div class="container">
+    <p class="logos-caption">Нам довіряють</p>
     <div class="logos-inner">
-      <span class="logos-pre">Довіряють:</span>
       <div class="logo-client">Lactalis</div>
       <div class="logo-client">Henkel</div>
       <div class="logo-client">Bayadera</div>
@@ -1521,6 +1575,49 @@
 
     <div style="text-align:center;margin-top:var(--s4);">
       <a href="/case-studies/" class="btn btn-g">Дивитись всі кейси →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ SCREEN 10 — SECURITY / TRUST BAND ══════════════════ -->
+<section id="security" class="section">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="tag">Безпека та довіра</span>
+      <h2>Ваші дані — <span class="highlight">під захистом</span></h2>
+      <p>Інфраструктура в ЄС, рольовий доступ і GDPR-готовність — заявляємо лише те, що відповідає дійсності.</p>
+    </div>
+    <div class="sec-grid">
+      <div class="sec-item reveal rd1">
+        <div class="sec-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6-5.7-6-10a6 6 0 1 1 12 0c0 4.3-6 10-6 10z"/><circle cx="12" cy="11" r="2.4"/></svg></div>
+        <h3>Дані в ЄС (Франкфурт)</h3>
+        <p>Хостинг і бази даних розміщені у Франкфурті, ЄС.</p>
+      </div>
+      <div class="sec-item reveal rd2">
+        <div class="sec-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div>
+        <h3>Шифрування</h3>
+        <p>Дані шифруються під час передачі та зберігання; ключі — у сховищі.</p>
+      </div>
+      <div class="sec-item reveal rd3">
+        <div class="sec-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 7.6-7 9-4-1.4-7-4.5-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <h3>Рольовий доступ (RLS)</h3>
+        <p>Row-Level Security — кожен користувач бачить лише свої дані.</p>
+      </div>
+      <div class="sec-item reveal rd4">
+        <div class="sec-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l4 4v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M9.5 13l2 2 3.5-3.5"/></svg></div>
+        <h3>GDPR-готовність</h3>
+        <p>Побудовано з урахуванням вимог GDPR (це не заявка про сертифікацію).</p>
+      </div>
+      <div class="sec-item reveal rd5">
+        <div class="sec-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v12c0 1.7 3.1 3 7 3s7-1.3 7-3V6"/><path d="M5 12c0 1.7 3.1 3 7 3s7-1.3 7-3"/></svg></div>
+        <h3>Резервні копії</h3>
+        <p>Регулярні автоматичні резервні копії ваших даних.</p>
+      </div>
+      <div class="sec-item reveal rd6">
+        <div class="sec-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13v-1a8 8 0 0 1 16 0v1"/><rect x="2.5" y="13" width="4.5" height="6" rx="1.6"/><rect x="17" y="13" width="4.5" height="6" rx="1.6"/><path d="M20 19a3.5 3.5 0 0 1-3.5 3H13"/></svg></div>
+        <h3>Локальна підтримка (UA)</h3>
+        <p>Підтримка українською від локальної команди.</p>
+      </div>
     </div>
   </div>
 </section>
