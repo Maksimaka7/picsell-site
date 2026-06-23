@@ -1,0 +1,100 @@
+{{ $en := strings.HasPrefix .RelPermalink "/en/" }}
+<!-- ══════════════════ SCREEN 6 — PAIN → CLOSED LOOP (§9) ══════════════════ -->
+<style>
+#closedloop{background:var(--bg1);}
+.cl-heroes{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s3);}
+.cl-hero{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r3);padding:var(--s4);display:flex;flex-direction:column;gap:11px;transition:border-color .3s,box-shadow .3s,transform .3s;}
+.cl-hero:hover{transform:translateY(-3px);box-shadow:0 12px 36px rgba(15,30,55,.07);}
+.cl-pill{display:inline-flex;align-items:center;gap:7px;font-weight:700;font-size:12px;line-height:1.3;padding:6px 12px;border-radius:999px;width:fit-content;}
+.cl-pill.pain{background:rgba(255,0,61,.08);color:#FF003D;border:1px solid rgba(255,0,61,.22);}
+.cl-pill.fix{background:rgba(78,154,0,.10);color:#4E9A00;border:1px solid rgba(78,154,0,.28);}
+.cl-arrow{color:var(--t3);font-size:18px;line-height:1;margin:-2px 0 -2px 14px;}
+.cl-action{font-size:13px;color:var(--t2);line-height:1.55;}
+.cl-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;}
+.cl-chip{font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--blue);background:rgba(0,87,255,.07);border:1px solid rgba(0,87,255,.18);border-radius:999px;padding:3px 9px;}
+/* matrix */
+.cl-matrix{margin-top:var(--s6);border:1px solid var(--border);border-radius:var(--r3);overflow:hidden;background:var(--bg3);}
+.cl-tablewrap{overflow-x:auto;}
+.cl-table{width:100%;border-collapse:collapse;min-width:680px;}
+.cl-table th{font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);text-align:left;padding:13px 16px;background:var(--bg2);border-bottom:1px solid var(--border);}
+.cl-table td{padding:12px 16px;font-size:13px;color:var(--t2);border-bottom:1px solid var(--border);vertical-align:top;}
+.cl-table tr:last-child td{border-bottom:none;}
+.cl-table td.pain-c{color:var(--t1);font-weight:600;}
+.cl-when{display:inline-block;font-size:11px;font-weight:700;padding:3px 10px;border-radius:999px;background:var(--bg2);color:var(--t2);white-space:nowrap;}
+.cl-when.visit{background:rgba(78,154,0,.12);color:#4E9A00;}
+.cl-mod{font-family:'Orbitron',sans-serif;font-size:10px;font-weight:700;color:var(--blue);white-space:nowrap;}
+.cl-punch{text-align:center;color:var(--t2);font-size:16px;line-height:1.6;margin-top:var(--s4);}
+.cl-punch b{color:var(--t1);font-family:'Geologica',sans-serif;font-weight:800;}
+@media(max-width:980px){.cl-heroes{grid-template-columns:1fr 1fr;}}
+@media(max-width:560px){.cl-heroes{grid-template-columns:1fr;}}
+</style>
+
+<section id="closedloop" class="section">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="tag">Closed Loop</span>
+      <h2>{{ if $en }}We don't report the problem — <span class="highlight">we close it in the visit</span>{{ else }}Не звітуємо про проблему — <span class="highlight">закриваємо її у візиті</span>{{ end }}</h2>
+    </div>
+
+    <div class="cl-heroes">
+      <div class="cl-hero reveal rd1">
+        <span class="cl-pill pain">⚠ {{ if $en }}OOS noticed weeks later{{ else }}OOS помічають за тижні{{ end }}</span>
+        <span class="cl-arrow">↓</span>
+        <span class="cl-pill fix">✓ {{ if $en }}Closed in the visit{{ else }}Закрито у візиті{{ end }}</span>
+        <p class="cl-action">{{ if $en }}Vision spots the empty slot → alert + task.{{ else }}Vision бачить порожнє місце → алерт + задача.{{ end }}</p>
+        <div class="cl-chips"><span class="cl-chip">Vision</span><span class="cl-chip">Core</span></div>
+      </div>
+      <div class="cl-hero reveal rd2">
+        <span class="cl-pill pain">⚠ {{ if $en }}Competitor pushes you out{{ else }}Конкурент витісняє з полиці{{ end }}</span>
+        <span class="cl-arrow">↓</span>
+        <span class="cl-pill fix">✓ {{ if $en }}Closed in the visit{{ else }}Закрито у візиті{{ end }}</span>
+        <p class="cl-action">{{ if $en }}Shelf Share → win facings back.{{ else }}Shelf Share → повернення фейсингів.{{ end }}</p>
+        <div class="cl-chips"><span class="cl-chip">Vision</span></div>
+      </div>
+      <div class="cl-hero reveal rd3">
+        <span class="cl-pill pain">⚠ {{ if $en }}Layout ≠ planogram{{ else }}Викладка ≠ планограмі{{ end }}</span>
+        <span class="cl-arrow">↓</span>
+        <span class="cl-pill fix">✓ {{ if $en }}Closed in the visit{{ else }}Закрито у візиті{{ end }}</span>
+        <p class="cl-action">{{ if $en }}Planogram Compliance → fix.{{ else }}Planogram Compliance → фікс.{{ end }}</p>
+        <div class="cl-chips"><span class="cl-chip">Vision</span></div>
+      </div>
+      <div class="cl-hero reveal rd4">
+        <span class="cl-pill pain">⚠ {{ if $en }}Promo not executed{{ else }}Промо не виконується{{ end }}</span>
+        <span class="cl-arrow">↓</span>
+        <span class="cl-pill fix">✓ {{ if $en }}Closed in the visit{{ else }}Закрито у візиті{{ end }}</span>
+        <p class="cl-action">{{ if $en }}Promo Management + photo check.{{ else }}Promo Management + перевірка на фото.{{ end }}</p>
+        <div class="cl-chips"><span class="cl-chip">Field</span><span class="cl-chip">Vision</span></div>
+      </div>
+    </div>
+
+    <div class="cl-matrix reveal">
+      <div class="cl-tablewrap">
+        <table class="cl-table">
+          <thead>
+            <tr>
+              <th>{{ if $en }}Pain{{ else }}Біль{{ end }}</th>
+              <th>{{ if $en }}How we close it{{ else }}Чим закриває{{ end }}</th>
+              <th>{{ if $en }}When{{ else }}Коли{{ end }}</th>
+              <th>{{ if $en }}Module{{ else }}Модуль{{ end }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="pain-c">{{ if $en }}OOS noticed weeks later{{ else }}OOS помічають за тижні{{ end }}</td><td>{{ if $en }}Vision spots the empty slot → alert + task{{ else }}Vision бачить порожнє місце → алерт+задача{{ end }}</td><td><span class="cl-when visit">{{ if $en }}in the visit{{ else }}у візиті{{ end }}</span></td><td><span class="cl-mod">Vision+Core</span></td></tr>
+            <tr><td class="pain-c">{{ if $en }}Fake photos / GPS{{ else }}Фейкові фото / GPS{{ end }}</td><td>{{ if $en }}Photo quality control + visit GPS{{ else }}Контроль якості фото + GPS візиту{{ end }}</td><td><span class="cl-when visit">{{ if $en }}in the visit{{ else }}у візиті{{ end }}</span></td><td><span class="cl-mod">Vision+Core</span></td></tr>
+            <tr><td class="pain-c">{{ if $en }}Competitor pushes you out{{ else }}Конкурент витісняє{{ end }}</td><td>{{ if $en }}Shelf Share → win facings back{{ else }}Shelf Share → повернення фейсингів{{ end }}</td><td><span class="cl-when visit">{{ if $en }}in the visit{{ else }}у візиті{{ end }}</span></td><td><span class="cl-mod">Vision</span></td></tr>
+            <tr><td class="pain-c">{{ if $en }}Layout ≠ planogram{{ else }}Викладка ≠ планограмі{{ end }}</td><td>{{ if $en }}Planogram Compliance → fix{{ else }}Planogram Compliance → фікс{{ end }}</td><td><span class="cl-when visit">{{ if $en }}in the visit{{ else }}у візиті{{ end }}</span></td><td><span class="cl-mod">Vision</span></td></tr>
+            <tr><td class="pain-c">{{ if $en }}Promo not executed{{ else }}Промо не виконується{{ end }}</td><td>{{ if $en }}Promo Management + photo check{{ else }}Promo Management + перевірка на фото{{ end }}</td><td><span class="cl-when visit">{{ if $en }}in the visit{{ else }}у візиті{{ end }}</span></td><td><span class="cl-mod">Field+Vision</span></td></tr>
+            <tr><td class="pain-c">{{ if $en }}Reps don't close, debts{{ else }}Торгові не дотискають, борги{{ end }}</td><td>{{ if $en }}Catalog+orders, debts/payments, CRM{{ else }}Каталог+замовлення, борги/оплати, CRM{{ end }}</td><td><span class="cl-when visit">{{ if $en }}in the visit{{ else }}у візиті{{ end }}</span></td><td><span class="cl-mod">Field</span></td></tr>
+            <tr><td class="pain-c">{{ if $en }}HoReCa "darkness"{{ else }}HoReCa «темрява»{{ end }}</td><td>{{ if $en }}Menus, brands, Share of Menu, prices{{ else }}Меню, бренди, Share of Menu, ціни{{ end }}</td><td><span class="cl-when">{{ if $en }}real-time{{ else }}реальний час{{ end }}</span></td><td><span class="cl-mod">HoReCa</span></td></tr>
+            <tr><td class="pain-c">{{ if $en }}You don't see competitors{{ else }}Не бачиш конкурентів{{ end }}</td><td>{{ if $en }}Radar parses the market → deltas, new outlets{{ else }}Radar парсить ринок → дельти, нові точки{{ end }}</td><td><span class="cl-when">{{ if $en }}daily{{ else }}щодня{{ end }}</span></td><td><span class="cl-mod">Radar</span></td></tr>
+            <tr><td class="pain-c">{{ if $en }}Chaotic routes{{ else }}Маршрути хаотичні{{ end }}</td><td>{{ if $en }}Route/Sales Planning, routes, GPS{{ else }}Route/Sales Planning, маршрути, GPS{{ end }}</td><td><span class="cl-when">{{ if $en }}planning{{ else }}планування{{ end }}</span></td><td><span class="cl-mod">Field+Core</span></td></tr>
+            <tr><td class="pain-c">{{ if $en }}Data in Excel{{ else }}Дані в Excel{{ end }}</td><td>{{ if $en }}Unified analytics + Power BI{{ else }}Єдина аналітика + Power BI{{ end }}</td><td><span class="cl-when">{{ if $en }}real-time{{ else }}реальний час{{ end }}</span></td><td><span class="cl-mod">Analytics</span></td></tr>
+            <tr><td class="pain-c">{{ if $en }}Manager analyzes by hand{{ else }}Керівник аналізує вручну{{ end }}</td><td>{{ if $en }}AI Assistant: insights, reports, chat{{ else }}AI Assistant: інсайти, звіти, чат{{ end }}</td><td><span class="cl-when">{{ if $en }}on demand{{ else }}за запитом{{ end }}</span></td><td><span class="cl-mod">AI Assistant</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <p class="cl-punch">{{ if $en }}PICSELL closes all <b>11</b> pains — <b>6</b> of them right in the visit, not after it.{{ else }}PICSELL закриває всі <b>11</b> болів — <b>6</b> із них прямо у візиті, а не після нього.{{ end }}</p>
+  </div>
+</section>
