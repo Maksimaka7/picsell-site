@@ -157,6 +157,13 @@
 .hstat-val .acc{color:var(--blue);}
 .hstat-label{font-size:12px;color:var(--t2);margin-top:5px;}
 
+/* Hero v2 — lime-outline CTA + video media (screen 1) */
+.btn-lime{background:transparent;color:var(--t1);border:1.5px solid var(--neon);box-shadow:none;}
+.btn-lime:hover{background:var(--neon);color:#0F1E37;transform:translateY(-2px);box-shadow:0 8px 24px rgba(200,255,0,.35);}
+.hero-media{position:relative;}
+.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:var(--r4);border:1px solid var(--border);opacity:0;transition:opacity .5s ease;z-index:3;}
+.hero-video.ready{opacity:1;}
+
 /* Logos strip */
 .logos-strip{padding:var(--s5) 0;background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
 .logos-inner{display:flex;align-items:center;justify-content:center;gap:var(--s6);flex-wrap:wrap;}
@@ -372,41 +379,41 @@
       <!-- LEFT -->
       <div class="hero-left">
         <div class="hero-eyebrow h-anim h-d1">
-          <div class="hero-badge">
-            <div class="badge-dot"></div>
-            <span class="badge-text">All-in-One Sales OS · FMCG</span>
-          </div>
+          <span class="badge-dot"></span>
+          <span class="badge-text" style="letter-spacing:.14em;">Complete retail-execution platform for FMCG</span>
         </div>
 
         <h1 class="hero-h1 h-anim h-d2">
-          <span class="line"><span style="color:var(--neon)">See the Shelf.</span></span>
-          <span class="line">Lead the Team.</span>
-          <span class="line"><span style="color:var(--blue)">Win the Market.</span></span>
+          <span class="line">See the shelf.</span>
+          <span class="line">Run the field.</span>
+          <span class="line"><span style="color:var(--blue)">Own the market.</span></span>
         </h1>
 
         <p class="hero-sub h-anim h-d3">
-          AI Platform for FMCG: shelf recognition, SFA, and HoReCa analytics — all in one solution
+          Vision AI, field sales, HoReCa and competitive intelligence — in one app for every role.
         </p>
 
         <div class="hero-ctas h-anim h-d4">
           <a href="/demo/" class="btn btn-p btn-lg">Book a Demo →</a>
-          <a href="#how" class="btn btn-s">See How It Works</a>
-        </div>
-
-        <div class="hero-trust h-anim h-d5">
-          <div class="trust-avatars">
-            <div class="trust-avatar">L</div>
-            <div class="trust-avatar">H</div>
-            <div class="trust-avatar">B</div>
-            <div class="trust-avatar">S</div>
-          </div>
-          <div class="trust-text">Trusted by <strong>Lactalis, Henkel, Bayadera</strong> and others</div>
+          <a href="#calc" class="btn btn-lime btn-lg">Calculate Cost</a>
         </div>
       </div>
 
-      <!-- RIGHT — animated dashboard -->
+      <!-- RIGHT — hero media: video (when supplied) over the animated dashboard fallback -->
       <div class="hero-right h-anim h-d3">
-        <div class="hero-dashboard float-anim">
+        <div class="hero-media">
+          <!-- VIDEO PLACEHOLDER (HOMEPAGE-V2-HANDOFF §4). Enable once Maksim supplies the
+               6-shot hero film (Grok frames), 16:9 desktop. Drop /videos/hero-desktop.{webm,mp4}
+               + /images/hero-poster.jpg and uncomment — onerror removes it so the dashboard
+               fallback below always stays visible.
+          <video class="hero-video" autoplay muted loop playsinline preload="none"
+                 poster="/images/hero-poster.jpg"
+                 onloadeddata="this.classList.add('ready')" onerror="this.remove()">
+            <source src="/videos/hero-desktop.webm" type="video/webm">
+            <source src="/videos/hero-desktop.mp4" type="video/mp4">
+          </video>
+          -->
+          <div class="hero-dashboard float-anim">
           <div class="dash-header">
             <div class="dash-dots">
               <div class="dash-dot dash-dot-r"></div>
@@ -474,30 +481,15 @@
             <div class="alert-row" style="display:flex;flex-direction:column;gap:5px;margin-top:10px;">
               <div class="alert-item">
                 <div class="alert-dot"></div>
-                <span><strong style="color:#fff">ATB Khreshchatyk:</strong> OOS on SKU-018 — urgent replenishment recommended</span>
+                <span><strong style="color:var(--t1)">ATB Khreshchatyk:</strong> OOS on SKU-018 — urgent replenishment recommended</span>
               </div>
               <div class="alert-item alert-neon">
                 <div class="alert-dot"></div>
-                <span><strong style="color:#fff">Silpo Obolon:</strong> Perfect Store Score rose to 91% after audit</span>
+                <span><strong style="color:var(--t1)">Silpo Obolon:</strong> Perfect Store Score rose to 91% after audit</span>
               </div>
             </div>
           </div>
         </div>
-
-        <!-- Stats below dashboard -->
-        <div class="hero-stats">
-          <div class="hstat">
-            <div class="hstat-val"><span data-count="10" data-suffix="M+">0</span></div>
-            <div class="hstat-label">SKUs processed</div>
-          </div>
-          <div class="hstat">
-            <div class="hstat-val"><span data-count="31" data-suffix="K+">0</span></div>
-            <div class="hstat-label">Outlets</div>
-          </div>
-          <div class="hstat">
-            <div class="hstat-val"><span data-count="99" data-suffix=".9%">0</span></div>
-            <div class="hstat-label">AI Accuracy</div>
-          </div>
         </div>
       </div>
     </div>
@@ -1015,41 +1007,41 @@
       <!-- LEFT -->
       <div class="hero-left">
         <div class="hero-eyebrow h-anim h-d1">
-          <div class="hero-badge">
-            <div class="badge-dot"></div>
-            <span class="badge-text">All-in-One Sales OS · Ukraine</span>
-          </div>
+          <span class="badge-dot"></span>
+          <span class="badge-text" style="letter-spacing:.14em;">Комплексна retail-execution платформа для FMCG</span>
         </div>
 
         <h1 class="hero-h1 h-anim h-d2">
-          <span class="line"><span style="color:var(--neon)">Бачиш полицю.</span></span>
-          <span class="line">Керуєш командою.</span>
-          <span class="line"><span style="color:var(--blue)">Виграєш ринок.</span></span>
+          <span class="line">Бачиш полицю.</span>
+          <span class="line">Керуєш полем.</span>
+          <span class="line"><span style="color:var(--blue)">Володієш ринком.</span></span>
         </h1>
 
         <p class="hero-sub h-anim h-d3">
-          AI-платформа для FMCG: розпізнавання полиці, SFA і HoReCa-аналітика в одному рішенні
+          Vision AI, польові продажі, HoReCa та конкурентна розвідка — в одному застосунку для кожної ролі.
         </p>
 
         <div class="hero-ctas h-anim h-d4">
           <a href="/demo/" class="btn btn-p btn-lg">Замовити демо →</a>
-          <a href="#how" class="btn btn-s">Подивитись як це працює</a>
-        </div>
-
-        <div class="hero-trust h-anim h-d5">
-          <div class="trust-avatars">
-            <div class="trust-avatar">L</div>
-            <div class="trust-avatar">H</div>
-            <div class="trust-avatar">B</div>
-            <div class="trust-avatar">S</div>
-          </div>
-          <div class="trust-text">Довіряють <strong>Lactalis, Henkel, Bayadera</strong> та інші</div>
+          <a href="#calc" class="btn btn-lime btn-lg">Розрахувати вартість</a>
         </div>
       </div>
 
-      <!-- RIGHT — animated dashboard -->
+      <!-- RIGHT — hero media: video (when supplied) over the animated dashboard fallback -->
       <div class="hero-right h-anim h-d3">
-        <div class="hero-dashboard float-anim">
+        <div class="hero-media">
+          <!-- VIDEO PLACEHOLDER (HOMEPAGE-V2-HANDOFF §4). Enable once Maksim supplies the
+               6-shot hero film (Grok frames), 16:9 desktop. Drop /videos/hero-desktop.{webm,mp4}
+               + /images/hero-poster.jpg and uncomment — onerror removes it so the dashboard
+               fallback below always stays visible.
+          <video class="hero-video" autoplay muted loop playsinline preload="none"
+                 poster="/images/hero-poster.jpg"
+                 onloadeddata="this.classList.add('ready')" onerror="this.remove()">
+            <source src="/videos/hero-desktop.webm" type="video/webm">
+            <source src="/videos/hero-desktop.mp4" type="video/mp4">
+          </video>
+          -->
+          <div class="hero-dashboard float-anim">
           <div class="dash-header">
             <div class="dash-dots">
               <div class="dash-dot dash-dot-r"></div>
@@ -1117,30 +1109,15 @@
             <div class="alert-row" style="display:flex;flex-direction:column;gap:5px;margin-top:10px;">
               <div class="alert-item">
                 <div class="alert-dot"></div>
-                <span><strong style="color:#fff">АТБ Хрещатик:</strong> OOS по SKU-018 — рекомендуємо терміновий доозамовлення</span>
+                <span><strong style="color:var(--t1)">АТБ Хрещатик:</strong> OOS по SKU-018 — рекомендуємо терміновий доозамовлення</span>
               </div>
               <div class="alert-item alert-neon">
                 <div class="alert-dot"></div>
-                <span><strong style="color:#fff">Сільпо Оболонь:</strong> Perfect Store Score виріс до 91% після аудиту</span>
+                <span><strong style="color:var(--t1)">Сільпо Оболонь:</strong> Perfect Store Score виріс до 91% після аудиту</span>
               </div>
             </div>
           </div>
         </div>
-
-        <!-- Stats below dashboard -->
-        <div class="hero-stats">
-          <div class="hstat">
-            <div class="hstat-val"><span data-count="10" data-suffix="M+">0</span></div>
-            <div class="hstat-label">SKU оброблено</div>
-          </div>
-          <div class="hstat">
-            <div class="hstat-val"><span data-count="31" data-suffix="K+">0</span></div>
-            <div class="hstat-label">Торгових точок</div>
-          </div>
-          <div class="hstat">
-            <div class="hstat-val"><span data-count="99" data-suffix=".9%">0</span></div>
-            <div class="hstat-label">Точність AI</div>
-          </div>
         </div>
       </div>
     </div>
