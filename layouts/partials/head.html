@@ -55,13 +55,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   gtag('config', 'G-E1ST422HF4');
 </script>
 
-<!-- Theme color -->
-<meta name="theme-color" content="#08080a"/>
+<!-- Theme color (light on homepage, dark elsewhere) -->
+<meta name="theme-color" content="{{ if .IsHome }}#FAFAF8{{ else }}#08080a{{ end }}"/>
 
 <!-- Google Fonts: Geologica critical (preload), Orbitron async -->
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Geologica:wght@400;500;700;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'"/>
 <noscript><link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap" rel="stylesheet"/></noscript>
 

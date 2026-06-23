@@ -4,7 +4,7 @@
 {{ partial "head.html" . }}
 {{ block "head-extra" . }}{{ end }}
 </head>
-<body style="overflow-x:hidden;">
+<body class="{{ if .IsHome }}home-light{{ end }}" style="overflow-x:hidden;">
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K4T96TN5"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>

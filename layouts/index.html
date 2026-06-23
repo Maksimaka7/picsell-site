@@ -42,6 +42,44 @@
 }
 </script>
 <style>
+/* ═══════════════════════════ LIGHT THEME — FOUNDATION (homepage v2) ═══════════════════════════ */
+/* Scoped to body.home-light so blog + other pages stay dark. Redefining the design-system
+   tokens on body cascades into the shared header/footer partials too. Brand tokens per
+   HOMEPAGE-V2-HANDOFF §2 (Warm Premium light). */
+.home-light{
+  --bg0:#F0EDE4;--bg1:#FAFAF8;--bg2:#F4F2EC;--bg3:#FFFFFF;--bg4:#FFFFFF;
+  --border:#E5E2DA;--border-b:rgba(0,87,255,.22);--border-glow:rgba(0,87,255,.35);
+  --blue:#0057FF;--blue2:#0047D6;--blue3:#0057FF;--cyan:#00D4FF;
+  --neon:#C8FF00;--red:#FF003D;--orange:#E8590C;--green:#4E9A00;
+  --t1:#0F1E37;--t2:#6B7280;--t3:#9AA0AB;
+  --grad-blue:linear-gradient(135deg,#0057FF 0%,#00B4FF 100%);
+}
+/* White brand logo → ink on light header/footer */
+.home-light .logo img{filter:brightness(0);}
+/* Header glass → light */
+.home-light #header{background:rgba(250,250,248,.82);border-bottom-color:var(--border);}
+.home-light #header.scrolled{background:rgba(255,255,255,.95);border-bottom-color:rgba(0,87,255,.15);box-shadow:0 1px 0 rgba(15,30,55,.05);}
+.home-light .nav-link:hover,.home-light .nav-link.active{background:rgba(0,87,255,.06);}
+.home-light .dropdown{background:#fff;box-shadow:0 20px 60px rgba(15,30,55,.12);}
+.home-light .dd-item:hover{background:rgba(0,87,255,.06);}
+.home-light .mobile-nav{background:rgba(250,250,248,.98);}
+.home-light .btn-s{color:var(--blue);}
+.home-light .btn-g:hover{color:var(--t1);border-color:rgba(15,30,55,.25);}
+/* Neon-lime as text is invisible on light → route to readable lime-green (success/positive accent) */
+.home-light .badge-text,.home-light .dash-status,.home-light .kpi-val.neon,.home-light .kpi-delta.up,
+.home-light .step-time,.home-light .sol-feat-icon,.home-light .prod-tag-neon,.home-light .hl-neon,
+.home-light .case-res-val,.home-light .form-success h3,.home-light .cta-perk-icon,.home-light .ic-yes,
+.home-light .badge-neon{color:var(--green);}
+/* Hardcoded dark assumptions → light */
+.home-light .dot-grid{background-image:radial-gradient(circle,rgba(15,30,55,.06) 1px,transparent 1px);}
+.home-light .hero-dashboard{box-shadow:0 0 80px rgba(0,87,255,.10),0 30px 60px rgba(15,30,55,.12);}
+.home-light .comp-table td{border-bottom-color:var(--border);}
+.home-light .comp-table tr:hover td{background:rgba(0,87,255,.03);}
+.home-light .ic-no{color:rgba(15,30,55,.20);}
+/* Footer → light warm surface */
+.home-light #footer{background:var(--bg2);border-top-color:var(--border);}
+/* ═══════════════════════════ END LIGHT FOUNDATION ═══════════════════════════ */
+
 #hero{position:relative;min-height:100vh;display:flex;align-items:flex-start;padding-top:72px;overflow:hidden;}
 .hero-bg{position:absolute;inset:0;pointer-events:none;}
 .dot-grid{position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.055) 1px,transparent 1px);background-size:34px 34px;}
