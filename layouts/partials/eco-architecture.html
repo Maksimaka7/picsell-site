@@ -1,0 +1,187 @@
+{{ $en := strings.HasPrefix .RelPermalink "/en/" }}
+<!-- ══════════════════ SCREEN 3 — ECOSYSTEM ARCHITECTURE (§6) ══════════════════ -->
+<style>
+#ecosystem{background:var(--bg1);overflow:hidden;}
+.eco-wrap{max-width:880px;margin:0 auto;}
+.eco-svg{width:100%;height:auto;display:block;overflow:visible;}
+/* layers reveal bottom-up (opacity only — safe in SVG) */
+.eco-layer{opacity:0;transition:opacity .6s ease;}
+#ecosystem.eco-in .eco-layer{opacity:1;}
+#ecosystem.eco-in .l-base{transition-delay:.05s;}
+#ecosystem.eco-in .l-core{transition-delay:.2s;}
+#ecosystem.eco-in .l-mod{transition-delay:.38s;}
+#ecosystem.eco-in .l-int{transition-delay:.56s;}
+/* edges + nodes */
+.eco-edge{fill:none;stroke:rgba(0,87,255,.22);stroke-width:1.6;transition:opacity .4s,stroke .4s;}
+.eco-edge.loop{stroke:rgba(200,255,0,.6);stroke-width:1.8;stroke-dasharray:5 5;}
+.eco-node rect{transition:opacity .4s;}
+.eco-label{font-family:'Geologica',sans-serif;font-weight:700;}
+.eco-cap{font-family:'Orbitron',sans-serif;font-weight:700;letter-spacing:.16em;text-transform:uppercase;fill:var(--t3);font-size:10px;}
+.n-core rect{fill:rgba(0,87,255,.10);stroke:#0057FF;stroke-width:2;}
+.n-core text{fill:#0F1E37;}
+.n-mod rect{fill:rgba(0,87,255,.05);stroke:rgba(0,87,255,.38);stroke-width:1.5;}
+.n-mod text{fill:#0F1E37;}
+.n-int rect{fill:#16243F;stroke:#16243F;}
+.n-int text{fill:#FFFFFF;}
+.n-base rect{fill:var(--bg2);stroke:var(--border);stroke-width:1.5;}
+.n-base text{fill:#6B7280;font-weight:600;}
+/* animated data pulses (gated until in view) */
+.eco-pulse{opacity:0;transition:opacity .5s;}
+#ecosystem.eco-in .eco-pulse{opacity:1;}
+/* State B — role path highlight */
+#ecosystem.eco-on .eco-node,#ecosystem.eco-on .eco-edge{opacity:.12;}
+#ecosystem.eco-on .eco-node.on,#ecosystem.eco-on .eco-edge.on{opacity:1;}
+#ecosystem.eco-on .eco-pulse{opacity:0;}
+/* roles */
+.eco-roles{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:var(--s4);}
+.eco-role{font-family:'Inter',sans-serif;font-weight:600;font-size:14px;color:var(--t2);background:var(--bg3);border:1px solid var(--border);border-radius:999px;padding:10px 18px;cursor:pointer;transition:color .2s,background .2s,border-color .2s,box-shadow .2s;white-space:nowrap;}
+.eco-role:hover{border-color:rgba(0,87,255,.4);color:var(--t1);}
+.eco-role.active{background:var(--blue);border-color:var(--blue);color:#fff;box-shadow:0 6px 18px rgba(0,87,255,.3);}
+.eco-hint{text-align:center;color:var(--t3);font-size:13px;margin-top:var(--s2);}
+@media(max-width:640px){
+  .eco-roles{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;padding-bottom:6px;-webkit-overflow-scrolling:touch;}
+  .eco-role{flex:0 0 auto;}
+}
+@media (prefers-reduced-motion:reduce){
+  .eco-pulse{display:none;}
+  .eco-layer{opacity:1;transition:none;}
+}
+</style>
+<noscript><style>.eco-layer{opacity:1!important;}</style></noscript>
+
+<section id="ecosystem" class="section">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="tag">{{ if $en }}Ecosystem{{ else }}Екосистема{{ end }}</span>
+      <h2>{{ if $en }}One platform — <span class="highlight">every role</span>{{ else }}Одна платформа — <span class="highlight">усі ролі</span>{{ end }}</h2>
+      <p>{{ if $en }}Data flows from the field up to intelligence, and insights loop back into the visit — a closed loop.{{ else }}Дані піднімаються від поля до інтелекту, а інсайти повертаються у візит — замкнений цикл.{{ end }}</p>
+    </div>
+
+    <div class="eco-wrap reveal">
+      <svg class="eco-svg" viewBox="0 0 760 600" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" role="img" aria-label="{{ if $en }}PICSELL ecosystem architecture{{ else }}Архітектура екосистеми PICSELL{{ end }}">
+        <!-- ── EDGES (drawn first, behind nodes) ── -->
+        <g class="eco-edges">
+          <!-- core → modules -->
+          <path id="e-c-field"  class="eco-edge" d="M107,380 L107,314"/>
+          <path id="e-c-vision" class="eco-edge" d="M289,380 L289,314"/>
+          <path id="e-c-radar"  class="eco-edge" d="M471,380 L471,314"/>
+          <path id="e-c-horeca" class="eco-edge" d="M653,380 L653,314"/>
+          <!-- modules → intelligence -->
+          <path id="e-field-analytics"  class="eco-edge" d="M107,250 L250,142"/>
+          <path id="e-vision-analytics" class="eco-edge" d="M289,250 L250,142"/>
+          <path id="e-vision-ai"        class="eco-edge" d="M289,250 L510,142"/>
+          <path id="e-radar-analytics"  class="eco-edge" d="M471,250 L250,142"/>
+          <path id="e-radar-ai"         class="eco-edge" d="M471,250 L510,142"/>
+          <path id="e-horeca-analytics" class="eco-edge" d="M653,250 L250,142"/>
+          <path id="e-horeca-ai"        class="eco-edge" d="M653,250 L510,142"/>
+          <!-- closed loop: AI → Core (lime, returns down the right side) -->
+          <path id="e-loop" class="eco-edge loop" d="M560,142 C748,210 748,360 645,382"/>
+        </g>
+
+        <!-- ── DATA PULSES (blue, upward) + LOOP PULSE (lime, down) ── -->
+        <g class="eco-flows">
+          <circle class="eco-pulse" r="4" fill="#0057FF"><animateMotion dur="1.8s" begin="0s"   repeatCount="indefinite"><mpath xlink:href="#e-c-field"/></animateMotion></circle>
+          <circle class="eco-pulse" r="4" fill="#0057FF"><animateMotion dur="1.8s" begin=".3s"  repeatCount="indefinite"><mpath xlink:href="#e-c-vision"/></animateMotion></circle>
+          <circle class="eco-pulse" r="4" fill="#0057FF"><animateMotion dur="1.8s" begin=".6s"  repeatCount="indefinite"><mpath xlink:href="#e-c-radar"/></animateMotion></circle>
+          <circle class="eco-pulse" r="4" fill="#0057FF"><animateMotion dur="1.8s" begin=".9s"  repeatCount="indefinite"><mpath xlink:href="#e-c-horeca"/></animateMotion></circle>
+          <circle class="eco-pulse" r="3.5" fill="#00B4FF"><animateMotion dur="2.2s" begin=".2s" repeatCount="indefinite"><mpath xlink:href="#e-vision-analytics"/></animateMotion></circle>
+          <circle class="eco-pulse" r="3.5" fill="#00B4FF"><animateMotion dur="2.2s" begin=".8s" repeatCount="indefinite"><mpath xlink:href="#e-vision-ai"/></animateMotion></circle>
+          <circle class="eco-pulse" r="3.5" fill="#00B4FF"><animateMotion dur="2.2s" begin="1.1s" repeatCount="indefinite"><mpath xlink:href="#e-field-analytics"/></animateMotion></circle>
+          <circle class="eco-pulse" r="3.5" fill="#00B4FF"><animateMotion dur="2.2s" begin="1.4s" repeatCount="indefinite"><mpath xlink:href="#e-radar-ai"/></animateMotion></circle>
+          <circle class="eco-pulse" r="3.5" fill="#00B4FF"><animateMotion dur="2.2s" begin="1.7s" repeatCount="indefinite"><mpath xlink:href="#e-horeca-ai"/></animateMotion></circle>
+          <circle class="eco-pulse" r="4.5" fill="#C8FF00"><animateMotion dur="2.6s" begin=".4s" repeatCount="indefinite"><mpath xlink:href="#e-loop"/></animateMotion></circle>
+        </g>
+
+        <!-- ── INTELLIGENCE layer (top) ── -->
+        <g class="eco-layer l-int">
+          <text x="20" y="40" class="eco-cap">{{ if $en }}Intelligence{{ else }}Інтелект{{ end }}</text>
+          <g id="i-analytics" class="eco-node n-int">
+            <rect x="150" y="70" width="200" height="72" rx="14"/>
+            <text x="250" y="106" text-anchor="middle" dominant-baseline="central" class="eco-label" font-size="17">Analytics</text>
+          </g>
+          <g id="i-ai" class="eco-node n-int">
+            <rect x="410" y="70" width="200" height="72" rx="14"/>
+            <text x="510" y="106" text-anchor="middle" dominant-baseline="central" class="eco-label" font-size="17">AI Assistant</text>
+          </g>
+        </g>
+
+        <!-- ── MODULES layer ── -->
+        <g class="eco-layer l-mod">
+          <text x="20" y="222" class="eco-cap">{{ if $en }}Modules{{ else }}Модулі{{ end }}</text>
+          <g id="m-field" class="eco-node n-mod">
+            <rect x="32" y="250" width="150" height="64" rx="12"/>
+            <text x="107" y="282" text-anchor="middle" dominant-baseline="central" class="eco-label" font-size="16">Field</text>
+          </g>
+          <g id="m-vision" class="eco-node n-mod">
+            <rect x="214" y="250" width="150" height="64" rx="12"/>
+            <text x="289" y="282" text-anchor="middle" dominant-baseline="central" class="eco-label" font-size="16">Vision</text>
+          </g>
+          <g id="m-radar" class="eco-node n-mod">
+            <rect x="396" y="250" width="150" height="64" rx="12"/>
+            <text x="471" y="282" text-anchor="middle" dominant-baseline="central" class="eco-label" font-size="16">Radar</text>
+          </g>
+          <g id="m-horeca" class="eco-node n-mod">
+            <rect x="578" y="250" width="150" height="64" rx="12"/>
+            <text x="653" y="282" text-anchor="middle" dominant-baseline="central" class="eco-label" font-size="16">HoReCa</text>
+          </g>
+        </g>
+
+        <!-- ── CORE layer ── -->
+        <g class="eco-layer l-core">
+          <g id="core" class="eco-node n-core">
+            <rect x="80" y="380" width="600" height="72" rx="16"/>
+            <text x="380" y="416" text-anchor="middle" dominant-baseline="central" class="eco-label" font-size="22">PICSELL Core</text>
+          </g>
+        </g>
+
+        <!-- ── BASE layer (bottom) ── -->
+        <g class="eco-layer l-base">
+          <g class="eco-node n-base">
+            <rect x="140" y="496" width="480" height="44" rx="12"/>
+            <text x="380" y="518" text-anchor="middle" dominant-baseline="central" class="eco-label" font-size="14">{{ if $en }}One app, every role{{ else }}Один застосунок, усі ролі{{ end }}</text>
+          </g>
+        </g>
+      </svg>
+
+      <!-- State B — role selector -->
+      <div class="eco-roles" role="group" aria-label="{{ if $en }}Highlight a role path{{ else }}Підсвітити шлях ролі{{ end }}">
+        <button type="button" class="eco-role" data-role="merch">{{ if $en }}Merchandiser{{ else }}Мерчандайзер{{ end }}</button>
+        <button type="button" class="eco-role" data-role="sales">{{ if $en }}Sales rep{{ else }}Торговий{{ end }}</button>
+        <button type="button" class="eco-role" data-role="super">{{ if $en }}Supervisor{{ else }}Супервайзер{{ end }}</button>
+        <button type="button" class="eco-role" data-role="manager">{{ if $en }}Manager{{ else }}Керівник{{ end }}</button>
+      </div>
+      <p class="eco-hint">{{ if $en }}Pick a role to highlight its path · tap again to reset{{ else }}Оберіть роль, щоб підсвітити її шлях · натисніть ще раз, щоб скинути{{ end }}</p>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var eco=document.getElementById('ecosystem');
+  if(!eco) return;
+  // scroll-trigger: reveal layers bottom-up, then pulses appear
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){eco.classList.add('eco-in');io.disconnect();}});},{threshold:.2});
+    io.observe(eco);
+  }else{eco.classList.add('eco-in');}
+  // State B — role path highlighting
+  var ROLES={
+    merch:{n:['core','m-vision','i-analytics'],e:['e-c-vision','e-vision-analytics']},
+    sales:{n:['core','m-field','i-analytics'],e:['e-c-field','e-field-analytics']},
+    super:{n:['core','m-field','m-vision','i-analytics','i-ai'],e:['e-c-field','e-c-vision','e-field-analytics','e-vision-ai','e-loop']},
+    manager:{n:['core','m-radar','m-horeca','i-ai','i-analytics'],e:['e-c-radar','e-c-horeca','e-radar-ai','e-horeca-analytics']}
+  };
+  var btns=eco.querySelectorAll('.eco-role');
+  function clearOn(){var on=eco.querySelectorAll('.on');for(var i=0;i<on.length;i++){on[i].classList.remove('on');}}
+  function setRole(key){var r=ROLES[key];if(!r)return;clearOn();r.n.concat(r.e).forEach(function(id){var el=eco.querySelector('#'+id);if(el)el.classList.add('on');});eco.classList.add('eco-on');}
+  function reset(){clearOn();eco.classList.remove('eco-on');for(var i=0;i<btns.length;i++){btns[i].classList.remove('active');}}
+  for(var i=0;i<btns.length;i++){
+    btns[i].addEventListener('click',function(){
+      if(this.classList.contains('active')){reset();return;}
+      for(var j=0;j<btns.length;j++){btns[j].classList.remove('active');}
+      this.classList.add('active');
+      setRole(this.getAttribute('data-role'));
+    });
+  }
+})();
+</script>
