@@ -1,0 +1,219 @@
+{{ $en := strings.HasPrefix .RelPermalink "/en/" }}
+<!-- ══════════════════ SCREEN 9 — PRICING CALCULATOR (§12) ══════════════════ -->
+<style>
+#calc{background:var(--bg2);scroll-margin-top:80px;}
+.calc-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:var(--s4);align-items:start;}
+.calc-panel{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r4);padding:var(--s5);}
+.calc-block-h{font-family:'Orbitron',sans-serif;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--t3);margin-bottom:var(--s3);}
+/* role rows */
+.calc-role{display:grid;grid-template-columns:1fr auto;align-items:center;gap:var(--s2);padding:14px 0;border-bottom:1px solid var(--border);}
+.calc-role:last-of-type{border-bottom:none;}
+.calc-role-i strong{font-family:'Geologica',sans-serif;font-weight:700;font-size:15px;color:var(--t1);display:block;}
+.calc-role-i span{font-size:12px;color:var(--t2);}
+.calc-role-i b{font-family:'Geologica',sans-serif;color:var(--blue);font-weight:700;}
+.calc-step{display:flex;align-items:center;gap:10px;}
+.calc-btn{width:32px;height:32px;border-radius:9px;border:1px solid var(--border);background:var(--bg2);color:var(--t1);font-size:18px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;line-height:1;}
+.calc-btn:hover{border-color:var(--blue);color:var(--blue);}
+.calc-num{width:46px;text-align:center;font-family:'Geologica',sans-serif;font-weight:800;font-size:16px;color:var(--t1);background:transparent;border:none;-moz-appearance:textfield;}
+.calc-num::-webkit-outer-spin-button,.calc-num::-webkit-inner-spin-button{-webkit-appearance:none;margin:0;}
+/* add-ons */
+.calc-addon{border:1px solid var(--border);border-radius:var(--r3);padding:14px 16px;margin-bottom:12px;transition:border-color .2s;}
+.calc-addon.on{border-color:rgba(0,87,255,.4);background:rgba(0,87,255,.03);}
+.calc-addon-top{display:flex;align-items:flex-start;gap:11px;cursor:pointer;}
+.calc-addon-top input{width:18px;height:18px;margin-top:2px;accent-color:var(--blue);cursor:pointer;flex-shrink:0;}
+.calc-addon-top strong{font-family:'Geologica',sans-serif;font-weight:700;font-size:15px;color:var(--t1);display:block;}
+.calc-addon-top span{font-size:12px;color:var(--t2);}
+.calc-addon-x{display:none;align-items:center;gap:10px;margin-top:12px;padding-left:29px;font-size:13px;color:var(--t2);}
+.calc-addon.on .calc-addon-x{display:flex;}
+.calc-addon-x input[type=number]{width:90px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:7px 10px;color:var(--t1);font-family:'Geologica',sans-serif;font-weight:700;font-size:14px;}
+/* billing toggle */
+.calc-toggle{display:inline-flex;background:var(--bg2);border:1px solid var(--border);border-radius:999px;padding:4px;margin-bottom:var(--s3);}
+.calc-toggle button{border:none;background:transparent;color:var(--t2);font-family:'Inter',sans-serif;font-weight:600;font-size:13px;padding:8px 16px;border-radius:999px;cursor:pointer;transition:all .2s;white-space:nowrap;}
+.calc-toggle button.active{background:var(--blue);color:#fff;}
+.calc-toggle .save{color:#4E9A00;font-weight:700;}
+/* summary */
+.calc-summary{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r4);padding:var(--s5);position:sticky;top:88px;}
+.calc-line{display:flex;align-items:center;justify-content:space-between;font-size:13px;color:var(--t2);padding:7px 0;}
+.calc-line b{font-family:'Geologica',sans-serif;color:var(--t1);font-weight:700;}
+.calc-line.muted{color:var(--t3);}
+.calc-total{border-top:1px solid var(--border);margin-top:10px;padding-top:16px;}
+.calc-total .lbl{font-family:'Orbitron',sans-serif;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--t3);}
+.calc-total .val{font-family:'Geologica',sans-serif;font-weight:900;font-size:clamp(28px,4vw,38px);letter-spacing:-.02em;color:var(--t1);line-height:1.1;margin-top:4px;}
+.calc-total .val small{font-size:16px;font-weight:700;color:var(--t2);}
+.calc-total .sub{font-size:12px;color:var(--t3);margin-top:4px;}
+.calc-offer{display:flex;gap:9px;align-items:flex-start;background:rgba(78,154,0,.08);border:1px solid rgba(78,154,0,.22);border-radius:var(--r2);padding:11px 13px;margin:16px 0;font-size:12.5px;color:#4E9A00;line-height:1.5;}
+.calc-lead{margin-top:16px;}
+.calc-lead input[type=email]{width:100%;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);padding:13px 15px;color:var(--t1);font-family:'Inter',sans-serif;font-size:14px;outline:none;transition:border-color .2s;margin-bottom:10px;}
+.calc-lead input[type=email]:focus{border-color:var(--blue);}
+.calc-lead input.err{border-color:var(--red);}
+.calc-msg{font-size:13px;margin-top:10px;display:none;}
+.calc-msg.show{display:block;}
+.calc-msg.ok{color:#4E9A00;}
+.calc-msg.bad{color:var(--red);}
+.calc-disc{font-size:11px;color:var(--t3);text-align:center;margin-top:14px;line-height:1.5;}
+@media(max-width:900px){
+  .calc-grid{grid-template-columns:1fr;}
+  .calc-summary{position:sticky;bottom:0;top:auto;border-radius:var(--r4) var(--r4) 0 0;box-shadow:0 -10px 40px rgba(15,30,55,.12);}
+}
+</style>
+
+<section id="calc" class="section">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="tag">{{ if $en }}Calculator{{ else }}Калькулятор{{ end }}</span>
+      <h2>{{ if $en }}Estimate your <span class="highlight">monthly cost</span>{{ else }}Порахуй <span class="highlight">орієнтовну вартість</span>{{ end }}</h2>
+    </div>
+
+    <div class="calc-grid" id="calcRoot">
+      <!-- configurator -->
+      <div class="calc-panel">
+        <div class="calc-block-h">{{ if $en }}Roles (per seat / mo){{ else }}Ролі (за місце / міс){{ end }}</div>
+        <div class="calc-roles">
+          <div class="calc-role" data-rate="1800">
+            <div class="calc-role-i"><strong>{{ if $en }}Merchandiser{{ else }}Мерчандайзер{{ end }}</strong><span>Core + Vision · <b>₴1 800</b></span></div>
+            <div class="calc-step"><button type="button" class="calc-btn" data-d="-1">−</button><input class="calc-num" type="number" min="0" value="5" data-role="{{ if $en }}Merchandiser{{ else }}Мерчандайзер{{ end }}"><button type="button" class="calc-btn" data-d="1">+</button></div>
+          </div>
+          <div class="calc-role" data-rate="1000">
+            <div class="calc-role-i"><strong>{{ if $en }}Sales rep{{ else }}Торговий{{ end }}</strong><span>Core + Field · <b>₴1 000</b></span></div>
+            <div class="calc-step"><button type="button" class="calc-btn" data-d="-1">−</button><input class="calc-num" type="number" min="0" value="3" data-role="{{ if $en }}Sales rep{{ else }}Торговий{{ end }}"><button type="button" class="calc-btn" data-d="1">+</button></div>
+          </div>
+          <div class="calc-role" data-rate="1000">
+            <div class="calc-role-i"><strong>{{ if $en }}Supervisor{{ else }}Супервайзер{{ end }}</strong><span>Core + Analytics · <b>₴1 000</b></span></div>
+            <div class="calc-step"><button type="button" class="calc-btn" data-d="-1">−</button><input class="calc-num" type="number" min="0" value="1" data-role="{{ if $en }}Supervisor{{ else }}Супервайзер{{ end }}"><button type="button" class="calc-btn" data-d="1">+</button></div>
+          </div>
+          <div class="calc-role" data-rate="1400">
+            <div class="calc-role-i"><strong>{{ if $en }}User{{ else }}Користувач{{ end }}</strong><span>Core · <b>₴1 400</b></span></div>
+            <div class="calc-step"><button type="button" class="calc-btn" data-d="-1">−</button><input class="calc-num" type="number" min="0" value="0" data-role="{{ if $en }}User{{ else }}Користувач{{ end }}"><button type="button" class="calc-btn" data-d="1">+</button></div>
+          </div>
+          <div class="calc-role" data-rate="0">
+            <div class="calc-role-i"><strong>{{ if $en }}Admin{{ else }}Адмін{{ end }}</strong><span>{{ if $en }}Free{{ else }}Безкоштовно{{ end }} · <b>₴0</b></span></div>
+            <div class="calc-step"><button type="button" class="calc-btn" data-d="-1">−</button><input class="calc-num" type="number" min="0" value="1" data-role="{{ if $en }}Admin{{ else }}Адмін{{ end }}"><button type="button" class="calc-btn" data-d="1">+</button></div>
+          </div>
+        </div>
+
+        <div class="calc-block-h" style="margin-top:var(--s4);">Add-ons</div>
+        <div class="calc-addon" id="addonRadar" data-base="20000" data-per="5000">
+          <label class="calc-addon-top"><input type="checkbox" class="calc-addon-cb"><span><strong>Radar</strong><span>{{ if $en }}Competitive intelligence · from ₴20 000 + ₴5 000 × site{{ else }}Конкурентна розвідка · від ₴20 000 + ₴5 000 × площадка{{ end }}</span></span></label>
+          <div class="calc-addon-x"><span>{{ if $en }}Sites{{ else }}Площадок{{ end }}:</span><input type="number" min="1" value="1" class="calc-addon-q" data-addon="Radar"></div>
+        </div>
+        <div class="calc-addon" id="addonHoreca" data-base="20000" data-per="10">
+          <label class="calc-addon-top"><input type="checkbox" class="calc-addon-cb"><span><strong>HoReCa Intelligence</strong><span>{{ if $en }}from ₴20 000 + ₴10 × menu item{{ else }}від ₴20 000 + ₴10 × позиція меню{{ end }}</span></span></label>
+          <div class="calc-addon-x"><span>{{ if $en }}Menu items{{ else }}Позицій меню{{ end }}:</span><input type="number" min="1" value="100" class="calc-addon-q" data-addon="HoReCa"></div>
+        </div>
+      </div>
+
+      <!-- summary -->
+      <div class="calc-summary">
+        <div class="calc-toggle" role="group" aria-label="{{ if $en }}Billing period{{ else }}Період оплати{{ end }}">
+          <button type="button" id="billMonthly" class="active" data-mode="monthly">{{ if $en }}Monthly{{ else }}Щомісяця{{ end }}</button>
+          <button type="button" id="billAnnual" data-mode="annual">{{ if $en }}Annually{{ else }}Річно{{ end }} <span class="save">−20%</span></button>
+        </div>
+        <div class="calc-line"><span>{{ if $en }}Seats{{ else }}Місця{{ end }}</span><b id="sumSeats">₴0</b></div>
+        <div class="calc-line" id="lineRadar" style="display:none;"><span>Radar</span><b id="sumRadar">₴0</b></div>
+        <div class="calc-line" id="lineHoreca" style="display:none;"><span>HoReCa</span><b id="sumHoreca">₴0</b></div>
+        <div class="calc-total">
+          <div class="lbl">{{ if $en }}Estimated cost{{ else }}Орієнтовна вартість{{ end }}</div>
+          <div class="val"><span id="sumTotal">₴0</span><small id="sumPeriod"> / {{ if $en }}mo{{ else }}міс{{ end }}</small></div>
+          <div class="sub" id="sumSub"></div>
+        </div>
+        <div class="calc-offer">✓ {{ if $en }}Annual contract: −20% + free CRM migration.{{ else }}Річний контракт: −20% + безкоштовна міграція CRM.{{ end }}</div>
+        <div class="calc-lead">
+          <input type="email" id="calcEmail" placeholder="{{ if $en }}your@email.com{{ else }}ваш@email.com{{ end }}" autocomplete="email">
+          <button type="button" class="btn btn-p btn-full" id="calcSubmit">{{ if $en }}Get a detailed quote{{ else }}Отримати детальну пропозицію{{ end }}</button>
+          <div class="calc-msg" id="calcMsg"></div>
+        </div>
+        <p class="calc-disc">{{ if $en }}Estimate only — final pricing is agreed individually.{{ else }}Орієнтовно — фінальні тарифи узгоджуються індивідуально.{{ end }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var root=document.getElementById('calcRoot');
+  if(!root) return;
+  var section=document.getElementById('calc');
+  var EN=document.documentElement.lang==='en';
+  var mode='monthly';
+  function fmt(n){return '₴'+String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g,' ');}
+  function num(el){var v=parseInt(el.value,10);return isNaN(v)||v<0?0:v;}
+  function calc(){
+    var seats=0, lines=[];
+    root.querySelectorAll('.calc-role').forEach(function(r){
+      var rate=parseInt(r.getAttribute('data-rate'),10);
+      var inp=r.querySelector('.calc-num');var c=num(inp);
+      seats+=c*rate;
+      if(c>0) lines.push(inp.getAttribute('data-role')+'×'+c);
+    });
+    var radar=0,horeca=0;
+    var ar=document.getElementById('addonRadar'), ah=document.getElementById('addonHoreca');
+    if(ar.classList.contains('on')){var q=num(ar.querySelector('.calc-addon-q'));radar=parseInt(ar.getAttribute('data-base'),10)+parseInt(ar.getAttribute('data-per'),10)*q;lines.push('Radar('+q+')');}
+    if(ah.classList.contains('on')){var q2=num(ah.querySelector('.calc-addon-q'));horeca=parseInt(ah.getAttribute('data-base'),10)+parseInt(ah.getAttribute('data-per'),10)*q2;lines.push('HoReCa('+q2+')');}
+    var monthly=seats+radar+horeca;
+    return {seats:seats,radar:radar,horeca:horeca,monthly:monthly,annual:monthly*12*0.8,lines:lines};
+  }
+  function render(){
+    var d=calc();
+    document.getElementById('sumSeats').textContent=fmt(d.seats);
+    document.getElementById('lineRadar').style.display=d.radar?'flex':'none';
+    document.getElementById('lineHoreca').style.display=d.horeca?'flex':'none';
+    document.getElementById('sumRadar').textContent=fmt(d.radar);
+    document.getElementById('sumHoreca').textContent=fmt(d.horeca);
+    if(mode==='monthly'){
+      document.getElementById('sumTotal').textContent=fmt(d.monthly);
+      document.getElementById('sumPeriod').textContent=EN?' / mo':' / міс';
+      document.getElementById('sumSub').textContent=EN?('or '+fmt(d.annual)+' / yr with −20%'):('або '+fmt(d.annual)+' / рік з −20%');
+    }else{
+      document.getElementById('sumTotal').textContent=fmt(d.annual);
+      document.getElementById('sumPeriod').textContent=EN?' / yr':' / рік';
+      document.getElementById('sumSub').textContent=(EN?'≈ ':'≈ ')+fmt(d.annual/12)+(EN?' / mo':' / міс');
+    }
+  }
+  // counters
+  root.querySelectorAll('.calc-btn').forEach(function(b){
+    b.addEventListener('click',function(){
+      var inp=b.parentNode.querySelector('.calc-num');
+      var v=num(inp)+parseInt(b.getAttribute('data-d'),10);
+      if(v<0)v=0; inp.value=v; render();
+    });
+  });
+  root.querySelectorAll('.calc-num,.calc-addon-q').forEach(function(i){i.addEventListener('input',render);});
+  // add-ons toggle
+  root.querySelectorAll('.calc-addon-cb').forEach(function(cb){
+    cb.addEventListener('change',function(){cb.closest('.calc-addon').classList.toggle('on',cb.checked);render();});
+  });
+  // billing
+  var bm=document.getElementById('billMonthly'),ba=document.getElementById('billAnnual');
+  bm.addEventListener('click',function(){mode='monthly';bm.classList.add('active');ba.classList.remove('active');render();});
+  ba.addEventListener('click',function(){mode='annual';ba.classList.add('active');bm.classList.remove('active');render();});
+  // lead capture
+  function getUtm(){var u={};try{u=JSON.parse(sessionStorage.getItem('picsell_utm')||'{}');}catch(e){}
+    try{var p=new URLSearchParams(window.location.search);['utm_source','utm_medium','utm_campaign','utm_content'].forEach(function(k){if(p.get(k))u[k]=p.get(k);});}catch(e){}return u;}
+  var emailEl=document.getElementById('calcEmail'),btn=document.getElementById('calcSubmit'),msg=document.getElementById('calcMsg');
+  function showMsg(ok,text){msg.textContent=text;msg.className='calc-msg show '+(ok?'ok':'bad');}
+  btn.addEventListener('click',function(){
+    var email=(emailEl.value||'').trim();
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){emailEl.classList.add('err');showMsg(false,EN?'Please enter a valid email.':'Введіть коректний email.');return;}
+    emailEl.classList.remove('err');
+    var d=calc();var utm=getUtm();
+    var periodTxt=mode==='annual'?(EN?'Annual':'Річно'):(EN?'Monthly':'Щомісяця');
+    var est=mode==='annual'?fmt(d.annual)+(EN?'/yr':'/рік'):fmt(d.monthly)+(EN?'/mo':'/міс');
+    var message=(EN?'Calculator: ':'Калькулятор: ')+d.lines.join(', ')+' | '+periodTxt+' | ≈ '+est;
+    btn.disabled=true;btn.textContent=EN?'Sending…':'Надсилаємо…';
+    fetch('https://iblorvxgiashmdnfzbbs.supabase.co/functions/v1/submit-lead',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        email:email,source:'website',form_id:'calculator',
+        utm_source:utm.utm_source||'direct',utm_medium:utm.utm_medium||'direct',
+        utm_campaign:utm.utm_campaign||'',utm_content:utm.utm_content||'',
+        landing_page:(sessionStorage.getItem('picsell_landing')||window.location.pathname),
+        message:message,lang:(EN?'en':'uk')
+      })
+    }).then(function(res){
+      if(res.ok){document.querySelector('.calc-lead').innerHTML='<div class="calc-msg show ok" style="font-size:14px;">'+(EN?'✓ Thank you! We will send a detailed quote shortly.':'✓ Дякуємо! Надішлемо детальну пропозицію найближчим часом.')+'</div>';}
+      else{btn.disabled=false;btn.textContent=EN?'Get a detailed quote':'Отримати детальну пропозицію';showMsg(false,EN?'Something went wrong. Try again.':'Щось пішло не так. Спробуйте ще раз.');}
+    }).catch(function(){btn.disabled=false;btn.textContent=EN?'Get a detailed quote':'Отримати детальну пропозицію';showMsg(false,EN?'Network error. Try again.':'Помилка мережі. Спробуйте ще раз.');});
+  });
+  render();
+})();
+</script>
