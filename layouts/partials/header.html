@@ -127,7 +127,7 @@ h1,h2,h3,h4{font-family:'Geologica',sans-serif;line-height:1.08;letter-spacing:-
     <div class="nav-item">
       <span class="nav-link">{{ if strings.HasPrefix .RelPermalink "/en/" }}Products{{ else }}Продукти{{ end }} <span class="nav-chevron">▾</span></span>
       <div class="dropdown">
-        <a href="{{ "/vision-ai/" | relLangURL }}" class="dd-item"><span class="dd-icon">👁️</span><span class="dd-text"><strong>Vision AI</strong><span>{{ if strings.HasPrefix .RelPermalink "/en/" }}Shelf recognition 99.9%{{ else }}Розпізнавання полиці 99.9%{{ end }}</span></span></a>
+        <a href="{{ "/vision-ai/" | relLangURL }}" class="dd-item"><span class="dd-icon">👁️</span><span class="dd-text"><strong>Vision AI</strong><span>{{ if strings.HasPrefix .RelPermalink "/en/" }}AI shelf recognition{{ else }}Розпізнавання полиці AI{{ end }}</span></span></a>
         <a href="{{ "/sales-app/" | relLangURL }}" class="dd-item"><span class="dd-icon">📱</span><span class="dd-text"><strong>Sales App</strong><span>{{ if strings.HasPrefix .RelPermalink "/en/" }}Field sales automation{{ else }}Автоматизація польових продажів{{ end }}</span></span></a>
         <a href="{{ "/horeca/" | relLangURL }}" class="dd-item"><span class="dd-icon">🍽️</span><span class="dd-text"><strong>HoReCa Intelligence</strong><span>{{ if strings.HasPrefix .RelPermalink "/en/" }}Menu & venue monitoring{{ else }}Моніторинг меню та закладів{{ end }}</span></span></a>
         <a href="{{ "/analytics/" | relLangURL }}" class="dd-item"><span class="dd-icon">📊</span><span class="dd-text"><strong>Analytics</strong><span>Power BI + AI Copilot</span></span></a>
