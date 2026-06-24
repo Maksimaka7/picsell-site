@@ -1,0 +1,135 @@
+{{ $en := strings.HasPrefix .RelPermalink "/en/" }}
+<!-- ══════════════════ SCREEN 11 — FINAL CTA + DEMO FORM (§12) ══════════════════ -->
+<style>#cta .form-input.err{border-color:var(--red);}</style>
+<section id="cta" class="section">
+  <div class="container">
+    <div class="cta-inner">
+      <div class="cta-left reveal-left">
+        <span class="tag" style="display:block;margin-bottom:var(--s2);">{{ if $en }}Demo{{ else }}Демо{{ end }}</span>
+        <h2>
+          <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2L13.5 10.5L22 12L13.5 13.5L12 22L10.5 13.5L2 12L10.5 10.5Z" fill="#0057FF"/></svg>
+          {{ if $en }}See PICSELL on your own shelf{{ else }}Побач PICSELL на своїй полиці{{ end }}
+        </h2>
+        <p>{{ if $en }}A personalized demo on your real outlets — see exactly how PICSELL works for your business.{{ else }}Персональне демо на ваших реальних точках — побачите, як саме PICSELL працює для вашого бізнесу.{{ end }}</p>
+        <div class="cta-perks" style="margin-top:var(--s4);">
+          <div class="cta-perk"><span class="cta-perk-icon">✓</span>{{ if $en }}30 minutes, no obligations{{ else }}30 хв без зобовʼязань{{ end }}</div>
+          <div class="cta-perk"><span class="cta-perk-icon">✓</span>{{ if $en }}A demo on real outlets{{ else }}Демо на реальних точках{{ end }}</div>
+          <div class="cta-perk"><span class="cta-perk-icon">✓</span>{{ if $en }}Fast rollout{{ else }}Швидке впровадження{{ end }}</div>
+        </div>
+      </div>
+
+      <div class="reveal-right">
+        <div class="form-card" id="ctaCard">
+          <div id="ctaFields">
+            <h3 style="font-family:'Geologica',sans-serif;font-size:20px;font-weight:700;margin-bottom:var(--s3);">{{ if $en }}Book a personalized demo{{ else }}Замовте персональне демо{{ end }}</h3>
+            <div class="form-grid">
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">{{ if $en }}Name{{ else }}Ім'я{{ end }}</label>
+                  <input type="text" class="form-input" id="ctaName" placeholder="{{ if $en }}John{{ else }}Олексій{{ end }}">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Email *</label>
+                  <input type="email" class="form-input" id="ctaEmail" placeholder="your@company.com" autocomplete="email">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">{{ if $en }}Phone{{ else }}Телефон{{ end }}</label>
+                  <input type="tel" class="form-input" id="ctaPhone" placeholder="+380 XX XXX XXXX">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">{{ if $en }}Company{{ else }}Компанія{{ end }}</label>
+                  <input type="text" class="form-input" id="ctaCompany" placeholder="{{ if $en }}Company name{{ else }}Назва компанії{{ end }}">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">{{ if $en }}I represent{{ else }}Я представляю{{ end }}</label>
+                <select class="form-input form-select" id="ctaRepr">
+                  <option value="" disabled selected>{{ if $en }}Select{{ else }}Оберіть{{ end }}</option>
+                  <option>{{ if $en }}Manufacturer{{ else }}Виробник{{ end }}</option>
+                  <option>{{ if $en }}Distributor{{ else }}Дистриб'ютор{{ end }}</option>
+                  <option>{{ if $en }}Retail chain{{ else }}Роздрібна мережа{{ end }}</option>
+                  <option>HoReCa</option>
+                  <option>{{ if $en }}Other{{ else }}Інше{{ end }}</option>
+                </select>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">{{ if $en }}Field team size{{ else }}Розмір польової команди{{ end }}</label>
+                  <select class="form-input form-select" id="ctaTeam">
+                    <option value="" disabled selected>{{ if $en }}Select{{ else }}Оберіть{{ end }}</option>
+                    <option>{{ if $en }}up to 10{{ else }}до 10{{ end }}</option>
+                    <option>10–50</option>
+                    <option>51–100</option>
+                    <option>100+</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">{{ if $en }}How did you hear{{ else }}Звідки дізнались{{ end }}</label>
+                  <select class="form-input form-select" id="ctaSrc">
+                    <option value="" disabled selected>{{ if $en }}Select{{ else }}Оберіть{{ end }}</option>
+                    <option>{{ if $en }}Search{{ else }}Пошук{{ end }}</option>
+                    <option>LinkedIn</option>
+                    <option>{{ if $en }}Referral{{ else }}Рекомендація{{ end }}</option>
+                    <option>{{ if $en }}Ad{{ else }}Реклама{{ end }}</option>
+                    <option>{{ if $en }}Event{{ else }}Подія{{ end }}</option>
+                    <option>{{ if $en }}Other{{ else }}Інше{{ end }}</option>
+                  </select>
+                </div>
+              </div>
+              <button type="button" class="btn btn-p btn-full" id="ctaSubmit">{{ if $en }}Book a demo →{{ else }}Замовити демо →{{ end }}</button>
+              <div id="ctaMsg" style="display:none;font-size:13px;margin-top:10px;color:var(--red);"></div>
+              <p class="form-note">🔒 {{ if $en }}We respond within 2 hours on business days. No obligations.{{ else }}Відповімо за 2 години в робочий день. Без зобовʼязань.{{ end }}</p>
+            </div>
+          </div>
+          <div id="ctaSuccess" class="form-success">
+            <div class="form-success-icon">🎉</div>
+            <h3>{{ if $en }}Thank you! Request received.{{ else }}Дякуємо! Заявку отримано.{{ end }}</h3>
+            <p>{{ if $en }}Our manager will contact you within 2 hours on a business day.{{ else }}Наш менеджер звʼяжеться з вами протягом 2 годин у робочий день.{{ end }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var card=document.getElementById('ctaCard');
+  if(!card) return;
+  var EN=document.documentElement.lang==='en';
+  var emailEl=document.getElementById('ctaEmail'),btn=document.getElementById('ctaSubmit'),msg=document.getElementById('ctaMsg');
+  function showMsg(text){msg.textContent=text;msg.style.display='block';}
+  function val(id){var e=document.getElementById(id);return e?(e.value||'').trim():'';}
+  function getUtm(){var u={};try{u=JSON.parse(sessionStorage.getItem('picsell_utm')||'{}');}catch(e){}
+    try{var p=new URLSearchParams(window.location.search);['utm_source','utm_medium','utm_campaign','utm_content'].forEach(function(k){if(p.get(k))u[k]=p.get(k);});}catch(e){}return u;}
+  btn.addEventListener('click',function(){
+    var email=val('ctaEmail');
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){emailEl.classList.add('err');showMsg(EN?'Please enter a valid email.':'Введіть коректний email.');return;}
+    emailEl.classList.remove('err');
+    var repr=val('ctaRepr'),team=val('ctaTeam'),src=val('ctaSrc');
+    var parts=[];
+    if(repr)parts.push((EN?'type: ':'тип: ')+repr);
+    if(team)parts.push((EN?'team ':'команда ')+team);
+    if(src)parts.push((EN?'channel: ':'канал: ')+src);
+    var message=(EN?'Demo request':'Заявка на демо')+(parts.length?' | '+parts.join(' | '):'');
+    var utm=getUtm();
+    btn.disabled=true;btn.textContent=EN?'Sending…':'Надсилаємо…';
+    fetch('https://iblorvxgiashmdnfzbbs.supabase.co/functions/v1/submit-lead',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        email:email,full_name:val('ctaName'),phone:val('ctaPhone'),company:val('ctaCompany'),
+        source:'website',form_id:'homepage',
+        utm_source:utm.utm_source||'direct',utm_medium:utm.utm_medium||'direct',
+        utm_campaign:utm.utm_campaign||'',utm_content:utm.utm_content||'',
+        landing_page:(sessionStorage.getItem('picsell_landing')||window.location.pathname),
+        message:message,lang:(EN?'en':'uk')
+      })
+    }).then(function(res){
+      if(res.ok){document.getElementById('ctaFields').style.display='none';document.getElementById('ctaSuccess').style.display='block';}
+      else{btn.disabled=false;btn.textContent=EN?'Book a demo →':'Замовити демо →';showMsg(EN?'Something went wrong. Try again.':'Щось пішло не так. Спробуйте ще раз.');}
+    }).catch(function(){btn.disabled=false;btn.textContent=EN?'Book a demo →':'Замовити демо →';showMsg(EN?'Network error. Try again.':'Помилка мережі. Спробуйте ще раз.');});
+  });
+})();
+</script>
