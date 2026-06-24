@@ -13,14 +13,14 @@
   "name": "PICSELL",
   "url": "https://picsell.ai",
   "logo": "https://picsell.ai/images/Logo-3.svg",
-  "description": "AI-платформа для FMCG: Vision AI розпізнавання полиці, SFA автоматизація польових продажів, HoReCa Intelligence.",
+  "description": "{{ if strings.HasPrefix .RelPermalink "/en/" }}AI platform for FMCG: Vision AI shelf recognition, SFA field-sales automation, HoReCa Intelligence.{{ else }}AI-платформа для FMCG: Vision AI розпізнавання полиці, SFA автоматизація польових продажів, HoReCa Intelligence.{{ end }}",
   "applicationCategory": "BusinessApplication",
   "operatingSystem": "Web, iOS, Android",
   "offers": {
     "@type": "Offer",
     "price": "0",
     "priceCurrency": "USD",
-    "description": "Демо за запитом"
+    "description": "{{ if strings.HasPrefix .RelPermalink "/en/" }}Demo on request{{ else }}Демо за запитом{{ end }}"
   },
   "publisher": {
     "@type": "Organization",
