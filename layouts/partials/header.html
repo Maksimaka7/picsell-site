@@ -147,15 +147,15 @@ h1,h2,h3,h4{font-family:'Geologica',sans-serif;line-height:1.08;letter-spacing:-
     <a href="{{ "/blog/" | relLangURL }}" class="nav-link">Blog</a>
     <a href="{{ "/about/" | relLangURL }}" class="nav-link">{{ if strings.HasPrefix .RelPermalink "/en/" }}About{{ else }}Про нас{{ end }}</a>
   </nav>
-  <div class="nav-r"><a href="tel:+380778809888" class="nav-link nav-phone" style="color:var(--t1);font-weight:600;font-size:13px;" aria-label="Телефон PICSELL">+380&nbsp;77&nbsp;880&nbsp;98&nbsp;88</a><div class="lang-switch">
+  <div class="nav-r"><a href="tel:+380778809888" class="nav-link nav-phone" style="color:var(--t1);font-weight:600;font-size:13px;" aria-label="{{ if strings.HasPrefix .RelPermalink "/en/" }}PICSELL phone{{ else }}Телефон PICSELL{{ end }}">+380&nbsp;77&nbsp;880&nbsp;98&nbsp;88</a><div class="lang-switch">
   {{ if not (strings.HasPrefix .RelPermalink "/en/") }}
     <span class="lang-btn lang-active" title="Українська">🇺🇦 UA</span>
     {{ if .Translations }}{{ range .Translations }}<a href="{{ .Permalink }}" class="lang-btn" hreflang="{{ .Language.Lang }}" title="English">🇺🇸 EN</a>{{ end }}{{ else }}<a href="/en/" class="lang-btn" hreflang="en" title="English">🇺🇸 EN</a>{{ end }}
   {{ else }}
-    {{ if .Translations }}{{ range .Translations }}<a href="{{ .Permalink }}" class="lang-btn" hreflang="{{ .Language.Lang }}" title="Українська">🇺🇦 UA</a>{{ end }}{{ else }}<a href="/" class="lang-btn" hreflang="uk" title="Українська">🇺🇦 UA</a>{{ end }}
+    {{ if .Translations }}{{ range .Translations }}<a href="{{ .Permalink }}" class="lang-btn" hreflang="{{ .Language.Lang }}" title="Ukrainian">🇺🇦 UA</a>{{ end }}{{ else }}<a href="/" class="lang-btn" hreflang="uk" title="Ukrainian">🇺🇦 UA</a>{{ end }}
     <span class="lang-btn lang-active" title="English">🇺🇸 EN</span>
   {{ end }}
-</div><a href="{{ "/demo/" | relLangURL }}" class="btn btn-p btn-sm">{{ if strings.HasPrefix .RelPermalink "/en/" }}Book Demo{{ else }}Замовити демо{{ end }}</a><button class="hamburger" id="hamburger" aria-label="Меню"><span></span><span></span><span></span></button></div>
+</div><a href="{{ "/demo/" | relLangURL }}" class="btn btn-p btn-sm">{{ if strings.HasPrefix .RelPermalink "/en/" }}Book Demo{{ else }}Замовити демо{{ end }}</a><button class="hamburger" id="hamburger" aria-label="{{ if strings.HasPrefix .RelPermalink "/en/" }}Menu{{ else }}Меню{{ end }}"><span></span><span></span><span></span></button></div>
 </div></div></header>
 
 <!-- Mobile Nav -->
