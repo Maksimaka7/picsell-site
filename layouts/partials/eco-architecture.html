@@ -32,16 +32,16 @@
 #ecosystem.eco-on .eco-node,#ecosystem.eco-on .eco-edge{opacity:.12;}
 #ecosystem.eco-on .eco-node.on,#ecosystem.eco-on .eco-edge.on{opacity:1;}
 #ecosystem.eco-on .eco-pulse{opacity:0;}
-/* roles */
-.eco-roles{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:var(--s4);}
-.eco-role{font-family:'Inter',sans-serif;font-weight:600;font-size:14px;color:var(--t2);background:var(--bg3);border:1px solid var(--border);border-radius:999px;padding:10px 18px;cursor:pointer;transition:color .2s,background .2s,border-color .2s,box-shadow .2s;white-space:nowrap;}
-.eco-role:hover{border-color:rgba(0,87,255,.4);color:var(--t1);}
-.eco-role.active{background:var(--blue);border-color:var(--blue);color:#fff;box-shadow:0 6px 18px rgba(0,87,255,.3);}
+/* roles — in-SVG nodes (look like .n-base, interactive) */
+.eco-role{cursor:pointer;}
+.eco-role rect{fill:var(--bg2);stroke:var(--border);stroke-width:1.5;transition:fill .2s,stroke .2s,opacity .4s;}
+.eco-role text{fill:#6B7280;font-weight:600;transition:fill .2s;}
+.eco-role:hover rect{stroke:var(--blue);}
+.eco-role:focus{outline:none;}
+.eco-role:focus-visible rect{stroke:var(--blue);}
+.eco-role.active rect{fill:var(--blue);stroke:var(--blue);}
+.eco-role.active text{fill:#fff;}
 .eco-hint{text-align:center;color:var(--t3);font-size:13px;margin-top:var(--s2);}
-@media(max-width:640px){
-  .eco-roles{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;padding-bottom:6px;-webkit-overflow-scrolling:touch;}
-  .eco-role{flex:0 0 auto;}
-}
 @media (prefers-reduced-motion:reduce){
   .eco-pulse{display:none;}
   .eco-layer{opacity:1;transition:none;}
@@ -63,9 +63,12 @@
 #ecosystem .n-int text{fill:#FFFFFF;}
 #ecosystem .n-base rect{fill:#121722;stroke:rgba(255,255,255,.10);}
 #ecosystem .n-base text{fill:#9AA7BC;}
-#ecosystem .eco-role{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.12);color:#C2C9D6;}
-#ecosystem .eco-role:hover{border-color:rgba(120,170,255,.5);color:#fff;}
-#ecosystem .eco-role.active{background:var(--blue);border-color:var(--blue);color:#fff;}
+#ecosystem .eco-role rect{fill:#121722;stroke:rgba(255,255,255,.10);}
+#ecosystem .eco-role text{fill:#9AA7BC;}
+#ecosystem .eco-role:hover rect{stroke:rgba(120,170,255,.5);}
+#ecosystem .eco-role:focus-visible rect{stroke:rgba(120,170,255,.7);}
+#ecosystem .eco-role.active rect{fill:var(--blue);stroke:var(--blue);}
+#ecosystem .eco-role.active text{fill:#fff;}
 #ecosystem .eco-hint{color:#8A93A6;}
 </style>
 <noscript><style>.eco-layer{opacity:1!important;}</style></noscript>
@@ -82,13 +85,19 @@
       <svg class="eco-svg" viewBox="0 0 760 600" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" role="img" aria-label="{{ if $en }}PICSELL ecosystem architecture{{ else }}Архітектура екосистеми PICSELL{{ end }}">
         <!-- ── EDGES (drawn first, behind nodes) ── -->
         <g class="eco-edges">
+          <!-- roles → core (base layer feeds the Core) -->
+          <path id="e-r-merch"   class="eco-edge" d="M107,452 L107,496"/>
+          <path id="e-r-sales"   class="eco-edge" d="M289,452 L289,496"/>
+          <path id="e-r-super"   class="eco-edge" d="M471,452 L471,496"/>
+          <path id="e-r-manager" class="eco-edge" d="M653,452 L653,496"/>
           <!-- core → modules -->
           <path id="e-c-field"  class="eco-edge" d="M107,380 L107,314"/>
           <path id="e-c-vision" class="eco-edge" d="M289,380 L289,314"/>
           <path id="e-c-radar"  class="eco-edge" d="M471,380 L471,314"/>
           <path id="e-c-horeca" class="eco-edge" d="M653,380 L653,314"/>
-          <!-- modules → intelligence -->
+          <!-- modules → intelligence (each module → BOTH analytics & AI = 8 edges) -->
           <path id="e-field-analytics"  class="eco-edge" d="M107,250 L250,142"/>
+          <path id="e-field-ai"         class="eco-edge" d="M107,250 L510,142"/>
           <path id="e-vision-analytics" class="eco-edge" d="M289,250 L250,142"/>
           <path id="e-vision-ai"        class="eco-edge" d="M289,250 L510,142"/>
           <path id="e-radar-analytics"  class="eco-edge" d="M471,250 L250,142"/>
@@ -155,22 +164,29 @@
           </g>
         </g>
 
-        <!-- ── BASE layer (bottom) ── -->
+        <!-- ── BASE layer (bottom) — interactive role chips, one per module column ── -->
         <g class="eco-layer l-base">
-          <g class="eco-node n-base">
-            <rect x="140" y="496" width="480" height="44" rx="12"/>
-            <text x="380" y="518" text-anchor="middle" dominant-baseline="central" class="eco-label" font-size="14">{{ if $en }}One app, every role{{ else }}Один застосунок, усі ролі{{ end }}</text>
+          <text x="20" y="478" class="eco-cap">{{ if $en }}One app, every role{{ else }}Один застосунок, усі ролі{{ end }}</text>
+          <g id="r-merch" class="eco-node eco-role" role="button" tabindex="0" data-role="merch" aria-label="{{ if $en }}Highlight the Merchandiser path{{ else }}Підсвітити шлях Мерчандайзера{{ end }}">
+            <rect x="32" y="496" width="150" height="44" rx="12"/>
+            <text x="107" y="518" text-anchor="middle" dominant-baseline="central" class="eco-label" font-size="14">{{ if $en }}Merchandiser{{ else }}Мерчандайзер{{ end }}</text>
+          </g>
+          <g id="r-sales" class="eco-node eco-role" role="button" tabindex="0" data-role="sales" aria-label="{{ if $en }}Highlight the Sales rep path{{ else }}Підсвітити шлях Торгового{{ end }}">
+            <rect x="214" y="496" width="150" height="44" rx="12"/>
+            <text x="289" y="518" text-anchor="middle" dominant-baseline="central" class="eco-label" font-size="14">{{ if $en }}Sales rep{{ else }}Торговий{{ end }}</text>
+          </g>
+          <g id="r-super" class="eco-node eco-role" role="button" tabindex="0" data-role="super" aria-label="{{ if $en }}Highlight the Supervisor path{{ else }}Підсвітити шлях Супервайзера{{ end }}">
+            <rect x="396" y="496" width="150" height="44" rx="12"/>
+            <text x="471" y="518" text-anchor="middle" dominant-baseline="central" class="eco-label" font-size="14">{{ if $en }}Supervisor{{ else }}Супервайзер{{ end }}</text>
+          </g>
+          <g id="r-manager" class="eco-node eco-role" role="button" tabindex="0" data-role="manager" aria-label="{{ if $en }}Highlight the Manager path{{ else }}Підсвітити шлях Керівника{{ end }}">
+            <rect x="578" y="496" width="150" height="44" rx="12"/>
+            <text x="653" y="518" text-anchor="middle" dominant-baseline="central" class="eco-label" font-size="14">{{ if $en }}Manager{{ else }}Керівник{{ end }}</text>
           </g>
         </g>
       </svg>
 
-      <!-- State B — role selector -->
-      <div class="eco-roles" role="group" aria-label="{{ if $en }}Highlight a role path{{ else }}Підсвітити шлях ролі{{ end }}">
-        <button type="button" class="eco-role" data-role="merch">{{ if $en }}Merchandiser{{ else }}Мерчандайзер{{ end }}</button>
-        <button type="button" class="eco-role" data-role="sales">{{ if $en }}Sales rep{{ else }}Торговий{{ end }}</button>
-        <button type="button" class="eco-role" data-role="super">{{ if $en }}Supervisor{{ else }}Супервайзер{{ end }}</button>
-        <button type="button" class="eco-role" data-role="manager">{{ if $en }}Manager{{ else }}Керівник{{ end }}</button>
-      </div>
+      <!-- State B — role path highlighting is now driven by the in-SVG role chips above -->
       <p class="eco-hint">{{ if $en }}Pick a role to highlight its path · tap again to reset{{ else }}Оберіть роль, щоб підсвітити її шлях · натисніть ще раз, щоб скинути{{ end }}</p>
     </div>
   </div>
@@ -185,23 +201,28 @@
     var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){eco.classList.add('eco-in');io.disconnect();}});},{threshold:.2});
     io.observe(eco);
   }else{eco.classList.add('eco-in');}
-  // State B — role path highlighting
+  // State B — role path highlighting. Each path starts at its role chip
+  // (r-*) → core → modules → intelligence (+ loop for super).
   var ROLES={
-    merch:{n:['core','m-vision','i-analytics'],e:['e-c-vision','e-vision-analytics']},
-    sales:{n:['core','m-field','i-analytics'],e:['e-c-field','e-field-analytics']},
-    super:{n:['core','m-field','m-vision','i-analytics','i-ai'],e:['e-c-field','e-c-vision','e-field-analytics','e-vision-ai','e-loop']},
-    manager:{n:['core','m-radar','m-horeca','i-ai','i-analytics'],e:['e-c-radar','e-c-horeca','e-radar-ai','e-horeca-analytics']}
+    merch:{n:['r-merch','core','m-vision','i-analytics'],e:['e-r-merch','e-c-vision','e-vision-analytics']},
+    sales:{n:['r-sales','core','m-field','i-analytics'],e:['e-r-sales','e-c-field','e-field-analytics']},
+    super:{n:['r-super','core','m-field','m-vision','i-analytics','i-ai'],e:['e-r-super','e-c-field','e-c-vision','e-field-analytics','e-vision-ai','e-loop']},
+    manager:{n:['r-manager','core','m-radar','m-horeca','i-ai','i-analytics'],e:['e-r-manager','e-c-radar','e-c-horeca','e-radar-ai','e-horeca-analytics']}
   };
   var btns=eco.querySelectorAll('.eco-role');
   function clearOn(){var on=eco.querySelectorAll('.on');for(var i=0;i<on.length;i++){on[i].classList.remove('on');}}
   function setRole(key){var r=ROLES[key];if(!r)return;clearOn();r.n.concat(r.e).forEach(function(id){var el=eco.querySelector('#'+id);if(el)el.classList.add('on');});eco.classList.add('eco-on');}
   function reset(){clearOn();eco.classList.remove('eco-on');for(var i=0;i<btns.length;i++){btns[i].classList.remove('active');}}
+  function activate(el){
+    if(el.classList.contains('active')){reset();return;} // toggle off
+    for(var j=0;j<btns.length;j++){btns[j].classList.remove('active');}
+    el.classList.add('active');
+    setRole(el.getAttribute('data-role'));
+  }
   for(var i=0;i<btns.length;i++){
-    btns[i].addEventListener('click',function(){
-      if(this.classList.contains('active')){reset();return;}
-      for(var j=0;j<btns.length;j++){btns[j].classList.remove('active');}
-      this.classList.add('active');
-      setRole(this.getAttribute('data-role'));
+    btns[i].addEventListener('click',function(){activate(this);});
+    btns[i].addEventListener('keydown',function(e){
+      if(e.key==='Enter'||e.key===' '||e.key==='Spacebar'){e.preventDefault();activate(this);}
     });
   }
 })();
