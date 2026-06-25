@@ -65,10 +65,13 @@
 .home-light .mobile-nav{background:rgba(250,250,248,.98);}
 .home-light .btn-s{color:var(--blue);}
 .home-light .btn-g:hover{color:var(--t1);border-color:rgba(15,30,55,.25);}
-/* Neon-lime as text is invisible on light → route to readable lime-green (success/positive accent) */
+/* Lime-as-text is invisible/cheap on light → all accent texts route to brand blue.
+   Lime (#C8FF00) is reserved for: H2 keyword marker (.hl-mark), button hover, dark-band accents. */
 .home-light .badge-text,.home-light .dash-status,.home-light .kpi-val.neon,.home-light .kpi-delta.up,
 .home-light .hl-neon,.home-light .form-success h3,.home-light .cta-perk-icon,
-.home-light .badge-neon{color:var(--green);}
+.home-light .badge-neon{color:var(--blue);}
+/* Lime highlighter swipe under a keyword in key-section H2s (text stays ink, marker is lime) */
+.home-light .hl-mark{color:var(--t1);background:linear-gradient(transparent 60%, rgba(200,255,0,.85) 60%);padding:0 .04em;border-radius:2px 2px 0 0;}
 /* Hardcoded dark assumptions → light */
 .home-light .dot-grid{background-image:radial-gradient(circle,rgba(15,30,55,.06) 1px,transparent 1px);}
 .home-light .hero-dashboard{box-shadow:0 0 80px rgba(0,87,255,.10),0 30px 60px rgba(15,30,55,.12);}
