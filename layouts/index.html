@@ -47,7 +47,7 @@
    tokens on body cascades into the shared header/footer partials too. Brand tokens per
    HOMEPAGE-V2-HANDOFF §2 (Warm Premium light). */
 .home-light{
-  --bg0:#F0EDE4;--bg1:#FAFAF8;--bg2:#F4F2EC;--bg3:#FFFFFF;--bg4:#FFFFFF;
+  --bg0:#F0EDE4;--bg1:#FAFAF8;--bg2:#EDE6D6;--bg3:#FFFFFF;--bg4:#FFFFFF;
   --border:#E5E2DA;--border-b:rgba(0,87,255,.22);--border-glow:rgba(0,87,255,.35);
   --blue:#0057FF;--blue2:#0047D6;--blue3:#0057FF;--cyan:#00D4FF;
   --neon:#C8FF00;--red:#FF003D;--orange:#E8590C;--green:#4E9A00;
@@ -187,8 +187,8 @@
 /* ═══════════════════════════ SCREEN 10 — SECURITY / TRUST BAND ═══════════════════════════ */
 #security{background:#FAFAF8;}
 .sec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s3);}
-.sec-item{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r3);padding:var(--s4);display:flex;flex-direction:column;gap:12px;transition:border-color .3s,box-shadow .3s,transform .3s;}
-.sec-item:hover{border-color:rgba(0,87,255,.25);box-shadow:0 8px 30px rgba(15,30,55,.06);transform:translateY(-2px);}
+.sec-item{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r3);padding:var(--s4);display:flex;flex-direction:column;gap:12px;box-shadow:0 1px 2px rgba(15,30,55,.04),0 12px 30px rgba(15,30,55,.07);transition:border-color .3s,box-shadow .3s,transform .3s;}
+.sec-item:hover{border-color:rgba(0,87,255,.35);box-shadow:0 22px 50px rgba(0,87,255,.16);transform:translateY(-4px);}
 .sec-ico{width:46px;height:46px;border-radius:var(--r2);background:rgba(0,87,255,.07);border:1px solid rgba(0,87,255,.15);display:flex;align-items:center;justify-content:center;color:var(--blue);flex-shrink:0;}
 .sec-ico svg{width:22px;height:22px;}
 .sec-item h3{font-family:'Geologica',sans-serif;font-weight:700;font-size:16px;line-height:1.3;}

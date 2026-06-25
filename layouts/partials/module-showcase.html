@@ -1,7 +1,9 @@
 {{ $en := strings.HasPrefix .RelPermalink "/en/" }}
 <!-- ══════════════════ SCREEN 4 — MODULE SHOWCASE (§7) ══════════════════ -->
 <style>
-#modules{background:var(--bg1);}
+#modules{background:var(--bg1);position:relative;}
+#modules::before{content:'';position:absolute;top:0;left:50%;width:820px;height:460px;transform:translateX(-50%);background:radial-gradient(ellipse 50% 50% at 50% 50%,rgba(0,87,255,.06),transparent 72%);pointer-events:none;z-index:0;}
+#modules .container{position:relative;z-index:1;}
 .mod-block{display:grid;grid-template-columns:1fr 1fr;gap:var(--s6);align-items:center;}
 .mod-block + .mod-block{margin-top:var(--s7);}
 .mod-block.media-left .mod-media{order:-1;}
@@ -18,7 +20,8 @@
 .mod-more:hover{gap:11px;}
 /* stylized device-frame placeholder (real iOS screens go here later) */
 .mod-media{display:flex;justify-content:center;}
-.device{width:264px;max-width:100%;background:#0F1E37;border-radius:34px;padding:11px;box-shadow:0 30px 60px rgba(15,30,55,.20);position:relative;}
+.device{width:264px;max-width:100%;background:#0F1E37;border-radius:34px;padding:11px;box-shadow:0 30px 60px rgba(15,30,55,.20);position:relative;transition:transform .35s,box-shadow .35s;}
+.mod-media:hover .device{transform:translateY(-4px);box-shadow:0 40px 72px rgba(0,87,255,.18);}
 .device::before{content:'';position:absolute;top:11px;left:50%;transform:translateX(-50%);width:108px;height:20px;background:#0F1E37;border-radius:0 0 13px 13px;z-index:3;}
 .device-screen{background:var(--bg1);border-radius:25px;overflow:hidden;height:480px;display:flex;flex-direction:column;}
 .ph-bar{height:38px;display:flex;align-items:flex-end;justify-content:space-between;padding:0 16px 8px;font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;color:var(--t3);}
