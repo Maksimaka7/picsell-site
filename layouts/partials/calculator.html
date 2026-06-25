@@ -96,7 +96,7 @@
 
         <div class="calc-block-h" style="margin-top:var(--s4);">Add-ons</div>
         <div class="calc-addon" id="addonRadar" data-base="20000" data-per="5000">
-          <label class="calc-addon-top"><input type="checkbox" class="calc-addon-cb"><span><strong>Radar</strong><span>{{ if $en }}Competitive intelligence · from ₴20 000 + ₴5 000 × site{{ else }}Конкурентна розвідка · від ₴20 000 + ₴5 000 × площадка{{ end }}</span></span></label>
+          <label class="calc-addon-top"><input type="checkbox" class="calc-addon-cb"><span><strong>Digital Shelf</strong><span>{{ if $en }}Competitive intelligence · from ₴20 000 + ₴5 000 × site{{ else }}Конкурентна розвідка · від ₴20 000 + ₴5 000 × площадка{{ end }}</span></span></label>
           <div class="calc-addon-x"><span>{{ if $en }}Sites{{ else }}Площадок{{ end }}:</span><input type="number" min="1" value="1" class="calc-addon-q" data-addon="Radar"></div>
         </div>
         <div class="calc-addon" id="addonHoreca" data-base="20000" data-per="10">
@@ -112,7 +112,7 @@
           <button type="button" id="billAnnual" data-mode="annual">{{ if $en }}Annually{{ else }}Річно{{ end }} <span class="save">−20%</span></button>
         </div>
         <div class="calc-line"><span>{{ if $en }}Seats{{ else }}Місця{{ end }}</span><b id="sumSeats">₴0</b></div>
-        <div class="calc-line" id="lineRadar" style="display:none;"><span>Radar</span><b id="sumRadar">₴0</b></div>
+        <div class="calc-line" id="lineRadar" style="display:none;"><span>Digital Shelf</span><b id="sumRadar">₴0</b></div>
         <div class="calc-line" id="lineHoreca" style="display:none;"><span>HoReCa</span><b id="sumHoreca">₴0</b></div>
         <div class="calc-total">
           <div class="lbl">{{ if $en }}Estimated cost{{ else }}Орієнтовна вартість{{ end }}</div>
