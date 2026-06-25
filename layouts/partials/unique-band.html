@@ -3,9 +3,9 @@
 <style>
 #unique{background:var(--bg2);}
 .uniq-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--s4);}
-.uniq-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r4);padding:var(--s5);position:relative;overflow:hidden;display:flex;flex-direction:column;gap:var(--s3);transition:border-color .3s,box-shadow .3s,transform .3s;}
+.uniq-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r4);padding:var(--s5);position:relative;overflow:hidden;display:flex;flex-direction:column;gap:var(--s3);box-shadow:0 1px 2px rgba(15,30,55,.04),0 12px 30px rgba(15,30,55,.07);transition:border-color .3s,box-shadow .3s,transform .3s;}
 .uniq-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--acc);}
-.uniq-card:hover{transform:translateY(-4px);box-shadow:0 16px 50px rgba(15,30,55,.09);}
+.uniq-card:hover{transform:translateY(-4px);box-shadow:0 22px 50px rgba(0,87,255,.16);border-color:rgba(0,87,255,.35);}
 .uniq-card.horeca{--acc:#7C3AED;}
 .uniq-card.radar{--acc:#E8850C;}
 .uniq-eyebrow{font-family:'Orbitron',sans-serif;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--acc);}

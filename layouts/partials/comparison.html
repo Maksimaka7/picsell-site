@@ -15,8 +15,9 @@
 .ic.no{color:#CFCCC4;}
 /* archetype cards */
 .cmp-arch{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s3);margin-bottom:var(--s5);}
-.arch{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r3);padding:var(--s4);display:flex;flex-direction:column;gap:10px;}
-.arch.pic{border:2px solid var(--blue);box-shadow:0 14px 44px rgba(0,87,255,.10);}
+.arch{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r3);padding:var(--s4);display:flex;flex-direction:column;gap:10px;box-shadow:0 1px 2px rgba(15,30,55,.04),0 12px 30px rgba(15,30,55,.07);transition:border-color .3s,box-shadow .3s,transform .3s;}
+.arch:hover{transform:translateY(-4px);box-shadow:0 22px 50px rgba(0,87,255,.16);border-color:rgba(0,87,255,.35);}
+.arch.pic{border:2px solid var(--blue);box-shadow:0 14px 44px rgba(0,87,255,.12);}
 .arch-badge{align-self:flex-start;font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--blue);padding:4px 11px;border-radius:999px;}
 .arch h3{font-family:'Geologica',sans-serif;font-weight:800;font-size:19px;}
 .arch-sub{font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);}
@@ -53,7 +54,7 @@
   <div class="container">
     <div class="sec-head reveal">
       <span class="tag">{{ if $en }}Comparison{{ else }}Порівняння{{ end }}</span>
-      <h2>{{ if $en }}An honest comparison <span class="highlight">with the alternatives</span>{{ else }}Чесне порівняння <span class="highlight">з альтернативами</span>{{ end }}</h2>
+      <h2>{{ if $en }}An honest comparison <span class="hl-mark">with the alternatives</span>{{ else }}Чесне порівняння <span class="hl-mark">з альтернативами</span>{{ end }}</h2>
     </div>
 
     <!-- archetype cards -->

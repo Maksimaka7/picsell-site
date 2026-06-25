@@ -46,6 +46,27 @@
   .eco-pulse{display:none;}
   .eco-layer{opacity:1;transition:none;}
 }
+/* ── Polish v1 (commit 3): dark anchor band on #0B0E14 — every graphite ink
+   on light must flip to light here or it disappears. Blue pulses + lime loop
+   already read on dark, so they stay. ── */
+#ecosystem{background:#0B0E14;}
+#ecosystem .sec-head h2{color:#EAF0FF;}
+#ecosystem .sec-head p{color:#AEB6C6;}
+#ecosystem .eco-cap{fill:#8E97AB;}
+#ecosystem .eco-edge{stroke:rgba(120,170,255,.40);}
+#ecosystem .eco-edge.loop{stroke:rgba(200,255,0,.65);}
+#ecosystem .n-core rect{fill:rgba(0,87,255,.20);stroke:#3D82FF;}
+#ecosystem .n-core text{fill:#EAF0FF;}
+#ecosystem .n-mod rect{fill:rgba(120,170,255,.10);stroke:rgba(120,170,255,.45);}
+#ecosystem .n-mod text{fill:#DCE6F5;}
+#ecosystem .n-int rect{fill:#16243F;stroke:rgba(255,255,255,.14);}
+#ecosystem .n-int text{fill:#FFFFFF;}
+#ecosystem .n-base rect{fill:#121722;stroke:rgba(255,255,255,.10);}
+#ecosystem .n-base text{fill:#9AA7BC;}
+#ecosystem .eco-role{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.12);color:#C2C9D6;}
+#ecosystem .eco-role:hover{border-color:rgba(120,170,255,.5);color:#fff;}
+#ecosystem .eco-role.active{background:var(--blue);border-color:var(--blue);color:#fff;}
+#ecosystem .eco-hint{color:#8A93A6;}
 </style>
 <noscript><style>.eco-layer{opacity:1!important;}</style></noscript>
 
