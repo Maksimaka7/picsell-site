@@ -196,7 +196,23 @@
 @media(max-width:768px){.sec-grid{grid-template-columns:1fr;}}
 
 /* ═══════════════════════════ CTA FORM ═══════════════════════════ */
-#cta{background:var(--bg1);}
+/* Polish v1 (commit 3): second dark anchor band on #0B0E14. Form is reskinned
+   for dark (inputs/borders/text/placeholder light); primary button stays blue;
+   lime returns as an accent (perk ticks, success). */
+#cta{background:#0B0E14;}
+#cta .cta-left h2{color:#EAF0FF;}
+#cta .cta-left p{color:#AEB6C6;}
+#cta .cta-perk{color:#C2C9D6;}
+#cta .cta-perk-icon{color:var(--neon);}
+#cta .form-card{background:#10141C;border-color:rgba(255,255,255,.10);}
+#cta .form-card h3{color:#EAF0FF;}
+#cta .form-label{color:#AEB6C6;}
+#cta .form-input,#cta .form-select{background:#0B0E14;border-color:rgba(255,255,255,.14);color:#EAF0FF;}
+#cta .form-input::placeholder{color:#7F889B;}
+#cta .form-input:focus,#cta .form-select:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,87,255,.22);}
+#cta .form-note{color:#8A93A6;}
+#cta .form-success h3{color:var(--neon);}
+#cta .form-success p{color:#AEB6C6;}
 .cta-inner{display:grid;grid-template-columns:1fr 1fr;gap:var(--s7);align-items:center;}
 .cta-left h2{font-family:'Geologica',sans-serif;font-weight:800;font-size:clamp(28px,3.5vw,44px);line-height:1.15;letter-spacing:-.02em;margin-bottom:var(--s3);}
 .cta-left p{color:var(--t2);font-size:16px;line-height:1.7;margin-bottom:var(--s4);}
