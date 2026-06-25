@@ -161,11 +161,25 @@
 .hero-video.ready{opacity:1;}
 
 /* Screen 2 — Trust strip (text wordmark placeholders until real client logos supplied) */
-.logos-strip{padding:var(--s6) 0;background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.logos-strip{padding:var(--s6) 0;background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);overflow:hidden;}
 .logos-caption{text-align:center;font-family:'Orbitron',sans-serif;font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--t3);margin-bottom:var(--s4);}
-.logos-inner{display:flex;align-items:center;justify-content:center;gap:var(--s4) var(--s6);flex-wrap:wrap;}
-.logo-client{font-family:'Geologica',sans-serif;font-weight:700;font-size:21px;letter-spacing:.02em;color:var(--t3);opacity:.6;filter:grayscale(1);transition:color .3s,opacity .3s,filter .3s,transform .3s;cursor:default;}
+/* Full-bleed running marquee — track is 3 identical sets of the 6 logos;
+   translateX(-100%/3) shifts exactly one set → seamless loop. Edge fade via
+   mask-image (fades to the strip bg). Pause on hover. */
+.logos-marquee{position:relative;width:100%;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 12%,#000 88%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 12%,#000 88%,transparent 100%);}
+.logos-track{display:flex;align-items:center;width:max-content;animation:logos-scroll 38s linear infinite;will-change:transform;}
+.logos-marquee:hover .logos-track{animation-play-state:paused;}
+.logos-set{display:flex;align-items:center;flex:none;}
+.logos-set .logo-client{margin:0 calc(var(--s6) / 2);}
+@keyframes logos-scroll{from{transform:translateX(0);}to{transform:translateX(calc(-100% / 3));}}
+.logo-client{font-family:'Geologica',sans-serif;font-weight:700;font-size:21px;letter-spacing:.02em;color:var(--t3);opacity:.6;filter:grayscale(1);transition:color .3s,opacity .3s,filter .3s,transform .3s;cursor:default;white-space:nowrap;}
 .logo-client:hover{color:var(--t1);opacity:1;filter:grayscale(0);transform:translateY(-2px);}
+@media (prefers-reduced-motion: reduce){
+  .logos-marquee{-webkit-mask-image:none;mask-image:none;}
+  .logos-track{animation:none;width:100%;flex-wrap:wrap;justify-content:center;}
+  .logos-set{flex-wrap:wrap;justify-content:center;}
+  .logos-set[aria-hidden="true"]{display:none;}
+}
 
 /* ═══════════════════════════ SCREEN 10 — SECURITY / TRUST BAND ═══════════════════════════ */
 #security{background:#FAFAF8;}
@@ -250,7 +264,7 @@
   .grid-3,.grid-4{grid-template-columns:1fr;}
   .kpi-row{grid-template-columns:repeat(3,1fr);}
   .form-row{grid-template-columns:1fr;}
-  .logos-inner{gap:var(--s3);}
+  .logos-set .logo-client{margin:0 var(--s4);}
   .footer-grid{grid-template-columns:1fr;}
   .hero-ctas{flex-direction:column;align-items:flex-start;}
 }
@@ -392,15 +406,33 @@
 
 <!-- ══════════════════ SCREEN 2 — TRUST LOGOS ══════════════════ -->
 <div class="logos-strip">
-  <div class="container">
-    <p class="logos-caption">Trusted by</p>
-    <div class="logos-inner">
-      <div class="logo-client">Lactalis</div>
-      <div class="logo-client">Henkel</div>
-      <div class="logo-client">Bayadera</div>
-      <div class="logo-client">Schwarzkopf</div>
-      <div class="logo-client">Nestlé</div>
-      <div class="logo-client">Diageo</div>
+  <p class="logos-caption">Trusted by</p>
+  <div class="logos-marquee">
+    <div class="logos-track">
+      <div class="logos-set">
+        <div class="logo-client">Lactalis</div>
+        <div class="logo-client">Henkel</div>
+        <div class="logo-client">Bayadera</div>
+        <div class="logo-client">Schwarzkopf</div>
+        <div class="logo-client">Nestlé</div>
+        <div class="logo-client">Diageo</div>
+      </div>
+      <div class="logos-set" aria-hidden="true">
+        <div class="logo-client">Lactalis</div>
+        <div class="logo-client">Henkel</div>
+        <div class="logo-client">Bayadera</div>
+        <div class="logo-client">Schwarzkopf</div>
+        <div class="logo-client">Nestlé</div>
+        <div class="logo-client">Diageo</div>
+      </div>
+      <div class="logos-set" aria-hidden="true">
+        <div class="logo-client">Lactalis</div>
+        <div class="logo-client">Henkel</div>
+        <div class="logo-client">Bayadera</div>
+        <div class="logo-client">Schwarzkopf</div>
+        <div class="logo-client">Nestlé</div>
+        <div class="logo-client">Diageo</div>
+      </div>
     </div>
   </div>
 </div>
@@ -599,15 +631,33 @@
 
 <!-- ══════════════════ SCREEN 2 — TRUST LOGOS ══════════════════ -->
 <div class="logos-strip">
-  <div class="container">
-    <p class="logos-caption">Нам довіряють</p>
-    <div class="logos-inner">
-      <div class="logo-client">Lactalis</div>
-      <div class="logo-client">Henkel</div>
-      <div class="logo-client">Bayadera</div>
-      <div class="logo-client">Schwarzkopf</div>
-      <div class="logo-client">Nestlé</div>
-      <div class="logo-client">Diageo</div>
+  <p class="logos-caption">Нам довіряють</p>
+  <div class="logos-marquee">
+    <div class="logos-track">
+      <div class="logos-set">
+        <div class="logo-client">Lactalis</div>
+        <div class="logo-client">Henkel</div>
+        <div class="logo-client">Bayadera</div>
+        <div class="logo-client">Schwarzkopf</div>
+        <div class="logo-client">Nestlé</div>
+        <div class="logo-client">Diageo</div>
+      </div>
+      <div class="logos-set" aria-hidden="true">
+        <div class="logo-client">Lactalis</div>
+        <div class="logo-client">Henkel</div>
+        <div class="logo-client">Bayadera</div>
+        <div class="logo-client">Schwarzkopf</div>
+        <div class="logo-client">Nestlé</div>
+        <div class="logo-client">Diageo</div>
+      </div>
+      <div class="logos-set" aria-hidden="true">
+        <div class="logo-client">Lactalis</div>
+        <div class="logo-client">Henkel</div>
+        <div class="logo-client">Bayadera</div>
+        <div class="logo-client">Schwarzkopf</div>
+        <div class="logo-client">Nestlé</div>
+        <div class="logo-client">Diageo</div>
+      </div>
     </div>
   </div>
 </div>
