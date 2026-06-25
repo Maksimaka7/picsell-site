@@ -10,6 +10,7 @@
 .uniq-card.radar{--acc:#E8850C;}
 .uniq-eyebrow{font-family:'Orbitron',sans-serif;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--acc);}
 .uniq-card h3{font-family:'Geologica',sans-serif;font-weight:800;font-size:22px;line-height:1.2;margin-top:6px;}
+.uniq-lead{color:var(--t2);font-size:14px;line-height:1.55;margin-top:10px;}
 .uniq-badge{display:inline-flex;align-items:center;gap:7px;width:fit-content;font-family:'Orbitron',sans-serif;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--acc);background:rgba(232,133,12,.10);border:1px solid rgba(232,133,12,.28);padding:4px 12px;border-radius:999px;margin-top:8px;}
 .live-dot{width:6px;height:6px;border-radius:50%;background:var(--acc);animation:uniqPulse 1.6s ease-in-out infinite;}
 @keyframes uniqPulse{0%,100%{box-shadow:0 0 0 0 rgba(232,133,12,.55);}50%{box-shadow:0 0 0 5px rgba(232,133,12,0);}}
@@ -82,7 +83,8 @@
         <div>
           <span class="uniq-eyebrow">Digital Shelf</span>
           <span class="uniq-badge"><i class="live-dot"></i>{{ if $en }}live · 7 networks · ~50 stores{{ else }}live · 7 мереж · ~50 магазинів{{ end }}</span>
-          <h3>{{ if $en }}See the entire competitor market{{ else }}Бачиш увесь ринок конкурентів{{ end }}</h3>
+          <h3>{{ if $en }}See your shelf and competitors — offline and online{{ else }}Бачиш свою полицю і конкурентів — офлайн і онлайн{{ end }}</h3>
+          <p class="uniq-lead">{{ if $en }}Track presence, pricing and placement — on retail shelves and on retailers' and marketplaces' online storefronts. See your own visibility, competitor activity and new outlets.{{ else }}Моніторинг присутності, цін і викладки — на полицях мереж і на онлайн-вітринах ритейлерів та маркетплейсів. Бачиш свою представленість, активність конкурентів і нові точки.{{ end }}</p>
         </div>
         <div class="uniq-kpi">
           <div class="uniq-kpi-h">{{ if $en }}Competitor prices{{ else }}Ціни конкурентів{{ end }}</div>
@@ -90,10 +92,12 @@
           <div class="price-row"><span class="net">{{ if $en }}EVA{{ else }}ЕВА{{ end }}</span><span class="sku">Somat All-in-1</span><span class="pr">₴154</span><span class="dl up">↑ 3%</span></div>
           <div class="price-row"><span class="net">{{ if $en }}Silpo{{ else }}Сільпо{{ end }}</span><span class="sku">Gallina Blanca</span><span class="pr">₴42</span><span class="dl down">↓ 2%</span></div>
           <div class="price-row"><span class="net">Fora</span><span class="sku">Domestos 1L</span><span class="pr">₴98</span><span class="dl up">↑ 5%</span></div>
-          <div class="uniq-mchips">
-            <div class="mchip2"><span>{{ if $en }}New outlets{{ else }}Нові точки{{ end }}</span><b>+12</b></div>
-            <div class="mchip2"><span>{{ if $en }}Assortment{{ else }}Асортимент{{ end }}</span><b>1.4k SKU</b></div>
-          </div>
+        </div>
+        <div class="uniq-caps">
+          <span class="uniq-cap">{{ if $en }}Competitor pricing{{ else }}Ціни конкурентів{{ end }}</span>
+          <span class="uniq-cap">{{ if $en }}Retailer storefronts{{ else }}Онлайн-вітрини мереж{{ end }}</span>
+          <span class="uniq-cap">{{ if $en }}New outlets{{ else }}Нові точки{{ end }}</span>
+          <span class="uniq-cap">{{ if $en }}Assortment{{ else }}Асортимент{{ end }}</span>
         </div>
         <a href="{{ "/radar/" | relLangURL }}" class="uniq-more">{{ if $en }}Explore Digital Shelf →{{ else }}Дізнатись більше →{{ end }}</a>
       </div>
