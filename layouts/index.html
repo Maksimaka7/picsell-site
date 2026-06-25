@@ -86,6 +86,8 @@
 #hero{position:relative;min-height:100vh;display:flex;align-items:flex-start;padding-top:72px;overflow:hidden;}
 .hero-bg{position:absolute;inset:0;pointer-events:none;}
 .dot-grid{position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.055) 1px,transparent 1px);background-size:34px 34px;}
+/* Interactive particle field — drop-in replacement for the static dot-grid (below text/dashboard, never blocks clicks) */
+.hero-canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;}
 .glow1{position:absolute;top:-15%;left:50%;transform:translateX(-50%);width:1000px;height:700px;background:radial-gradient(ellipse,rgba(0,87,255,.16) 0%,transparent 65%);filter:blur(50px);}
 .glow2{position:absolute;bottom:-10%;right:-5%;width:600px;height:600px;background:radial-gradient(circle,rgba(0,212,255,.06) 0%,transparent 60%);filter:blur(70px);}
 .glow3{position:absolute;top:30%;left:-5%;width:400px;height:400px;background:radial-gradient(circle,rgba(200,255,0,.04) 0%,transparent 60%);filter:blur(60px);}
@@ -301,7 +303,7 @@
 <!-- ══════════════════ HERO ══════════════════ -->
 <section id="hero">
   <div class="hero-bg">
-    <div class="dot-grid"></div>
+    <canvas id="heroParticles" class="hero-canvas" aria-hidden="true"></canvas>
     <div class="glow1"></div>
     <div class="glow2"></div>
     <div class="glow3"></div>
@@ -526,7 +528,7 @@
 <!-- ══════════════════ HERO ══════════════════ -->
 <section id="hero">
   <div class="hero-bg">
-    <div class="dot-grid"></div>
+    <canvas id="heroParticles" class="hero-canvas" aria-hidden="true"></canvas>
     <div class="glow1"></div>
     <div class="glow2"></div>
     <div class="glow3"></div>
@@ -780,6 +782,125 @@
   window.addEventListener('load',reg);
 
 })();
+</script>
 
+<!-- Hero interactive particle field (drift + cursor ring-displacement). Runs at
+     end of <body> so it never blocks LCP / hero text render. -->
+<script>
+(function(){
+  var host=document.getElementById('hero');
+  if(!host)return;
+  var canvas=document.getElementById('heroParticles');
+  if(!canvas)return;
+  var ctx=canvas.getContext('2d');
+  if(!ctx)return;
+
+  var mq=window.matchMedia||function(){return{matches:false};};
+  var hoverCapable=mq('(hover:hover)').matches;
+  var reduceMotion=mq('(prefers-reduced-motion: reduce)').matches;
+  var animate=hoverCapable&&!reduceMotion; // tap / reduced-motion → static field, no rAF
+
+  var PALETTE=['#0057FF','#0057FF','#0057FF','#0047D6','#3D7BFF','#0F1E37','#0F1E37','#C8FF00'];
+  var DPR=Math.min(window.devicePixelRatio||1,2);
+  var R=150, DISP=3.4;
+  var W=0,H=0,t=0,rafId=0,parts=[];
+  var mouse={x:-9999,y:-9999,active:false};
+  var media=host.querySelector('.hero-media'); // parallax target (not .hero-dashboard — it has float-anim)
+
+  function rnd(a,b){return a+Math.random()*(b-a);}
+
+  function build(){
+    var rect=host.getBoundingClientRect();
+    W=rect.width;H=rect.height;
+    canvas.width=Math.round(W*DPR);
+    canvas.height=Math.round(H*DPR);
+    canvas.style.width=W+'px';
+    canvas.style.height=H+'px';
+    ctx.setTransform(DPR,0,0,DPR,0,0);
+    var n=Math.min(260,Math.round(W*H/2300));
+    parts=[];
+    for(var i=0;i<n;i++){
+      parts.push({
+        x:Math.random()*W,y:Math.random()*H,
+        vx:rnd(-0.2,0.2),vy:rnd(-0.2,0.2),
+        r:rnd(1.1,2.2),
+        c:PALETTE[(Math.random()*PALETTE.length)|0],
+        a:rnd(0.35,0.85)
+      });
+    }
+  }
+
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    for(var i=0;i<parts.length;i++){
+      var p=parts[i],rr=p.r,aa=p.a;
+      if(mouse.active){
+        var dx=p.x-mouse.x,dy=p.y-mouse.y,dist=Math.sqrt(dx*dx+dy*dy);
+        if(dist<R&&dist>0.001){
+          var f=1-dist/R;          // falloff
+          var push=DISP*f;         // ring-halo displacement away from cursor
+          p.x+=(dx/dist)*push;
+          p.y+=(dy/dist)*push;
+          rr=p.r+f*1.8;            // grow near cursor
+          aa=Math.min(1,p.a+f*0.5);
+        }
+      }
+      ctx.globalAlpha=aa;
+      if(p.c==='#C8FF00'){ctx.shadowBlur=6;ctx.shadowColor='#C8FF00';}else{ctx.shadowBlur=0;}
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,rr,0,6.2832);
+      ctx.fillStyle=p.c;
+      ctx.fill();
+    }
+    ctx.globalAlpha=1;ctx.shadowBlur=0;
+  }
+
+  function step(){
+    t+=0.01;
+    for(var i=0;i<parts.length;i++){
+      var p=parts[i];
+      p.vx+=Math.cos(p.y*0.009+t)*0.012;            // flow-field swirl
+      p.vy+=Math.sin(p.x*0.009+t)*0.012-0.004;       // + slight upward drift
+      var sp=Math.sqrt(p.vx*p.vx+p.vy*p.vy);
+      if(sp>0.62){p.vx=p.vx/sp*0.62;p.vy=p.vy/sp*0.62;} // clip speed
+      p.x+=p.vx;p.y+=p.vy;
+      if(p.x<-5)p.x=W+5;else if(p.x>W+5)p.x=-5;       // wrap
+      if(p.y<-5)p.y=H+5;else if(p.y>H+5)p.y=-5;
+    }
+    draw();
+    if(media){
+      if(mouse.active){
+        var mx=((mouse.x/W)-0.5)*-12, my=((mouse.y/H)-0.5)*-9;
+        media.style.transform='translate('+mx.toFixed(1)+'px,'+my.toFixed(1)+'px)';
+      }else{
+        media.style.transform='';
+      }
+    }
+    rafId=requestAnimationFrame(step);
+  }
+
+  build();
+
+  if(animate){
+    host.addEventListener('mousemove',function(e){
+      var rect=host.getBoundingClientRect();
+      mouse.x=e.clientX-rect.left;mouse.y=e.clientY-rect.top;mouse.active=true;
+    });
+    host.addEventListener('mouseleave',function(){
+      mouse.active=false;mouse.x=-9999;mouse.y=-9999;
+      if(media)media.style.transform='';
+    });
+    var ro;
+    window.addEventListener('resize',function(){
+      clearTimeout(ro);
+      ro=setTimeout(function(){cancelAnimationFrame(rafId);build();rafId=requestAnimationFrame(step);},150);
+    });
+    rafId=requestAnimationFrame(step);
+  }else{
+    draw(); // static field — single paint, no rAF load
+    var rs;
+    window.addEventListener('resize',function(){clearTimeout(rs);rs=setTimeout(function(){build();draw();},150);});
+  }
+})();
 </script>
 {{ end }}
