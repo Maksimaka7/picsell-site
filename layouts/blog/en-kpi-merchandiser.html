@@ -1,0 +1,309 @@
+{{ define "head-extra" }}
+{{ partial "blog-shared-style.html" . }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Merchandiser KPIs: 8 Metrics That Actually Show Performance",
+  "description": "Number of visits says nothing about the quality of field work. We break down 8 metrics that reveal a merchandiser's real performance — from GPS-verified visit compliance to Perfect Store Score — and how to bring them into a single dashboard.",
+  "author": {"@type": "Organization","name": "PICSELL"},
+  "publisher": {"@type": "Organization","name": "PICSELL","url": "https://picsell.ai"},
+  "datePublished": "2026-06-27",
+  "dateModified": "2026-06-27",
+  "mainEntityOfPage": {"@type": "WebPage","@id": "https://picsell.ai/en/blog/merchandiser-kpi-metrics"},
+  "keywords": ["merchandiser KPI","merchandising metrics","field team performance","Share of Shelf","OSA","Perfect Store","FMCG"]
+}
+</script>
+{{ end }}
+
+{{ define "main" }}
+<!-- HERO -->
+<section class="article-hero">
+  <div class="art-hero-bg"><div class="dot-grid"></div><div class="glow"></div></div>
+  <div class="article-wrap">
+    <div class="hero-inner">
+      <div class="breadcrumb">
+        <a href="/en/">Home</a>
+        <span>›</span>
+        <a href="/en/blog/">Blog</a>
+        <span>›</span>
+        <span>SFA</span>
+      </div>
+      <div class="art-category">SFA · Field Management</div>
+      <h1 class="art-title">Merchandiser KPIs: 8 Metrics That Actually Show Performance</h1>
+      <p class="art-lead">"How many stores did you visit" is easy to fake and says nothing about outcomes. Here are 8 metrics that show a merchandiser's true performance — and reveal whether your field team actually moves sales, or just ticks boxes.</p>
+      <div class="art-meta">
+        <div class="art-meta-item">📅 June 2026</div>
+        <div class="art-meta-dot"></div>
+        <div class="art-meta-item">⏱ 8 min read</div>
+        <div class="art-meta-dot"></div>
+        <div class="art-meta-item">✍️ PICSELL Team</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ARTICLE BODY -->
+<section class="article-section">
+  <div class="sidebar-wrap">
+    <main>
+      <!-- TOC -->
+      <div class="toc">
+        <div class="toc-title">Contents</div>
+        <ol>
+          <li><a href="#problem">Why "number of visits" is a bad metric</a></li>
+          <li><a href="#m1">1. Visit compliance (GPS-verified)</a></li>
+          <li><a href="#m2">2. Time on site</a></li>
+          <li><a href="#m3">3. On-Shelf Availability / OOS</a></li>
+          <li><a href="#m4">4. Share of Shelf</a></li>
+          <li><a href="#m5">5. Planogram compliance</a></li>
+          <li><a href="#m6">6. Photo report quality</a></li>
+          <li><a href="#m7">7. Issues fixed per visit</a></li>
+          <li><a href="#m8">8. Perfect Store Score</a></li>
+          <li><a href="#dashboard">How to bring this into one dashboard</a></li>
+        </ol>
+      </div>
+
+      <div class="article-body">
+
+        <h2 id="problem">Why "number of visits" is a bad metric</h2>
+
+        <p>In most companies, the headline merchandiser metric is: <em>"how many stores did you visit today."</em> The problem is that this measures <strong>activity, not outcome</strong>. It's easy to fake and impossible to tie to sales.</p>
+
+        <p>A merchandiser can "visit" 15 stores by popping into each for two minutes and changing nothing. Or work deeply in 8 and actually fix the display, replenish the shelf, log competitor moves. By the old metric the first is a "hero" and the second is "underperforming" — even though the second one creates the value.</p>
+
+        <div class="warn-box">
+          <div class="warn-title">⚠ Vanity metrics</div>
+          <p>Number of visits, kilometers driven, hours "in the field" — these look great in a report but don't correlate with sales. <strong>If a metric can be hit without creating value, it's a bad metric.</strong></p>
+        </div>
+
+        <p>A good KPI answers three questions: <strong>was the merchandiser where they should be; what did they actually do there; and did the shelf get better?</strong> Below are 8 metrics that together give an honest picture. You don't need all of them at once — start with the first three.</p>
+
+        <h2 id="m1">1. Visit compliance (GPS-verified)</h2>
+
+        <p>Basic but critical: <strong>the share of planned visits that actually happened</strong> — and happened in the right place. The key word is "actually." Without GPS verification you're not measuring visits, you're measuring tick-boxes.</p>
+
+        <div class="formula-box">
+          <div class="formula">Visit Compliance = (confirmed visits / planned) × 100%</div>
+          <div class="formula-note">Confirmed = check-in within the store radius + real work on site</div>
+        </div>
+
+        <p>A GPS check-in tied to the store's coordinates removes the most common manipulation — "reporting from home" or "from the car outside." This isn't about distrust: without verification, even an honest team gradually optimizes effort in the wrong direction.</p>
+
+        <h2 id="m2">2. Time on site (dwell time)</h2>
+
+        <p>How long the merchandiser actually spent in the store. It works in tandem with the previous one: <strong>a 90-second visit isn't a visit, it's a check-in.</strong> Real shelf work physically can't take two minutes.</p>
+
+        <p>Don't read time on site in isolation (a big store needs more time than a kiosk), but anomalies stand out instantly: if the average visit to a chain supermarket is 3 minutes, nobody there is working the shelf.</p>
+
+        <div class="good-box">
+          <div class="good-title">✓ How to read it correctly</div>
+          <p>Compare time on site to the norm for that store type, not "the average across all." And watch the link: does more time correlate with a better shelf? If not, the problem isn't time — it's what the merchandiser is doing with it.</p>
+        </div>
+
+        <h2 id="m3">3. On-Shelf Availability / OOS</h2>
+
+        <p>The core "product" metric: <strong>is your product on the shelf?</strong> A merchandiser exists first and foremost to keep the shelf from being empty. So On-Shelf Availability (OSA) is a direct measure of the outcome of their work, not their activity.</p>
+
+        <p>It's captured automatically from a shelf photo: the system recognizes SKUs and sees what's missing. OSA is then calculated by store, by SKU, and by merchandiser — and you instantly see whose route "breathes" and whose shelves are systematically empty.</p>
+
+        <div class="key-number">
+          <div class="kn-val">95%+</div>
+          <div class="kn-text">
+            <h4>target OSA on key SKUs</h4>
+            <p>If a merchandiser keeps OSA at 95%+ on their route, they're doing the main thing. If OSA drops, the other metrics are secondary: an empty shelf doesn't sell no matter how nicely it's arranged.</p>
+          </div>
+        </div>
+
+        <p>We covered how much empty shelves cost and how to measure them in our article <a href="/en/blog/out-of-stock-osa-monitoring/">on out-of-stock</a> — we recommend reading it alongside this one.</p>
+
+        <h2 id="m4">4. Share of Shelf</h2>
+
+        <p>How much shelf space your brand occupies relative to the whole category and competitors. <strong>Share of shelf correlates directly with share of sales</strong>: more facings, higher purchase probability. It's one of the few things a merchandiser can influence every day.</p>
+
+        <div class="formula-box">
+          <div class="formula">Share of Shelf = (brand facings / all category facings) × 100%</div>
+          <div class="formula-note">Calculated automatically from a shelf photo via image recognition</div>
+        </div>
+
+        <p>It's important to measure this via Vision AI rather than "by eye": manual facing counts are slow, subjective, and impossible to verify. A photo gives an objective number and proof.</p>
+
+        <h2 id="m5">5. Planogram compliance</h2>
+
+        <p>Whether the product is placed as agreed with the retailer and brand: right positions, right order, right shelf zone. <strong>A planogram isn't bureaucracy — it's the result of agreements you often paid for</strong> (listing, shelf space, promo zone).</p>
+
+        <p>If the merchandiser doesn't hold the planogram, you're paying for space you don't use. The metric shows how well the real shelf matches the agreed layout.</p>
+
+        <div class="comparison-table">
+          <thead>
+            <tr>
+              <th>Metric</th>
+              <th>Activity or outcome</th>
+              <th>Can be faked?</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Number of visits</td><td class="bad">Activity</td><td class="bad">Easily</td></tr>
+            <tr><td>Visit Compliance + GPS</td><td class="good">Fact</td><td class="good">Hard</td></tr>
+            <tr><td>OSA / OOS</td><td class="good">Outcome</td><td class="good">No (photo)</td></tr>
+            <tr><td>Share of Shelf</td><td class="good">Outcome</td><td class="good">No (photo)</td></tr>
+            <tr><td>Planogram Compliance</td><td class="good">Outcome</td><td class="good">No (photo)</td></tr>
+          </tbody>
+        </div>
+
+        <h2 id="m6">6. Photo report quality</h2>
+
+        <p>Not "did they send a photo," but <strong>is it usable for analysis</strong>: the full shelf in frame, not blurry, correct angle, before/after where needed. A bad photo = no data = no control.</p>
+
+        <p>This metric matters most during rollout: it disciplines the team and ensures every other metric (OSA, Share of Shelf, planogram) can be calculated at all. Vision AI helps here too — it tells the merchandiser right on site if the shot is unusable.</p>
+
+        <h2 id="m7">7. Issues fixed per visit</h2>
+
+        <p>The most underrated metric. A merchandiser doesn't just record the state — they <strong>fix it</strong>: replenish the shelf, restore planogram order, remove expired stock, bring product out from the store's back room. This metric counts how many issues were found and how many were closed during the visit.</p>
+
+        <div class="quote-pull">A merchandiser who only records problems is a camera. A merchandiser who fixes them is the reason the shelf sells. Your metrics should tell these two people apart.</div>
+
+        <p>This is the metric that separates a "photo walk" from real work. And it's the one that correlates best with route-level sales.</p>
+
+        <h2 id="m8">8. Perfect Store Score</h2>
+
+        <p>A composite metric that rolls everything into a single number per store. <strong>Perfect Store Score</strong> is the percentage of "perfect store" criteria met: key SKUs present, share of shelf, planogram compliance, promo materials in place, correct price tags, and so on.</p>
+
+        <p>The advantage is one clear number for the merchandiser, the supervisor, and the brand alike. It aggregates individual metrics into a KPI that's easy to target and track over time. For the pitfalls of such audits, see <a href="/en/blog/perfect-store-audit-accuracy/">Perfect Store: Why 9 out of 10 Audits Give False Results</a>.</p>
+
+        <div class="good-box">
+          <div class="good-title">✓ Where to start</div>
+          <p>Don't roll out all 8 at once — the team will drown. Start with three: Visit Compliance (with GPS), OSA, and Share of Shelf. That already gives an honest "was there / did the work / shelf improved" picture. Add the rest once the first three become a habit.</p>
+        </div>
+
+        <h2 id="dashboard">How to bring this into one dashboard (and what to avoid)</h2>
+
+        <p>Metrics only work when the supervisor sees them in one place and in real time — not hand-assembled from Excel at month-end. A good field dashboard shows:</p>
+
+        <div class="checklist">
+          <div class="cl-item sign-good">
+            <span class="cl-icon">✓</span>
+            <div class="cl-text"><strong>Who is where right now</strong> and how visit compliance is tracking per merchandiser</div>
+          </div>
+          <div class="cl-item sign-good">
+            <span class="cl-icon">✓</span>
+            <div class="cl-text"><strong>OSA and Share of Shelf</strong> broken down by store, SKU, and person</div>
+          </div>
+          <div class="cl-item sign-good">
+            <span class="cl-icon">✓</span>
+            <div class="cl-text"><strong>Issues found and fixed</strong> — with photo proof</div>
+          </div>
+          <div class="cl-item sign-good">
+            <span class="cl-icon">✓</span>
+            <div class="cl-text"><strong>Perfect Store Score</strong> per store, with trend</div>
+          </div>
+          <div class="cl-item sign-good">
+            <span class="cl-icon">✓</span>
+            <div class="cl-text"><strong>Real-time alerts</strong> — so you react today, not at month-end</div>
+          </div>
+        </div>
+
+        <p>Three anti-patterns to avoid:</p>
+
+        <div class="checklist">
+          <div class="cl-item sign-bad">
+            <span class="cl-icon">✗</span>
+            <div class="cl-text"><strong>Too many metrics at once</strong> — the team loses sight of what matters</div>
+          </div>
+          <div class="cl-item sign-bad">
+            <span class="cl-icon">✗</span>
+            <div class="cl-text"><strong>Activity metrics instead of outcomes</strong> — you measure motion, not impact</div>
+          </div>
+          <div class="cl-item sign-bad">
+            <span class="cl-icon">✗</span>
+            <div class="cl-text"><strong>Data without proof</strong> — without photos and GPS, any metric can be "drawn"</div>
+          </div>
+        </div>
+
+        <p>The bottom line: merchandiser KPIs exist not to punish anyone, but to make field work visible and manageable. When you measure outcomes (OSA, share of shelf, issues fixed) instead of activity (number of visits), the team starts working on what actually moves sales. And you finally see which stores and people create value — and which just tick boxes.</p>
+
+      </div>
+
+      <!-- BOTTOM CTA -->
+      <div class="bottom-cta">
+        <h2>One dashboard for every field KPI</h2>
+        <p>Book a 30-minute demo — we'll show how PICSELL calculates OSA, Share of Shelf, planogram compliance, and Perfect Store Score automatically from photos, and rolls it into a live supervisor dashboard.</p>
+        <div class="btns">
+          <a href="/en/demo/" class="btn-p">Book a demo →</a>
+          <a href="/en/sales-app/" class="btn-g">More about Sales App</a>
+        </div>
+      </div>
+    </main>
+
+    <!-- SIDEBAR -->
+    <aside>
+      <div class="sidebar">
+        <div class="sb-cta">
+          <h4>Do your metrics show outcomes or activity?</h4>
+          <p>We'll show how to measure field performance by fact, not tick-boxes — in a 30-minute demo.</p>
+          <a href="/en/demo/">Book a demo →</a>
+        </div>
+
+        <div class="sb-card">
+          <div class="sb-title">The 8 metrics</div>
+          <div class="sb-links">
+            <a href="#m1" class="sb-link">1 · Visit compliance + GPS</a>
+            <a href="#m2" class="sb-link">2 · Time on site</a>
+            <a href="#m3" class="sb-link">3 · OSA / OOS</a>
+            <a href="#m4" class="sb-link">4 · Share of Shelf</a>
+            <a href="#m5" class="sb-link">5 · Planogram compliance</a>
+            <a href="#m6" class="sb-link">6 · Photo report quality</a>
+            <a href="#m7" class="sb-link">7 · Issues fixed per visit</a>
+            <a href="#m8" class="sb-link">8 · Perfect Store Score</a>
+          </div>
+        </div>
+
+        <div class="sb-card">
+          <div class="sb-title">Related articles</div>
+          <div class="sb-links">
+            <a href="/en/blog/out-of-stock-osa-monitoring/" class="sb-link">📉 Out-of-Stock: the cost of an empty shelf</a>
+            <a href="/en/blog/perfect-store-audit-accuracy/" class="sb-link">🏪 Perfect Store: why audits lie</a>
+            <a href="/en/blog/sfa-field-team-productivity/" class="sb-link">⏱ 30% of field time — wasted</a>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- RELATED -->
+<section class="related-section">
+  <div style="max-width:1140px;margin:0 auto;padding:0 var(--s3);">
+    <div style="font-family:'Orbitron',sans-serif;font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--t3);margin-bottom:var(--s4);">Read next</div>
+    <div class="related-grid">
+      <a href="/en/blog/out-of-stock-osa-monitoring/" class="related-card">
+        <div class="rc-cat">Market Analytics</div>
+        <div class="rc-title">Out-of-Stock: What an Empty Shelf Really Costs</div>
+        <div class="rc-meta">June 2026 · 8 min</div>
+      </a>
+      <a href="/en/blog/perfect-store-audit-accuracy/" class="related-card">
+        <div class="rc-cat">Vision AI</div>
+        <div class="rc-title">Perfect Store: Why 9 out of 10 Audits Give False Results</div>
+        <div class="rc-meta">March 2026 · 5 min</div>
+      </a>
+      <a href="/en/blog/sfa-field-team-productivity/" class="related-card">
+        <div class="rc-cat">SFA</div>
+        <div class="rc-title">5 Signs Your Field Team Is Wasting 30% of Their Time</div>
+        <div class="rc-meta">March 2026 · 6 min</div>
+      </a>
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{ define "scripts" }}
+<script>
+window.addEventListener('scroll',function(){
+  var h=document.getElementById('header');
+  if(h)h.classList.toggle('scrolled',scrollY>30);
+});
+var hb=document.getElementById('hamburger'),mn=document.getElementById('mobileNav');
+if(hb&&mn){hb.addEventListener('click',function(){hb.classList.toggle('open');mn.classList.toggle('open');});}
+if(mn){mn.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){if(hb)hb.classList.remove('open');mn.classList.remove('open');});});}
+</script>
+{{ end }}
