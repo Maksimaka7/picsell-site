@@ -1,0 +1,345 @@
+{{ define "head-extra" }}
+{{ partial "blog-shared-style.html" . }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Out-of-Stock у FMCG: скільки коштує порожня полиця і як її виміряти",
+  "description": "Порожня полиця — це продаж, який пішов до конкурента. Розбираємо реальну вартість out-of-stock, різницю між OOS і OSA, чому ручні аудити не бачать проблему і як фото-моніторинг ловить порожні полиці в реальному часі.",
+  "author": {"@type": "Organization","name": "PICSELL"},
+  "publisher": {"@type": "Organization","name": "PICSELL","url": "https://picsell.ai"},
+  "datePublished": "2026-06-24",
+  "dateModified": "2026-06-24",
+  "mainEntityOfPage": {"@type": "WebPage","@id": "https://picsell.ai/blog/osa-out-of-stock"},
+  "keywords": ["out-of-stock","OOS","OSA","on-shelf availability","відсутність товару на полиці","порожні полиці","фото-моніторинг полиць","FMCG"]
+}
+</script>
+{{ end }}
+
+{{ define "main" }}
+<!-- HERO -->
+<section class="article-hero">
+  <div class="art-hero-bg"><div class="dot-grid"></div><div class="glow"></div></div>
+  <div class="article-wrap">
+    <div class="hero-inner">
+      <div class="breadcrumb">
+        <a href="/">Головна</a>
+        <span>›</span>
+        <a href="/blog/">Блог</a>
+        <span>›</span>
+        <span>Аналітика ринку</span>
+      </div>
+      <div class="art-category">Аналітика ринку · On-Shelf Availability</div>
+      <h1 class="art-title">Out-of-Stock у FMCG: скільки коштує порожня полиця і як її виміряти</h1>
+      <p class="art-lead">Кожна порожня полиця — це продаж, який пішов до конкурента або не відбувся взагалі. При цьому більшість брендів і дистриб'юторів навіть не знають свій реальний рівень out-of-stock. Розбираємо, звідки беруться втрати, чому ручні аудити їх не бачать — і як їх повернути.</p>
+      <div class="art-meta">
+        <div class="art-meta-item">📅 Червень 2026</div>
+        <div class="art-meta-dot"></div>
+        <div class="art-meta-item">⏱ 8 хвилин читання</div>
+        <div class="art-meta-dot"></div>
+        <div class="art-meta-item">✍️ PICSELL Team</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ARTICLE BODY -->
+<section class="article-section">
+  <div class="sidebar-wrap">
+    <main>
+      <!-- TOC -->
+      <div class="toc">
+        <div class="toc-title">Зміст статті</div>
+        <ol>
+          <li><a href="#problem">Порожня полиця = продаж, який пішов до конкурента</a></li>
+          <li><a href="#howmuch">Скільки у вас насправді OOS (і чому ви цього не бачите)</a></li>
+          <li><a href="#definitions">OOS та OSA: визначення і формули</a></li>
+          <li><a href="#reasons">4 справжні причини out-of-stock</a></li>
+          <li><a href="#phantom">Фантомні залишки — найпідступніша причина</a></li>
+          <li><a href="#photo">Як фото-моніторинг і Vision AI ловлять порожні полиці</a></li>
+          <li><a href="#roi">Скільки можна повернути: розрахунок</a></li>
+          <li><a href="#start">Як почати вимірювати OSA</a></li>
+        </ol>
+      </div>
+
+      <div class="article-body">
+
+        <h2 id="problem">Порожня полиця = продаж, який пішов до конкурента</h2>
+
+        <p>Уявіть покупця, який прийшов у магазин за вашим йогуртом. На полиці його немає. Що він зробить? Є лише кілька варіантів, і жоден із них для вас не хороший: візьме продукт конкурента, піде в інший магазин, відкладе покупку — або не купить взагалі.</p>
+
+        <p>Класичне дослідження Corsten &amp; Gruen (ECR), яке досі є галузевим стандартом, показало: у середньому по світу <strong>близько 70% покупців при відсутності потрібного товару так чи інакше «карають» бренд</strong> — переключаються на конкурента, змінюють магазин або нічого не купують. І лише меншість готова прийти пізніше саме за вашим продуктом.</p>
+
+        <div class="key-number">
+          <div class="kn-val">8%</div>
+          <div class="kn-text">
+            <h4>середній рівень out-of-stock у роздрібі</h4>
+            <p>Тобто приблизно кожен 13-й товар зі списку покупця відсутній на полиці в момент купівлі. Під час промо-акцій цей показник зростає до 12–15% — саме тоді, коли ви платите за трафік і рекламу.</p>
+          </div>
+        </div>
+
+        <p>Головна пастка в тому, що <strong>ця втрата невидима</strong>. У звіті з продажів немає рядка «недопродано через порожню полицю». Ви бачите тільки те, що продалося — і не бачите того, що могло б продатися, якби товар був на місці. Тому out-of-stock — це найбільша стаття втрат, яку майже ніхто не рахує.</p>
+
+        <h2 id="howmuch">Скільки у вас насправді OOS (і чому ви цього не бачите)</h2>
+
+        <p>Запитайте свою команду: «Який у нас рівень доступності товару на полиці?» Найчастіші відповіді:</p>
+
+        <div class="checklist">
+          <div class="cl-item sign-bad">
+            <span class="cl-icon">✗</span>
+            <div class="cl-text">«У нас все добре, склад повний» — плутають наявність на складі з наявністю на полиці</div>
+          </div>
+          <div class="cl-item sign-bad">
+            <span class="cl-icon">✗</span>
+            <div class="cl-text">«Мерчандайзери відзвітують, якщо щось закінчилось» — тобто ви дізнаєтесь про проблему заднім числом</div>
+          </div>
+          <div class="cl-item sign-bad">
+            <span class="cl-icon">✗</span>
+            <div class="cl-text">«Раз на місяць проводимо аудит по мережі» — а решту 29 днів полиця живе своїм життям</div>
+          </div>
+        </div>
+
+        <p>Проблема ручного контролю OOS у трьох речах. По-перше, <strong>затримка</strong>: якщо мерчандайзер буває в точці раз на тиждень, товар може бути відсутнім 6 днів, і ви про це не знаєте. По-друге, <strong>суб'єктивність</strong>: людина ставить галочку «є / немає» на око, без фіксації факту. По-третє, <strong>відсутність даних</strong>: навіть якщо проблему помітили, вона рідко потрапляє в систему у вигляді, придатному для аналізу — де, коли, по яких SKU, як часто.</p>
+
+        <div class="warn-box">
+          <div class="warn-title">⚠ Чому «повний склад» ≠ «повна полиця»</div>
+          <p>Товар може бути на складі магазину, але не викладений на полицю. Може бути в системі обліку, але фізично відсутній (пересорт, крадіжка, псування). Може стояти не на своєму місці. <strong>Доступність на полиці (OSA) і залишки в обліку — це два різні світи</strong>, і покупець живе тільки в першому.</p>
+        </div>
+
+        <h2 id="definitions">OOS та OSA: визначення і формули</h2>
+
+        <p>Щоб керувати показником, його треба спершу однозначно визначити. Два ключові терміни:</p>
+
+        <h3>OSA — On-Shelf Availability (доступність на полиці)</h3>
+        <p>Частка перевірок, у яких потрібний товар був фізично присутній на полиці і доступний покупцю. Це «позитивний» показник — чим вище, тим краще.</p>
+
+        <div class="formula-box">
+          <div class="formula">OSA = (перевірки з товаром на полиці / всі перевірки) × 100%</div>
+          <div class="formula-note">Здоровий орієнтир для FMCG — OSA 95%+ по ключових SKU</div>
+        </div>
+
+        <h3>OOS — Out-of-Stock (відсутність на полиці)</h3>
+        <p>Дзеркальний показник: частка випадків, коли товару на полиці не було. По суті OOS = 100% − OSA. «Негативний» показник — чим нижче, тим краще.</p>
+
+        <div class="comparison-table">
+          <thead>
+            <tr>
+              <th>Показник</th>
+              <th>Що вимірює</th>
+              <th>Здоровий рівень</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>OSA</td><td>Товар доступний покупцю на полиці</td><td class="good">≥ 95%</td></tr>
+            <tr><td>OOS</td><td>Товар відсутній на полиці</td><td class="good">≤ 5%</td></tr>
+            <tr><td>OOS (промо)</td><td>Відсутність під час акції</td><td class="bad">часто 12–15%</td></tr>
+            <tr><td>Тривалість OOS</td><td>Скільки днів SKU відсутній</td><td class="good">&lt; 1 день</td></tr>
+          </tbody>
+        </div>
+
+        <p>Ключова деталь: <strong>вимірювати треба на рівні конкретного SKU в конкретній точці</strong>, а не «в середньому по мережі». Середнє OSA 95% може ховати ситуацію, коли ваш топовий SKU відсутній у 20% преміальних точок — а це і є ваш головний грошовий потік.</p>
+
+        <h2 id="reasons">4 справжні причини out-of-stock</h2>
+
+        <p>Порожня полиця майже ніколи не виникає через «немає товару в природі». Причини майже завжди операційні — і, що важливо, керовані:</p>
+
+        <h3>1. Полиця не поповнена (хоча товар є в магазині)</h3>
+        <p>Найпоширеніша причина. Товар лежить на складі точки, але персонал не виклав його вчасно. За оцінками галузевих досліджень, <strong>значна частина OOS — це саме проблема викладки, а не постачання</strong>. Вирішується дисципліною мерчандайзингу і контролем.</p>
+
+        <h3>2. Помилка в замовленні</h3>
+        <p>Замовили замало, замовили не те, не врахували промо або сезонність. Особливо боляче на акціях, коли попит стрибає в рази, а замовлення лишається «як завжди».</p>
+
+        <h3>3. Збій у постачанні / логістиці</h3>
+        <p>Затримка поставки, недовіз, товар «застряг» на РЦ. Це реальна причина, але зазвичай вона пояснює меншу частину випадків, ніж думають.</p>
+
+        <h3>4. Фантомні залишки</h3>
+        <p>Найпідступніша — система показує наявність, але полиця порожня. Про неї окремо нижче.</p>
+
+        <div class="quote-pull">Якщо ви не знаєте, яка з цих чотирьох причин домінує у ваших точках — ви лікуєте наслідок, а не хворобу. Дані з полиці кажуть, куди насправді витікають гроші.</div>
+
+        <h2 id="phantom">Фантомні залишки — найпідступніша причина</h2>
+
+        <p>Фантомні залишки (phantom inventory) — це коли облікова система впевнено показує, що товар є, а фізично його на полиці немає. Причини: пересорт при прийманні, крадіжки, псування, помилки касового сканування, товар «загубився» на складі точки.</p>
+
+        <p>Небезпека в тому, що <strong>система автоматично не замовляє те, що «і так є»</strong>. Виходить замкнене коло: полиця порожня → система думає, що товар є → нове замовлення не формується → полиця лишається порожньою тижнями. І виявити це можна лише одним способом — фізично подивитись на полицю.</p>
+
+        <div class="warn-box">
+          <div class="warn-title">⚠ Чому фантомні залишки не видно в ERP</div>
+          <p>Жодна облікова система не бачить реальну полицю — вона бачить лише транзакції. Розрив між «даними в системі» і «фактом на полиці» закривається тільки регулярною фіксацією факту в торговій точці. Без цього фантомні OOS можуть жити місяцями.</p>
+        </div>
+
+        <h2 id="photo">Як фото-моніторинг і Vision AI ловлять порожні полиці</h2>
+
+        <p>Єдиний надійний спосіб знати реальний OSA — регулярно фіксувати стан полиці в точці. Раніше це означало ручні чеклисти: мерчандайзер обходить полицю і ставить галочки. Повільно, суб'єктивно, без доказів.</p>
+
+        <p>Сучасний підхід — <strong>фото полиці + розпізнавання зображень (Vision AI)</strong>. Мерчандайзер робить один знімок полиці на смартфон. Далі система автоматично:</p>
+
+        <div class="checklist">
+          <div class="cl-item sign-good">
+            <span class="cl-icon">✓</span>
+            <div class="cl-text"><strong>Розпізнає всі SKU на полиці</strong> — свої і конкурентів — і бачить, чого не вистачає</div>
+          </div>
+          <div class="cl-item sign-good">
+            <span class="cl-icon">✓</span>
+            <div class="cl-text"><strong>Фіксує OOS автоматично</strong> — без суб'єктивної оцінки людини</div>
+          </div>
+          <div class="cl-item sign-good">
+            <span class="cl-icon">✓</span>
+            <div class="cl-text"><strong>Рахує частку полиці (Share of Shelf)</strong> — скільки місця займаєте ви проти конкурентів</div>
+          </div>
+          <div class="cl-item sign-good">
+            <span class="cl-icon">✓</span>
+            <div class="cl-text"><strong>Перевіряє дотримання планограми</strong> — чи стоїть товар там, де має</div>
+          </div>
+          <div class="cl-item sign-good">
+            <span class="cl-icon">✓</span>
+            <div class="cl-text"><strong>Дає доказ у вигляді фото з міткою часу і GPS</strong> — це не «зі слів», а факт</div>
+          </div>
+        </div>
+
+        <p>Замість «мерчандайзер сказав, що все ок» ви отримуєте <strong>структуровані дані по кожній точці, кожному SKU, кожному візиту</strong>. І можете реагувати не наприкінці місяця, а того ж дня — коли ще можна повернути продаж.</p>
+
+        <div class="good-box">
+          <div class="good-title">✓ Що це змінює на практиці</div>
+          <p>OSA перестає бути «відчуттям» і стає керованим числом. Ви бачите, які SKU і в яких точках найчастіше зникають з полиці, у чому причина, і чи виправив її мерчандайзер під час візиту. Це і є основа управління доступністю замість реагування на скарги.</p>
+        </div>
+
+        <h2 id="roi">Скільки можна повернути: розрахунок</h2>
+
+        <p>Порахуймо на простому прикладі. Припустимо, ваш річний обсяг продажів у контрольованому каналі — $2 000 000, а середній OOS — 8%.</p>
+
+        <div class="formula-box">
+          <div class="formula">$2 000 000 × 8% ≈ $160 000 недоотриманих продажів на рік</div>
+          <div class="formula-note">І це лише прямі втрати, без урахування переходу покупця до конкурента назавжди</div>
+        </div>
+
+        <p>Навіть якщо систематичний контроль полиці скоротить OOS удвічі — з 8% до 4% — ви повертаєте близько <strong>$80 000 на рік</strong>. При цьому ви не витрачаєте ані копійки на додатковий трафік чи рекламу: товар просто є там, де покупець уже готовий його купити.</p>
+
+        <div class="key-number">
+          <div class="kn-val">2×</div>
+          <div class="kn-text">
+            <h4>найдешевший спосіб зростання — прибрати власні порожні полиці</h4>
+            <p>Залучення нового покупця коштує грошей. Продаж тому, хто вже стоїть біля полиці з наміром купити — коштує лише наявності товару. Скорочення OOS — це зростання без бюджету на маркетинг.</p>
+          </div>
+        </div>
+
+        <h2 id="start">Як почати вимірювати OSA: покроково</h2>
+
+        <h3>Крок 1: Визначте контрольний список SKU і точок</h3>
+        <p>Не намагайтесь контролювати все одразу. Почніть із топ-20% SKU, які дають 80% обороту, і з ключових точок. Саме там OOS коштує найдорожче.</p>
+
+        <h3>Крок 2: Введіть єдиний стандарт фіксації</h3>
+        <p>Кожен візит = фото полиці з часом і GPS. Не «на око», а зафіксований факт. Це прибирає суб'єктивність і дає базу для аналітики.</p>
+
+        <h3>Крок 3: Рахуйте OSA по SKU і по точці, а не «в середньому»</h3>
+        <p>Середнє ховає проблеми. Дивіться, де конкретно і по яких позиціях провал — там і найбільший потенціал повернення продажів.</p>
+
+        <h3>Крок 4: Замкніть цикл «виявив → виправив → перевірив»</h3>
+        <p>Виявлений OOS має перетворитись на дію: поповнити полицю, скоригувати замовлення, розібратися з фантомним залишком. І наступний візит має підтвердити, що проблему усунуто.</p>
+
+        <div class="good-box">
+          <div class="good-title">✓ Головна думка</div>
+          <p>Out-of-stock — це не «форс-мажор», а керований операційний показник. Щойно ви починаєте його вимірювати чесно (фото + Vision AI, а не галочки), він майже завжди виявляється вищим, ніж думали — і саме тому в ньому ховається найлегший ресурс для зростання продажів.</p>
+        </div>
+
+        <p>Порожня полиця не кричить про себе у звітах. Вона просто тихо віддає ваші продажі конкуренту щодня. Єдиний спосіб це зупинити — почати бачити полицю такою, якою її бачить покупець.</p>
+
+      </div>
+
+      <!-- BOTTOM CTA -->
+      <div class="bottom-cta">
+        <h2>Побачте свій реальний рівень OOS</h2>
+        <p>Замовте 30-хвилинне демо — покажемо, як PICSELL Vision AI фіксує порожні полиці, рахує OSA і Share of Shelf по фото, і скільки продажів це допомагає повернути.</p>
+        <div class="btns">
+          <a href="/demo/" class="btn-p">Замовити демо →</a>
+          <a href="/vision-ai/" class="btn-g">Детальніше про Vision AI</a>
+        </div>
+      </div>
+    </main>
+
+    <!-- SIDEBAR -->
+    <aside>
+      <div class="sidebar">
+        <div class="sb-cta">
+          <h4>Скільки продажів з'їдають ваші порожні полиці?</h4>
+          <p>Розрахуємо втрати від OOS конкретно для вашого асортименту за 30 хвилин демо.</p>
+          <a href="/demo/">Замовити демо →</a>
+        </div>
+
+        <div class="sb-card">
+          <div class="sb-title">Ключові цифри</div>
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <div style="background:var(--bg2);border-radius:var(--r2);padding:12px;">
+              <div style="font-family:'Geologica',sans-serif;font-weight:900;font-size:28px;color:var(--neon);">8%</div>
+              <div style="font-size:12px;color:var(--t2);margin-top:3px;">середній OOS у роздрібі</div>
+            </div>
+            <div style="background:var(--bg2);border-radius:var(--r2);padding:12px;">
+              <div style="font-family:'Geologica',sans-serif;font-weight:900;font-size:28px;color:var(--blue3);">~70%</div>
+              <div style="font-size:12px;color:var(--t2);margin-top:3px;">покупців «карають» бренд за OOS</div>
+            </div>
+            <div style="background:var(--bg2);border-radius:var(--r2);padding:12px;">
+              <div style="font-family:'Geologica',sans-serif;font-weight:900;font-size:28px;color:var(--neon);">95%+</div>
+              <div style="font-size:12px;color:var(--t2);margin-top:3px;">здоровий рівень OSA</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sb-card">
+          <div class="sb-title">Корисні матеріали</div>
+          <div class="sb-links">
+            <a href="/vision-ai/" class="sb-link">👁 PICSELL Vision AI — детально</a>
+            <a href="/solutions-brands/" class="sb-link">🏷 Рішення для брендів</a>
+            <a href="/analytics/" class="sb-link">📊 PICSELL Analytics</a>
+            <a href="/demo/" class="sb-link">🎬 Замовити демо</a>
+          </div>
+        </div>
+
+        <div class="sb-card">
+          <div class="sb-title">Статті по темі</div>
+          <div class="sb-links">
+            <a href="/blog/kpi-merchandiser/" class="sb-link">📋 KPI мерчандайзера: 8 метрик</a>
+            <a href="/blog/perfect-store-audit/" class="sb-link">🏪 Perfect Store: чому аудити брешуть</a>
+            <a href="/blog/shelf-data-value/" class="sb-link">📈 Дані з полиці як актив</a>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- RELATED -->
+<section class="related-section">
+  <div style="max-width:1140px;margin:0 auto;padding:0 var(--s3);">
+    <div style="font-family:'Orbitron',sans-serif;font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--t3);margin-bottom:var(--s4);">Читайте також</div>
+    <div class="related-grid">
+      <a href="/blog/kpi-merchandiser/" class="related-card">
+        <div class="rc-cat">SFA</div>
+        <div class="rc-title">KPI мерчандайзера: 8 метрик, що реально показують ефективність</div>
+        <div class="rc-meta">Червень 2026 · 8 хв</div>
+      </a>
+      <a href="/blog/perfect-store-audit/" class="related-card">
+        <div class="rc-cat">Vision AI</div>
+        <div class="rc-title">Perfect Store: чому 9 з 10 аудитів дають хибні результати</div>
+        <div class="rc-meta">Березень 2026 · 5 хв</div>
+      </a>
+      <a href="/blog/shelf-data-value/" class="related-card">
+        <div class="rc-cat">Аналітика</div>
+        <div class="rc-title">Чому дані з полиці — це недооцінений актив бренду</div>
+        <div class="rc-meta">Квітень 2026 · 6 хв</div>
+      </a>
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{ define "scripts" }}
+<script>
+window.addEventListener('scroll',function(){
+  var h=document.getElementById('header');
+  if(h)h.classList.toggle('scrolled',scrollY>30);
+});
+var hb=document.getElementById('hamburger'),mn=document.getElementById('mobileNav');
+if(hb&&mn){hb.addEventListener('click',function(){hb.classList.toggle('open');mn.classList.toggle('open');});}
+if(mn){mn.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){if(hb)hb.classList.remove('open');mn.classList.remove('open');});});}
+</script>
+{{ end }}
