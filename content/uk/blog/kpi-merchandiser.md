@@ -18,6 +18,6 @@ type: "blog"
 layout: "kpi-merchandiser"
 url: "/blog/kpi-merchandiser/"
 seoTitle: "KPI мерчандайзера: 8 метрик ефективності польової команди | PICSELL"
-seoDescription: "Чому «кількість візитів» — погана метрика і які 8 KPI реально показують ефективність мерчандайзера: visit compliance з GPS, OSA, Share of Shelf, планограма, Perfect Store Score."
+seoDescription: "Чому «кількість візитів» — погана метрика і які 8 KPI реально показують ефективність мерчандайзера: viz compliance з GPS, OSA, Share of Shelf, планограма, Perfect Store Score."
 readingTime: 8
 ---
