@@ -1,0 +1,345 @@
+{{ define "head-extra" }}
+{{ partial "blog-shared-style.html" . }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Out-of-Stock in FMCG: What an Empty Shelf Really Costs — and How to Measure It",
+  "description": "An empty shelf is a sale that went to a competitor. We break down the real cost of out-of-stock, the difference between OOS and OSA, why manual audits miss it, and how photo monitoring catches empty shelves in real time.",
+  "author": {"@type": "Organization","name": "PICSELL"},
+  "publisher": {"@type": "Organization","name": "PICSELL","url": "https://picsell.ai"},
+  "datePublished": "2026-06-24",
+  "dateModified": "2026-06-24",
+  "mainEntityOfPage": {"@type": "WebPage","@id": "https://picsell.ai/en/blog/out-of-stock-osa-monitoring"},
+  "keywords": ["out-of-stock","OOS","OSA","on-shelf availability","empty shelves","shelf photo monitoring","FMCG"]
+}
+</script>
+{{ end }}
+
+{{ define "main" }}
+<!-- HERO -->
+<section class="article-hero">
+  <div class="art-hero-bg"><div class="dot-grid"></div><div class="glow"></div></div>
+  <div class="article-wrap">
+    <div class="hero-inner">
+      <div class="breadcrumb">
+        <a href="/en/">Home</a>
+        <span>›</span>
+        <a href="/en/blog/">Blog</a>
+        <span>›</span>
+        <span>Market Analytics</span>
+      </div>
+      <div class="art-category">Market Analytics · On-Shelf Availability</div>
+      <h1 class="art-title">Out-of-Stock in FMCG: What an Empty Shelf Really Costs</h1>
+      <p class="art-lead">Every empty shelf is a sale that went to a competitor — or never happened at all. Yet most brands and distributors don't even know their true out-of-stock rate. Here's where the losses come from, why manual audits can't see them, and how to win them back.</p>
+      <div class="art-meta">
+        <div class="art-meta-item">📅 June 2026</div>
+        <div class="art-meta-dot"></div>
+        <div class="art-meta-item">⏱ 8 min read</div>
+        <div class="art-meta-dot"></div>
+        <div class="art-meta-item">✍️ PICSELL Team</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ARTICLE BODY -->
+<section class="article-section">
+  <div class="sidebar-wrap">
+    <main>
+      <!-- TOC -->
+      <div class="toc">
+        <div class="toc-title">Contents</div>
+        <ol>
+          <li><a href="#problem">An empty shelf = a sale that went to a competitor</a></li>
+          <li><a href="#howmuch">How much OOS you actually have (and why you can't see it)</a></li>
+          <li><a href="#definitions">OOS and OSA: definitions and formulas</a></li>
+          <li><a href="#reasons">The 4 real causes of out-of-stock</a></li>
+          <li><a href="#phantom">Phantom inventory — the sneakiest cause</a></li>
+          <li><a href="#photo">How photo monitoring and Vision AI catch empty shelves</a></li>
+          <li><a href="#roi">How much you can win back: the math</a></li>
+          <li><a href="#start">How to start measuring OSA</a></li>
+        </ol>
+      </div>
+
+      <div class="article-body">
+
+        <h2 id="problem">An empty shelf = a sale that went to a competitor</h2>
+
+        <p>Picture a shopper who came in for your yogurt. It's not on the shelf. What do they do? There are only a few options, and none of them are good for you: grab a competitor's product, go to another store, postpone the purchase — or not buy at all.</p>
+
+        <p>The classic Corsten &amp; Gruen (ECR) study, still an industry benchmark, found that on average <strong>around 70% of shoppers "punish" the brand when their product is missing</strong> — they switch to a competitor, change stores, or buy nothing. Only a minority come back later specifically for your product.</p>
+
+        <div class="key-number">
+          <div class="kn-val">8%</div>
+          <div class="kn-text">
+            <h4>average out-of-stock rate in retail</h4>
+            <p>That means roughly every 13th item on a shopper's list is missing at the moment of purchase. During promotions it climbs to 12–15% — exactly when you're paying for traffic and advertising.</p>
+          </div>
+        </div>
+
+        <p>The core trap is that <strong>this loss is invisible</strong>. There's no line in your sales report that says "not sold because the shelf was empty." You only see what sold — never what would have sold if the product had been there. That makes out-of-stock the single biggest loss item almost nobody measures.</p>
+
+        <h2 id="howmuch">How much OOS you actually have (and why you can't see it)</h2>
+
+        <p>Ask your team: "What's our on-shelf availability?" The most common answers:</p>
+
+        <div class="checklist">
+          <div class="cl-item sign-bad">
+            <span class="cl-icon">✗</span>
+            <div class="cl-text">"We're fine, the warehouse is full" — confusing stock in the back room with stock on the shelf</div>
+          </div>
+          <div class="cl-item sign-bad">
+            <span class="cl-icon">✗</span>
+            <div class="cl-text">"Merchandisers report if something runs out" — meaning you learn about it after the fact</div>
+          </div>
+          <div class="cl-item sign-bad">
+            <span class="cl-icon">✗</span>
+            <div class="cl-text">"We audit the chain once a month" — and the shelf lives its own life the other 29 days</div>
+          </div>
+        </div>
+
+        <p>Manual OOS control fails on three fronts. First, <strong>delay</strong>: if a merchandiser visits once a week, an item can be missing for six days before you know. Second, <strong>subjectivity</strong>: a person eyeballs "yes / no" with no recorded proof. Third, <strong>no data</strong>: even when a problem is spotted, it rarely enters your systems in an analyzable form — where, when, which SKUs, how often.</p>
+
+        <div class="warn-box">
+          <div class="warn-title">⚠ Why "full warehouse" ≠ "full shelf"</div>
+          <p>A product can be in the store's back room but not on the shelf. It can be in the accounting system but physically gone (mis-picks, theft, spoilage). It can be in the wrong place. <strong>On-shelf availability (OSA) and inventory records are two different worlds</strong> — and the shopper lives only in the first one.</p>
+        </div>
+
+        <h2 id="definitions">OOS and OSA: definitions and formulas</h2>
+
+        <p>To manage a metric, you first need to define it unambiguously. Two key terms:</p>
+
+        <h3>OSA — On-Shelf Availability</h3>
+        <p>The share of checks in which the product was physically present on the shelf and available to the shopper. It's a "positive" metric — higher is better.</p>
+
+        <div class="formula-box">
+          <div class="formula">OSA = (checks with product on shelf / all checks) × 100%</div>
+          <div class="formula-note">A healthy FMCG benchmark is OSA 95%+ on key SKUs</div>
+        </div>
+
+        <h3>OOS — Out-of-Stock</h3>
+        <p>The mirror metric: the share of cases where the product was missing from the shelf. In essence OOS = 100% − OSA. A "negative" metric — lower is better.</p>
+
+        <div class="comparison-table">
+          <thead>
+            <tr>
+              <th>Metric</th>
+              <th>What it measures</th>
+              <th>Healthy level</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>OSA</td><td>Product available to the shopper on shelf</td><td class="good">≥ 95%</td></tr>
+            <tr><td>OOS</td><td>Product missing from shelf</td><td class="good">≤ 5%</td></tr>
+            <tr><td>OOS (promo)</td><td>Missing during a promotion</td><td class="bad">often 12–15%</td></tr>
+            <tr><td>OOS duration</td><td>How many days an SKU is missing</td><td class="good">&lt; 1 day</td></tr>
+          </tbody>
+        </div>
+
+        <p>The key detail: <strong>measure at the level of a specific SKU in a specific store</strong>, not "on average across the chain." An average OSA of 95% can hide a situation where your top SKU is missing in 20% of your premium stores — and that's your main cash flow.</p>
+
+        <h2 id="reasons">The 4 real causes of out-of-stock</h2>
+
+        <p>An empty shelf almost never happens because "the product doesn't exist." The causes are almost always operational — and, crucially, manageable:</p>
+
+        <h3>1. The shelf isn't replenished (even though the product is in the store)</h3>
+        <p>The most common cause. The product sits in the store's back room, but staff didn't put it out in time. Industry research suggests a <strong>large share of OOS is a merchandising problem, not a supply problem</strong>. It's solved with merchandising discipline and control.</p>
+
+        <h3>2. Ordering error</h3>
+        <p>Ordered too little, ordered the wrong thing, ignored promo or seasonality. Especially painful during promotions, when demand spikes several times over but the order stays "as usual."</p>
+
+        <h3>3. Supply / logistics failure</h3>
+        <p>Delayed delivery, short shipment, product stuck at the DC. It's a real cause, but it usually explains a smaller share of cases than people assume.</p>
+
+        <h3>4. Phantom inventory</h3>
+        <p>The sneakiest — the system confidently shows availability, but the shelf is empty. More on this below.</p>
+
+        <div class="quote-pull">If you don't know which of these four causes dominates in your stores, you're treating the symptom, not the disease. Shelf data tells you where the money is actually leaking.</div>
+
+        <h2 id="phantom">Phantom inventory — the sneakiest cause</h2>
+
+        <p>Phantom inventory is when the accounting system is sure the product is there, but physically it's not on the shelf. Causes: mis-picks at receiving, theft, spoilage, POS scanning errors, product "lost" in the store's back room.</p>
+
+        <p>The danger is that <strong>the system won't automatically reorder something it thinks it "already has."</strong> This creates a vicious loop: the shelf is empty → the system thinks stock exists → no new order is placed → the shelf stays empty for weeks. And there's only one way to detect it — physically look at the shelf.</p>
+
+        <div class="warn-box">
+          <div class="warn-title">⚠ Why phantom inventory is invisible in your ERP</div>
+          <p>No accounting system sees the real shelf — it only sees transactions. The gap between "data in the system" and "fact on the shelf" is closed only by regularly recording that fact in-store. Without it, phantom OOS can live for months.</p>
+        </div>
+
+        <h2 id="photo">How photo monitoring and Vision AI catch empty shelves</h2>
+
+        <p>The only reliable way to know your true OSA is to record the shelf's state in-store, regularly. This used to mean manual checklists: a merchandiser walks the shelf and ticks boxes. Slow, subjective, no proof.</p>
+
+        <p>The modern approach is <strong>a shelf photo + image recognition (Vision AI)</strong>. The merchandiser takes one photo of the shelf on a smartphone. The system then automatically:</p>
+
+        <div class="checklist">
+          <div class="cl-item sign-good">
+            <span class="cl-icon">✓</span>
+            <div class="cl-text"><strong>Recognizes every SKU on the shelf</strong> — yours and competitors' — and sees what's missing</div>
+          </div>
+          <div class="cl-item sign-good">
+            <span class="cl-icon">✓</span>
+            <div class="cl-text"><strong>Records OOS automatically</strong> — no subjective human judgment</div>
+          </div>
+          <div class="cl-item sign-good">
+            <span class="cl-icon">✓</span>
+            <div class="cl-text"><strong>Calculates Share of Shelf</strong> — how much space you hold versus competitors</div>
+          </div>
+          <div class="cl-item sign-good">
+            <span class="cl-icon">✓</span>
+            <div class="cl-text"><strong>Checks planogram compliance</strong> — whether the product is where it should be</div>
+          </div>
+          <div class="cl-item sign-good">
+            <span class="cl-icon">✓</span>
+            <div class="cl-text"><strong>Provides proof as a time- and GPS-stamped photo</strong> — not hearsay, but fact</div>
+          </div>
+        </div>
+
+        <p>Instead of "the merchandiser said it's fine," you get <strong>structured data for every store, every SKU, every visit</strong>. And you can react not at month-end, but the same day — while the sale can still be recovered.</p>
+
+        <div class="good-box">
+          <div class="good-title">✓ What this changes in practice</div>
+          <p>OSA stops being a "feeling" and becomes a managed number. You can see which SKUs disappear from which shelves most often, why, and whether the merchandiser fixed it during the visit. That's the foundation of managing availability instead of reacting to complaints.</p>
+        </div>
+
+        <h2 id="roi">How much you can win back: the math</h2>
+
+        <p>Let's run a simple example. Say your annual sales in a controlled channel are $2,000,000 and your average OOS is 8%.</p>
+
+        <div class="formula-box">
+          <div class="formula">$2,000,000 × 8% ≈ $160,000 in lost sales per year</div>
+          <div class="formula-note">And that's just direct loss, before shoppers switch to a competitor for good</div>
+        </div>
+
+        <p>Even if systematic shelf control halves OOS — from 8% to 4% — you recover roughly <strong>$80,000 a year</strong>. And you spend nothing extra on traffic or advertising: the product is simply there, where the shopper is already ready to buy it.</p>
+
+        <div class="key-number">
+          <div class="kn-val">2×</div>
+          <div class="kn-text">
+            <h4>the cheapest growth is removing your own empty shelves</h4>
+            <p>Acquiring a new shopper costs money. Selling to someone already standing at the shelf, intending to buy, costs only availability. Cutting OOS is growth with no marketing budget.</p>
+          </div>
+        </div>
+
+        <h2 id="start">How to start measuring OSA: step by step</h2>
+
+        <h3>Step 1: Define your control list of SKUs and stores</h3>
+        <p>Don't try to control everything at once. Start with the top 20% of SKUs that drive 80% of revenue, and with your key stores. That's where OOS costs the most.</p>
+
+        <h3>Step 2: Introduce a single recording standard</h3>
+        <p>Every visit = a shelf photo with time and GPS. Not "by eye," but a recorded fact. This removes subjectivity and gives you a base for analytics.</p>
+
+        <h3>Step 3: Measure OSA by SKU and store, not "on average"</h3>
+        <p>Averages hide problems. Look at exactly where and on which items you're failing — that's where the biggest recovery potential is.</p>
+
+        <h3>Step 4: Close the "detect → fix → verify" loop</h3>
+        <p>A detected OOS must turn into action: replenish the shelf, adjust the order, deal with phantom inventory. And the next visit should confirm the problem is resolved.</p>
+
+        <div class="good-box">
+          <div class="good-title">✓ The main takeaway</div>
+          <p>Out-of-stock isn't "force majeure" — it's a manageable operational metric. The moment you start measuring it honestly (photo + Vision AI, not tick-boxes), it almost always turns out higher than you thought — which is exactly why it hides the easiest resource for sales growth.</p>
+        </div>
+
+        <p>An empty shelf doesn't shout for attention in your reports. It just quietly hands your sales to a competitor, every single day. The only way to stop it is to start seeing the shelf the way the shopper sees it.</p>
+
+      </div>
+
+      <!-- BOTTOM CTA -->
+      <div class="bottom-cta">
+        <h2>See your real OOS rate</h2>
+        <p>Book a 30-minute demo — we'll show how PICSELL Vision AI detects empty shelves, calculates OSA and Share of Shelf from a photo, and how many sales it helps you win back.</p>
+        <div class="btns">
+          <a href="/en/demo/" class="btn-p">Book a demo →</a>
+          <a href="/en/vision-ai/" class="btn-g">More about Vision AI</a>
+        </div>
+      </div>
+    </main>
+
+    <!-- SIDEBAR -->
+    <aside>
+      <div class="sidebar">
+        <div class="sb-cta">
+          <h4>How many sales are your empty shelves eating?</h4>
+          <p>We'll estimate your OOS losses for your exact assortment in a 30-minute demo.</p>
+          <a href="/en/demo/">Book a demo →</a>
+        </div>
+
+        <div class="sb-card">
+          <div class="sb-title">Key numbers</div>
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <div style="background:var(--bg2);border-radius:var(--r2);padding:12px;">
+              <div style="font-family:'Geologica',sans-serif;font-weight:900;font-size:28px;color:var(--neon);">8%</div>
+              <div style="font-size:12px;color:var(--t2);margin-top:3px;">average retail OOS</div>
+            </div>
+            <div style="background:var(--bg2);border-radius:var(--r2);padding:12px;">
+              <div style="font-family:'Geologica',sans-serif;font-weight:900;font-size:28px;color:var(--blue3);">~70%</div>
+              <div style="font-size:12px;color:var(--t2);margin-top:3px;">of shoppers "punish" the brand</div>
+            </div>
+            <div style="background:var(--bg2);border-radius:var(--r2);padding:12px;">
+              <div style="font-family:'Geologica',sans-serif;font-weight:900;font-size:28px;color:var(--neon);">95%+</div>
+              <div style="font-size:12px;color:var(--t2);margin-top:3px;">healthy OSA level</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sb-card">
+          <div class="sb-title">Useful resources</div>
+          <div class="sb-links">
+            <a href="/en/vision-ai/" class="sb-link">👁 PICSELL Vision AI</a>
+            <a href="/en/solutions-brands/" class="sb-link">🏷 Solutions for brands</a>
+            <a href="/en/analytics/" class="sb-link">📊 PICSELL Analytics</a>
+            <a href="/en/demo/" class="sb-link">🎬 Book a demo</a>
+          </div>
+        </div>
+
+        <div class="sb-card">
+          <div class="sb-title">Related articles</div>
+          <div class="sb-links">
+            <a href="/en/blog/merchandiser-kpi-metrics/" class="sb-link">📋 Merchandiser KPIs: 8 metrics</a>
+            <a href="/en/blog/perfect-store-audit-accuracy/" class="sb-link">🏪 Perfect Store: why audits lie</a>
+            <a href="/en/blog/shelf-data-competitive-advantage/" class="sb-link">📈 Shelf data as an asset</a>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- RELATED -->
+<section class="related-section">
+  <div style="max-width:1140px;margin:0 auto;padding:0 var(--s3);">
+    <div style="font-family:'Orbitron',sans-serif;font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--t3);margin-bottom:var(--s4);">Read next</div>
+    <div class="related-grid">
+      <a href="/en/blog/merchandiser-kpi-metrics/" class="related-card">
+        <div class="rc-cat">SFA</div>
+        <div class="rc-title">Merchandiser KPIs: 8 Metrics That Actually Show Performance</div>
+        <div class="rc-meta">June 2026 · 8 min</div>
+      </a>
+      <a href="/en/blog/perfect-store-audit-accuracy/" class="related-card">
+        <div class="rc-cat">Vision AI</div>
+        <div class="rc-title">Perfect Store: Why 9 out of 10 Audits Give False Results</div>
+        <div class="rc-meta">March 2026 · 5 min</div>
+      </a>
+      <a href="/en/blog/shelf-data-competitive-advantage/" class="related-card">
+        <div class="rc-cat">Analytics</div>
+        <div class="rc-title">Why Shelf Data Is a Brand's Most Underrated Asset</div>
+        <div class="rc-meta">April 2026 · 6 min</div>
+      </a>
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{ define "scripts" }}
+<script>
+window.addEventListener('scroll',function(){
+  var h=document.getElementById('header');
+  if(h)h.classList.toggle('scrolled',scrollY>30);
+});
+var hb=document.getElementById('hamburger'),mn=document.getElementById('mobileNav');
+if(hb&&mn){hb.addEventListener('click',function(){hb.classList.toggle('open');mn.classList.toggle('open');});}
+if(mn){mn.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){if(hb)hb.classList.remove('open');mn.classList.remove('open');});});}
+</script>
+{{ end }}

@@ -1,0 +1,309 @@
+{{ define "head-extra" }}
+{{ partial "blog-shared-style.html" . }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "KPI мерчандайзера: 8 метрик, що реально показують ефективність",
+  "description": "Кількість візитів нічого не каже про якість роботи в полі. Розбираємо 8 метрик, які показують реальну ефективність мерчандайзера — від виконання плану з GPS-верифікацією до Perfect Store Score — і як звести їх в один дашборд.",
+  "author": {"@type": "Organization","name": "PICSELL"},
+  "publisher": {"@type": "Organization","name": "PICSELL","url": "https://picsell.ai"},
+  "datePublished": "2026-06-27",
+  "dateModified": "2026-06-27",
+  "mainEntityOfPage": {"@type": "WebPage","@id": "https://picsell.ai/blog/kpi-merchandiser"},
+  "keywords": ["KPI мерчандайзера","метрики мерчандайзингу","оцінка польової команди","ефективність мерчандайзера","Share of Shelf","OSA","Perfect Store","FMCG"]
+}
+</script>
+{{ end }}
+
+{{ define "main" }}
+<!-- HERO -->
+<section class="article-hero">
+  <div class="art-hero-bg"><div class="dot-grid"></div><div class="glow"></div></div>
+  <div class="article-wrap">
+    <div class="hero-inner">
+      <div class="breadcrumb">
+        <a href="/">Головна</a>
+        <span>›</span>
+        <a href="/blog/">Блог</a>
+        <span>›</span>
+        <span>SFA</span>
+      </div>
+      <div class="art-category">SFA · Управління полем</div>
+      <h1 class="art-title">KPI мерчандайзера: 8 метрик, що реально показують ефективність</h1>
+      <p class="art-lead">«Скільки точок відвідав» — метрика, яку легко імітувати і яка нічого не каже про результат. Розбираємо 8 метрик, які показують справжню ефективність мерчандайзера — і дають зрозуміти, чи ваша польова команда реально впливає на продажі, чи просто ставить галочки.</p>
+      <div class="art-meta">
+        <div class="art-meta-item">📅 Червень 2026</div>
+        <div class="art-meta-dot"></div>
+        <div class="art-meta-item">⏱ 8 хвилин читання</div>
+        <div class="art-meta-dot"></div>
+        <div class="art-meta-item">✍️ PICSELL Team</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ARTICLE BODY -->
+<section class="article-section">
+  <div class="sidebar-wrap">
+    <main>
+      <!-- TOC -->
+      <div class="toc">
+        <div class="toc-title">Зміст статті</div>
+        <ol>
+          <li><a href="#problem">Чому «кількість візитів» — погана метрика</a></li>
+          <li><a href="#m1">1. Виконання плану візитів (з GPS-верифікацією)</a></li>
+          <li><a href="#m2">2. Час на точці</a></li>
+          <li><a href="#m3">3. On-Shelf Availability / OOS</a></li>
+          <li><a href="#m4">4. Share of Shelf (частка полиці)</a></li>
+          <li><a href="#m5">5. Дотримання планограми</a></li>
+          <li><a href="#m6">6. Якість фото-звітності</a></li>
+          <li><a href="#m7">7. Виправлені проблеми за візит</a></li>
+          <li><a href="#m8">8. Perfect Store Score</a></li>
+          <li><a href="#dashboard">Як звести це в один дашборд</a></li>
+        </ol>
+      </div>
+
+      <div class="article-body">
+
+        <h2 id="problem">Чому «кількість візитів» — погана метрика</h2>
+
+        <p>У більшості компаній головна метрика мерчандайзера звучить так: <em>«скільки точок відвідав за день»</em>. Проблема в тому, що це метрика <strong>активності, а не результату</strong>. Її легко імітувати і неможливо пов'язати з продажами.</p>
+
+        <p>Мерчандайзер може «відвідати» 15 точок, заскочивши в кожну на дві хвилини, ні на що не вплинувши. А може глибоко попрацювати в 8 і реально виправити викладку, поповнити полицю, зафіксувати проблеми конкурентів. За старою метрикою перший — «герой», другий — «відстаючий». Хоча цінність створює саме другий.</p>
+
+        <div class="warn-box">
+          <div class="warn-title">⚠ Vanity metrics — метрики марнославства</div>
+          <p>Кількість візитів, кілометри в дорозі, години «в полі» — це метрики, які добре виглядають у звіті, але не корелюють із продажами. <strong>Якщо метрику можна виконати, не створивши цінності — це погана метрика.</strong></p>
+        </div>
+
+        <p>Хороший KPI відповідає на три питання: <strong>чи був мерчандайзер там, де мав бути; що він там реально зробив; і чи стало краще на полиці</strong>. Нижче — 8 метрик, які разом дають чесну картину. Не всі потрібні одразу: почніть із перших трьох.</p>
+
+        <h2 id="m1">1. Виконання плану візитів (з GPS-верифікацією)</h2>
+
+        <p>Базова, але критична метрика: <strong>частка запланованих візитів, які реально відбулися</strong> — і відбулися у правильному місці. Ключове слово — «реально». Без GPS-верифікації ви вимірюєте не факт візиту, а те, що мерчандайзер поставив галочку.</p>
+
+        <div class="formula-box">
+          <div class="formula">Visit Compliance = (підтверджені візити / заплановані) × 100%</div>
+          <div class="formula-note">Підтверджені = чек-ін у радіусі точки + фактична робота на точці</div>
+        </div>
+
+        <p>GPS-чек-ін із прив'язкою до координат точки прибирає найпоширенішу маніпуляцію — «відзвітувати з дому» або «з машини біля магазину». Це не про недовіру, а про те, що без верифікації навіть чесна команда поступово оптимізує зусилля не в той бік.</p>
+
+        <h2 id="m2">2. Час на точці (dwell time)</h2>
+
+        <p>Скільки часу мерчандайзер реально провів у точці. Метрика працює в парі з попередньою: <strong>візит тривалістю 90 секунд — це не візит, це відмітка</strong>. Повноцінна робота з полицею фізично не може зайняти дві хвилини.</p>
+
+        <p>Час на точці не варто читати ізольовано (велика точка вимагає більше часу, ніж кіоск), але аномалії видно одразу: якщо в мережевого супермаркету середній час візиту 3 хвилини — там точно ніхто не працює з полицею.</p>
+
+        <div class="good-box">
+          <div class="good-title">✓ Як читати правильно</div>
+          <p>Порівнюйте час на точці з нормою для цього типу точки, а не «в середньому по всіх». І дивіться на зв'язок: чи корелює більший час із кращим станом полиці. Якщо ні — проблема не в часі, а в тому, чим мерчандайзер зайнятий на точці.</p>
+        </div>
+
+        <h2 id="m3">3. On-Shelf Availability / OOS</h2>
+
+        <p>Головна «продуктова» метрика: <strong>чи є ваш товар на полиці</strong>. Мерчандайзер існує насамперед для того, щоб полиця не була порожньою. Тому On-Shelf Availability (OSA) — це прямий вимір результату його роботи, а не активності.</p>
+
+        <p>Фіксується автоматично по фото полиці: система розпізнає SKU і бачить, чого не вистачає. Далі OSA рахується по точці, по SKU і по мерчандайзеру — і одразу видно, у кого на маршруті полиці «дихають», а в кого системно порожні.</p>
+
+        <div class="key-number">
+          <div class="kn-val">95%+</div>
+          <div class="kn-text">
+            <h4>цільовий OSA по ключових SKU</h4>
+            <p>Якщо мерчандайзер тримає OSA 95%+ на своєму маршруті — він робить головне. Якщо OSA просідає, решта метрик уже другорядні: порожня полиця не продає незалежно від того, як гарно вона оформлена.</p>
+          </div>
+        </div>
+
+        <p>Ми окремо розібрали, скільки коштують порожні полиці і як їх вимірювати, у статті <a href="/blog/osa-out-of-stock/">про out-of-stock</a> — рекомендуємо прочитати в парі з цією.</p>
+
+        <h2 id="m4">4. Share of Shelf (частка полиці)</h2>
+
+        <p>Скільки місця на полиці займає ваш бренд відносно всієї категорії і конкурентів. <strong>Частка полиці прямо корелює з часткою продажів</strong>: чим більше фейсингів, тим вища ймовірність купівлі. Це одна з небагатьох речей, на яку мерчандайзер може впливати щодня.</p>
+
+        <div class="formula-box">
+          <div class="formula">Share of Shelf = (фейсинги бренду / всі фейсинги категорії) × 100%</div>
+          <div class="formula-note">Рахується автоматично по фото полиці через розпізнавання зображень</div>
+        </div>
+
+        <p>Метрику важливо міряти саме через Vision AI, а не «на око»: ручний підрахунок фейсингів довгий, суб'єктивний і його неможливо перевірити. Фото дає об'єктивне число і доказ.</p>
+
+        <h2 id="m5">5. Дотримання планограми (Planogram Compliance)</h2>
+
+        <p>Чи стоїть товар так, як домовлено з мережею і брендом: правильні позиції, правильний порядок, правильна зона полиці. <strong>Планограма — це не бюрократія, а результат домовленостей, за які часто заплачено</strong> (листинг, місце на полиці, промо-зона).</p>
+
+        <p>Якщо мерчандайзер не тримає планограму — ви платите за місце, яким не користуєтесь. Метрика показує, наскільки реальна полиця збігається з узгодженою схемою.</p>
+
+        <div class="comparison-table">
+          <thead>
+            <tr>
+              <th>Метрика</th>
+              <th>Активність чи результат</th>
+              <th>Можна імітувати?</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Кількість візитів</td><td class="bad">Активність</td><td class="bad">Легко</td></tr>
+            <tr><td>Visit Compliance + GPS</td><td class="good">Факт</td><td class="good">Складно</td></tr>
+            <tr><td>OSA / OOS</td><td class="good">Результат</td><td class="good">Ні (фото)</td></tr>
+            <tr><td>Share of Shelf</td><td class="good">Результат</td><td class="good">Ні (фото)</td></tr>
+            <tr><td>Planogram Compliance</td><td class="good">Результат</td><td class="good">Ні (фото)</td></tr>
+          </tbody>
+        </div>
+
+        <h2 id="m6">6. Якість і повнота фото-звітності</h2>
+
+        <p>Не «чи надіслав фото», а <strong>чи придатне воно для аналізу</strong>: полиця в кадрі повністю, не розмите, правильний ракурс, є до/після якщо потрібно. Погане фото = немає даних = немає контролю.</p>
+
+        <p>Ця метрика важлива на етапі впровадження: вона дисциплінує команду і забезпечує, що всі інші метрики (OSA, Share of Shelf, планограма) взагалі можливо порахувати. Vision AI тут ще й допомагає — відразу підказує мерчандайзеру, якщо знімок непридатний, просто на точці.</p>
+
+        <h2 id="m7">7. Виправлені проблеми за візит</h2>
+
+        <p>Найнедооціненіша метрика. Мерчандайзер не просто фіксує стан — він <strong>виправляє</strong>: поповнює полицю, повертає товар на місце за планограмою, прибирає прострочку, доносить зі складу точки. Метрика рахує, скільки проблем виявлено і скільки з них закрито під час візиту.</p>
+
+        <div class="quote-pull">Мерчандайзер, який тільки фіксує проблеми, — це камера. Мерчандайзер, який їх виправляє, — це причина, чому полиця продає. Метрики мають розрізняти цих двох людей.</div>
+
+        <p>Саме ця метрика відрізняє «обхід із фото» від реальної роботи. І саме вона найкраще корелює з продажами на маршруті.</p>
+
+        <h2 id="m8">8. Perfect Store Score</h2>
+
+        <p>Композитна метрика, яка зводить усе докупи в одне число по точці. <strong>Perfect Store Score</strong> — це відсоток виконання набору критеріїв ідеальної точки: наявність ключових SKU, частка полиці, дотримання планограми, наявність промо-матеріалів, правильні цінники тощо.</p>
+
+        <p>Перевага в тому, що це одне зрозуміле число і для мерчандайзера, і для супервайзера, і для бренду. Воно агрегує окремі метрики в KPI, який легко ставити в ціль і відстежувати динаміку. Детальніше про пастки таких аудитів — у статті <a href="/blog/perfect-store-audit/">Perfect Store: чому 9 з 10 аудитів дають хибні результати</a>.</p>
+
+        <div class="good-box">
+          <div class="good-title">✓ З чого почати</div>
+          <p>Не впроваджуйте всі 8 одразу — команда захлинеться. Почніть із трьох: Visit Compliance (з GPS), OSA і Share of Shelf. Це вже дає чесну картину «був / зробив / стало краще». Решту додавайте, коли перші три стануть звичкою.</p>
+        </div>
+
+        <h2 id="dashboard">Як звести це в один дашборд (і чого уникати)</h2>
+
+        <p>Метрики працюють тільки тоді, коли супервайзер бачить їх в одному місці й у реальному часі, а не збирає вручну з Excel наприкінці місяця. Хороший дашборд польової команди показує:</p>
+
+        <div class="checklist">
+          <div class="cl-item sign-good">
+            <span class="cl-icon">✓</span>
+            <div class="cl-text"><strong>Хто де зараз</strong> і як іде виконання плану візитів по кожному мерчандайзеру</div>
+          </div>
+          <div class="cl-item sign-good">
+            <span class="cl-icon">✓</span>
+            <div class="cl-text"><strong>OSA і Share of Shelf</strong> у розрізі точок, SKU і людей</div>
+          </div>
+          <div class="cl-item sign-good">
+            <span class="cl-icon">✓</span>
+            <div class="cl-text"><strong>Виявлені й виправлені проблеми</strong> — з фото-доказами</div>
+          </div>
+          <div class="cl-item sign-good">
+            <span class="cl-icon">✓</span>
+            <div class="cl-text"><strong>Perfect Store Score</strong> по кожній точці з динамікою</div>
+          </div>
+          <div class="cl-item sign-good">
+            <span class="cl-icon">✓</span>
+            <div class="cl-text"><strong>Алерти в реальному часі</strong> — щоб реагувати сьогодні, а не наприкінці місяця</div>
+          </div>
+        </div>
+
+        <p>Три антипатерни, яких варто уникати:</p>
+
+        <div class="checklist">
+          <div class="cl-item sign-bad">
+            <span class="cl-icon">✗</span>
+            <div class="cl-text"><strong>Занадто багато метрик одразу</strong> — команда перестає розуміти, що головне</div>
+          </div>
+          <div class="cl-item sign-bad">
+            <span class="cl-icon">✗</span>
+            <div class="cl-text"><strong>Метрики активності замість результату</strong> — вимірюєте рух, а не вплив</div>
+          </div>
+          <div class="cl-item sign-bad">
+            <span class="cl-icon">✗</span>
+            <div class="cl-text"><strong>Дані без доказу</strong> — без фото і GPS будь-яку метрику можна «намалювати»</div>
+          </div>
+        </div>
+
+        <p>Головне: KPI мерчандайзера існують не для того, щоб когось покарати, а щоб зробити роботу в полі видимою і керованою. Коли ви вимірюєте результат (OSA, частка полиці, виправлені проблеми), а не активність (кількість візитів) — команда починає працювати на те, що реально впливає на продажі. І ви нарешті бачите, які точки й люди створюють цінність, а які просто ставлять галочки.</p>
+
+      </div>
+
+      <!-- BOTTOM CTA -->
+      <div class="bottom-cta">
+        <h2>Один дашборд для всіх KPI польової команди</h2>
+        <p>Замовте 30-хвилинне демо — покажемо, як PICSELL рахує OSA, Share of Shelf, дотримання планограми і Perfect Store Score автоматично по фото, і зводить це в живий дашборд для супервайзера.</p>
+        <div class="btns">
+          <a href="/demo/" class="btn-p">Замовити демо →</a>
+          <a href="/sales-app/" class="btn-g">Детальніше про Sales App</a>
+        </div>
+      </div>
+    </main>
+
+    <!-- SIDEBAR -->
+    <aside>
+      <div class="sidebar">
+        <div class="sb-cta">
+          <h4>Ваші метрики показують результат чи активність?</h4>
+          <p>Покажемо, як вимірювати ефективність поля по факту, а не по галочках — за 30 хвилин демо.</p>
+          <a href="/demo/">Замовити демо →</a>
+        </div>
+
+        <div class="sb-card">
+          <div class="sb-title">8 метрик коротко</div>
+          <div class="sb-links">
+            <a href="#m1" class="sb-link">1 · Виконання плану + GPS</a>
+            <a href="#m2" class="sb-link">2 · Час на точці</a>
+            <a href="#m3" class="sb-link">3 · OSA / OOS</a>
+            <a href="#m4" class="sb-link">4 · Share of Shelf</a>
+            <a href="#m5" class="sb-link">5 · Дотримання планограми</a>
+            <a href="#m6" class="sb-link">6 · Якість фото-звітності</a>
+            <a href="#m7" class="sb-link">7 · Виправлені проблеми</a>
+            <a href="#m8" class="sb-link">8 · Perfect Store Score</a>
+          </div>
+        </div>
+
+        <div class="sb-card">
+          <div class="sb-title">Статті по темі</div>
+          <div class="sb-links">
+            <a href="/blog/osa-out-of-stock/" class="sb-link">📉 Out-of-Stock: ціна порожньої полиці</a>
+            <a href="/blog/perfect-store-audit/" class="sb-link">🏪 Perfect Store: чому аудити брешуть</a>
+            <a href="/blog/sfa-30percent-waste/" class="sb-link">⏱ 30% часу поля — даремно</a>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- RELATED -->
+<section class="related-section">
+  <div style="max-width:1140px;margin:0 auto;padding:0 var(--s3);">
+    <div style="font-family:'Orbitron',sans-serif;font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--t3);margin-bottom:var(--s4);">Читайте також</div>
+    <div class="related-grid">
+      <a href="/blog/osa-out-of-stock/" class="related-card">
+        <div class="rc-cat">Аналітика ринку</div>
+        <div class="rc-title">Out-of-Stock: скільки коштує порожня полиця і як її виміряти</div>
+        <div class="rc-meta">Червень 2026 · 8 хв</div>
+      </a>
+      <a href="/blog/perfect-store-audit/" class="related-card">
+        <div class="rc-cat">Vision AI</div>
+        <div class="rc-title">Perfect Store: чому 9 з 10 аудитів дають хибні результати</div>
+        <div class="rc-meta">Березень 2026 · 5 хв</div>
+      </a>
+      <a href="/blog/sfa-30percent-waste/" class="related-card">
+        <div class="rc-cat">SFA</div>
+        <div class="rc-title">5 ознак що ваша польова команда витрачає 30% часу даремно</div>
+        <div class="rc-meta">Березень 2026 · 6 хв</div>
+      </a>
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{ define "scripts" }}
+<script>
+window.addEventListener('scroll',function(){
+  var h=document.getElementById('header');
+  if(h)h.classList.toggle('scrolled',scrollY>30);
+});
+var hb=document.getElementById('hamburger'),mn=document.getElementById('mobileNav');
+if(hb&&mn){hb.addEventListener('click',function(){hb.classList.toggle('open');mn.classList.toggle('open');});}
+if(mn){mn.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){if(hb)hb.classList.remove('open');mn.classList.remove('open');});});}
+</script>
+{{ end }}

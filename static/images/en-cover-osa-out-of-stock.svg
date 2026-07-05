@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 680 400">
+<title>PICSELL Blog — Out-of-Stock: the cost of an empty shelf</title>
+<defs>
+  <linearGradient id="bg1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#060608"/><stop offset="100%" stop-color="#0D0D12"/></linearGradient>
+  <linearGradient id="glowG" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0057FF" stop-opacity="0.18"/><stop offset="100%" stop-color="#0057FF" stop-opacity="0"/></linearGradient>
+  <clipPath id="roundClip"><rect width="680" height="400" rx="12"/></clipPath>
+</defs>
+<g clip-path="url(#roundClip)">
+  <rect width="680" height="400" fill="url(#bg1)"/>
+  <pattern id="dots" x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="#FFFFFF" opacity="0.04"/></pattern>
+  <rect width="680" height="400" fill="url(#dots)"/>
+  <ellipse cx="160" cy="180" rx="200" ry="160" fill="url(#glowG)"/>
+  <g transform="translate(410, 54)">
+    <rect x="0" y="0" width="210" height="300" rx="10" fill="#111114" stroke="#1E1E24" stroke-width="1"/>
+    <rect x="16" y="16" width="90" height="26" rx="13" fill="#C8FF0012" stroke="#C8FF0040" stroke-width="0.5"/>
+    <circle cx="30" cy="29" r="4" fill="#C8FF00"/>
+    <text x="40" y="33" fill="#C8FF00" font-family="monospace" font-size="12" font-weight="700">OSA 87%</text>
+    <line x1="16" y1="96" x2="194" y2="96" stroke="#2A2A32" stroke-width="2"/>
+    <rect x="20" y="64" width="26" height="30" rx="3" fill="#0057FF" opacity="0.85"/>
+    <rect x="50" y="64" width="26" height="30" rx="3" fill="#173a7a"/>
+    <rect x="80" y="64" width="26" height="30" rx="3" fill="#0057FF" opacity="0.85"/>
+    <rect x="110" y="64" width="26" height="30" rx="3" fill="none" stroke="#FF003D" stroke-width="1.2" stroke-dasharray="3,3"/>
+    <rect x="140" y="64" width="26" height="30" rx="3" fill="#173a7a"/>
+    <rect x="168" y="64" width="22" height="30" rx="3" fill="#0057FF" opacity="0.6"/>
+    <line x1="16" y1="176" x2="194" y2="176" stroke="#2A2A32" stroke-width="2"/>
+    <rect x="20" y="144" width="26" height="30" rx="3" fill="#173a7a"/>
+    <rect x="50" y="144" width="26" height="30" rx="3" fill="none" stroke="#FF003D" stroke-width="1.2" stroke-dasharray="3,3"/>
+    <rect x="80" y="144" width="26" height="30" rx="3" fill="#0057FF" opacity="0.85"/>
+    <rect x="110" y="144" width="26" height="30" rx="3" fill="#173a7a"/>
+    <rect x="140" y="144" width="26" height="30" rx="3" fill="#0057FF" opacity="0.85"/>
+    <rect x="168" y="144" width="22" height="30" rx="3" fill="#173a7a"/>
+    <line x1="16" y1="256" x2="194" y2="256" stroke="#2A2A32" stroke-width="2"/>
+    <rect x="20" y="224" width="26" height="30" rx="3" fill="#0057FF" opacity="0.85"/>
+    <rect x="50" y="224" width="26" height="30" rx="3" fill="#173a7a"/>
+    <rect x="80" y="224" width="26" height="30" rx="3" fill="#0057FF" opacity="0.6"/>
+    <rect x="110" y="224" width="26" height="30" rx="3" fill="#173a7a"/>
+    <rect x="140" y="224" width="26" height="30" rx="3" fill="#0057FF" opacity="0.85"/>
+    <rect x="168" y="224" width="22" height="30" rx="3" fill="#173a7a"/>
+    <rect x="16" y="268" width="120" height="22" rx="6" fill="#FF003D0F" stroke="#FF003D30" stroke-width="0.5"/>
+    <circle cx="28" cy="279" r="4" fill="#FF003D"/>
+    <text x="38" y="283" fill="#FF6688" font-family="monospace" font-size="10" font-weight="700">2 SKUs missing</text>
+  </g>
+  <rect x="40" y="48" width="128" height="22" rx="11" fill="#0057FF12" stroke="#0057FF35" stroke-width="0.5"/>
+  <circle cx="50" cy="59" r="3" fill="#0057FF"/>
+  <text x="58" y="63" fill="#3380FF" font-family="Arial, sans-serif" font-size="10" font-weight="700">MARKET ANALYTICS</text>
+  <text x="40" y="128" fill="#FFFFFF" font-family="Georgia, serif" font-size="31" font-weight="700" letter-spacing="-0.5">Out-of-Stock:</text>
+  <text x="40" y="166" fill="#FFFFFF" font-family="Georgia, serif" font-size="31" font-weight="700" letter-spacing="-0.5">what an empty</text>
+  <text x="40" y="204" fill="#0057FF" font-family="Georgia, serif" font-size="31" font-weight="700" letter-spacing="-0.5">shelf really costs</text>
+  <text x="40" y="248" fill="#A0A0B0" font-family="Arial, sans-serif" font-size="14">The true cost of OOS and how to</text>
+  <text x="40" y="268" fill="#A0A0B0" font-family="Arial, sans-serif" font-size="14">measure on-shelf availability (OSA)</text>
+  <rect x="40" y="292" width="3" height="20" rx="1.5" fill="#C8FF00"/>
+  <text x="50" y="306" fill="#666670" font-family="Arial, sans-serif" font-size="12">On-Shelf Availability · 8 min read</text>
+  <text x="608" y="376" fill="#333338" font-family="Georgia, serif" font-size="14" font-weight="700" text-anchor="end">PICSELL+</text>
+  <rect x="40" y="36" width="40" height="3" rx="1.5" fill="#C8FF00" opacity="0.8"/>
+</g>
+</svg>
