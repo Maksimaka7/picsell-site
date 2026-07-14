@@ -9,4 +9,5 @@
 
 Trigger log:
 - 2026-07-14 13:37 — first trigger commit (before branch-deploy setting was saved; no build).
-- 2026-07-14 13:5x — second trigger commit (after settings saved) — this one should build.
+- 2026-07-14 13:5x — second trigger commit (settings saved, but old repo link had no PR/branch events; no build).
+- 2026-07-14 ~16:00 — third trigger, after site was re-linked to picsell-site with fresh integration. This one should build both the branch deploy and Deploy Preview #21.
