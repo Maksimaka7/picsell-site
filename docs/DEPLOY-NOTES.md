@@ -7,4 +7,6 @@
 - Pinned Hugo: 0.139.0 extended (netlify.toml). Local 0.163+ fails on blog template.
 - Build artifacts (`public/`, `resources/`) are gitignored — never commit them.
 
-_This file exists to document preview URLs; its first commit also triggered the initial branch deploy._
+Trigger log:
+- 2026-07-14 13:37 — first trigger commit (before branch-deploy setting was saved; no build).
+- 2026-07-14 13:5x — second trigger commit (after settings saved) — this one should build.
