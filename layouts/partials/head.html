@@ -29,12 +29,24 @@
 {
   "@context": "https://schema.org",
   "@type": "Organization",
+  "@id": "https://picsell.ai/#organization",
   "name": "PICSELL",
   "url": "https://picsell.ai",
   "logo": "https://picsell.ai/images/Logo-3.svg",
   "email": "info@picsell.ai",
   "parentOrganization": { "@type": "Organization", "name": "Imperia Holding" },
-  "address": { "@type": "PostalAddress", "addressLocality": "Kyiv", "addressCountry": "UA" }
+  "address": { "@type": "PostalAddress", "addressLocality": "Kyiv", "addressCountry": "UA" },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+380778809888",
+    "email": "info@picsell.ai",
+    "contactType": "sales",
+    "availableLanguage": ["Ukrainian", "English"]
+  },
+  "sameAs": [
+    "https://www.linkedin.com/company/picsell-ai",
+    "https://t.me/PicSell_ua_bot"
+  ]
 }
 </script>
 <script type="application/ld+json">
@@ -42,8 +54,10 @@
   "@context": "https://schema.org",
   "@type": "WebSite",
   "name": "PICSELL",
+  "@id": "https://picsell.ai/#website",
   "url": "https://picsell.ai",
-  "inLanguage": ["uk", "en"]
+  "inLanguage": ["uk", "en"],
+  "publisher": { "@id": "https://picsell.ai/#organization" }
 }
 </script>
 {{ end }}

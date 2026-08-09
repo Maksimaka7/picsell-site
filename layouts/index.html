@@ -15,23 +15,7 @@
     "priceCurrency": "USD",
     "description": "{{ if strings.HasPrefix .RelPermalink "/en/" }}Demo on request{{ else }}Демо за запитом{{ end }}"
   },
-  "publisher": {
-    "@type": "Organization",
-    "name": "PICSELL",
-    "url": "https://picsell.ai",
-    "logo": "https://picsell.ai/images/Logo-3.svg",
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "telephone": "+380778809888",
-      "email": "info@picsell.ai",
-      "contactType": "sales",
-      "availableLanguage": ["Ukrainian", "English"]
-    },
-    "sameAs": [
-      "https://www.linkedin.com/company/picsell-ai",
-      "https://t.me/PicSell_ua_bot"
-    ]
-  }
+  "publisher": { "@id": "https://picsell.ai/#organization" }
 }
 </script>
 <style>
