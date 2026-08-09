@@ -1,6 +1,6 @@
 baseURL = "https://picsell.ai/"
 title = "PICSELL — AI Vision і SFA для FMCG"
-enableRobotsTXT = true
+enableRobotsTXT = false
 enableEmoji = true
 
 defaultContentLanguage = "uk"
@@ -14,6 +14,8 @@ defaultContentLanguageInSubdir = false
     title = "PICSELL — AI-платформа для FMCG"
     [languages.uk.params]
       description = "Vision AI + SFA + HoReCa Intelligence для виробників і дистриб'юторів FMCG"
+      seoTitle = "PICSELL — AI Vision і SFA для FMCG | Контроль полиці і польові продажі"
+      seoDescription = "AI-платформа для FMCG: розпізнавання полиці, автоматизація польових продажів і HoReCa-аналітика. OOS-детекція, Share of Shelf, Perfect Store. Замовте демо."
   [languages.en]
     languageName = "English"
     languageCode = "en"
@@ -21,6 +23,8 @@ defaultContentLanguageInSubdir = false
     title = "PICSELL — AI Platform for FMCG"
     [languages.en.params]
       description = "Vision AI + SFA + HoReCa Intelligence for FMCG brands and distributors"
+      seoTitle = "PICSELL — AI Shelf Recognition & SFA Platform for FMCG | Vision AI, OOS Detection"
+      seoDescription = "PICSELL: AI shelf recognition platform for FMCG brands and distributors. Vision AI detects OOS, tracks Share of Shelf and Perfect Store compliance. SFA + HoReCa Intelligence."
 
 [params]
   domain = "picsell.ai"

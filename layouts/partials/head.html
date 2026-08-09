@@ -1,5 +1,5 @@
-{{ $title := .Params.seoTitle | default .Title | default site.Title }}
-{{ $description := .Params.seoDescription | default site.Params.description }}
+{{ $title := .Params.seoTitle | default (and .IsHome site.Params.seoTitle) | default .Title | default site.Title }}
+{{ $description := .Params.seoDescription | default (and .IsHome site.Params.seoDescription) | default site.Params.description }}
 {{ $ogImage := .Params.ogImage | default site.Params.ogImage }}
 {{ $canonical := .Permalink }}
 
@@ -15,7 +15,7 @@
 <meta property="og:title" content="{{ $title }}"/>
 <meta property="og:description" content="{{ $description }}"/>
 <meta property="og:image" content="{{ $ogImage | absURL }}"/>
-<meta property="og:locale" content="{{ .Language.Lang }}_{{ upper .Language.Lang }}"/>
+<meta property="og:locale" content="{{ cond (eq .Language.Lang "uk") "uk_UA" "en_US" }}"/>
 <meta property="og:site_name" content="PICSELL"/>
 
 <!-- Twitter Card -->
@@ -23,6 +23,30 @@
 <meta name="twitter:title" content="{{ $title }}"/>
 <meta name="twitter:description" content="{{ $description }}"/>
 <meta name="twitter:image" content="{{ $ogImage | absURL }}"/>
+
+{{ if .IsHome }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "PICSELL",
+  "url": "https://picsell.ai",
+  "logo": "https://picsell.ai/images/Logo-3.svg",
+  "email": "info@picsell.ai",
+  "parentOrganization": { "@type": "Organization", "name": "Imperia Holding" },
+  "address": { "@type": "PostalAddress", "addressLocality": "Kyiv", "addressCountry": "UA" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "PICSELL",
+  "url": "https://picsell.ai",
+  "inLanguage": ["uk", "en"]
+}
+</script>
+{{ end }}
 
 <!-- Canonical & hreflang -->
 <link rel="canonical" href="{{ $canonical }}"/>
