@@ -7,7 +7,7 @@ body{background:var(--bg1);color:var(--t1);font-family:'Inter',sans-serif;font-s
 a{text-decoration:none;color:var(--blue3);}a:hover{color:var(--t1);}
 #header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(8,8,10,.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
 .header-inner{display:flex;align-items:center;justify-content:space-between;height:68px;max-width:1240px;margin:0 auto;padding:0 var(--s3);}
-.logo{font-family:'Geologica',sans-serif;font-weight:900;font-size:20px;color:var(--t1);}.logo-plus{color:var(--neon);}
+.logo{font-family:'Geologica',sans-serif;font-weight:900;font-size:20px;color:var(--t1);}.logo-plus{color:var(--neon-ink);}
 .nav-links{display:flex;gap:var(--s3);}.nav-links a{font-size:14px;font-weight:500;color:var(--t2);transition:color .2s;}.nav-links a:hover{color:var(--t1);}
 .btn-demo{display:inline-flex;align-items:center;gap:6px;background:var(--blue);color:#fff;font-family:'Geologica',sans-serif;font-weight:600;font-size:13px;padding:9px 18px;border-radius:var(--r2);transition:all .25s;}.btn-demo:hover{background:var(--blue2);color:#fff;}
 .article-wrap{max-width:780px;margin:0 auto;padding:0 var(--s3);}
@@ -29,12 +29,12 @@ a{text-decoration:none;color:var(--blue3);}a:hover{color:var(--t1);}
 .article-body h3{font-family:'Geologica',sans-serif;font-weight:700;font-size:20px;color:var(--t1);margin:var(--s4) 0 var(--s2);}
 .article-body p{margin-bottom:var(--s3);}.article-body strong{color:var(--t1);}
 .key-number{background:linear-gradient(135deg,rgba(123,63,255,.08),rgba(0,87,255,.04));border:1px solid rgba(123,63,255,.2);border-radius:var(--r3);padding:var(--s4);margin:var(--s4) 0;display:flex;align-items:flex-start;gap:var(--s3);}
-.kn-val{font-family:'Geologica',sans-serif;font-weight:900;font-size:48px;color:var(--neon);line-height:1;flex-shrink:0;}
+.kn-val{font-family:'Geologica',sans-serif;font-weight:900;font-size:48px;color:var(--neon-ink);line-height:1;flex-shrink:0;}
 .kn-text h4{font-family:'Geologica',sans-serif;font-weight:700;font-size:17px;color:var(--t1);margin-bottom:4px;}.kn-text p{font-size:14px;color:var(--t2);line-height:1.6;margin:0;}
 .warn-box{background:rgba(255,0,61,.04);border:1px solid rgba(255,0,61,.15);border-left:3px solid var(--red);border-radius:var(--r3);padding:var(--s3) var(--s4);margin:var(--s3) 0;}
 .warn-box .warn-title{font-family:'Geologica',sans-serif;font-weight:700;font-size:15px;color:var(--red);margin-bottom:8px;}.warn-box p{font-size:15px;color:var(--t2);margin:0;}
 .good-box{background:rgba(200,255,0,.04);border:1px solid rgba(200,255,0,.15);border-left:3px solid var(--neon);border-radius:var(--r3);padding:var(--s3) var(--s4);margin:var(--s3) 0;}
-.good-box .good-title{font-family:'Geologica',sans-serif;font-weight:700;font-size:15px;color:var(--neon);margin-bottom:8px;}.good-box p{font-size:15px;color:var(--t2);margin:0;}
+.good-box .good-title{font-family:'Geologica',sans-serif;font-weight:700;font-size:15px;color:var(--neon-ink);margin-bottom:8px;}.good-box p{font-size:15px;color:var(--t2);margin:0;}
 .insight-box{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r3);padding:var(--s4);margin:var(--s4) 0;}
 .ib-label{font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--blue3);margin-bottom:var(--s2);}
 .ib-text{font-size:15px;color:var(--t2);line-height:1.65;}
@@ -48,7 +48,7 @@ a{text-decoration:none;color:var(--blue3);}a:hover{color:var(--t1);}
 .stage-icon{font-size:24px;margin-bottom:8px;}
 .stage-title{font-family:'Geologica',sans-serif;font-weight:700;font-size:14px;color:var(--t1);margin-bottom:4px;}
 .stage-desc{font-size:12px;color:var(--t2);line-height:1.5;}
-.stage.active{border-color:var(--neon);background:rgba(200,255,0,.04);}
+.stage.active{border-color:var(--neon-ink);background:rgba(200,255,0,.04);}
 .stage.future{border-color:var(--purple);background:rgba(123,63,255,.04);}
 .toc{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r3);padding:var(--s4);margin-bottom:var(--s5);}
 .toc-title{font-family:'Orbitron',sans-serif;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--t3);margin-bottom:var(--s2);}
@@ -287,9 +287,9 @@ a{text-decoration:none;color:var(--blue3);}a:hover{color:var(--t1);}
         <p>Now the same scenario with Agentic AI:</p>
 
         <div class="checklist">
-          <div class="cl-item"><span class="cl-icon" style="color:var(--neon);">✓</span><div class="cl-text">Agent photographs shelf → AI detects OOS → order automatically created → sent to ERP → resolution time: <strong>2 minutes</strong></div></div>
-          <div class="cl-item"><span class="cl-icon" style="color:var(--neon);">✓</span><div class="cl-text">Radar detects competitor price cut → AI assesses impact → alert sent to manager with response scenario → time to react: <strong>15 minutes</strong></div></div>
-          <div class="cl-item"><span class="cl-icon" style="color:var(--neon);">✓</span><div class="cl-text">Google Maps flags new outlet → AI evaluates potential → lead appears in agent's next week route → <strong>automatically</strong></div></div>
+          <div class="cl-item"><span class="cl-icon" style="color:var(--neon-ink);">✓</span><div class="cl-text">Agent photographs shelf → AI detects OOS → order automatically created → sent to ERP → resolution time: <strong>2 minutes</strong></div></div>
+          <div class="cl-item"><span class="cl-icon" style="color:var(--neon-ink);">✓</span><div class="cl-text">Radar detects competitor price cut → AI assesses impact → alert sent to manager with response scenario → time to react: <strong>15 minutes</strong></div></div>
+          <div class="cl-item"><span class="cl-icon" style="color:var(--neon-ink);">✓</span><div class="cl-text">Google Maps flags new outlet → AI evaluates potential → lead appears in agent's next week route → <strong>automatically</strong></div></div>
         </div>
 
         <div class="quote-pull">"Companies that adopt AI slowly risk losing 10–15% market share by 2030, while competitors capture opportunities through data-driven precision."</div>
@@ -312,7 +312,7 @@ a{text-decoration:none;color:var(--blue3);}a:hover{color:var(--t1);}
         <div class="insight-box">
           <div class="ib-label">Where the market stands today</div>
           <div class="ib-text">
-            According to McKinsey data, <strong style="color:var(--neon);">only ~12% of FMCG companies</strong> globally are at Stage 3+. The rest are at Stages 1–2. This means early movers to Stages 3–4 will gain an unmatched competitive advantage over the next 2–3 years. The window is open — but not indefinitely.
+            According to McKinsey data, <strong style="color:var(--neon-ink);">only ~12% of FMCG companies</strong> globally are at Stage 3+. The rest are at Stages 1–2. This means early movers to Stages 3–4 will gain an unmatched competitive advantage over the next 2–3 years. The window is open — but not indefinitely.
           </div>
         </div>
 
@@ -337,10 +337,10 @@ a{text-decoration:none;color:var(--blue3);}a:hover{color:var(--t1);}
         <p>If your data is poor quality, processes are chaotic, and the team does not follow standards — AI will only amplify the problem. Automation magnifies both the good and the bad. Standards and clean data come first.</p>
 
         <div class="checklist">
-          <div class="cl-item"><span class="cl-icon" style="color:var(--neon);">✓</span><div class="cl-text"><strong>Step 1:</strong> Audit your current processes. Where do you have real data? Where do you have Excel and WhatsApp?</div></div>
-          <div class="cl-item"><span class="cl-icon" style="color:var(--neon);">✓</span><div class="cl-text"><strong>Step 2:</strong> Deploy SFA with Vision AI — move to Stage 3 (real-time data). This is the foundation.</div></div>
-          <div class="cl-item"><span class="cl-icon" style="color:var(--neon);">✓</span><div class="cl-text"><strong>Step 3:</strong> Configure automated triggers — OOS → order, price cut → alert. First steps of Agentic AI.</div></div>
-          <div class="cl-item"><span class="cl-icon" style="color:var(--neon);">✓</span><div class="cl-text"><strong>Step 4:</strong> Expand autonomy — progressively hand more decisions to the system, keeping humans at strategic control points.</div></div>
+          <div class="cl-item"><span class="cl-icon" style="color:var(--neon-ink);">✓</span><div class="cl-text"><strong>Step 1:</strong> Audit your current processes. Where do you have real data? Where do you have Excel and WhatsApp?</div></div>
+          <div class="cl-item"><span class="cl-icon" style="color:var(--neon-ink);">✓</span><div class="cl-text"><strong>Step 2:</strong> Deploy SFA with Vision AI — move to Stage 3 (real-time data). This is the foundation.</div></div>
+          <div class="cl-item"><span class="cl-icon" style="color:var(--neon-ink);">✓</span><div class="cl-text"><strong>Step 3:</strong> Configure automated triggers — OOS → order, price cut → alert. First steps of Agentic AI.</div></div>
+          <div class="cl-item"><span class="cl-icon" style="color:var(--neon-ink);">✓</span><div class="cl-text"><strong>Step 4:</strong> Expand autonomy — progressively hand more decisions to the system, keeping humans at strategic control points.</div></div>
         </div>
 
         <p>The era of Excel distribution is ending not because someone decided to replace spreadsheets. It is ending because competitors moving to Agentic AI gain such an advantage in response speed and decision accuracy that Excel-based companies simply cannot compete in the same price segment.</p>
@@ -367,9 +367,9 @@ a{text-decoration:none;color:var(--blue3);}a:hover{color:var(--t1);}
         <div class="sb-card">
           <div class="sb-title">Trend Numbers</div>
           <div style="display:flex;flex-direction:column;gap:12px;">
-            <div style="background:var(--bg2);border-radius:var(--r2);padding:12px;"><div style="font-family:'Geologica',sans-serif;font-weight:900;font-size:28px;color:var(--neon);">78%</div><div style="font-size:12px;color:var(--t2);margin-top:3px;">of companies already using AI</div></div>
+            <div style="background:var(--bg2);border-radius:var(--r2);padding:12px;"><div style="font-family:'Geologica',sans-serif;font-weight:900;font-size:28px;color:var(--neon-ink);">78%</div><div style="font-size:12px;color:var(--t2);margin-top:3px;">of companies already using AI</div></div>
             <div style="background:var(--bg2);border-radius:var(--r2);padding:12px;"><div style="font-family:'Geologica',sans-serif;font-weight:900;font-size:28px;color:var(--blue3);">$57.7B</div><div style="font-size:12px;color:var(--t2);margin-top:3px;">AI market in FMCG by 2033</div></div>
-            <div style="background:var(--bg2);border-radius:var(--r2);padding:12px;"><div style="font-family:'Geologica',sans-serif;font-weight:900;font-size:28px;color:var(--neon);">-20%</div><div style="font-size:12px;color:var(--t2);margin-top:3px;">logistics costs with AI</div></div>
+            <div style="background:var(--bg2);border-radius:var(--r2);padding:12px;"><div style="font-family:'Geologica',sans-serif;font-weight:900;font-size:28px;color:var(--neon-ink);">-20%</div><div style="font-size:12px;color:var(--t2);margin-top:3px;">logistics costs with AI</div></div>
           </div>
         </div>
         <div class="sb-card">

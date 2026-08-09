@@ -1,0 +1,41 @@
+<style>
+/* ═══════════════════════════ LIGHT THEME — SITE FOUNDATION ═══════════════════════════ */
+/* Scoped to body.theme-light. Redefining the design-system tokens on body cascades into
+   every template plus the shared header/footer partials. Extracted from layouts/index.html
+   (homepage v2) so inner pages and the blog can share one visual language.
+   Homepage-only rules stay in layouts/index.html under .is-home. */
+.theme-light{
+  --bg0:#E9EDF3;--bg1:#FAFBFC;--bg2:#F1F3F7;--bg3:#FFFFFF;--bg4:#FFFFFF;
+  --border:#E4E7ED;--border-b:rgba(0,87,255,.22);--border-glow:rgba(0,87,255,.35);
+  --blue:#0057FF;--blue2:#0047D6;--blue3:#0057FF;--cyan:#00D4FF;
+  --neon:#C8FF00;--neon-ink:#0057FF;--red:#FF003D;--orange:#E8590C;--green:#4E9A00;
+  --t1:#0F1E37;--t2:#6B7280;--t3:#9AA0AB;
+  --grad-blue:linear-gradient(135deg,#0057FF 0%,#00B4FF 100%);
+}
+/* White brand logo → ink on light header/footer */
+.theme-light .logo img{filter:brightness(0);}
+/* Header glass → light */
+.theme-light #header{background:rgba(250,251,252,.82);border-bottom-color:var(--border);}
+.theme-light #header.scrolled{background:rgba(255,255,255,.95);border-bottom-color:rgba(0,87,255,.15);box-shadow:0 1px 0 rgba(15,30,55,.05);}
+.theme-light .nav-link:hover,.theme-light .nav-link.active{background:rgba(0,87,255,.06);}
+.theme-light .dropdown{background:#fff;box-shadow:0 20px 60px rgba(15,30,55,.12);}
+.theme-light .dd-item:hover{background:rgba(0,87,255,.06);}
+.theme-light .mobile-nav{background:rgba(250,251,252,.98);}
+.theme-light .btn-s{color:var(--blue);}
+.theme-light .btn-g:hover{color:var(--t1);border-color:rgba(15,30,55,.25);}
+/* Lime-as-text is invisible on light. --neon-ink carries every text usage and resolves to
+   brand blue here; --neon itself stays lime and is reserved for fills: dots, marker swipes,
+   button hovers, dark-band accents. */
+.theme-light .hl-mark{color:var(--t1);background:linear-gradient(transparent 60%, rgba(200,255,0,.85) 60%);padding:0 .04em;border-radius:2px 2px 0 0;}
+/* Hardcoded dark assumptions → light */
+.theme-light .dot-grid{background-image:radial-gradient(circle,rgba(15,30,55,.06) 1px,transparent 1px);}
+.theme-light .hero-dashboard{box-shadow:0 0 80px rgba(0,87,255,.10),0 30px 60px rgba(15,30,55,.12);}
+/* Semi-transparent white overlays were drawn for dark surfaces and vanish on light → ink */
+.theme-light .ic-n{color:rgba(15,30,55,.22);}
+.theme-light .feat-table tr:hover td{background:rgba(0,87,255,.03);}
+.theme-light .comp-table tr:hover td{background:rgba(0,87,255,.03);}
+.theme-light .data-table tr:hover td{background:rgba(0,87,255,.03);}
+/* Footer → light surface */
+.theme-light #footer{background:var(--bg2);border-top-color:var(--border);}
+/* ═══════════════════════════ END LIGHT FOUNDATION ═══════════════════════════ */
+</style>

@@ -16,12 +16,12 @@
 .chat-hdr{background:var(--bg2);border-bottom:1px solid var(--border);padding:12px 20px;display:flex;align-items:center;gap:12px;}
 .chat-avatar{width:32px;height:32px;background:linear-gradient(135deg,#0057FF,#00B4FF);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
 .chat-name{font-family:'Geologica',sans-serif;font-size:14px;font-weight:700;}
-.chat-status{font-size:11px;color:var(--neon);}
+.chat-status{font-size:11px;color:var(--neon-ink);}
 .chat-body{padding:var(--s3);display:flex;flex-direction:column;gap:10px;}
 .msg{max-width:88%;padding:10px 14px;border-radius:var(--r3);font-size:13px;line-height:1.6;}
 .msg-user{align-self:flex-end;background:var(--blue);color:#fff;border-bottom-right-radius:4px;}
 .msg-ai{align-self:flex-start;background:var(--bg2);border:1px solid var(--border);color:var(--t1);border-bottom-left-radius:4px;}
-.msg-ai strong{color:var(--neon);}
+.msg-ai strong{color:var(--neon-ink);}
 .chart-mini{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:10px;margin-top:6px;}
 .chart-bars{display:flex;align-items:flex-end;gap:4px;height:48px;}
 .cbar{flex:1;border-radius:2px 2px 0 0;background:rgba(0,87,255,.35);transition:height .3s;}
@@ -37,8 +37,8 @@
 .kpi-4{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s2);margin-bottom:var(--s3);}
 .kpi-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r3);padding:var(--s2);}
 .kpi-box-lbl{font-family:'Orbitron',sans-serif;font-size:8px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--t3);margin-bottom:6px;}
-.kpi-box-val{font-family:'Geologica',sans-serif;font-weight:900;font-size:22px;}.kv-blue{color:var(--blue3);}.kv-neon{color:var(--neon);}.kv-red{color:var(--red);}.kv-orange{color:var(--orange);}
-.kpi-box-delta{font-size:11px;margin-top:3px;font-weight:600;}.delta-up{color:var(--neon);}.delta-dn{color:var(--red);}
+.kpi-box-val{font-family:'Geologica',sans-serif;font-weight:900;font-size:22px;}.kv-blue{color:var(--blue3);}.kv-neon{color:var(--neon-ink);}.kv-red{color:var(--red);}.kv-orange{color:var(--orange);}
+.kpi-box-delta{font-size:11px;margin-top:3px;font-weight:600;}.delta-up{color:var(--neon-ink);}.delta-dn{color:var(--red);}
 .tab-insight{font-size:13px;color:var(--t2);padding:var(--s3);background:var(--bg2);border-radius:var(--r3);border:1px solid var(--border);line-height:1.65;}
 
 /* AI COPILOT */
@@ -46,7 +46,7 @@
 .copilot-hdr{display:flex;align-items:center;gap:var(--s2);margin-bottom:var(--s4);}
 .copilot-icon{width:40px;height:40px;background:rgba(200,255,0,.1);border:1px solid rgba(200,255,0,.2);border-radius:var(--r2);display:flex;align-items:center;justify-content:center;font-size:18px;}
 .copilot-title{font-family:'Geologica',sans-serif;font-weight:700;font-size:17px;}
-.copilot-sub{font-size:12px;color:var(--neon);}
+.copilot-sub{font-size:12px;color:var(--neon-ink);}
 .alert-cards{display:flex;flex-direction:column;gap:var(--s2);}
 .ac{display:flex;align-items:flex-start;gap:10px;padding:var(--s2) var(--s3);border-radius:var(--r3);border:1px solid;}
 .ac-red{background:rgba(255,0,61,.04);border-color:rgba(255,0,61,.15);}
@@ -68,7 +68,7 @@
 .fci-n{background:rgba(200,255,0,.07);border:1px solid rgba(200,255,0,.15);}
 .fc h3{font-family:'Geologica',sans-serif;font-weight:700;font-size:18px;margin-bottom:var(--s2);}
 .fc p{color:var(--t2);font-size:14px;line-height:1.65;}
-.fc-pill{display:inline-flex;align-items:center;gap:5px;margin-top:var(--s2);font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--neon);background:rgba(200,255,0,.07);padding:4px 10px;border-radius:999px;border:1px solid rgba(200,255,0,.18);}
+.fc-pill{display:inline-flex;align-items:center;gap:5px;margin-top:var(--s2);font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--neon-ink);background:rgba(200,255,0,.07);padding:4px 10px;border-radius:999px;border:1px solid rgba(200,255,0,.18);}
 
 /* G2 */
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:var(--s6);align-items:start;}
@@ -234,10 +234,10 @@
         <h2 style="font-size:clamp(26px,3.5vw,44px);font-weight:800;margin-bottom:var(--s3);">The Analyst Who <span class="hl-neon">Never Sleeps</span></h2>
         <p style="color:var(--t2);font-size:16px;line-height:1.7;margin-bottom:var(--s4);">Ask a question in plain language — get a chart and an answer. PICSELL Copilot analyzes all your data and finds anomalies on its own — before you even ask.</p>
         <div style="display:flex;flex-direction:column;gap:var(--s2);margin-bottom:var(--s4);">
-          <div style="display:flex;align-items:center;gap:10px;font-size:15px;color:var(--t2);"><span style="color:var(--neon);">✓</span><strong style="color:var(--t1);">Text-to-SQL</strong> — query data without a developer</div>
-          <div style="display:flex;align-items:center;gap:10px;font-size:15px;color:var(--t2);"><span style="color:var(--neon);">✓</span><strong style="color:var(--t1);">Trigger alerts</strong> — anomalies detected automatically</div>
-          <div style="display:flex;align-items:center;gap:10px;font-size:15px;color:var(--t2);"><span style="color:var(--neon);">✓</span><strong style="color:var(--t1);">Telegram / Viber</strong> — alerts wherever you prefer</div>
-          <div style="display:flex;align-items:center;gap:10px;font-size:15px;color:var(--t2);"><span style="color:var(--neon);">✓</span><strong style="color:var(--t1);">Predictive recommendations</strong> — not just data, but actions</div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:15px;color:var(--t2);"><span style="color:var(--neon-ink);">✓</span><strong style="color:var(--t1);">Text-to-SQL</strong> — query data without a developer</div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:15px;color:var(--t2);"><span style="color:var(--neon-ink);">✓</span><strong style="color:var(--t1);">Trigger alerts</strong> — anomalies detected automatically</div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:15px;color:var(--t2);"><span style="color:var(--neon-ink);">✓</span><strong style="color:var(--t1);">Telegram / Viber</strong> — alerts wherever you prefer</div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:15px;color:var(--t2);"><span style="color:var(--neon-ink);">✓</span><strong style="color:var(--t1);">Predictive recommendations</strong> — not just data, but actions</div>
         </div>
         <div class="badge-neon">Launch Q2 2026</div>
       </div>
@@ -412,10 +412,10 @@
         <h2 style="font-size:clamp(26px,3.5vw,44px);font-weight:800;margin-bottom:var(--s3);">Аналітик який <span class="hl-neon">ніколи не спить</span></h2>
         <p style="color:var(--t2);font-size:16px;line-height:1.7;margin-bottom:var(--s4);">Задайте питання словами — отримайте графік і відповідь. PICSELL Copilot аналізує всі ваші дані і сам знаходить аномалії — до того як ви про них запитали.</p>
         <div style="display:flex;flex-direction:column;gap:var(--s2);margin-bottom:var(--s4);">
-          <div style="display:flex;align-items:center;gap:10px;font-size:15px;color:var(--t2);"><span style="color:var(--neon);">✓</span><strong style="color:var(--t1);">Text-to-SQL</strong> — питайте дані без програміста</div>
-          <div style="display:flex;align-items:center;gap:10px;font-size:15px;color:var(--t2);"><span style="color:var(--neon);">✓</span><strong style="color:var(--t1);">Тригерні алерти</strong> — аномалії виявляються самі</div>
-          <div style="display:flex;align-items:center;gap:10px;font-size:15px;color:var(--t2);"><span style="color:var(--neon);">✓</span><strong style="color:var(--t1);">Telegram / Viber</strong> — алерти де вам зручно</div>
-          <div style="display:flex;align-items:center;gap:10px;font-size:15px;color:var(--t2);"><span style="color:var(--neon);">✓</span><strong style="color:var(--t1);">Прогнозні рекомендації</strong> — не просто дані, а дії</div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:15px;color:var(--t2);"><span style="color:var(--neon-ink);">✓</span><strong style="color:var(--t1);">Text-to-SQL</strong> — питайте дані без програміста</div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:15px;color:var(--t2);"><span style="color:var(--neon-ink);">✓</span><strong style="color:var(--t1);">Тригерні алерти</strong> — аномалії виявляються самі</div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:15px;color:var(--t2);"><span style="color:var(--neon-ink);">✓</span><strong style="color:var(--t1);">Telegram / Viber</strong> — алерти де вам зручно</div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:15px;color:var(--t2);"><span style="color:var(--neon-ink);">✓</span><strong style="color:var(--t1);">Прогнозні рекомендації</strong> — не просто дані, а дії</div>
         </div>
         <div class="badge-neon">Запуск Q2 2026</div>
       </div>

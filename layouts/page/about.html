@@ -7,7 +7,7 @@
 .hero-sub{font-size:18px;color:var(--t2);line-height:1.65;max-width:620px;margin:0 auto;}
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:var(--s6);align-items:start;}
 .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--r4);overflow:hidden;margin-top:var(--s6);}
-.stat-box{background:var(--bg3);padding:var(--s4);text-align:center;}.stat-val{font-family:'Geologica',sans-serif;font-weight:900;font-size:clamp(24px,3vw,40px);color:var(--neon);line-height:1;}.stat-lbl{font-size:13px;color:var(--t2);margin-top:6px;}
+.stat-box{background:var(--bg3);padding:var(--s4);text-align:center;}.stat-val{font-family:'Geologica',sans-serif;font-weight:900;font-size:clamp(24px,3vw,40px);color:var(--neon-ink);line-height:1;}.stat-lbl{font-size:13px;color:var(--t2);margin-top:6px;}
 .mission-card{background:var(--bg3);border:1px solid rgba(0,87,255,.2);border-radius:var(--r4);padding:var(--s6);text-align:center;position:relative;overflow:hidden;}
 .mission-card::before{content:'"!';position:absolute;top:-20px;left:var(--s4);font-size:200px;font-family:'Geologica',sans-serif;font-weight:900;color:rgba(0,87,255,.05);line-height:1;pointer-events:none;}
 .mission-text{font-family:'Geologica',sans-serif;font-size:clamp(20px,2.5vw,28px);font-weight:700;line-height:1.4;color:var(--t1);position:relative;}
@@ -20,16 +20,16 @@
 .team-name{font-family:'Geologica',sans-serif;font-weight:700;font-size:15px;margin-bottom:4px;}.team-role{font-size:12px;color:var(--t2);}
 .comp-table{width:100%;border-collapse:collapse;}
 .comp-table th{font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--t3);padding:12px 18px;text-align:center;border-bottom:1px solid var(--border);background:var(--bg2);}
-.comp-table th:first-child{text-align:left;}.comp-table th.our-col{color:var(--neon);background:rgba(200,255,0,.04);}
+.comp-table th:first-child{text-align:left;}.comp-table th.our-col{color:var(--neon-ink);background:rgba(200,255,0,.04);}
 .comp-table td{padding:12px 18px;border-bottom:1px solid rgba(30,30,36,.7);font-size:13px;color:var(--t2);text-align:center;vertical-align:middle;}
 .comp-table td:first-child{text-align:left;color:var(--t1);font-weight:500;}.comp-table td.our-col{background:rgba(200,255,0,.02);}
 .comp-table tr:last-child td{border-bottom:none;}
-.ic-y{color:var(--neon);font-size:15px;}.ic-n{color:rgba(255,255,255,.15);font-size:15px;}.ic-p{color:var(--orange);font-size:13px;}
+.ic-y{color:var(--neon-ink);font-size:15px;}.ic-n{color:rgba(255,255,255,.15);font-size:15px;}.ic-p{color:var(--orange);font-size:13px;}
 .roadmap-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s3);}
 .rm-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r3);padding:var(--s4);}
 .rm-card.rm-done{border-top:2px solid var(--neon);}.rm-card.rm-active{border-top:2px solid var(--blue);border-color:rgba(0,87,255,.25);}.rm-card.rm-soon{border-top:2px solid var(--orange);}
 .rm-badge{font-family:'Orbitron',sans-serif;font-size:8px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:3px 8px;border-radius:999px;display:inline-block;margin-bottom:8px;}
-.rm-done .rm-badge{background:rgba(200,255,0,.1);color:var(--neon);}.rm-active .rm-badge{background:rgba(0,87,255,.1);color:var(--blue3);}.rm-soon .rm-badge{background:rgba(255,92,0,.1);color:var(--orange);}
+.rm-done .rm-badge{background:rgba(200,255,0,.1);color:var(--neon-ink);}.rm-active .rm-badge{background:rgba(0,87,255,.1);color:var(--blue3);}.rm-soon .rm-badge{background:rgba(255,92,0,.1);color:var(--orange);}
 .rm-period{font-family:'Orbitron',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);margin-bottom:6px;}
 .rm-card h3{font-family:'Geologica',sans-serif;font-weight:700;font-size:16px;margin-bottom:6px;}.rm-card p{font-size:13px;color:var(--t2);line-height:1.55;}
 .cta-band{background:linear-gradient(135deg,rgba(0,87,255,.06),rgba(0,40,120,.04));border-top:1px solid rgba(0,87,255,.12);border-bottom:1px solid rgba(0,87,255,.12);padding:var(--s7) 0;text-align:center;}
@@ -96,7 +96,7 @@
         <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--r4);padding:var(--s4);">
           <div style="font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--t3);margin-bottom:var(--s3);">Clients That Trust Us</div>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--s2);">
-            <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--r3);padding:var(--s3);text-align:center;"><div style="font-family:'Geologica',sans-serif;font-weight:900;font-size:18px;">Lactalis</div><div style="font-size:11px;color:var(--neon);margin-top:4px;">Full Transition</div></div>
+            <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--r3);padding:var(--s3);text-align:center;"><div style="font-family:'Geologica',sans-serif;font-weight:900;font-size:18px;">Lactalis</div><div style="font-size:11px;color:var(--neon-ink);margin-top:4px;">Full Transition</div></div>
             <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--r3);padding:var(--s3);text-align:center;"><div style="font-family:'Geologica',sans-serif;font-weight:900;font-size:18px;">Henkel</div><div style="font-size:11px;color:var(--blue3);margin-top:4px;">Perfect Store</div></div>
             <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--r3);padding:var(--s3);text-align:center;"><div style="font-family:'Geologica',sans-serif;font-weight:900;font-size:18px;">Bayadera</div><div style="font-size:11px;color:var(--blue3);margin-top:4px;">Sales App</div></div>
             <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--r3);padding:var(--s3);text-align:center;"><div style="font-family:'Geologica',sans-serif;font-weight:900;font-size:18px;">Nestlé</div><div style="font-size:11px;color:var(--blue3);margin-top:4px;">Vision AI</div></div>
@@ -218,7 +218,7 @@
         <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--r4);padding:var(--s4);">
           <div style="font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--t3);margin-bottom:var(--s3);">&#1050;&#1083;&#1110;&#1108;&#1085;&#1090;&#1080; &#1097;&#1086; &#1076;&#1086;&#1074;&#1110;&#1088;&#1103;&#1102;&#1090;&#1100;</div>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--s2);">
-            <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--r3);padding:var(--s3);text-align:center;"><div style="font-family:'Geologica',sans-serif;font-weight:900;font-size:18px;">Lactalis</div><div style="font-size:11px;color:var(--neon);margin-top:4px;">&#1055;&#1086;&#1074;&#1085;&#1080;&#1081; &#1087;&#1077;&#1088;&#1077;&#1093;&#1110;&#1076;</div></div>
+            <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--r3);padding:var(--s3);text-align:center;"><div style="font-family:'Geologica',sans-serif;font-weight:900;font-size:18px;">Lactalis</div><div style="font-size:11px;color:var(--neon-ink);margin-top:4px;">&#1055;&#1086;&#1074;&#1085;&#1080;&#1081; &#1087;&#1077;&#1088;&#1077;&#1093;&#1110;&#1076;</div></div>
             <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--r3);padding:var(--s3);text-align:center;"><div style="font-family:'Geologica',sans-serif;font-weight:900;font-size:18px;">Henkel</div><div style="font-size:11px;color:var(--blue3);margin-top:4px;">Perfect Store</div></div>
             <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--r3);padding:var(--s3);text-align:center;"><div style="font-family:'Geologica',sans-serif;font-weight:900;font-size:18px;">Bayadera</div><div style="font-size:11px;color:var(--blue3);margin-top:4px;">Sales App</div></div>
             <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--r3);padding:var(--s3);text-align:center;"><div style="font-family:'Geologica',sans-serif;font-weight:900;font-size:18px;">Nestl&#233;</div><div style="font-size:11px;color:var(--blue3);margin-top:4px;">Vision AI</div></div>

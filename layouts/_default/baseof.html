@@ -2,9 +2,12 @@
 <html lang="{{ .Language.Lang }}">
 <head>
 {{ partial "head.html" . }}
+{{ if or .IsHome (in (slice "/vision-ai/" "/en/vision-ai/" "/pricing/" "/en/pricing/") .RelPermalink) }}{{ partial "theme-light.html" . }}{{ end }}
 {{ block "head-extra" . }}{{ end }}
 </head>
-<body class="{{ if .IsHome }}home-light{{ end }}" style="overflow-x:hidden;">
+{{ $lightPages := slice "/vision-ai/" "/en/vision-ai/" "/pricing/" "/en/pricing/" }}
+{{ $light := or .IsHome (in $lightPages .RelPermalink) }}
+<body class="{{ if $light }}theme-light{{ end }}{{ if .IsHome }} is-home{{ end }}" style="overflow-x:hidden;">
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K4T96TN5"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>

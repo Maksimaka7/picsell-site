@@ -17,7 +17,7 @@
 .kd-hdr{background:var(--bg2);border-bottom:1px solid var(--border);padding:12px 20px;display:flex;align-items:center;justify-content:space-between;}
 .kd-dots{display:flex;gap:5px;}.kdd{width:10px;height:10px;border-radius:50%;}.kdr{background:#FF5F57;}.kdy{background:#FEBC2E;}.kdg{background:#28C840;}
 .kd-title{font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.12em;color:var(--t2);text-transform:uppercase;}
-.kd-live{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--neon);}
+.kd-live{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--neon-ink);}
 .kdl-dot{width:6px;height:6px;background:var(--neon);border-radius:50%;animation:pdot 1.5s ease-in-out infinite;}
 @keyframes pdot{0%,100%{box-shadow:0 0 0 0 rgba(200,255,0,.6);}50%{box-shadow:0 0 0 6px rgba(200,255,0,0);}}
 .kd-body{padding:var(--s3);}
@@ -28,8 +28,8 @@
 .kb-before{font-size:13px;color:var(--t3);text-decoration:line-through;}
 .kb-arrow{font-size:12px;color:var(--t3);}
 .kb-after{font-family:'Geologica',sans-serif;font-weight:900;font-size:22px;}
-.ka-neon{color:var(--neon);}.ka-blue{color:var(--blue3);}.ka-red{color:var(--red);}
-.kb-delta{font-size:11px;font-weight:600;color:var(--neon);}
+.ka-neon{color:var(--neon-ink);}.ka-blue{color:var(--blue3);}.ka-red{color:var(--red);}
+.kb-delta{font-size:11px;font-weight:600;color:var(--neon-ink);}
 .shelf-mini{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r3);padding:var(--s2);}
 .sm-title{font-family:'Orbitron',sans-serif;font-size:8px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--t2);margin-bottom:8px;}
 .sm-bars{display:flex;align-items:flex-end;gap:4px;height:44px;margin-bottom:6px;}
@@ -47,7 +47,7 @@
 .pain-card h3{font-family:'Geologica',sans-serif;font-weight:700;font-size:17px;margin-bottom:var(--s2);}
 .pain-card p{color:var(--t2);font-size:14px;line-height:1.65;}
 .pain-solution{margin-top:var(--s2);padding:10px 14px;background:rgba(0,87,255,.06);border:1px solid rgba(0,87,255,.15);border-radius:var(--r2);font-size:13px;color:var(--t2);}
-.pain-solution strong{color:var(--neon);}
+.pain-solution strong{color:var(--neon-ink);}
 /* SOLUTION MAPPING */
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:var(--s6);align-items:start;}
 .map-list{display:flex;flex-direction:column;gap:var(--s3);}
@@ -61,7 +61,7 @@
 /* RESULTS */
 .results-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s3);}
 .result-card{background:var(--bg3);border:1px solid rgba(200,255,0,.18);border-radius:var(--r4);padding:var(--s5);text-align:center;}
-.result-val{font-family:'Geologica',sans-serif;font-weight:900;font-size:52px;color:var(--neon);line-height:1;margin-bottom:6px;}
+.result-val{font-family:'Geologica',sans-serif;font-weight:900;font-size:52px;color:var(--neon-ink);line-height:1;margin-bottom:6px;}
 .result-label{font-size:15px;color:var(--t2);line-height:1.5;}
 /* CASE */
 .case-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r4);overflow:hidden;display:grid;grid-template-columns:1fr 2fr;}
@@ -72,7 +72,7 @@
 .cc-right{padding:var(--s5);}
 .cc-pills{display:flex;gap:var(--s2);flex-wrap:wrap;margin-top:var(--s3);}
 .cc-pill{background:rgba(200,255,0,.07);border:1px solid rgba(200,255,0,.18);border-radius:var(--r2);padding:8px 14px;text-align:center;}
-.ccp-val{font-family:'Geologica',sans-serif;font-weight:900;font-size:20px;color:var(--neon);}
+.ccp-val{font-family:'Geologica',sans-serif;font-weight:900;font-size:20px;color:var(--neon-ink);}
 .ccp-lbl{font-size:11px;color:var(--t2);margin-top:2px;}
 /* Logos */
 .logos-strip{padding:var(--s3) 0;background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
@@ -270,12 +270,12 @@
         <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--r4);padding:var(--s4);">
           <div style="font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--t3);margin-bottom:var(--s3);">What brands get with PICSELL</div>
           <div style="display:flex;flex-direction:column;gap:var(--s2);">
-            <div style="display:flex;align-items:center;gap:10px;font-size:15px;color:var(--t2);"><span style="color:var(--neon);font-size:14px;">✓</span><strong style="color:var(--t1);">Share of Shelf</strong> — real share vs competitors per outlet</div>
-            <div style="display:flex;align-items:center;gap:10px;font-size:15px;color:var(--t2);"><span style="color:var(--neon);font-size:14px;">✓</span><strong style="color:var(--t1);">OOS Detection</strong> — alert in 2 minutes, not a month</div>
-            <div style="display:flex;align-items:center;gap:10px;font-size:15px;color:var(--t2);"><span style="color:var(--neon);font-size:14px;">✓</span><strong style="color:var(--t1);">Perfect Store Score</strong> — 87% vs standard (Henkel case)</div>
-            <div style="display:flex;align-items:center;gap:10px;font-size:15px;color:var(--t2);"><span style="color:var(--neon);font-size:14px;">✓</span><strong style="color:var(--t1);">POSM Control</strong> — promotional materials in place, automatically</div>
-            <div style="display:flex;align-items:center;gap:10px;font-size:15px;color:var(--t2);"><span style="color:var(--neon);font-size:14px;">✓</span><strong style="color:var(--t1);">Anti-Fraud</strong> — GPS + photo metadata = 0% fakes</div>
-            <div style="display:flex;align-items:center;gap:10px;font-size:15px;color:var(--t2);"><span style="color:var(--neon);font-size:14px;">✓</span><strong style="color:var(--t1);">Power BI Dashboards</strong> — real-time data without Excel</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:15px;color:var(--t2);"><span style="color:var(--neon-ink);font-size:14px;">✓</span><strong style="color:var(--t1);">Share of Shelf</strong> — real share vs competitors per outlet</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:15px;color:var(--t2);"><span style="color:var(--neon-ink);font-size:14px;">✓</span><strong style="color:var(--t1);">OOS Detection</strong> — alert in 2 minutes, not a month</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:15px;color:var(--t2);"><span style="color:var(--neon-ink);font-size:14px;">✓</span><strong style="color:var(--t1);">Perfect Store Score</strong> — 87% vs standard (Henkel case)</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:15px;color:var(--t2);"><span style="color:var(--neon-ink);font-size:14px;">✓</span><strong style="color:var(--t1);">POSM Control</strong> — promotional materials in place, automatically</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:15px;color:var(--t2);"><span style="color:var(--neon-ink);font-size:14px;">✓</span><strong style="color:var(--t1);">Anti-Fraud</strong> — GPS + photo metadata = 0% fakes</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:15px;color:var(--t2);"><span style="color:var(--neon-ink);font-size:14px;">✓</span><strong style="color:var(--t1);">Power BI Dashboards</strong> — real-time data without Excel</div>
           </div>
           <div style="margin-top:var(--s4);display:flex;gap:var(--s2);flex-wrap:wrap;">
             <div class="badge-blue">Offline-First</div>
@@ -508,12 +508,12 @@
         <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--r4);padding:var(--s4);">
           <div style="font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--t3);margin-bottom:var(--s3);">Що отримує бренд з PICSELL</div>
           <div style="display:flex;flex-direction:column;gap:var(--s2);">
-            <div style="display:flex;align-items:center;gap:10px;font-size:15px;color:var(--t2);"><span style="color:var(--neon);font-size:14px;">✓</span><strong style="color:var(--t1);">Share of Shelf</strong> — реальна частка vs конкуренти по кожній точці</div>
-            <div style="display:flex;align-items:center;gap:10px;font-size:15px;color:var(--t2);"><span style="color:var(--neon);font-size:14px;">✓</span><strong style="color:var(--t1);">OOS Detection</strong> — алерт за 2 хвилини, а не за місяць</div>
-            <div style="display:flex;align-items:center;gap:10px;font-size:15px;color:var(--t2);"><span style="color:var(--neon);font-size:14px;">✓</span><strong style="color:var(--t1);">Perfect Store Score</strong> — 87% vs стандарт (кейс Henkel)</div>
-            <div style="display:flex;align-items:center;gap:10px;font-size:15px;color:var(--t2);"><span style="color:var(--neon);font-size:14px;">✓</span><strong style="color:var(--t1);">POSM Control</strong> — промо-матеріали на місці автоматично</div>
-            <div style="display:flex;align-items:center;gap:10px;font-size:15px;color:var(--t2);"><span style="color:var(--neon);font-size:14px;">✓</span><strong style="color:var(--t1);">Anti-Fraud</strong> — GPS + фото metadata = 0% фейків</div>
-            <div style="display:flex;align-items:center;gap:10px;font-size:15px;color:var(--t2);"><span style="color:var(--neon);font-size:14px;">✓</span><strong style="color:var(--t1);">Power BI Дашборди</strong> — дані в реальному часі без Excel</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:15px;color:var(--t2);"><span style="color:var(--neon-ink);font-size:14px;">✓</span><strong style="color:var(--t1);">Share of Shelf</strong> — реальна частка vs конкуренти по кожній точці</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:15px;color:var(--t2);"><span style="color:var(--neon-ink);font-size:14px;">✓</span><strong style="color:var(--t1);">OOS Detection</strong> — алерт за 2 хвилини, а не за місяць</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:15px;color:var(--t2);"><span style="color:var(--neon-ink);font-size:14px;">✓</span><strong style="color:var(--t1);">Perfect Store Score</strong> — 87% vs стандарт (кейс Henkel)</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:15px;color:var(--t2);"><span style="color:var(--neon-ink);font-size:14px;">✓</span><strong style="color:var(--t1);">POSM Control</strong> — промо-матеріали на місці автоматично</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:15px;color:var(--t2);"><span style="color:var(--neon-ink);font-size:14px;">✓</span><strong style="color:var(--t1);">Anti-Fraud</strong> — GPS + фото metadata = 0% фейків</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:15px;color:var(--t2);"><span style="color:var(--neon-ink);font-size:14px;">✓</span><strong style="color:var(--t1);">Power BI Дашборди</strong> — дані в реальному часі без Excel</div>
           </div>
           <div style="margin-top:var(--s4);display:flex;gap:var(--s2);flex-wrap:wrap;">
             <div class="badge-blue">Offline-First</div>
