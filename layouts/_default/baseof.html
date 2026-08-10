@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="{{ .Language.Lang }}">
 <head>
-{{/* ROLLOUT GATE: light theme is live on the homepage plus the pilot pages listed here.
-     To roll out site-wide, replace the whole expression with `true`. Declared once —
-     both the <body> class and the CSS partial read this single value. */}}
-{{ $.Scratch.Set "light" (or .IsHome (in (slice "/vision-ai/" "/en/vision-ai/" "/pricing/" "/en/pricing/") .RelPermalink)) }}
+{{/* THEME: the light theme is now site-wide. Declared once — both the <body> class and
+     the CSS partial read this single value, so they cannot drift apart. /admin/ (Decap CMS)
+     and /uk/ (alias stub) bypass this template and stay unthemed by design. */}}
+{{ $.Scratch.Set "light" true }}
 {{ partial "head.html" . }}
 {{ if $.Scratch.Get "light" }}{{ partial "theme-light.html" . }}{{ end }}
 {{ block "head-extra" . }}{{ end }}
