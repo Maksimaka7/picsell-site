@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="{{ .Language.Lang }}">
 <head>
+{{/* ROLLOUT GATE: light theme is live on the homepage plus the pilot pages listed here.
+     To roll out site-wide, replace the whole expression with `true`. Declared once —
+     both the <body> class and the CSS partial read this single value. */}}
+{{ $.Scratch.Set "light" (or .IsHome (in (slice "/vision-ai/" "/en/vision-ai/" "/pricing/" "/en/pricing/") .RelPermalink)) }}
 {{ partial "head.html" . }}
-{{ if or .IsHome (in (slice "/vision-ai/" "/en/vision-ai/" "/pricing/" "/en/pricing/") .RelPermalink) }}{{ partial "theme-light.html" . }}{{ end }}
+{{ if $.Scratch.Get "light" }}{{ partial "theme-light.html" . }}{{ end }}
 {{ block "head-extra" . }}{{ end }}
 </head>
-{{ $lightPages := slice "/vision-ai/" "/en/vision-ai/" "/pricing/" "/en/pricing/" }}
-{{ $light := or .IsHome (in $lightPages .RelPermalink) }}
-<body class="{{ if $light }}theme-light{{ end }}{{ if .IsHome }} is-home{{ end }}" style="overflow-x:hidden;">
+<body class="{{ if $.Scratch.Get "light" }}theme-light{{ end }}{{ if .IsHome }} is-home{{ end }}" style="overflow-x:hidden;">
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K4T96TN5"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
