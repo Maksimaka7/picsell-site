@@ -22,6 +22,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <select name="agents"></select>
   <input type="tel" name="phone">
   <input type="email" name="email">
+  <!-- Netlify only records fields declared in this detection stub. `interests`
+       was missing, so the checkbox answers never reached Netlify Forms. -->
+  <input type="text" name="interests">
   <input type="text" name="bot-field">
 </form>
 <form name="homepage-demo" netlify netlify-honeypot="bot-field" hidden>
