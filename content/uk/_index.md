@@ -7,4 +7,7 @@ ogTitle: "PICSELL — AI-платформа для FMCG"
 ogDescription: "Vision AI + SFA + HoReCa Intelligence в одному рішенні для виробників і дистриб'юторів FMCG."
 keywords: "FMCG платформа, Vision AI FMCG, SFA FMCG Україна, HoReCa Intelligence, AI розпізнавання полиці"
 type: "page"
+_build:
+  list: never
+  render: never
 ---
