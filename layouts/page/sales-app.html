@@ -42,7 +42,7 @@
 .comp-table td:first-child{text-align:left;font-weight:500;color:var(--t1);}
 .comp-table td.picsell-col{background:rgba(0,87,255,.04);}
 .comp-table tr:last-child td{border-bottom:none;}
-.ic-yes{color:var(--neon);font-size:15px;}.ic-no{color:rgba(255,255,255,.15);font-size:15px;}.ic-part{color:var(--orange);font-size:13px;}
+.ic-yes{color:var(--neon-ink);font-size:15px;}.ic-no{color:rgba(255,255,255,.15);font-size:15px;}.ic-part{color:var(--orange);font-size:13px;}
 .table-note{display:flex;align-items:center;gap:12px;padding:var(--s3) var(--s4);background:rgba(0,87,255,.04);border-top:1px solid rgba(0,87,255,.12);font-size:13px;color:var(--t2);}
 /* FAQ */
 .faq-list{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:var(--s2);}
@@ -88,7 +88,7 @@
 .phone-notch-dots{display:flex;gap:4px;}
 .pnd{width:8px;height:8px;border-radius:50%;}
 .pnd-r{background:#FF5F57;}.pnd-y{background:#FEBC2E;}.pnd-g{background:#28C840;}
-.phone-status{font-family:'Orbitron',sans-serif;font-size:8px;font-weight:700;letter-spacing:.1em;color:var(--neon);}
+.phone-status{font-family:'Orbitron',sans-serif;font-size:8px;font-weight:700;letter-spacing:.1em;color:var(--neon-ink);}
 .phone-body{padding:var(--s2);}
 .app-header{background:var(--bg2);border-radius:var(--r3);padding:10px 14px;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between;}
 .app-h-title{font-family:'Geologica',sans-serif;font-weight:700;font-size:14px;}
@@ -109,7 +109,7 @@
 .phone-kpi{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px;}
 .pkpi{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);padding:8px;text-align:center;}
 .pkpi-val{font-family:'Geologica',sans-serif;font-weight:900;font-size:18px;color:var(--blue3);}
-.pkpi-val.neon{color:var(--neon);}
+.pkpi-val.neon{color:var(--neon-ink);}
 .pkpi-label{font-size:9px;color:var(--t2);margin-top:2px;font-family:'Orbitron',sans-serif;letter-spacing:.06em;text-transform:uppercase;}
 .feat6{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s3);}
 .fc{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r3);padding:var(--s4);transition:all .3s;position:relative;overflow:hidden;}
@@ -119,18 +119,18 @@
 .fc-icon{width:48px;height:48px;border-radius:var(--r3);display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:var(--s3);background:rgba(0,87,255,.08);border:1px solid rgba(0,87,255,.15);}
 .fc h3{font-family:'Geologica',sans-serif;font-weight:700;font-size:17px;margin-bottom:var(--s2);}
 .fc p{color:var(--t2);font-size:14px;line-height:1.65;}
-.fc-metric{display:inline-flex;align-items:center;gap:5px;margin-top:var(--s2);font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--neon);background:rgba(200,255,0,.07);padding:4px 10px;border-radius:999px;border:1px solid rgba(200,255,0,.18);}
+.fc-metric{display:inline-flex;align-items:center;gap:5px;margin-top:var(--s2);font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--neon-ink);background:rgba(200,255,0,.07);padding:4px 10px;border-radius:999px;border:1px solid rgba(200,255,0,.18);}
 .before-after{display:grid;grid-template-columns:1fr 1fr;gap:var(--s4);}
 .ba-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r3);padding:var(--s4);}
 .ba-card.before-card{border-top:2px solid var(--red);}
 .ba-card.after-card{border-top:2px solid var(--neon);}
 .ba-title{font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;margin-bottom:var(--s3);}
 .before-card .ba-title{color:var(--red);}
-.after-card .ba-title{color:var(--neon);}
+.after-card .ba-title{color:var(--neon-ink);}
 .ba-item{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--border);font-size:14px;color:var(--t2);}
 .ba-item:last-child{border-bottom:none;}
 .ba-icon-bad{color:var(--red);font-size:14px;flex-shrink:0;}
-.ba-icon-good{color:var(--neon);font-size:14px;flex-shrink:0;}
+.ba-icon-good{color:var(--neon-ink);font-size:14px;flex-shrink:0;}
 .integrations-grid{display:flex;gap:var(--s2);flex-wrap:wrap;justify-content:center;}
 .int-item{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r3);padding:16px 24px;font-family:'Geologica',sans-serif;font-weight:700;font-size:15px;color:var(--t2);transition:all .3s;}
 .int-item:hover{border-color:rgba(0,87,255,.3);color:var(--t1);}
@@ -156,8 +156,7 @@
       <div>
         <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:24px;" class="h-anim h-d1">
           <div class="badge-blue">PICSELL Sales App</div>
-          <div class="badge-neon">500+ agents</div>
-          <div class="badge-blue">Offline-First</div>
+            <div class="badge-blue">Offline-First</div>
         </div>
         <h1 class="hero-h1 h-anim h-d2">Mobile Office for Field Agents.<br><span class="highlight">Orders, routes, merchandising</span> — in one app</h1>
         <p class="hero-sub h-anim h-d3">PICSELL Field automates orders, optimizes routes, and gives supervisors full control. Offline-First: critical for field conditions where connectivity is unreliable.</p>
@@ -181,7 +180,7 @@
               <div class="rc-header"><div class="rc-name">ATB Khreshchatyk</div><div class="rc-status rc-done">✓ Done</div></div>
               <div class="rc-body">
                 <div class="rc-row"><span>Order</span><strong>₴12,450</strong></div>
-                <div class="rc-row"><span>Shelf Audit</span><strong style="color:var(--neon)">OOS: 0</strong></div>
+                <div class="rc-row"><span>Shelf Audit</span><strong style="color:var(--neon-ink)">OOS: 0</strong></div>
               </div>
             </div>
             <div class="route-card">
@@ -193,8 +192,8 @@
             </div>
             <div class="order-mini">
               <div class="om-title">📦 Smart Order Suggestion</div>
-              <div class="om-row"><span>SKU-018 Milk 2.5%</span><strong style="color:var(--neon)">+ 12 units</strong></div>
-              <div class="om-row"><span>SKU-024 Kefir 1%</span><strong style="color:var(--neon)">+ 8 units</strong></div>
+              <div class="om-row"><span>SKU-018 Milk 2.5%</span><strong style="color:var(--neon-ink)">+ 12 units</strong></div>
+              <div class="om-row"><span>SKU-024 Kefir 1%</span><strong style="color:var(--neon-ink)">+ 8 units</strong></div>
               <div class="om-row" style="font-size:9px;color:var(--t3);margin-top:4px;"><span>Based on 4-week sales dynamics</span></div>
             </div>
             <div class="phone-kpi">
@@ -230,7 +229,7 @@
         <h3 style="font-family:'Geologica',sans-serif;font-weight:700;font-size:18px;margin-bottom:10px;">"Agents spend 30% of their day on Excel and WhatsApp instead of selling"</h3>
         <p class="t2" style="font-size:14px;line-height:1.65;">Manual order entry, collecting reports, phone coordination — 2-3 hours of routine per agent per day. Multiply that by your team.</p>
         <div style="margin-top:var(--s3);padding:12px;background:rgba(0,87,255,.06);border:1px solid rgba(0,87,255,.15);border-radius:var(--r2);font-size:13px;color:var(--t2);">
-          <strong style="color:var(--neon);">PICSELL solves this:</strong> Smart Orders automatically generate orders based on stock levels and dynamics — the agent just confirms.
+          <strong style="color:var(--neon-ink);">PICSELL solves this:</strong> Smart Orders automatically generate orders based on stock levels and dynamics — the agent just confirms.
         </div>
       </div>
       <div class="card card-lift reveal rd2" style="border-top:2px solid var(--red);">
@@ -238,7 +237,7 @@
         <h3 style="font-family:'Geologica',sans-serif;font-weight:700;font-size:18px;margin-bottom:10px;">"Routes are planned from memory — 30% of outlets are missed or duplicated"</h3>
         <p class="t2" style="font-size:14px;line-height:1.65;">A suboptimal route = extra hours in traffic + missed clients + reduced coverage. Real money burning every day.</p>
         <div style="margin-top:var(--s3);padding:12px;background:rgba(0,87,255,.06);border:1px solid rgba(0,87,255,.15);border-radius:var(--r2);font-size:13px;color:var(--t2);">
-          <strong style="color:var(--neon);">PICSELL solves this:</strong> Route Manager optimizes the route in 1 click — drag-and-drop on the map, saving 40% travel time.
+          <strong style="color:var(--neon-ink);">PICSELL solves this:</strong> Route Manager optimizes the route in 1 click — drag-and-drop on the map, saving 40% travel time.
         </div>
       </div>
       <div class="card card-lift reveal rd3" style="border-top:2px solid var(--red);">
@@ -246,7 +245,7 @@
         <h3 style="font-family:'Geologica',sans-serif;font-weight:700;font-size:18px;margin-bottom:10px;">"The supervisor doesn't know where the agent is or what they actually did until end of day"</h3>
         <p class="t2" style="font-size:14px;line-height:1.65;">GPS is off, reports come in the evening, verification is impossible. Fake check-ins. Missed outlets. You pay for work nobody controls.</p>
         <div style="margin-top:var(--s3);padding:12px;background:rgba(0,87,255,.06);border:1px solid rgba(0,87,255,.15);border-radius:var(--r2);font-size:13px;color:var(--t2);">
-          <strong style="color:var(--neon);">PICSELL solves this:</strong> Supervisor View — real team map, GPS verification of every visit, KPIs in real time.
+          <strong style="color:var(--neon-ink);">PICSELL solves this:</strong> Supervisor View — real team map, GPS verification of every visit, KPIs in real time.
         </div>
       </div>
     </div>
@@ -362,7 +361,7 @@
 .phone-notch-dots{display:flex;gap:4px;}
 .pnd{width:8px;height:8px;border-radius:50%;}
 .pnd-r{background:#FF5F57;}.pnd-y{background:#FEBC2E;}.pnd-g{background:#28C840;}
-.phone-status{font-family:'Orbitron',sans-serif;font-size:8px;font-weight:700;letter-spacing:.1em;color:var(--neon);}
+.phone-status{font-family:'Orbitron',sans-serif;font-size:8px;font-weight:700;letter-spacing:.1em;color:var(--neon-ink);}
 .phone-body{padding:var(--s2);}
 .app-header{background:var(--bg2);border-radius:var(--r3);padding:10px 14px;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between;}
 .app-h-title{font-family:'Geologica',sans-serif;font-weight:700;font-size:14px;}
@@ -383,7 +382,7 @@
 .phone-kpi{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px;}
 .pkpi{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);padding:8px;text-align:center;}
 .pkpi-val{font-family:'Geologica',sans-serif;font-weight:900;font-size:18px;color:var(--blue3);}
-.pkpi-val.neon{color:var(--neon);}
+.pkpi-val.neon{color:var(--neon-ink);}
 .pkpi-label{font-size:9px;color:var(--t2);margin-top:2px;font-family:'Orbitron',sans-serif;letter-spacing:.06em;text-transform:uppercase;}
 .feat6{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s3);}
 .fc{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r3);padding:var(--s4);transition:all .3s;position:relative;overflow:hidden;}
@@ -393,18 +392,18 @@
 .fc-icon{width:48px;height:48px;border-radius:var(--r3);display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:var(--s3);background:rgba(0,87,255,.08);border:1px solid rgba(0,87,255,.15);}
 .fc h3{font-family:'Geologica',sans-serif;font-weight:700;font-size:17px;margin-bottom:var(--s2);}
 .fc p{color:var(--t2);font-size:14px;line-height:1.65;}
-.fc-metric{display:inline-flex;align-items:center;gap:5px;margin-top:var(--s2);font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--neon);background:rgba(200,255,0,.07);padding:4px 10px;border-radius:999px;border:1px solid rgba(200,255,0,.18);}
+.fc-metric{display:inline-flex;align-items:center;gap:5px;margin-top:var(--s2);font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--neon-ink);background:rgba(200,255,0,.07);padding:4px 10px;border-radius:999px;border:1px solid rgba(200,255,0,.18);}
 .before-after{display:grid;grid-template-columns:1fr 1fr;gap:var(--s4);}
 .ba-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r3);padding:var(--s4);}
 .ba-card.before-card{border-top:2px solid var(--red);}
 .ba-card.after-card{border-top:2px solid var(--neon);}
 .ba-title{font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;margin-bottom:var(--s3);}
 .before-card .ba-title{color:var(--red);}
-.after-card .ba-title{color:var(--neon);}
+.after-card .ba-title{color:var(--neon-ink);}
 .ba-item{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--border);font-size:14px;color:var(--t2);}
 .ba-item:last-child{border-bottom:none;}
 .ba-icon-bad{color:var(--red);font-size:14px;flex-shrink:0;}
-.ba-icon-good{color:var(--neon);font-size:14px;flex-shrink:0;}
+.ba-icon-good{color:var(--neon-ink);font-size:14px;flex-shrink:0;}
 .integrations-grid{display:flex;gap:var(--s2);flex-wrap:wrap;justify-content:center;}
 .int-item{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r3);padding:16px 24px;font-family:'Geologica',sans-serif;font-weight:700;font-size:15px;color:var(--t2);transition:all .3s;}
 .int-item:hover{border-color:rgba(0,87,255,.3);color:var(--t1);}
@@ -430,8 +429,7 @@
       <div>
         <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:24px;" class="h-anim h-d1">
           <div class="badge-blue">PICSELL Sales App</div>
-          <div class="badge-neon">500+ агентів</div>
-          <div class="badge-blue">Offline-First</div>
+            <div class="badge-blue">Offline-First</div>
         </div>
         <h1 class="hero-h1 h-anim h-d2">Мобільний офіс агента.<br><span class="highlight">Замовлення, маршрути, мерчандайзинг</span> — в одному додатку</h1>
         <p class="hero-sub h-anim h-d3">PICSELL Field автоматизує замовлення, оптимізує маршрути та дає супервайзеру повний контроль. Офлайн-First: критично для України де зв'язок ненадійний у полі.</p>
@@ -455,7 +453,7 @@
               <div class="rc-header"><div class="rc-name">АТБ Хрещатик</div><div class="rc-status rc-done">✓ Виконано</div></div>
               <div class="rc-body">
                 <div class="rc-row"><span>Замовлення</span><strong>₴12,450</strong></div>
-                <div class="rc-row"><span>Аудит полиці</span><strong style="color:var(--neon)">OOS: 0</strong></div>
+                <div class="rc-row"><span>Аудит полиці</span><strong style="color:var(--neon-ink)">OOS: 0</strong></div>
               </div>
             </div>
             <div class="route-card">
@@ -467,8 +465,8 @@
             </div>
             <div class="order-mini">
               <div class="om-title">📦 Smart Order Suggestion</div>
-              <div class="om-row"><span>SKU-018 Молоко 2.5%</span><strong style="color:var(--neon)">+ 12 шт</strong></div>
-              <div class="om-row"><span>SKU-024 Кефір 1%</span><strong style="color:var(--neon)">+ 8 шт</strong></div>
+              <div class="om-row"><span>SKU-018 Молоко 2.5%</span><strong style="color:var(--neon-ink)">+ 12 шт</strong></div>
+              <div class="om-row"><span>SKU-024 Кефір 1%</span><strong style="color:var(--neon-ink)">+ 8 шт</strong></div>
               <div class="om-row" style="font-size:9px;color:var(--t3);margin-top:4px;"><span>На основі 4-тижневої динаміки продажів</span></div>
             </div>
             <div class="phone-kpi">
@@ -504,7 +502,7 @@
         <h3 style="font-family:'Geologica',sans-serif;font-weight:700;font-size:18px;margin-bottom:10px;">"Агент витрачає 30% дня на Excel і WhatsApp замість продажів"</h3>
         <p class="t2" style="font-size:14px;line-height:1.65;">Ручне введення замовлень, збирання звітів, узгодження по телефону — щодня по 2-3 години рутини на кожного агента. Помножте на команду.</p>
         <div style="margin-top:var(--s3);padding:12px;background:rgba(0,87,255,.06);border:1px solid rgba(0,87,255,.15);border-radius:var(--r2);font-size:13px;color:var(--t2);">
-          <strong style="color:var(--neon);">PICSELL вирішує:</strong> Smart Orders автоматично формують замовлення на основі залишків і динаміки — агент лише підтверджує.
+          <strong style="color:var(--neon-ink);">PICSELL вирішує:</strong> Smart Orders автоматично формують замовлення на основі залишків і динаміки — агент лише підтверджує.
         </div>
       </div>
       <div class="card card-lift reveal rd2" style="border-top:2px solid var(--red);">
@@ -512,7 +510,7 @@
         <h3 style="font-family:'Geologica',sans-serif;font-weight:700;font-size:18px;margin-bottom:10px;">"Маршрут будується з голови — 30% точок пропускається або дублюється"</h3>
         <p class="t2" style="font-size:14px;line-height:1.65;">Неоптимальний маршрут = зайві години в дорозі + пропущені клієнти + знижений охоплення. Реальні гроші які горять кожен день.</p>
         <div style="margin-top:var(--s3);padding:12px;background:rgba(0,87,255,.06);border:1px solid rgba(0,87,255,.15);border-radius:var(--r2);font-size:13px;color:var(--t2);">
-          <strong style="color:var(--neon);">PICSELL вирішує:</strong> Route Manager оптимізує маршрут за 1 клік — drag-and-drop на карті, економія 40% часу на дорогу.
+          <strong style="color:var(--neon-ink);">PICSELL вирішує:</strong> Route Manager оптимізує маршрут за 1 клік — drag-and-drop на карті, економія 40% часу на дорогу.
         </div>
       </div>
       <div class="card card-lift reveal rd3" style="border-top:2px solid var(--red);">
@@ -520,7 +518,7 @@
         <h3 style="font-family:'Geologica',sans-serif;font-weight:700;font-size:18px;margin-bottom:10px;">"Супервайзер не знає де агент і що він реально зробив до кінця дня"</h3>
         <p class="t2" style="font-size:14px;line-height:1.65;">GPS відключений, звіти надходять ввечері, перевірити неможливо. Фейкові чек-іни. Пропущені точки. Ви платите за роботу яку ніхто не контролює.</p>
         <div style="margin-top:var(--s3);padding:12px;background:rgba(0,87,255,.06);border:1px solid rgba(0,87,255,.15);border-radius:var(--r2);font-size:13px;color:var(--t2);">
-          <strong style="color:var(--neon);">PICSELL вирішує:</strong> Supervisor View — реальна карта команди, GPS-верифікація кожного візиту, KPI в реальному часі.
+          <strong style="color:var(--neon-ink);">PICSELL вирішує:</strong> Supervisor View — реальна карта команди, GPS-верифікація кожного візиту, KPI в реальному часі.
         </div>
       </div>
     </div>

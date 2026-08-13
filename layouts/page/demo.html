@@ -15,7 +15,7 @@
 .wh-text span{font-size:13px;color:var(--t2);}
 .trust-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s2);}
 .tm{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r3);padding:14px;text-align:center;}
-.tm-val{font-family:'Geologica',sans-serif;font-weight:900;font-size:22px;color:var(--neon);}
+.tm-val{font-family:'Geologica',sans-serif;font-weight:900;font-size:22px;color:var(--neon-ink);}
 .tm-label{font-size:11px;color:var(--t2);margin-top:3px;}
 /* FORM */
 .form-card{background:var(--bg3);border:1px solid rgba(0,87,255,.25);border-radius:var(--r4);padding:var(--s5);box-shadow:0 0 60px rgba(0,87,255,.12);}
@@ -34,7 +34,7 @@
 .checkbox-item input[type=checkbox]{width:16px;height:16px;accent-color:var(--blue);}
 .form-note{font-size:12px;color:var(--t3);text-align:center;}
 .form-success{display:none;text-align:center;padding:var(--s5);}
-.form-success h3{font-family:'Geologica',sans-serif;font-size:24px;font-weight:700;margin-bottom:var(--s2);color:var(--neon);}
+.form-success h3{font-family:'Geologica',sans-serif;font-size:24px;font-weight:700;margin-bottom:var(--s2);color:var(--neon-ink);}
 .form-success p{color:var(--t2);font-size:15px;line-height:1.7;}
 /* SOCIAL PROOF */
 #proof{background:var(--bg2);padding:var(--s6) 0;}
@@ -192,7 +192,7 @@
           <div class="form-success" id="demoFormSuccess">
             <div style="font-size:56px;margin-bottom:var(--s3);">🎉</div>
             <h3>Request received!</h3>
-            <p>Our manager will contact you within <strong style="color:var(--neon);">2 hours</strong> on a business day.<br><br>While you wait — see what PICSELL looks like from the inside:</p>
+            <p>Our manager will contact you within <strong style="color:var(--neon-ink);">2 hours</strong> on a business day.<br><br>While you wait — see what PICSELL looks like from the inside:</p>
             <div style="display:flex;gap:var(--s2);justify-content:center;margin-top:var(--s3);flex-wrap:wrap;">
               <a href="/vision-ai/" class="btn btn-s" style="font-size:13px;padding:10px 18px;">Vision AI →</a>
               <a href="/case-studies/" class="btn btn-g" style="font-size:13px;padding:10px 18px;">Case Studies →</a>
@@ -210,11 +210,7 @@
       <span style="font-family:'Orbitron',sans-serif;font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--t3);">Trusted by Market Leaders</span>
     </div>
     <div class="proof-inner reveal">
-      <div class="pf"><div class="pf-val">10M+</div><div class="pf-label">SKUs recognized</div></div>
-      <div class="pf"><div class="pf-val">31K+</div><div class="pf-label">Outlets</div></div>
-      <div class="pf"><div class="pf-val">500+</div><div class="pf-label">Active Agents</div></div>
-      <div class="pf"><div class="pf-val" style="color:var(--neon);">99.9%</div><div class="pf-label">Vision AI Accuracy</div></div>
-    </div>
+      </div>
     <div class="logos-row reveal">
       <div class="lc">Lactalis</div>
       <div class="lc">Henkel</div>
@@ -374,7 +370,7 @@
           <div class="form-success" id="demoFormSuccess">
             <div style="font-size:56px;margin-bottom:var(--s3);">🎉</div>
             <h3>Заявку отримано!</h3>
-            <p>Наш менеджер зв'яжеться з вами протягом <strong style="color:var(--neon);">2 годин</strong> у робочий день.<br><br>Поки чекаєте — подивіться як PICSELL виглядає зсередини:</p>
+            <p>Наш менеджер зв'яжеться з вами протягом <strong style="color:var(--neon-ink);">2 годин</strong> у робочий день.<br><br>Поки чекаєте — подивіться як PICSELL виглядає зсередини:</p>
             <div style="display:flex;gap:var(--s2);justify-content:center;margin-top:var(--s3);flex-wrap:wrap;">
               <a href="/vision-ai/" class="btn btn-s" style="font-size:13px;padding:10px 18px;">Vision AI →</a>
               <a href="/case-studies/" class="btn btn-g" style="font-size:13px;padding:10px 18px;">Кейси →</a>
@@ -392,11 +388,7 @@
       <span style="font-family:'Orbitron',sans-serif;font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--t3);">Нам довіряють лідери ринку</span>
     </div>
     <div class="proof-inner reveal">
-      <div class="pf"><div class="pf-val">10M+</div><div class="pf-label">SKU розпізнано</div></div>
-      <div class="pf"><div class="pf-val">31K+</div><div class="pf-label">Торгових точок</div></div>
-      <div class="pf"><div class="pf-val">500+</div><div class="pf-label">Активних агентів</div></div>
-      <div class="pf"><div class="pf-val" style="color:var(--neon);">99.9%</div><div class="pf-label">Точність Vision AI</div></div>
-    </div>
+      </div>
     <div class="logos-row reveal">
       <div class="lc">Lactalis</div>
       <div class="lc">Henkel</div>
@@ -495,12 +487,15 @@ function submitDemoForm(form) {
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({
         full_name:fd.get('name')||'',
-        email:fd.get('email')||'',
-        phone:fd.get('phone')||'',
-        company:fd.get('company')||'',
-        message:fd.get('message')||'',
-        interests:checked.join(', '),
-        source:'picsell.ai/demo',
+            email:fd.get('email')||'',
+            phone:fd.get('phone')||'',
+            company:fd.get('company')||'',
+            position:fd.get('role')||'',
+            agents:fd.get('agents')||'',
+            message:[fd.get('role')?('роль: '+fd.get('role')):'',fd.get('agents')?('агентів: '+fd.get('agents')):'',checked.length?('цікавить: '+checked.join(', ')):''].filter(Boolean).join(' | '),
+            interests:checked.join(', '),
+            source:'picsell.ai/demo',
+            form_id:'demo',
         lang:lang,
         utm_source:utm.utm_source||'direct',
         utm_medium:utm.utm_medium||'direct',

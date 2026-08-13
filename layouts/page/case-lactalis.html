@@ -6,14 +6,14 @@
 .article-breadcrumb{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--t3);margin-bottom:var(--s3);}
 .article-breadcrumb a{color:var(--blue3);transition:color .2s;}.article-breadcrumb a:hover{color:var(--t1);}
 .article-meta{display:flex;gap:var(--s2);flex-wrap:wrap;margin-bottom:var(--s4);}
-.art-badge{display:inline-flex;align-items:center;gap:6px;font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;background:rgba(200,255,0,.08);color:var(--neon);padding:4px 12px;border-radius:999px;border:1px solid rgba(200,255,0,.22);}
-.art-badge-b{background:rgba(0,87,255,.1);color:#7AACFF;border-color:rgba(0,87,255,.25);}
+.art-badge{display:inline-flex;align-items:center;gap:6px;font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;background:rgba(200,255,0,.08);color:var(--neon-ink);padding:4px 12px;border-radius:999px;border:1px solid rgba(200,255,0,.22);}
+.art-badge-b{background:rgba(0,87,255,.1);color:var(--blue-ink);border-color:rgba(0,87,255,.25);}
 .article-title{font-size:clamp(32px,4vw,52px);font-weight:900;line-height:1.1;margin-bottom:var(--s3);}
 .article-lead{font-size:19px;color:var(--t2);line-height:1.7;max-width:700px;}
 /* RESULTS BAR */
 .results-bar{background:var(--bg3);border:1px solid rgba(200,255,0,.18);border-radius:var(--r4);padding:var(--s4);display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s2);margin:var(--s6) 0;}
 .rb-item{text-align:center;}
-.rb-val{font-family:'Geologica',sans-serif;font-weight:900;font-size:32px;color:var(--neon);line-height:1;}
+.rb-val{font-family:'Geologica',sans-serif;font-weight:900;font-size:32px;color:var(--neon-ink);line-height:1;}
 .rb-lbl{font-size:13px;color:var(--t2);margin-top:5px;}
 /* ARTICLE BODY */
 .article-body{font-size:17px;line-height:1.8;color:var(--t2);}
@@ -29,7 +29,7 @@
 .solution-box{background:rgba(0,87,255,.04);border:1px solid rgba(0,87,255,.15);border-radius:var(--r3);padding:var(--s4);margin:var(--s4) 0;}
 .solution-box ul{display:flex;flex-direction:column;gap:10px;}
 .solution-box ul li{display:flex;align-items:flex-start;gap:10px;font-size:15px;color:var(--t2);}
-.solution-box ul li::before{content:'✓';color:var(--neon);flex-shrink:0;margin-top:2px;}
+.solution-box ul li::before{content:'✓';color:var(--neon-ink);flex-shrink:0;margin-top:2px;}
 .timeline-steps{display:flex;flex-direction:column;gap:var(--s3);margin:var(--s4) 0;}
 .tl-step{display:flex;gap:var(--s3);align-items:flex-start;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r3);padding:var(--s3);}
 .tl-num{width:40px;height:40px;background:linear-gradient(135deg,#0057FF,#00B4FF);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Orbitron',sans-serif;font-size:14px;font-weight:900;color:#fff;flex-shrink:0;}
@@ -111,7 +111,7 @@
       <div class="solution-box">
         <strong style="color:var(--blue3);display:block;margin-bottom:var(--s2);">What was implemented:</strong>
         <ul>
-          <li>PICSELL Vision AI — shelf recognition at 99.9% accuracy</li>
+          <li>PICSELL Vision AI — automated shelf recognition</li>
           <li>PICSELL Sales App — agent's mobile office</li>
           <li>Power BI dashboards with automated data collection</li>
           <li>HoReCa Radar — venue monitoring and lead generation</li>
@@ -153,11 +153,11 @@
       <h2>Results</h2>
       <p>4 weeks after launch, Lactalis got what it was looking for:</p>
       <ul style="display:flex;flex-direction:column;gap:10px;padding-left:var(--s3);margin:var(--s3) 0;">
-        <li style="color:var(--t2);display:flex;align-items:flex-start;gap:10px;"><span style="color:var(--neon);">✓</span><span><strong style="color:var(--t1);">0 manual Excel reports</strong> — all data automatically in Power BI</span></li>
-        <li style="color:var(--t2);display:flex;align-items:flex-start;gap:10px;"><span style="color:var(--neon);">✓</span><span><strong style="color:var(--t1);">OOS detected in 2 minutes</strong> instead of 3–7 days</span></li>
-        <li style="color:var(--t2);display:flex;align-items:flex-start;gap:10px;"><span style="color:var(--neon);">✓</span><span><strong style="color:var(--t1);">847 new HoReCa outlets</strong> found by Radar in the first month</span></li>
-        <li style="color:var(--t2);display:flex;align-items:flex-start;gap:10px;"><span style="color:var(--neon);">✓</span><span><strong style="color:var(--t1);">23% conversion</strong> of leads into new HoReCa clients</span></li>
-        <li style="color:var(--t2);display:flex;align-items:flex-start;gap:10px;"><span style="color:var(--neon);">✓</span><span><strong style="color:var(--t1);">300% ROI</strong> from the Radar module in the first quarter</span></li>
+        <li style="color:var(--t2);display:flex;align-items:flex-start;gap:10px;"><span style="color:var(--neon-ink);">✓</span><span><strong style="color:var(--t1);">0 manual Excel reports</strong> — all data automatically in Power BI</span></li>
+        <li style="color:var(--t2);display:flex;align-items:flex-start;gap:10px;"><span style="color:var(--neon-ink);">✓</span><span><strong style="color:var(--t1);">OOS detected in 2 minutes</strong> instead of 3–7 days</span></li>
+        <li style="color:var(--t2);display:flex;align-items:flex-start;gap:10px;"><span style="color:var(--neon-ink);">✓</span><span><strong style="color:var(--t1);">847 new HoReCa outlets</strong> found by Radar in the first month</span></li>
+        <li style="color:var(--t2);display:flex;align-items:flex-start;gap:10px;"><span style="color:var(--neon-ink);">✓</span><span><strong style="color:var(--t1);">23% conversion</strong> of leads into new HoReCa clients</span></li>
+        <li style="color:var(--t2);display:flex;align-items:flex-start;gap:10px;"><span style="color:var(--neon-ink);">✓</span><span><strong style="color:var(--t1);">300% ROI</strong> from the Radar module in the first quarter</span></li>
       </ul>
 
       <div class="quote-block">
@@ -238,7 +238,7 @@
       <div class="solution-box">
         <strong style="color:var(--blue3);display:block;margin-bottom:var(--s2);">&#1065;&#1086; &#1073;&#1091;&#1083;&#1086; &#1074;&#1087;&#1088;&#1086;&#1074;&#1072;&#1076;&#1078;&#1077;&#1085;&#1086;:</strong>
         <ul>
-          <li>PICSELL Vision AI &#8212; &#1088;&#1086;&#1079;&#1087;&#1110;&#1079;&#1085;&#1072;&#1074;&#1072;&#1085;&#1085;&#1103; &#1087;&#1086;&#1083;&#1080;&#1094;&#1110; 99.9% &#1090;&#1086;&#1095;&#1085;&#1086;&#1089;&#1090;&#1110;</li>
+          <li>PICSELL Vision AI &#8212; &#1072;&#1074;&#1090;&#1086;&#1084;&#1072;&#1090;&#1080;&#1095;&#1085;&#1077; &#1088;&#1086;&#1079;&#1087;&#1110;&#1079;&#1085;&#1072;&#1074;&#1072;&#1085;&#1085;&#1103; &#1087;&#1086;&#1083;&#1080;&#1094;&#1110;</li>
           <li>PICSELL Sales App &#8212; &#1084;&#1086;&#1073;&#1110;&#1083;&#1100;&#1085;&#1080;&#1081; &#1086;&#1092;&#1110;&#1089; &#1072;&#1075;&#1077;&#1085;&#1090;&#1072;</li>
           <li>Power BI &#1076;&#1072;&#1096;&#1073;&#1086;&#1088;&#1076;&#1080; &#1079; &#1072;&#1074;&#1090;&#1086;&#1084;&#1072;&#1090;&#1080;&#1095;&#1085;&#1080;&#1084; &#1079;&#1073;&#1086;&#1088;&#1086;&#1084; &#1076;&#1072;&#1085;&#1080;&#1093;</li>
           <li>HoReCa Radar &#8212; &#1084;&#1086;&#1085;&#1110;&#1090;&#1086;&#1088;&#1080;&#1085;&#1075; &#1079;&#1072;&#1082;&#1083;&#1072;&#1076;&#1110;&#1074; &#1090;&#1072; &#1083;&#1110;&#1076;&#1086;&#1075;&#1077;&#1085;&#1077;&#1088;&#1072;&#1094;&#1110;&#1103;</li>
@@ -280,11 +280,11 @@
       <h2>&#1056;&#1077;&#1079;&#1091;&#1083;&#1100;&#1090;&#1072;&#1090;&#1080;</h2>
       <p>&#1063;&#1077;&#1088;&#1077;&#1079; 4 &#1090;&#1080;&#1078;&#1085;&#1110; &#1087;&#1110;&#1089;&#1083;&#1103; &#1089;&#1090;&#1072;&#1088;&#1090;&#1091; Lactalis &#1086;&#1090;&#1088;&#1080;&#1084;&#1072;&#1074; &#1090;&#1077; &#1095;&#1086;&#1075;&#1086; &#1096;&#1091;&#1082;&#1072;&#1074;:</p>
       <ul style="display:flex;flex-direction:column;gap:10px;padding-left:var(--s3);margin:var(--s3) 0;">
-        <li style="color:var(--t2);display:flex;align-items:flex-start;gap:10px;"><span style="color:var(--neon);">&#10003;</span><span><strong style="color:var(--t1);">0 ручних Excel-звітів</strong> &#8212; &#1074;&#1089;&#1110; &#1076;&#1072;&#1085;&#1110; &#1072;&#1074;&#1090;&#1086;&#1084;&#1072;&#1090;&#1080;&#1095;&#1085;&#1086; &#1074; Power BI</span></li>
-        <li style="color:var(--t2);display:flex;align-items:flex-start;gap:10px;"><span style="color:var(--neon);">&#10003;</span><span><strong style="color:var(--t1);">OOS &#1074;&#1080;&#1103;&#1074;&#1083;&#1103;&#1108;&#1090;&#1100;&#1089;&#1103; &#1079;&#1072; 2 &#1093;&#1074;&#1080;&#1083;&#1080;&#1085;&#1080;</strong> &#1079;&#1072;&#1084;&#1110;&#1089;&#1090;&#1100; 3-7 &#1076;&#1085;&#1110;&#1074;</span></li>
-        <li style="color:var(--t2);display:flex;align-items:flex-start;gap:10px;"><span style="color:var(--neon);">&#10003;</span><span><strong style="color:var(--t1);">847 &#1085;&#1086;&#1074;&#1080;&#1093; HoReCa-&#1090;&#1086;&#1095;&#1086;&#1082;</strong> &#1079;&#1085;&#1072;&#1081;&#1076;&#1077;&#1085;&#1086; Radar &#1079;&#1072; &#1087;&#1077;&#1088;&#1096;&#1080;&#1081; &#1084;&#1110;&#1089;&#1103;&#1094;&#1100;</span></li>
-        <li style="color:var(--t2);display:flex;align-items:flex-start;gap:10px;"><span style="color:var(--neon);">&#10003;</span><span><strong style="color:var(--t1);">23% &#1082;&#1086;&#1085;&#1074;&#1077;&#1088;&#1089;&#1110;&#1103;</strong> &#1083;&#1110;&#1076;&#1110;&#1074; &#1074; &#1085;&#1086;&#1074;&#1080;&#1093; HoReCa-&#1082;&#1083;&#1110;&#1108;&#1085;&#1090;&#1110;&#1074;</span></li>
-        <li style="color:var(--t2);display:flex;align-items:flex-start;gap:10px;"><span style="color:var(--neon);">&#10003;</span><span><strong style="color:var(--t1);">300% ROI</strong> &#1087;&#1086; &#1084;&#1086;&#1076;&#1091;&#1083;&#1102; Radar &#1079;&#1072; &#1087;&#1077;&#1088;&#1096;&#1080;&#1081; &#1082;&#1074;&#1072;&#1088;&#1090;&#1072;&#1083;</span></li>
+        <li style="color:var(--t2);display:flex;align-items:flex-start;gap:10px;"><span style="color:var(--neon-ink);">&#10003;</span><span><strong style="color:var(--t1);">0 ручних Excel-звітів</strong> &#8212; &#1074;&#1089;&#1110; &#1076;&#1072;&#1085;&#1110; &#1072;&#1074;&#1090;&#1086;&#1084;&#1072;&#1090;&#1080;&#1095;&#1085;&#1086; &#1074; Power BI</span></li>
+        <li style="color:var(--t2);display:flex;align-items:flex-start;gap:10px;"><span style="color:var(--neon-ink);">&#10003;</span><span><strong style="color:var(--t1);">OOS &#1074;&#1080;&#1103;&#1074;&#1083;&#1103;&#1108;&#1090;&#1100;&#1089;&#1103; &#1079;&#1072; 2 &#1093;&#1074;&#1080;&#1083;&#1080;&#1085;&#1080;</strong> &#1079;&#1072;&#1084;&#1110;&#1089;&#1090;&#1100; 3-7 &#1076;&#1085;&#1110;&#1074;</span></li>
+        <li style="color:var(--t2);display:flex;align-items:flex-start;gap:10px;"><span style="color:var(--neon-ink);">&#10003;</span><span><strong style="color:var(--t1);">847 &#1085;&#1086;&#1074;&#1080;&#1093; HoReCa-&#1090;&#1086;&#1095;&#1086;&#1082;</strong> &#1079;&#1085;&#1072;&#1081;&#1076;&#1077;&#1085;&#1086; Radar &#1079;&#1072; &#1087;&#1077;&#1088;&#1096;&#1080;&#1081; &#1084;&#1110;&#1089;&#1103;&#1094;&#1100;</span></li>
+        <li style="color:var(--t2);display:flex;align-items:flex-start;gap:10px;"><span style="color:var(--neon-ink);">&#10003;</span><span><strong style="color:var(--t1);">23% &#1082;&#1086;&#1085;&#1074;&#1077;&#1088;&#1089;&#1110;&#1103;</strong> &#1083;&#1110;&#1076;&#1110;&#1074; &#1074; &#1085;&#1086;&#1074;&#1080;&#1093; HoReCa-&#1082;&#1083;&#1110;&#1108;&#1085;&#1090;&#1110;&#1074;</span></li>
+        <li style="color:var(--t2);display:flex;align-items:flex-start;gap:10px;"><span style="color:var(--neon-ink);">&#10003;</span><span><strong style="color:var(--t1);">300% ROI</strong> &#1087;&#1086; &#1084;&#1086;&#1076;&#1091;&#1083;&#1102; Radar &#1079;&#1072; &#1087;&#1077;&#1088;&#1096;&#1080;&#1081; &#1082;&#1074;&#1072;&#1088;&#1090;&#1072;&#1083;</span></li>
       </ul>
 
       <div class="quote-block">

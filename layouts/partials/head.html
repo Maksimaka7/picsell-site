@@ -1,5 +1,5 @@
-{{ $title := .Params.seoTitle | default .Title | default site.Title }}
-{{ $description := .Params.seoDescription | default site.Params.description }}
+{{ $title := .Params.seoTitle | default (and .IsHome site.Params.seoTitle) | default .Title | default site.Title }}
+{{ $description := .Params.seoDescription | default (and .IsHome site.Params.seoDescription) | default site.Params.description }}
 {{ $ogImage := .Params.ogImage | default site.Params.ogImage }}
 {{ $canonical := .Permalink }}
 
@@ -15,7 +15,7 @@
 <meta property="og:title" content="{{ $title }}"/>
 <meta property="og:description" content="{{ $description }}"/>
 <meta property="og:image" content="{{ $ogImage | absURL }}"/>
-<meta property="og:locale" content="{{ .Language.Lang }}_{{ upper .Language.Lang }}"/>
+<meta property="og:locale" content="{{ cond (eq .Language.Lang "uk") "uk_UA" "en_US" }}"/>
 <meta property="og:site_name" content="PICSELL"/>
 
 <!-- Twitter Card -->
@@ -23,6 +23,44 @@
 <meta name="twitter:title" content="{{ $title }}"/>
 <meta name="twitter:description" content="{{ $description }}"/>
 <meta name="twitter:image" content="{{ $ogImage | absURL }}"/>
+
+{{ if .IsHome }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://picsell.ai/#organization",
+  "name": "PICSELL",
+  "url": "https://picsell.ai",
+  "logo": "https://picsell.ai/images/Logo-3.svg",
+  "email": "info@picsell.ai",
+  "parentOrganization": { "@type": "Organization", "name": "Imperia Holding" },
+  "address": { "@type": "PostalAddress", "addressLocality": "Kyiv", "addressCountry": "UA" },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+380778809888",
+    "email": "info@picsell.ai",
+    "contactType": "sales",
+    "availableLanguage": ["Ukrainian", "English"]
+  },
+  "sameAs": [
+    "https://www.linkedin.com/company/picsell-ai",
+    "https://t.me/PicSell_ua_bot"
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "PICSELL",
+  "@id": "https://picsell.ai/#website",
+  "url": "https://picsell.ai",
+  "inLanguage": ["uk", "en"],
+  "publisher": { "@id": "https://picsell.ai/#organization" }
+}
+</script>
+{{ end }}
 
 <!-- Canonical & hreflang -->
 <link rel="canonical" href="{{ $canonical }}"/>
@@ -55,13 +93,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   gtag('config', 'G-E1ST422HF4');
 </script>
 
-<!-- Theme color -->
-<meta name="theme-color" content="#08080a"/>
+<!-- Theme color (light on homepage, dark elsewhere) -->
+<meta name="theme-color" content="{{ if .IsHome }}#FAFBFC{{ else }}#08080a{{ end }}"/>
 
 <!-- Google Fonts: Geologica critical (preload), Orbitron async -->
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Geologica:wght@400;500;700;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'"/>
 <noscript><link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap" rel="stylesheet"/></noscript>
 

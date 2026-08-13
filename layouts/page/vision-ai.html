@@ -12,7 +12,7 @@
 .hero-metrics{display:flex;gap:var(--s4);flex-wrap:wrap;margin-bottom:var(--s5);}
 .hm{display:flex;align-items:center;gap:8px;}
 .hm-val{font-family:'Geologica',sans-serif;font-weight:900;font-size:20px;color:var(--t1);}
-.hm-val.neon{color:var(--neon);}
+.hm-val.neon{color:var(--neon-ink);}
 .hm-label{font-size:12px;color:var(--t2);}
 .hero-ctas{display:flex;gap:var(--s2);flex-wrap:wrap;}
 
@@ -23,16 +23,16 @@
 .demo-dot{width:10px;height:10px;border-radius:50%;}
 .dd-r{background:#FF5F57;}.dd-y{background:#FEBC2E;}.dd-g{background:#28C840;}
 .demo-title-bar{font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.14em;color:var(--t2);text-transform:uppercase;}
-.demo-live{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--neon);}
+.demo-live{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--neon-ink);}
 .demo-live-dot{width:6px;height:6px;background:var(--neon);border-radius:50%;animation:pulseDot 1.5s ease-in-out infinite;}
 @keyframes pulseDot{0%,100%{box-shadow:0 0 0 0 rgba(200,255,0,.6);}50%{box-shadow:0 0 0 6px rgba(200,255,0,0);}}
 .demo-body{padding:var(--s3);position:relative;}
 .shelf-section{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r3);padding:var(--s2);position:relative;overflow:hidden;min-height:180px;}
 .shelf-row-big{display:flex;gap:6px;align-items:flex-end;padding:10px 0;}
 .sku-big{border-radius:6px;border:2px solid transparent;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:8px 4px;font-size:8px;font-weight:700;flex:1;}
-.sb-p{background:rgba(0,87,255,.2);border-color:rgba(0,87,255,.5);color:#7AACFF;height:80px;}
-.sb-p2{background:rgba(0,87,255,.14);border-color:rgba(0,87,255,.35);color:#7AACFF;height:65px;}
-.sb-p3{background:rgba(0,87,255,.24);border-color:rgba(0,87,255,.55);color:#7AACFF;height:100px;}
+.sb-p{background:rgba(0,87,255,.2);border-color:rgba(0,87,255,.5);color:var(--blue-ink);height:80px;}
+.sb-p2{background:rgba(0,87,255,.14);border-color:rgba(0,87,255,.35);color:var(--blue-ink);height:65px;}
+.sb-p3{background:rgba(0,87,255,.24);border-color:rgba(0,87,255,.55);color:var(--blue-ink);height:100px;}
 .sb-c{background:rgba(80,80,90,.25);border-color:rgba(80,80,90,.3);color:var(--t2);height:55px;}
 .sb-oos{background:rgba(255,0,61,.06);border:2px dashed rgba(255,0,61,.4);height:70px;position:relative;}
 .sb-oos-label{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Orbitron',sans-serif;font-size:7px;font-weight:700;color:var(--red);white-space:nowrap;}
@@ -50,7 +50,7 @@
 .dstat{background:var(--bg3);padding:12px;text-align:center;}
 .dstat-val{font-family:'Geologica',sans-serif;font-weight:900;font-size:20px;}
 .dstat-val.blue{color:var(--blue3);}
-.dstat-val.neon{color:var(--neon);}
+.dstat-val.neon{color:var(--neon-ink);}
 .dstat-val.red{color:var(--red);}
 .dstat-label{font-size:10px;color:var(--t2);margin-top:3px;font-family:'Orbitron',sans-serif;letter-spacing:.06em;text-transform:uppercase;}
 
@@ -70,7 +70,7 @@
 .feat-icon-red{background:rgba(255,0,61,.08);border:1px solid rgba(255,0,61,.15);}
 .feat-card h3{font-family:'Geologica',sans-serif;font-weight:700;font-size:17px;margin-bottom:var(--s2);}
 .feat-card p{color:var(--t2);font-size:14px;line-height:1.65;}
-.feat-metric{display:inline-flex;align-items:center;gap:5px;margin-top:var(--s2);font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--neon);background:rgba(200,255,0,.07);padding:4px 10px;border-radius:999px;border:1px solid rgba(200,255,0,.18);}
+.feat-metric{display:inline-flex;align-items:center;gap:5px;margin-top:var(--s2);font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--neon-ink);background:rgba(200,255,0,.07);padding:4px 10px;border-radius:999px;border:1px solid rgba(200,255,0,.18);}
 
 /* TECH SECTION */
 #tech{background:var(--bg1);}
@@ -90,7 +90,7 @@
 .tech-content p{color:var(--t2);line-height:1.7;margin-bottom:var(--s3);}
 .tech-list{display:flex;flex-direction:column;gap:var(--s2);}
 .tech-item{display:flex;align-items:flex-start;gap:var(--s2);}
-.tech-check{color:var(--neon);font-size:14px;margin-top:3px;flex-shrink:0;}
+.tech-check{color:var(--neon-ink);font-size:14px;margin-top:3px;flex-shrink:0;}
 .tech-text{font-size:15px;color:var(--t2);}
 .tech-text strong{color:var(--t1);}
 
@@ -113,7 +113,7 @@
 .case-divider{height:1px;background:var(--border);margin:var(--s3) 0;}
 .kpi-pills{display:flex;gap:var(--s2);flex-wrap:wrap;}
 .kpi-pill{background:rgba(200,255,0,.07);border:1px solid rgba(200,255,0,.18);border-radius:var(--r2);padding:8px 14px;text-align:center;}
-.kpi-pill-val{font-family:'Geologica',sans-serif;font-weight:900;font-size:22px;color:var(--neon);}
+.kpi-pill-val{font-family:'Geologica',sans-serif;font-weight:900;font-size:22px;color:var(--neon-ink);}
 .kpi-pill-label{font-size:11px;color:var(--t2);margin-top:2px;}
 
 /* CTA */
@@ -193,11 +193,6 @@
         <p class="hero-sub h-anim h-d3">A proprietary neural network that sees OOS, shelf share, prices, and promotions — automatically. No human factor. No delays.</p>
 
         <div class="hero-metrics h-anim h-d4">
-          <div class="hm">
-            <div class="hm-val neon">99.9%</div>
-            <div class="hm-label">Recognition<br>Accuracy</div>
-          </div>
-          <div style="width:1px;background:var(--border);height:36px;"></div>
           <div class="hm">
             <div class="hm-val">&lt;2s</div>
             <div class="hm-label">Photo<br>Processing</div>
@@ -369,7 +364,7 @@
 
       <div class="tech-content reveal-right">
         <span class="tag" style="display:block;margin-bottom:var(--s2);">Technology</span>
-        <h2>"AI and Human Verification Symbiosis" — that's <span class="highlight">99.9%</span> accuracy</h2>
+        <h2>"AI and Human Verification Symbiosis" — how we reach <span class="highlight">high</span> recognition accuracy</h2>
         <p>Unlike competitors who rely solely on automation, we combine our neural network with human verification for edge cases. The result is accuracy that cannot be achieved by either method alone.</p>
 
         <div class="tech-list">
@@ -407,7 +402,7 @@
     <div class="sec-head reveal">
       <span class="tag">Implementation</span>
       <h2>From Signature to First Data — <span class="hl-neon">4 weeks</span></h2>
-      <p>Not 6 months like Trax or similar solutions. Four weeks — and your team is already collecting shelf data.</p>
+      <p>Not six months, as large integration projects usually take. Four weeks — and your team is already collecting shelf data.</p>
     </div>
 
     <div class="timeline">
@@ -521,11 +516,6 @@
         <p class="hero-sub h-anim h-d3">Власна нейромережа яка бачить OOS, частку полиці, ціни і промо — автоматично. Без людського фактора. Без затримок.</p>
 
         <div class="hero-metrics h-anim h-d4">
-          <div class="hm">
-            <div class="hm-val neon">99.9%</div>
-            <div class="hm-label">Точність<br>розпізнавання</div>
-          </div>
-          <div style="width:1px;background:var(--border);height:36px;"></div>
           <div class="hm">
             <div class="hm-val">&lt;2с</div>
             <div class="hm-label">Обробка<br>фото</div>
@@ -697,7 +687,7 @@
 
       <div class="tech-content reveal-right">
         <span class="tag" style="display:block;margin-bottom:var(--s2);">Технологія</span>
-        <h2>"Симбіоз AI та людської верифікації" — це <span class="highlight">99.9%</span> точності</h2>
+        <h2>"Симбіоз AI та людської верифікації" — так ми досягаємо <span class="highlight">високої</span> точності</h2>
         <p>На відміну від конкурентів які покладаються лише на автоматику, ми комбінуємо нашу нейромережу з верифікацією від людей для граничних випадків. Результат — точність яку не можна досягти жодним з методів окремо.</p>
 
         <div class="tech-list">
@@ -735,7 +725,7 @@
     <div class="sec-head reveal">
       <span class="tag">Впровадження</span>
       <h2>Від підпису до перших даних — <span class="hl-neon">4 тижні</span></h2>
-      <p>Не 6 місяців як у Trax або SoftServe. Чотири тижні — і ваша команда вже збирає дані з полиці.</p>
+      <p>Не пів року, як зазвичай тривають великі інтеграційні проєкти. Чотири тижні — і ваша команда вже збирає дані з полиці.</p>
     </div>
 
     <div class="timeline">

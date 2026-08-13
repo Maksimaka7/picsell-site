@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html lang="{{ .Language.Lang }}">
 <head>
+{{/* THEME: the light theme is now site-wide. Declared once — both the <body> class and
+     the CSS partial read this single value, so they cannot drift apart. /admin/ (Decap CMS)
+     and /uk/ (alias stub) bypass this template and stay unthemed by design. */}}
+{{ $.Scratch.Set "light" true }}
 {{ partial "head.html" . }}
+{{ if $.Scratch.Get "light" }}{{ partial "theme-light.html" . }}{{ end }}
 {{ block "head-extra" . }}{{ end }}
 </head>
-<body style="overflow-x:hidden;">
+<body class="{{ if $.Scratch.Get "light" }}theme-light{{ end }}{{ if .IsHome }} is-home{{ end }}" style="overflow-x:hidden;">
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K4T96TN5"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -17,6 +22,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <select name="agents"></select>
   <input type="tel" name="phone">
   <input type="email" name="email">
+  <!-- Netlify only records fields declared in this detection stub. `interests`
+       was missing, so the checkbox answers never reached Netlify Forms. -->
+  <input type="text" name="interests">
   <input type="text" name="bot-field">
 </form>
 <form name="homepage-demo" netlify netlify-honeypot="bot-field" hidden>

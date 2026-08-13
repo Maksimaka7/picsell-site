@@ -1,11 +1,4 @@
 {{ define "head-extra" }}
-{{ if strings.HasPrefix .RelPermalink "/en/" }}
-<title>PICSELL — AI Shelf Recognition &amp; SFA Platform for FMCG | Vision AI, OOS Detection</title>
-<meta name="description" content="PICSELL: AI shelf recognition platform for FMCG brands and distributors. Vision AI detects OOS, tracks Share of Shelf and Perfect Store compliance. SFA + HoReCa Intelligence.">
-{{ else }}
-<title>PICSELL — AI Vision і SFA для FMCG | Контроль полиці і польові продажі</title>
-<meta name="description" content="AI-платформа для FMCG: розпізнавання полиці 99.9%, автоматизація польових продажів і HoReCa-аналітика. OOS-детекція, Share of Shelf, Perfect Store. Замовте демо.">
-{{ end }}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -13,38 +6,29 @@
   "name": "PICSELL",
   "url": "https://picsell.ai",
   "logo": "https://picsell.ai/images/Logo-3.svg",
-  "description": "AI-платформа для FMCG: Vision AI розпізнавання полиці, SFA автоматизація польових продажів, HoReCa Intelligence.",
+  "description": "{{ if strings.HasPrefix .RelPermalink "/en/" }}AI platform for FMCG: Vision AI shelf recognition, SFA field-sales automation, HoReCa Intelligence.{{ else }}AI-платформа для FMCG: Vision AI розпізнавання полиці, SFA автоматизація польових продажів, HoReCa Intelligence.{{ end }}",
   "applicationCategory": "BusinessApplication",
   "operatingSystem": "Web, iOS, Android",
   "offers": {
     "@type": "Offer",
     "price": "0",
     "priceCurrency": "USD",
-    "description": "Демо за запитом"
+    "description": "{{ if strings.HasPrefix .RelPermalink "/en/" }}Demo on request{{ else }}Демо за запитом{{ end }}"
   },
-  "publisher": {
-    "@type": "Organization",
-    "name": "PICSELL",
-    "url": "https://picsell.ai",
-    "logo": "https://picsell.ai/images/Logo-3.svg",
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "telephone": "+380778809888",
-      "email": "info@picsell.ai",
-      "contactType": "sales",
-      "availableLanguage": ["Ukrainian", "English"]
-    },
-    "sameAs": [
-      "https://www.linkedin.com/company/picsell-ai",
-      "https://t.me/PicSell_ua_bot"
-    ]
-  }
+  "publisher": { "@id": "https://picsell.ai/#organization" }
 }
 </script>
 <style>
+/* Homepage-only density polish (commit 4): tighten section rhythm ~25% (96→72px). */
+.is-home .section{padding:72px 0;}
+.is-home .sec-head{margin-bottom:var(--s5);}
+
+
 #hero{position:relative;min-height:100vh;display:flex;align-items:flex-start;padding-top:72px;overflow:hidden;}
 .hero-bg{position:absolute;inset:0;pointer-events:none;}
 .dot-grid{position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.055) 1px,transparent 1px);background-size:34px 34px;}
+/* Interactive particle field — drop-in replacement for the static dot-grid (below text/dashboard, never blocks clicks) */
+.hero-canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;}
 .glow1{position:absolute;top:-15%;left:50%;transform:translateX(-50%);width:1000px;height:700px;background:radial-gradient(ellipse,rgba(0,87,255,.16) 0%,transparent 65%);filter:blur(50px);}
 .glow2{position:absolute;bottom:-10%;right:-5%;width:600px;height:600px;background:radial-gradient(circle,rgba(0,212,255,.06) 0%,transparent 60%);filter:blur(70px);}
 .glow3{position:absolute;top:30%;left:-5%;width:400px;height:400px;background:radial-gradient(circle,rgba(200,255,0,.04) 0%,transparent 60%);filter:blur(60px);}
@@ -56,7 +40,7 @@
 .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(200,255,0,.07);border:1px solid rgba(200,255,0,.2);border-radius:999px;padding:6px 14px 6px 8px;}
 .badge-dot{width:6px;height:6px;background:var(--neon);border-radius:50%;animation:pulseDot 2s ease-in-out infinite;}
 @keyframes pulseDot{0%,100%{box-shadow:0 0 0 0 rgba(200,255,0,.6);}50%{box-shadow:0 0 0 6px rgba(200,255,0,0);}}
-.badge-text{font-family:'Orbitron',sans-serif;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--neon);}
+.badge-text{font-family:'Orbitron',sans-serif;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--neon-ink);}
 
 .hero-h1{font-size:clamp(42px,5.2vw,72px);font-weight:900;line-height:1.1;letter-spacing:-.03em;margin-bottom:var(--s4);}
 .hero-h1 .line{display:block;}
@@ -77,7 +61,7 @@
 .dash-dot{width:10px;height:10px;border-radius:50%;}
 .dash-dot-r{background:#FF5F57;} .dash-dot-y{background:#FEBC2E;} .dash-dot-g{background:#28C840;}
 .dash-title{font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.14em;color:var(--t2);text-transform:uppercase;}
-.dash-status{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--neon);}
+.dash-status{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--neon-ink);}
 .dash-status-dot{width:6px;height:6px;background:var(--neon);border-radius:50%;animation:pulseDot 1.5s ease-in-out infinite;}
 .dash-body{padding:var(--s3);}
 .kpi-row{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s2);margin-bottom:var(--s3);}
@@ -85,18 +69,18 @@
 .kpi-label{font-family:'Orbitron',sans-serif;font-size:8px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--t2);margin-bottom:6px;}
 .kpi-val{font-family:'Geologica',sans-serif;font-weight:900;font-size:22px;letter-spacing:-.02em;margin-bottom:4px;}
 .kpi-val.blue{color:var(--blue3);}
-.kpi-val.neon{color:var(--neon);}
+.kpi-val.neon{color:var(--neon-ink);}
 .kpi-val.red{color:var(--red);}
 .kpi-delta{font-size:11px;font-weight:600;}
-.kpi-delta.up{color:var(--neon);}
+.kpi-delta.up{color:var(--neon-ink);}
 .kpi-delta.down{color:var(--red);}
 .shelf-vis{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r3);padding:var(--s2);position:relative;overflow:hidden;}
 .shelf-label{font-family:'Orbitron',sans-serif;font-size:8px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--t2);margin-bottom:10px;}
 .shelf-row{display:flex;gap:5px;align-items:flex-end;margin-bottom:5px;}
 .sku{border-radius:4px;border:1px solid transparent;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:4px 2px;font-size:6px;font-weight:700;flex:1;}
-.sku-p{background:rgba(0,87,255,.18);border-color:rgba(0,87,255,.4);color:#7AACFF;height:55px;}
-.sku-p2{background:rgba(0,87,255,.12);border-color:rgba(0,87,255,.3);color:#7AACFF;height:45px;}
-.sku-p3{background:rgba(0,87,255,.22);border-color:rgba(0,87,255,.45);color:#7AACFF;height:65px;}
+.sku-p{background:rgba(0,87,255,.18);border-color:rgba(0,87,255,.4);color:var(--blue-ink);height:55px;}
+.sku-p2{background:rgba(0,87,255,.12);border-color:rgba(0,87,255,.3);color:var(--blue-ink);height:45px;}
+.sku-p3{background:rgba(0,87,255,.22);border-color:rgba(0,87,255,.45);color:var(--blue-ink);height:65px;}
 .sku-c{background:rgba(80,80,90,.3);border-color:rgba(80,80,90,.4);color:var(--t2);height:40px;}
 .sku-oos{background:rgba(255,0,61,.06);border:1.5px dashed rgba(255,0,61,.4);height:50px;position:relative;}
 .oos-label{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Orbitron',sans-serif;font-size:7px;font-weight:700;color:var(--red);white-space:nowrap;letter-spacing:.05em;}
@@ -119,122 +103,75 @@
 .hstat-val .acc{color:var(--blue);}
 .hstat-label{font-size:12px;color:var(--t2);margin-top:5px;}
 
-/* Logos strip */
-.logos-strip{padding:var(--s5) 0;background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
-.logos-inner{display:flex;align-items:center;justify-content:center;gap:var(--s6);flex-wrap:wrap;}
-.logo-client{font-family:'Geologica',sans-serif;font-weight:700;font-size:17px;color:var(--t3);letter-spacing:.04em;padding:8px 20px;border:1px solid var(--border);border-radius:var(--r2);transition:all .3s;}
-.logo-client:hover{color:var(--t2);border-color:rgba(0,87,255,.3);background:rgba(0,87,255,.05);}
-.logos-pre{font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--t3);margin-right:var(--s3);}
+/* Hero v2 — lime-outline CTA + video media (screen 1) */
+.btn-lime{background:transparent;color:var(--t1);border:1.5px solid var(--neon);box-shadow:none;}
+.btn-lime:hover{background:var(--neon);color:#0F1E37;transform:translateY(-2px);box-shadow:0 8px 24px rgba(200,255,0,.35);}
+.hero-media{position:relative;}
+.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:var(--r4);border:1px solid var(--border);opacity:0;transition:opacity .5s ease;z-index:3;}
+.hero-video.ready{opacity:1;}
 
-/* ═══════════════════════════ PAIN SECTION ═══════════════════════════ */
-#pain{background:var(--bg2);}
-.pain-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--s3);}
-.pain-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r3);padding:var(--s4);position:relative;overflow:hidden;transition:all .3s;}
-.pain-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--red);opacity:.5;}
-.pain-card:hover{border-color:rgba(255,0,61,.3);box-shadow:0 8px 40px rgba(255,0,61,.08);}
-.pain-card:hover::before{opacity:1;}
-.pain-icon{width:48px;height:48px;background:rgba(255,0,61,.08);border:1px solid rgba(255,0,61,.15);border-radius:var(--r3);display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:var(--s3);}
-.pain-card h3{font-size:17px;font-weight:700;margin-bottom:var(--s2);line-height:1.35;font-family:'Geologica',sans-serif;}
-.pain-card p{color:var(--t2);font-size:14px;line-height:1.65;}
+/* Screen 2 — Trust strip (text wordmark placeholders until real client logos supplied) */
+.logos-strip{padding:var(--s6) 0;background:#0B0E14;overflow:hidden;}
+.logos-caption{text-align:center;font-family:'Orbitron',sans-serif;font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--t3);margin-bottom:var(--s4);}
+/* Full-bleed running marquee — track is 3 identical sets of the 6 logos;
+   translateX(-100%/3) shifts exactly one set → seamless loop. Edge fade via
+   mask-image (fades to the strip bg). Pause on hover. */
+.logos-marquee{position:relative;width:100%;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 12%,#000 88%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 12%,#000 88%,transparent 100%);}
+.logos-track{display:flex;align-items:center;width:max-content;animation:logos-scroll 38s linear infinite;will-change:transform;}
+.logos-marquee:hover .logos-track{animation-play-state:paused;}
+.logos-set{display:flex;align-items:center;flex:none;}
+.logos-set .logo-client{margin:0 calc(var(--s6) / 2);}
+@keyframes logos-scroll{from{transform:translateX(0);}to{transform:translateX(calc(-100% / 3));}}
+.logo-client{font-family:'Geologica',sans-serif;font-weight:700;font-size:21px;letter-spacing:.02em;color:var(--t3);opacity:.6;filter:grayscale(1);transition:color .3s,opacity .3s,filter .3s,transform .3s;cursor:default;white-space:nowrap;}
+.logo-client:hover{color:var(--t1);opacity:1;filter:grayscale(0);transform:translateY(-2px);}
+.logos-strip .logos-caption{color:#5A6272;}
+.logos-strip .logo-client{color:#8A93A3;opacity:.85;}
+.logos-strip .logo-client:hover{color:#FFFFFF;opacity:1;}
+@media (prefers-reduced-motion: reduce){
+  .logos-marquee{-webkit-mask-image:none;mask-image:none;}
+  .logos-track{animation:none;width:100%;flex-wrap:wrap;justify-content:center;}
+  .logos-set{flex-wrap:wrap;justify-content:center;}
+  .logos-set[aria-hidden="true"]{display:none;}
+}
 
-/* ═══════════════════════════ HOW IT WORKS ═══════════════════════════ */
-#how{background:var(--bg1);}
-.steps-wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s4);position:relative;}
-.steps-wrap::before{content:'';position:absolute;top:36px;left:calc(16.66% + 28px);right:calc(16.66% + 28px);height:1px;background:linear-gradient(90deg,transparent,rgba(0,87,255,.5),transparent);}
-.step-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r3);padding:var(--s4);text-align:center;position:relative;transition:all .3s;}
-.step-card:hover{border-color:rgba(0,87,255,.3);box-shadow:0 8px 40px rgba(0,87,255,.1);}
-.step-num{width:64px;height:64px;background:var(--grad-blue);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto var(--s3);font-family:'Orbitron',sans-serif;font-size:20px;font-weight:900;color:#fff;box-shadow:0 0 30px rgba(0,87,255,.5);}
-.step-emoji{font-size:26px;margin-bottom:var(--s2);}
-.step-card h3{font-family:'Geologica',sans-serif;font-weight:700;font-size:19px;margin-bottom:var(--s2);}
-.step-card p{color:var(--t2);font-size:14px;line-height:1.7;}
-.step-time{display:inline-flex;align-items:center;gap:5px;margin-top:var(--s2);font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--neon);background:rgba(200,255,0,.07);padding:4px 10px;border-radius:999px;border:1px solid rgba(200,255,0,.2);}
-
-/* ═══════════════════════════ PRODUCTS ═══════════════════════════ */
-#products{background:var(--bg2);}
-.products-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:var(--s2);}
-.prod-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r3);padding:var(--s3);transition:all .3s;cursor:pointer;position:relative;overflow:hidden;text-decoration:none;display:block;}
-.prod-card::after{content:'';position:absolute;inset:0;background:var(--grad-blue);opacity:0;transition:opacity .3s;}
-.prod-card:hover{border-color:rgba(0,87,255,.4);transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,87,255,.15);}
-.prod-icon{font-size:28px;margin-bottom:var(--s2);}
-.prod-card h3{font-family:'Geologica',sans-serif;font-weight:700;font-size:15px;margin-bottom:6px;line-height:1.3;}
-.prod-card p{font-size:12px;color:var(--t2);line-height:1.55;}
-.prod-tag{display:inline-block;font-family:'Orbitron',sans-serif;font-size:8px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:999px;margin-top:8px;}
-.prod-tag-blue{background:rgba(0,87,255,.1);color:var(--blue3);border:1px solid rgba(0,87,255,.2);}
-.prod-tag-neon{background:rgba(200,255,0,.08);color:var(--neon);border:1px solid rgba(200,255,0,.2);}
-.prod-arrow{position:absolute;bottom:var(--s3);right:var(--s3);color:var(--blue3);font-size:14px;opacity:0;transition:opacity .3s,transform .3s;}
-.prod-card:hover .prod-arrow{opacity:1;transform:translateX(4px);}
-
-/* ═══════════════════════════ SOLUTIONS ═══════════════════════════ */
-#solutions{background:var(--bg1);}
-.sol-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s3);}
-.sol-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r4);padding:var(--s5) var(--s4);display:flex;flex-direction:column;gap:var(--s3);transition:all .3s;position:relative;overflow:hidden;}
-.sol-card::before{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(0,87,255,.4),transparent);}
-.sol-card:hover{border-color:rgba(0,87,255,.35);box-shadow:0 12px 50px rgba(0,87,255,.12);transform:translateY(-5px);}
-.sol-emoji{font-size:40px;}
-.sol-for{font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--t3);}
-.sol-card h3{font-family:'Geologica',sans-serif;font-weight:800;font-size:20px;line-height:1.25;}
-.sol-desc{font-size:14px;color:var(--t2);line-height:1.65;}
-.sol-features{display:flex;flex-direction:column;gap:8px;}
-.sol-feat{display:flex;align-items:flex-start;gap:8px;font-size:13px;color:var(--t2);}
-.sol-feat-icon{color:var(--neon);font-size:12px;margin-top:2px;flex-shrink:0;}
-.sol-link{display:inline-flex;align-items:center;gap:6px;color:var(--blue3);font-size:13px;font-weight:600;margin-top:auto;transition:gap .2s;}
-.sol-link:hover{gap:10px;}
-
-/* ═══════════════════════════ METRICS ═══════════════════════════ */
-#metrics{background:var(--bg2);}
-.metrics-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--r4);overflow:hidden;}
-.metric-box{background:var(--bg3);padding:var(--s5) var(--s4);text-align:center;}
-.metric-val{font-family:'Geologica',sans-serif;font-weight:900;font-size:clamp(32px,4vw,52px);letter-spacing:-.03em;line-height:1;margin-bottom:var(--s1);}
-.metric-val .acc{color:var(--blue);}
-.metric-label{font-size:14px;color:var(--t2);}
-.metric-sub{font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--t3);margin-top:5px;}
-
-/* ═══════════════════════════ COMPARISON TABLE ═══════════════════════════ */
-#compare{background:var(--bg1);}
-.table-wrap{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r4);overflow:hidden;}
-.comp-table{width:100%;border-collapse:collapse;}
-.comp-table th{font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--t3);padding:14px 16px;text-align:center;border-bottom:1px solid var(--border);background:var(--bg2);}
-.comp-table th:first-child{text-align:left;}
-.comp-table th.picsell-col{color:var(--blue);background:rgba(0,87,255,.06);}
-.comp-table td{padding:14px 16px;border-bottom:1px solid rgba(30,30,36,.8);font-size:13px;color:var(--t2);text-align:center;vertical-align:middle;}
-.comp-table td:first-child{text-align:left;font-weight:500;color:var(--t1);}
-.comp-table td.picsell-col{background:rgba(0,87,255,.04);}
-.comp-table tr:last-child td{border-bottom:none;}
-.comp-table tr:hover td{background:rgba(255,255,255,.015);}
-.ic-yes{color:var(--neon);font-size:15px;}
-.ic-no{color:rgba(255,255,255,.15);font-size:15px;}
-.ic-part{color:var(--orange);font-size:13px;}
-.picsell-badge-cell{display:inline-flex;align-items:center;gap:6px;font-family:'Geologica',sans-serif;font-weight:700;font-size:13px;color:var(--t1);}
-.table-note{display:flex;align-items:center;gap:12px;padding:var(--s3) var(--s4);background:rgba(0,87,255,.04);border-top:1px solid rgba(0,87,255,.12);font-size:13px;color:var(--t2);}
-.table-note-icon{color:var(--blue);font-size:16px;flex-shrink:0;}
-
-/* ═══════════════════════════ CASE STUDY ═══════════════════════════ */
-#case{background:var(--bg2);}
-.case-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r4);overflow:hidden;display:grid;grid-template-columns:1fr 1fr;min-height:340px;}
-.case-left{padding:var(--s5);display:flex;flex-direction:column;gap:var(--s3);}
-.case-logo{font-family:'Geologica',sans-serif;font-weight:900;font-size:28px;letter-spacing:-.02em;}
-.case-tag{font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--t3);}
-.case-left h3{font-family:'Geologica',sans-serif;font-weight:800;font-size:22px;line-height:1.3;}
-.case-quote{font-size:15px;color:var(--t2);line-height:1.7;font-style:italic;border-left:2px solid var(--blue);padding-left:var(--s2);}
-.case-results{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s2);}
-.case-res-item{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);padding:12px;text-align:center;}
-.case-res-val{font-family:'Geologica',sans-serif;font-weight:900;font-size:20px;color:var(--neon);}
-.case-res-label{font-size:11px;color:var(--t2);margin-top:3px;}
-.case-right{background:linear-gradient(135deg,rgba(0,87,255,.08) 0%,rgba(0,180,255,.04) 100%);border-left:1px solid var(--border);padding:var(--s5);display:flex;flex-direction:column;gap:var(--s3);}
-.case-timeline{display:flex;flex-direction:column;gap:var(--s2);}
-.case-tl-item{display:flex;gap:var(--s2);align-items:flex-start;}
-.case-tl-num{width:28px;height:28px;background:var(--grad-blue);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;flex-shrink:0;margin-top:2px;}
-.case-tl-text{font-size:13px;color:var(--t2);line-height:1.55;}
-.case-tl-text strong{color:var(--t1);font-size:14px;display:block;margin-bottom:2px;}
+/* ═══════════════════════════ SCREEN 10 — SECURITY / TRUST BAND ═══════════════════════════ */
+#security{background:var(--bg1);position:relative;}
+/* Polish v1 (commit 4): faint dot-grid texture on this light band */
+#security::before{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(15,30,55,.05) 1px,transparent 1px);background-size:30px 30px;pointer-events:none;}
+#security .container{position:relative;z-index:1;}
+.sec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s3);}
+.sec-item{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r3);padding:var(--s4);display:flex;flex-direction:column;gap:12px;box-shadow:0 1px 2px rgba(15,30,55,.04),0 12px 30px rgba(15,30,55,.07);transition:border-color .3s,box-shadow .3s,transform .3s;}
+.sec-item:hover{border-color:rgba(0,87,255,.35);box-shadow:0 22px 50px rgba(0,87,255,.16);transform:translateY(-4px);}
+.sec-ico{width:46px;height:46px;border-radius:var(--r2);background:rgba(0,87,255,.07);border:1px solid rgba(0,87,255,.15);display:flex;align-items:center;justify-content:center;color:var(--blue);flex-shrink:0;}
+.sec-ico svg{width:22px;height:22px;}
+.sec-item h3{font-family:'Geologica',sans-serif;font-weight:700;font-size:16px;line-height:1.3;}
+.sec-item p{color:var(--t2);font-size:14px;line-height:1.6;}
+@media(max-width:768px){.sec-grid{grid-template-columns:1fr;}}
 
 /* ═══════════════════════════ CTA FORM ═══════════════════════════ */
-#cta{background:var(--bg1);}
+/* Polish v1 (commit 3): second dark anchor band on #0B0E14. Form is reskinned
+   for dark (inputs/borders/text/placeholder light); primary button stays blue;
+   lime returns as an accent (perk ticks, success). */
+#cta{background:#0B0E14;}
+#cta .cta-left h2{color:#EAF0FF;}
+#cta .cta-left p{color:#AEB6C6;}
+#cta .cta-perk{color:#C2C9D6;}
+#cta .cta-perk-icon{color:var(--neon-ink);}
+#cta .form-card{background:#10141C;border-color:rgba(255,255,255,.10);}
+#cta .form-card h3{color:#EAF0FF;}
+#cta .form-label{color:#AEB6C6;}
+#cta .form-input,#cta .form-select{background:#0B0E14;border-color:rgba(255,255,255,.14);color:#EAF0FF;}
+#cta .form-input::placeholder{color:#7F889B;}
+#cta .form-input:focus,#cta .form-select:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,87,255,.22);}
+#cta .form-note{color:#8A93A6;}
+#cta .form-success h3{color:var(--neon-ink);}
+#cta .form-success p{color:#AEB6C6;}
 .cta-inner{display:grid;grid-template-columns:1fr 1fr;gap:var(--s7);align-items:center;}
 .cta-left h2{font-family:'Geologica',sans-serif;font-weight:800;font-size:clamp(28px,3.5vw,44px);line-height:1.15;letter-spacing:-.02em;margin-bottom:var(--s3);}
 .cta-left p{color:var(--t2);font-size:16px;line-height:1.7;margin-bottom:var(--s4);}
 .cta-perks{display:flex;flex-direction:column;gap:var(--s2);}
 .cta-perk{display:flex;align-items:center;gap:var(--s2);font-size:15px;color:var(--t2);}
-.cta-perk-icon{color:var(--neon);font-size:16px;flex-shrink:0;}
+.cta-perk-icon{color:var(--neon-ink);font-size:16px;flex-shrink:0;}
 .form-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r4);padding:var(--s5);}
 .form-grid{display:flex;flex-direction:column;gap:var(--s3);}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:var(--s2);}
@@ -247,7 +184,7 @@
 .form-note{font-size:12px;color:var(--t3);text-align:center;margin-top:var(--s1);}
 .form-success{display:none;text-align:center;padding:var(--s4);}
 .form-success-icon{font-size:52px;margin-bottom:var(--s2);}
-.form-success h3{font-family:'Geologica',sans-serif;font-size:22px;font-weight:700;margin-bottom:var(--s2);color:var(--neon);}
+.form-success h3{font-family:'Geologica',sans-serif;font-size:22px;font-weight:700;margin-bottom:var(--s2);color:var(--neon-ink);}
 .form-success p{color:var(--t2);font-size:15px;}
 
 /* ═══════════════════════════ FOOTER ═══════════════════════════ */
@@ -290,30 +227,18 @@
   .hero-h1{font-size:clamp(36px,9vw,52px);}
   .hero-sub{margin-bottom:var(--s3);}
   .hero-eyebrow{margin-bottom:var(--s1);}
-  .products-grid{grid-template-columns:repeat(3,1fr);}
-  .case-card{grid-template-columns:1fr;}
-  .case-right{border-left:none;border-top:1px solid var(--border);}
   .cta-inner{grid-template-columns:1fr;}
   .footer-grid{grid-template-columns:1fr 1fr;gap:var(--s4);}
 }
 @media(max-width:768px){
   .nav-wrap,.nav-r .btn-s{display:none;}
   .hamburger{display:flex;}
-  .pain-grid,.sol-grid,.metrics-grid,.grid-3,.grid-4,.steps-wrap{grid-template-columns:1fr;}
-  .products-grid{grid-template-columns:1fr 1fr;}
-  .steps-wrap::before{display:none;}
+  .grid-3,.grid-4{grid-template-columns:1fr;}
   .kpi-row{grid-template-columns:repeat(3,1fr);}
   .form-row{grid-template-columns:1fr;}
-  .logos-inner{gap:var(--s3);}
+  .logos-set .logo-client{margin:0 var(--s4);}
   .footer-grid{grid-template-columns:1fr;}
-  .case-results{grid-template-columns:repeat(3,1fr);}
-  .hero-stats{grid-template-columns:1fr;}
   .hero-ctas{flex-direction:column;align-items:flex-start;}
-}
-@media(max-width:480px){
-  .products-grid{grid-template-columns:1fr;}
-  .metrics-grid{grid-template-columns:1fr 1fr;}
-  .case-results{grid-template-columns:1fr;}
 }
 </style>
 {{ end }}
@@ -322,7 +247,7 @@
 <!-- ══════════════════ HERO ══════════════════ -->
 <section id="hero">
   <div class="hero-bg">
-    <div class="dot-grid"></div>
+    <canvas id="heroParticles" class="hero-canvas" aria-hidden="true"></canvas>
     <div class="glow1"></div>
     <div class="glow2"></div>
     <div class="glow3"></div>
@@ -334,41 +259,41 @@
       <!-- LEFT -->
       <div class="hero-left">
         <div class="hero-eyebrow h-anim h-d1">
-          <div class="hero-badge">
-            <div class="badge-dot"></div>
-            <span class="badge-text">All-in-One Sales OS · FMCG</span>
-          </div>
+          <span class="badge-dot"></span>
+          <span class="badge-text" style="letter-spacing:.14em;">Complete retail-execution platform for FMCG</span>
         </div>
 
         <h1 class="hero-h1 h-anim h-d2">
-          <span class="line"><span style="color:var(--neon)">See the Shelf.</span></span>
-          <span class="line">Lead the Team.</span>
-          <span class="line"><span style="color:var(--blue)">Win the Market.</span></span>
+          <span class="line">See the shelf.</span>
+          <span class="line">Run the field.</span>
+          <span class="line"><span style="color:var(--blue)">Own the market.</span></span>
         </h1>
 
         <p class="hero-sub h-anim h-d3">
-          AI Platform for FMCG: shelf recognition, SFA, and HoReCa analytics — all in one solution
+          Vision AI, field sales, HoReCa and competitive intelligence — in one app for every role.
         </p>
 
         <div class="hero-ctas h-anim h-d4">
           <a href="/demo/" class="btn btn-p btn-lg">Book a Demo →</a>
-          <a href="#how" class="btn btn-s">See How It Works</a>
-        </div>
-
-        <div class="hero-trust h-anim h-d5">
-          <div class="trust-avatars">
-            <div class="trust-avatar">L</div>
-            <div class="trust-avatar">H</div>
-            <div class="trust-avatar">B</div>
-            <div class="trust-avatar">S</div>
-          </div>
-          <div class="trust-text">Trusted by <strong>Lactalis, Henkel, Bayadera</strong> and others</div>
+          <a href="#calc" class="btn btn-lime btn-lg">Calculate Cost</a>
         </div>
       </div>
 
-      <!-- RIGHT — animated dashboard -->
+      <!-- RIGHT — hero media: video (when supplied) over the animated dashboard fallback -->
       <div class="hero-right h-anim h-d3">
-        <div class="hero-dashboard float-anim">
+        <div class="hero-media">
+          <!-- VIDEO PLACEHOLDER (HOMEPAGE-V2-HANDOFF §4). Enable once Maksim supplies the
+               6-shot hero film (Grok frames), 16:9 desktop. Drop /videos/hero-desktop.{webm,mp4}
+               + /images/hero-poster.jpg and uncomment — onerror removes it so the dashboard
+               fallback below always stays visible.
+          <video class="hero-video" autoplay muted loop playsinline preload="none"
+                 poster="/images/hero-poster.jpg"
+                 onloadeddata="this.classList.add('ready')" onerror="this.remove()">
+            <source src="/videos/hero-desktop.webm" type="video/webm">
+            <source src="/videos/hero-desktop.mp4" type="video/mp4">
+          </video>
+          -->
+          <div class="hero-dashboard float-anim">
           <div class="dash-header">
             <div class="dash-dots">
               <div class="dash-dot dash-dot-r"></div>
@@ -436,536 +361,121 @@
             <div class="alert-row" style="display:flex;flex-direction:column;gap:5px;margin-top:10px;">
               <div class="alert-item">
                 <div class="alert-dot"></div>
-                <span><strong style="color:#fff">ATB Khreshchatyk:</strong> OOS on SKU-018 — urgent replenishment recommended</span>
+                <span><strong style="color:var(--t1)">ATB Khreshchatyk:</strong> OOS on SKU-018 — urgent replenishment recommended</span>
               </div>
               <div class="alert-item alert-neon">
                 <div class="alert-dot"></div>
-                <span><strong style="color:#fff">Silpo Obolon:</strong> Perfect Store Score rose to 91% after audit</span>
+                <span><strong style="color:var(--t1)">Silpo Obolon:</strong> Perfect Store Score rose to 91% after audit</span>
               </div>
             </div>
           </div>
         </div>
-
-        <!-- Stats below dashboard -->
-        <div class="hero-stats">
-          <div class="hstat">
-            <div class="hstat-val"><span data-count="10" data-suffix="M+">0</span></div>
-            <div class="hstat-label">SKUs processed</div>
-          </div>
-          <div class="hstat">
-            <div class="hstat-val"><span data-count="31" data-suffix="K+">0</span></div>
-            <div class="hstat-label">Outlets</div>
-          </div>
-          <div class="hstat">
-            <div class="hstat-val"><span data-count="99" data-suffix=".9%">0</span></div>
-            <div class="hstat-label">AI Accuracy</div>
-          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════ LOGOS STRIP ══════════════════ -->
+<!-- ══════════════════ SCREEN 2 — TRUST LOGOS ══════════════════ -->
 <div class="logos-strip">
-  <div class="container">
-    <div class="logos-inner">
-      <span class="logos-pre">Trusted by:</span>
-      <div class="logo-client">Lactalis</div>
-      <div class="logo-client">Henkel</div>
-      <div class="logo-client">Bayadera</div>
-      <div class="logo-client">Schwarzkopf</div>
-      <div class="logo-client">Nestlé</div>
-      <div class="logo-client">Diageo</div>
+  <p class="logos-caption">Trusted by</p>
+  <div class="logos-marquee">
+    <div class="logos-track">
+      <div class="logos-set">
+        <div class="logo-client">Lactalis</div>
+        <div class="logo-client">Henkel</div>
+        <div class="logo-client">Bayadera</div>
+        <div class="logo-client">Schwarzkopf</div>
+        <div class="logo-client">Nestlé</div>
+        <div class="logo-client">Diageo</div>
+        <div class="logo-client">Carlsberg</div>
+      </div>
+      <div class="logos-set" aria-hidden="true">
+        <div class="logo-client">Lactalis</div>
+        <div class="logo-client">Henkel</div>
+        <div class="logo-client">Bayadera</div>
+        <div class="logo-client">Schwarzkopf</div>
+        <div class="logo-client">Nestlé</div>
+        <div class="logo-client">Diageo</div>
+        <div class="logo-client">Carlsberg</div>
+      </div>
+      <div class="logos-set" aria-hidden="true">
+        <div class="logo-client">Lactalis</div>
+        <div class="logo-client">Henkel</div>
+        <div class="logo-client">Bayadera</div>
+        <div class="logo-client">Schwarzkopf</div>
+        <div class="logo-client">Nestlé</div>
+        <div class="logo-client">Diageo</div>
+        <div class="logo-client">Carlsberg</div>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- ══════════════════ PAIN POINTS ══════════════════ -->
-<section id="pain" class="section">
+{{ partial "eco-architecture.html" . }}
+
+{{ partial "module-showcase.html" . }}
+
+{{ partial "unique-band.html" . }}
+
+{{ partial "closed-loop.html" . }}
+
+{{ partial "comparison.html" . }}
+
+{{ partial "calculator.html" . }}
+
+<!-- ══════════════════ SCREEN 10 — SECURITY / TRUST BAND ══════════════════ -->
+<section id="security" class="section">
   <div class="container">
     <div class="sec-head reveal">
-      <span class="tag">Market Challenges</span>
-      <h2>Where Business <span class="highlight">Loses Money</span> Every Day</h2>
-      <p>Every FMCG manufacturer and distributor faces these problems. The question is: how much does it cost to ignore them for another year?</p>
+      <span class="tag">Security &amp; Trust</span>
+      <h2>Your data, <span class="highlight">protected</span></h2>
+      <p>EU infrastructure, role-based access and GDPR-ready practices — we claim only what is true.</p>
     </div>
-
-    <div class="pain-grid">
-      <div class="pain-card reveal rd1">
-        <div class="pain-icon">⏱️</div>
-        <h3>"You'll know about OOS not in a month — in 2 minutes or never"</h3>
-        <p>An empty shelf = a customer lost forever. Without real-time control, you see this only in next month's report — when a competitor has already taken your spot.</p>
+    <div class="sec-grid">
+      <div class="sec-item reveal rd1">
+        <div class="sec-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6-5.7-6-10a6 6 0 1 1 12 0c0 4.3-6 10-6 10z"/><circle cx="12" cy="11" r="2.4"/></svg></div>
+        <h3>Data in the EU (Frankfurt)</h3>
+        <p>Hosting and databases located in Frankfurt, EU.</p>
       </div>
-      <div class="pain-card reveal rd2">
-        <div class="pain-icon">🕵️</div>
-        <h3>"Fake photos, GPS manipulation — you pay for work that nobody controls"</h3>
-        <p>An agent reports 20 visits. How many were real? GPS can be faked. Photos can be taken from old ones. Excel reports — submitted from last week. You will never know.</p>
+      <div class="sec-item reveal rd2">
+        <div class="sec-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div>
+        <h3>Encryption</h3>
+        <p>Data encrypted in transit and at rest; keys kept in a vault.</p>
       </div>
-      <div class="pain-card reveal rd3">
-        <div class="pain-icon">📉</div>
-        <h3>"Competitors are displacing your brand every day — you'll find out at the quarterly meeting"</h3>
-        <p>While your Brand Manager prepares a PowerPoint report, a competitor has grown their shelf share by 15% in key chains. Syndicated data is expensive and always lagging.</p>
+      <div class="sec-item reveal rd3">
+        <div class="sec-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 7.6-7 9-4-1.4-7-4.5-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <h3>Role-based access (RLS)</h3>
+        <p>Row-Level Security — every user sees only their own data.</p>
       </div>
-      <div class="pain-card reveal rd4">
-        <div class="pain-icon">🍾</div>
-        <h3>"After delivery to HoReCa — darkness begins. Where is the product? What does it cost on the menu?"</h3>
-        <p>You deliver to a restaurant and... silence. Is your product on the menu? At what price? How many competitors are nearby? Who hasn't become your client yet? Without PICSELL — you'll never know.</p>
+      <div class="sec-item reveal rd4">
+        <div class="sec-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l4 4v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M9.5 13l2 2 3.5-3.5"/></svg></div>
+        <h3>GDPR-ready</h3>
+        <p>Built with GDPR requirements in mind (not a certification claim).</p>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════ HOW IT WORKS ══════════════════ -->
-<section id="how" class="section" style="background:var(--bg1);">
-  <div class="container">
-    <div class="sec-head reveal">
-      <span class="tag">How It Works</span>
-      <h2>From Photo to Decision — in <span class="hl-neon">&lt;2 seconds</span></h2>
-      <p>Three simple steps. No complex deployments. First data — on day one.</p>
-    </div>
-
-    <div class="steps-wrap">
-      <div class="step-card reveal rd1">
-        <div class="step-num">01</div>
-        <div class="step-emoji">📷</div>
-        <h3>Agent takes a photo</h3>
-        <p>A sales rep opens PICSELL and photographs the shelf or menu. <strong style="color:var(--t1)">AI checks photo quality right in the app</strong> — before upload. Offline mode: everything is saved locally.</p>
-        <div class="step-time">⚡ 30 seconds per outlet</div>
+      <div class="sec-item reveal rd5">
+        <div class="sec-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v12c0 1.7 3.1 3 7 3s7-1.3 7-3V6"/><path d="M5 12c0 1.7 3.1 3 7 3s7-1.3 7-3"/></svg></div>
+        <h3>Backups</h3>
+        <p>Regular automated backups of your data.</p>
       </div>
-
-      <div class="step-card reveal rd2">
-        <div class="step-num">02</div>
-        <div class="step-emoji">🧠</div>
-        <h3>AI Analyzes Automatically</h3>
-        <p>Our neural network recognizes <strong style="color:var(--t1)">every SKU, OOS, prices, Share of Shelf, and promotional materials</strong> in seconds. 99.9% accuracy through the combination of AI and human verification.</p>
-        <div class="step-time">⚡ &lt;2 seconds processing</div>
+      <div class="sec-item reveal rd6">
+        <div class="sec-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13v-1a8 8 0 0 1 16 0v1"/><rect x="2.5" y="13" width="4.5" height="6" rx="1.6"/><rect x="17" y="13" width="4.5" height="6" rx="1.6"/><path d="M20 19a3.5 3.5 0 0 1-3.5 3H13"/></svg></div>
+        <h3>Local support (UA)</h3>
+        <p>Support in Ukrainian from a local team.</p>
       </div>
-
-      <div class="step-card reveal rd3">
-        <div class="step-num">03</div>
-        <div class="step-emoji">⚡</div>
-        <h3>Data → Decision</h3>
-        <p>Power BI dashboard updates in real time. <strong style="color:var(--t1)">AI agent generates trigger alerts</strong>: "ATB shows anomalous shelf share drop — urgent audit recommended".</p>
-        <div class="step-time">⚡ Alert within 2 minutes</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════ PRODUCTS ══════════════════ -->
-<section id="products" class="section" style="background:var(--bg2);">
-  <div class="container">
-    <div class="sec-head reveal">
-      <span class="tag">Products</span>
-      <h2>Modular <span class="highlight">Ecosystem</span></h2>
-      <p>Take only what you need now. Scale — when ready. Everything integrated into one platform.</p>
-    </div>
-
-    <div class="products-grid">
-      <a href="/vision-ai/" class="prod-card reveal rd1">
-        <div class="prod-icon">👁️</div>
-        <h3>Vision AI</h3>
-        <p>Shelf recognition: OOS, Share of Shelf, prices, Perfect Store — automatically</p>
-        <div class="prod-tag prod-tag-blue">99.9% accuracy</div>
-        <div class="prod-arrow">→</div>
-      </a>
-      <a href="/sales-app/" class="prod-card reveal rd2">
-        <div class="prod-icon">📱</div>
-        <h3>Sales App</h3>
-        <p>Agent mobile office: orders, routes, merchandising, CRM — offline</p>
-        <div class="prod-tag prod-tag-blue">500+ agents</div>
-        <div class="prod-arrow">→</div>
-      </a>
-      <a href="/horeca/" class="prod-card reveal rd3">
-        <div class="prod-icon">🍽️</div>
-        <h3>HoReCa Intelligence</h3>
-        <p>Menu, price, and competitor monitoring across thousands of venues — automatically</p>
-        <div class="prod-tag prod-tag-neon">Exclusive to PICSELL</div>
-        <div class="prod-arrow">→</div>
-      </a>
-      <a href="/analytics/" class="prod-card reveal rd4">
-        <div class="prod-icon">📊</div>
-        <h3>Analytics</h3>
-        <p>Power BI dashboards + AI Copilot that finds anomalies and recommends actions automatically</p>
-        <div class="prod-tag prod-tag-blue">AI Copilot</div>
-        <div class="prod-arrow">→</div>
-      </a>
-      <a href="/radar/" class="prod-card reveal rd5">
-        <div class="prod-icon">📡</div>
-        <h3>Radar</h3>
-        <p>Market monitoring: competitor prices, new outlets, geographic analytics</p>
-        <div class="prod-tag prod-tag-neon">300% ROI</div>
-        <div class="prod-arrow">→</div>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════ SOLUTIONS BY ROLE ══════════════════ -->
-<section id="solutions" class="section">
-  <div class="container">
-    <div class="sec-head reveal">
-      <span class="tag">Solutions by Role</span>
-      <h2>Choose Your <span class="highlight">Solution</span></h2>
-    </div>
-
-    <div class="sol-grid">
-      <div class="sol-card reveal rd1">
-        <div class="sol-emoji">🏭</div>
-        <div class="sol-for">For Manufacturer / Brand</div>
-        <h3>Your brand in control across every SKU, region, and channel</h3>
-        <p class="sol-desc">Share of Shelf, OOS Detection, Perfect Store Score, Anti-Fraud — all in real time. No fake reports.</p>
-        <div class="sol-features">
-          <div class="sol-feat"><span class="sol-feat-icon">✓</span>OOS alert in 2 minutes</div>
-          <div class="sol-feat"><span class="sol-feat-icon">✓</span>Planogram compliance control</div>
-          <div class="sol-feat"><span class="sol-feat-icon">✓</span>Anti-Fraud: GPS + photo verification</div>
-        </div>
-        <a href="/solutions-brands/" class="sol-link">View Solution →</a>
-      </div>
-
-      <div class="sol-card reveal rd2">
-        <div class="sol-emoji">🚚</div>
-        <div class="sol-for">For Distributor</div>
-        <h3>More visits, lower costs — mobile office for agents</h3>
-        <p class="sol-desc">Smart routes, real-time orders, Supervisor View, CRM 360° — everything the field team needs.</p>
-        <div class="sol-features">
-          <div class="sol-feat"><span class="sol-feat-icon">✓</span>+40% visits through smart routing</div>
-          <div class="sol-feat"><span class="sol-feat-icon">✓</span>-3 hours/day on agent routine</div>
-          <div class="sol-feat"><span class="sol-feat-icon">✓</span>Offline-First: critical for the field</div>
-        </div>
-        <a href="/solutions-distributors/" class="sol-link">View Solution →</a>
-      </div>
-
-      <div class="sol-card reveal rd3">
-        <div class="sol-emoji">🥂</div>
-        <div class="sol-for">For HoReCa Channel</div>
-        <h3>Your competitors are already in 200 restaurants — you'll know first</h3>
-        <p class="sol-desc">Menu Intelligence, Competitive Map, Price Monitoring, Lead Generation — no competitor in Ukraine has an equivalent.</p>
-        <div class="sol-features">
-          <div class="sol-feat"><span class="sol-feat-icon">✓</span>AI reads menus from photos, PDFs, Instagram</div>
-          <div class="sol-feat"><span class="sol-feat-icon">✓</span>We find new outlets automatically</div>
-          <div class="sol-feat"><span class="sol-feat-icon">✓</span>Competitor prices in real time</div>
-        </div>
-        <a href="/solutions-horeca/" class="sol-link">View Solution →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════ METRICS ══════════════════ -->
-<section id="metrics" class="section" style="background:var(--bg2);">
-  <div class="container">
-    <div class="sec-head reveal">
-      <span class="tag">Our Scale</span>
-      <h2>Numbers That <span class="highlight">Market Leaders</span> Trust</h2>
-    </div>
-
-    <div class="metrics-grid reveal">
-      <div class="metric-box">
-        <div class="metric-val"><span data-count="10" data-suffix="M+">0</span></div>
-        <div class="metric-label">SKUs recognized</div>
-        <div class="metric-sub">and counting</div>
-      </div>
-      <div class="metric-box">
-        <div class="metric-val"><span data-count="31" data-suffix="K+">0</span></div>
-        <div class="metric-label">Outlets covered</div>
-        <div class="metric-sub">across Ukraine</div>
-      </div>
-      <div class="metric-box">
-        <div class="metric-val"><span data-count="500" data-suffix="+">0</span></div>
-        <div class="metric-label">Sales Representatives</div>
-        <div class="metric-sub">actively online</div>
-      </div>
-      <div class="metric-box">
-        <div class="metric-val" style="color:var(--neon);">99.9<span style="font-size:.6em;color:var(--neon);">%</span></div>
-        <div class="metric-label">Vision AI Accuracy</div>
-        <div class="metric-sub">proprietary neural network</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════ COMPARISON TABLE ══════════════════ -->
-<section id="compare" class="section">
-  <div class="container">
-    <div class="sec-head reveal">
-      <span class="tag">Why PICSELL</span>
-      <h2>Comparison with <span class="highlight">Typical Solutions</span></h2>
-      <p>We are the only platform with Vision AI + SFA + HoReCa + Offline-First in a single product.</p>
-    </div>
-
-    <div class="table-wrap reveal">
-      <table class="comp-table">
-        <thead>
-          <tr>
-            <th>Platform</th>
-            <th class="picsell-col">PICSELL ✦</th>
-            <th>Vision AI Specialist (UA)</th>
-            <th>Image Recognition (UA)</th>
-            <th>SFA Platform (UA)</th>
-            <th>Global Vision AI</th>
-            <th>SFA Solution (EU)</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Vision AI Recognition</td>
-            <td class="picsell-col"><span class="picsell-badge-cell"><span class="ic-yes">✓</span> 99.9%</span></td>
-            <td><span class="ic-part">◐</span> partial</td>
-            <td><span class="ic-yes">✓</span></td>
-            <td><span class="ic-no">✗</span></td>
-            <td><span class="ic-yes">✓</span></td>
-            <td><span class="ic-no">✗</span></td>
-          </tr>
-          <tr>
-            <td>SFA / Field Sales</td>
-            <td class="picsell-col"><span class="ic-yes">✓</span></td>
-            <td><span class="ic-part">◐</span> basic</td>
-            <td><span class="ic-no">✗</span></td>
-            <td><span class="ic-yes">✓</span></td>
-            <td><span class="ic-no">✗</span></td>
-            <td><span class="ic-yes">✓</span></td>
-          </tr>
-          <tr>
-            <td>HoReCa Intelligence</td>
-            <td class="picsell-col"><span class="ic-yes">✓</span></td>
-            <td><span class="ic-no">✗</span></td>
-            <td><span class="ic-no">✗</span></td>
-            <td><span class="ic-no">✗</span></td>
-            <td><span class="ic-no">✗</span></td>
-            <td><span class="ic-no">✗</span></td>
-          </tr>
-          <tr>
-            <td>Offline-First Mode</td>
-            <td class="picsell-col"><span class="ic-yes">✓</span></td>
-            <td><span class="ic-no">✗</span></td>
-            <td><span class="ic-no">✗</span></td>
-            <td><span class="ic-part">◐</span></td>
-            <td><span class="ic-no">✗</span></td>
-            <td><span class="ic-part">◐</span></td>
-          </tr>
-          <tr>
-            <td>SMB Pricing</td>
-            <td class="picsell-col"><span class="ic-yes">✓</span> affordable</td>
-            <td><span class="ic-part">◐</span></td>
-            <td><span class="ic-yes">✓</span></td>
-            <td><span class="ic-no">✗</span> expensive</td>
-            <td><span class="ic-no">✗</span> enterprise</td>
-            <td><span class="ic-part">◐</span></td>
-          </tr>
-          <tr>
-            <td>Implementation</td>
-            <td class="picsell-col"><span class="ic-yes">✓</span> 1-4 weeks</td>
-            <td><span class="ic-part">◐</span> 2-3 mo</td>
-            <td><span class="ic-yes">✓</span></td>
-            <td><span class="ic-no">✗</span> 6+ mo</td>
-            <td><span class="ic-no">✗</span> 3-6 mo</td>
-            <td><span class="ic-part">◐</span> 2-4 mo</td>
-          </tr>
-          <tr>
-            <td>Local Support</td>
-            <td class="picsell-col"><span class="ic-yes">✓</span></td>
-            <td><span class="ic-yes">✓</span></td>
-            <td><span class="ic-yes">✓</span></td>
-            <td><span class="ic-part">◐</span></td>
-            <td><span class="ic-no">✗</span></td>
-            <td><span class="ic-no">✗</span></td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="table-note">
-        <span class="table-note-icon">ℹ️</span>
-        <span>PICSELL — the only platform with all 7 criteria. <span style="color:var(--neon);">✓</span> = full support &nbsp;|&nbsp; <span style="color:var(--orange);">◐</span> = partial &nbsp;|&nbsp; <span style="opacity:.4">✗</span> = absent</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════ CASE STUDY ══════════════════ -->
-<section id="case" class="section" style="background:var(--bg2);">
-  <div class="container">
-    <div class="sec-head reveal">
-      <span class="tag">Client Case Study</span>
-      <h2>Real Results. <span class="highlight">Real Numbers.</span></h2>
-    </div>
-
-    <div class="case-card reveal">
-      <div class="case-left">
-        <div>
-          <div class="case-tag">Dairy Industry · First Full Migration</div>
-          <div class="case-logo" style="margin-top:8px;">Lactalis</div>
-        </div>
-
-        <h3>From Excel Reports to Real Time — Full Migration to PICSELL in 4 Weeks</h3>
-
-        <div class="case-quote">
-          "First PICSELL client with full ecosystem migration. Zero manual reports. Shelf data — in real time, no Excel, no delays."
-        </div>
-
-        <div class="case-results">
-          <div class="case-res-item">
-            <div class="case-res-val">0</div>
-            <div class="case-res-label">Manual Excel Reports</div>
-          </div>
-          <div class="case-res-item">
-            <div class="case-res-val">&lt;2 min</div>
-            <div class="case-res-label">OOS Detection</div>
-          </div>
-          <div class="case-res-item">
-            <div class="case-res-val">100%</div>
-            <div class="case-res-label">Real-time Data</div>
-          </div>
-        </div>
-
-        <a href="/case-lactalis/" class="btn btn-s btn-sm">Read Full Case Study →</a>
-      </div>
-
-      <div class="case-right">
-        <div class="tag" style="margin-bottom:var(--s2);">How the Implementation Went</div>
-        <div class="case-timeline">
-          <div class="case-tl-item">
-            <div class="case-tl-num">1</div>
-            <div class="case-tl-text">
-              <strong>Week 1: Audit and Onboarding</strong>
-              Loaded the SKU database, connected to the accounting system, configured planograms.
-            </div>
-          </div>
-          <div class="case-tl-item">
-            <div class="case-tl-num">2</div>
-            <div class="case-tl-text">
-              <strong>Week 2: Team Training</strong>
-              Sales rep onboarding — 30 minutes per agent. First real photos taken.
-            </div>
-          </div>
-          <div class="case-tl-item">
-            <div class="case-tl-num">3</div>
-            <div class="case-tl-text">
-              <strong>Week 3: Pilot — 50 Outlets</strong>
-              First data in dashboard. First OOS detected. First alerts sent to managers.
-            </div>
-          </div>
-          <div class="case-tl-item">
-            <div class="case-tl-num">4</div>
-            <div class="case-tl-text">
-              <strong>Week 4: Full Launch</strong>
-              All outlets online. Last Excel report written. Shelf data — in real time.
-            </div>
-          </div>
-        </div>
-
-        <div style="display:flex;gap:var(--s2);flex-wrap:wrap;margin-top:var(--s3);">
-          <div class="badge-neon">Vision AI</div>
-          <div class="badge-blue">Sales App</div>
-          <div class="badge-blue">Power BI</div>
-        </div>
-      </div>
-    </div>
-
-    <div style="text-align:center;margin-top:var(--s4);">
-      <a href="/case-studies/" class="btn btn-g">View All Case Studies →</a>
     </div>
   </div>
 </section>
 
 <!-- ══════════════════ CTA FORM ══════════════════ -->
-<section id="cta" class="section">
-  <div class="container">
-    <div class="cta-inner">
-      <div class="cta-left reveal-left">
-        <span class="tag" style="display:block;margin-bottom:var(--s2);">Book a Demo</span>
-        <h2>
-          <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2L13.5 10.5L22 12L13.5 13.5L12 22L10.5 13.5L2 12L10.5 10.5Z" fill="#0057FF"/></svg>
-          Ready to See Your Shelf Differently?
-        </h2>
-        <p>Book a personalized demo — we'll show how PICSELL works for your specific business. No sales scripts. No obligations.</p>
-
-        <div class="cta-perks">
-          <div class="cta-perk"><span class="cta-perk-icon">✓</span>Live recognition of your SKU on a real shelf</div>
-          <div class="cta-perk"><span class="cta-perk-icon">✓</span>Dashboard configured for your KPIs — right during the demo</div>
-          <div class="cta-perk"><span class="cta-perk-icon">✓</span>ROI calculation for your team — specific numbers</div>
-          <div class="cta-perk"><span class="cta-perk-icon">✓</span>Response within 2 hours on business days</div>
-        </div>
-
-        <!-- Trust logos -->
-        <div style="margin-top:var(--s4);">
-          <div style="font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--t3);margin-bottom:var(--s2);">Already using:</div>
-          <div style="display:flex;gap:var(--s2);flex-wrap:wrap;">
-            <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:8px 16px;font-size:13px;font-family:'Geologica',sans-serif;font-weight:700;color:var(--t2);">Lactalis</div>
-            <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:8px 16px;font-size:13px;font-family:'Geologica',sans-serif;font-weight:700;color:var(--t2);">Henkel</div>
-            <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:8px 16px;font-size:13px;font-family:'Geologica',sans-serif;font-weight:700;color:var(--t2);">Bayadera</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="reveal-right">
-        <div class="form-card">
-          <form id="mainForm" name="homepage-demo" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-            <input type="hidden" name="form-name" value="homepage-demo">
-            <input type="hidden" name="lang" value="uk">
-            <p style="display:none;"><label>Don't fill this out: <input name="bot-field"></label></p>
-            <h3 style="font-family:'Geologica',sans-serif;font-size:20px;font-weight:700;margin-bottom:var(--s3);">Book Your Personalized Demo</h3>
-            <div class="form-grid">
-              <div class="form-row">
-                <div class="form-group">
-                  <label class="form-label">Name *</label>
-                  <input type="text" class="form-input" placeholder="John" name="name" id="fi-name" required>
-                </div>
-                <div class="form-group">
-                  <label class="form-label">Company *</label>
-                  <input type="text" class="form-input" placeholder="Company name" name="company" id="fi-company" required>
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="form-label">Your Role</label>
-                <select class="form-input form-select" name="role" id="fi-role">
-                  <option value="" disabled selected>Select role</option>
-                  <option>Owner / CEO</option>
-                  <option>Commercial Director</option>
-                  <option>Brand Manager</option>
-                  <option>National Sales Manager</option>
-                  <option>Trade Marketing</option>
-                  <option>IT Director</option>
-                  <option>Distributor</option>
-                  <option>Other</option>
-                </select>
-              </div>
-              <div class="form-row">
-                <div class="form-group">
-                  <label class="form-label">Phone *</label>
-                  <input type="tel" class="form-input" placeholder="+380 XX XXX XXXX" name="phone" id="fi-phone" required>
-                </div>
-                <div class="form-group">
-                  <label class="form-label">Email *</label>
-                  <input type="email" class="form-input" placeholder="your@company.com" name="email" id="fi-email" required>
-                </div>
-              </div>
-              <button type="submit" class="btn btn-p btn-full">
-                Book a Demo →
-              </button>
-              <p class="form-note">🔒 We respond within 2 hours on business days. No obligations. No sales scripts.</p>
-            </div>
-          </form>
-
-          <div id="mainFormError" style="display:none;padding:var(--s3);background:rgba(255,60,60,.07);border:1px solid rgba(255,60,60,.2);border-radius:var(--r3);margin-top:var(--s2);text-align:center;">
-            <p style="color:#ff6b6b;font-weight:600;">&#9888; Something went wrong. Please try again or write to <a href="mailto:info@picsell.ai" style="color:#ff6b6b;">info@picsell.ai</a></p>
-          </div>
-          <div id="mainFormSuccess" class="form-success">
-            <div class="form-success-icon">🎉</div>
-            <h3>Thank you! Request received.</h3>
-            <p>Our manager will contact you within 2 hours on a business day. We're preparing a personalized demo for your business.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+{{ partial "cta-demo.html" . }}
 
 <!-- ══════════════════ FOOTER ══════════════════ -->
 {{ else }}
 <!-- ══════════════════ HERO ══════════════════ -->
 <section id="hero">
   <div class="hero-bg">
-    <div class="dot-grid"></div>
+    <canvas id="heroParticles" class="hero-canvas" aria-hidden="true"></canvas>
     <div class="glow1"></div>
     <div class="glow2"></div>
     <div class="glow3"></div>
@@ -977,41 +487,41 @@
       <!-- LEFT -->
       <div class="hero-left">
         <div class="hero-eyebrow h-anim h-d1">
-          <div class="hero-badge">
-            <div class="badge-dot"></div>
-            <span class="badge-text">All-in-One Sales OS · Ukraine</span>
-          </div>
+          <span class="badge-dot"></span>
+          <span class="badge-text" style="letter-spacing:.14em;">Комплексна retail-execution платформа для FMCG</span>
         </div>
 
         <h1 class="hero-h1 h-anim h-d2">
-          <span class="line"><span style="color:var(--neon)">Бачиш полицю.</span></span>
-          <span class="line">Керуєш командою.</span>
-          <span class="line"><span style="color:var(--blue)">Виграєш ринок.</span></span>
+          <span class="line">Бачиш полицю.</span>
+          <span class="line">Керуєш полем.</span>
+          <span class="line"><span style="color:var(--blue)">Володієш ринком.</span></span>
         </h1>
 
         <p class="hero-sub h-anim h-d3">
-          AI-платформа для FMCG: розпізнавання полиці, SFA і HoReCa-аналітика в одному рішенні
+          Vision AI, польові продажі, HoReCa та конкурентна розвідка — в одному застосунку для кожної ролі.
         </p>
 
         <div class="hero-ctas h-anim h-d4">
           <a href="/demo/" class="btn btn-p btn-lg">Замовити демо →</a>
-          <a href="#how" class="btn btn-s">Подивитись як це працює</a>
-        </div>
-
-        <div class="hero-trust h-anim h-d5">
-          <div class="trust-avatars">
-            <div class="trust-avatar">L</div>
-            <div class="trust-avatar">H</div>
-            <div class="trust-avatar">B</div>
-            <div class="trust-avatar">S</div>
-          </div>
-          <div class="trust-text">Довіряють <strong>Lactalis, Henkel, Bayadera</strong> та інші</div>
+          <a href="#calc" class="btn btn-lime btn-lg">Розрахувати вартість</a>
         </div>
       </div>
 
-      <!-- RIGHT — animated dashboard -->
+      <!-- RIGHT — hero media: video (when supplied) over the animated dashboard fallback -->
       <div class="hero-right h-anim h-d3">
-        <div class="hero-dashboard float-anim">
+        <div class="hero-media">
+          <!-- VIDEO PLACEHOLDER (HOMEPAGE-V2-HANDOFF §4). Enable once Maksim supplies the
+               6-shot hero film (Grok frames), 16:9 desktop. Drop /videos/hero-desktop.{webm,mp4}
+               + /images/hero-poster.jpg and uncomment — onerror removes it so the dashboard
+               fallback below always stays visible.
+          <video class="hero-video" autoplay muted loop playsinline preload="none"
+                 poster="/images/hero-poster.jpg"
+                 onloadeddata="this.classList.add('ready')" onerror="this.remove()">
+            <source src="/videos/hero-desktop.webm" type="video/webm">
+            <source src="/videos/hero-desktop.mp4" type="video/mp4">
+          </video>
+          -->
+          <div class="hero-dashboard float-anim">
           <div class="dash-header">
             <div class="dash-dots">
               <div class="dash-dot dash-dot-r"></div>
@@ -1079,529 +589,114 @@
             <div class="alert-row" style="display:flex;flex-direction:column;gap:5px;margin-top:10px;">
               <div class="alert-item">
                 <div class="alert-dot"></div>
-                <span><strong style="color:#fff">АТБ Хрещатик:</strong> OOS по SKU-018 — рекомендуємо терміновий доозамовлення</span>
+                <span><strong style="color:var(--t1)">АТБ Хрещатик:</strong> OOS по SKU-018 — рекомендуємо терміновий доозамовлення</span>
               </div>
               <div class="alert-item alert-neon">
                 <div class="alert-dot"></div>
-                <span><strong style="color:#fff">Сільпо Оболонь:</strong> Perfect Store Score виріс до 91% після аудиту</span>
+                <span><strong style="color:var(--t1)">Сільпо Оболонь:</strong> Perfect Store Score виріс до 91% після аудиту</span>
               </div>
             </div>
           </div>
         </div>
-
-        <!-- Stats below dashboard -->
-        <div class="hero-stats">
-          <div class="hstat">
-            <div class="hstat-val"><span data-count="10" data-suffix="M+">0</span></div>
-            <div class="hstat-label">SKU оброблено</div>
-          </div>
-          <div class="hstat">
-            <div class="hstat-val"><span data-count="31" data-suffix="K+">0</span></div>
-            <div class="hstat-label">Торгових точок</div>
-          </div>
-          <div class="hstat">
-            <div class="hstat-val"><span data-count="99" data-suffix=".9%">0</span></div>
-            <div class="hstat-label">Точність AI</div>
-          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════ LOGOS STRIP ══════════════════ -->
+<!-- ══════════════════ SCREEN 2 — TRUST LOGOS ══════════════════ -->
 <div class="logos-strip">
-  <div class="container">
-    <div class="logos-inner">
-      <span class="logos-pre">Довіряють:</span>
-      <div class="logo-client">Lactalis</div>
-      <div class="logo-client">Henkel</div>
-      <div class="logo-client">Bayadera</div>
-      <div class="logo-client">Schwarzkopf</div>
-      <div class="logo-client">Nestlé</div>
-      <div class="logo-client">Diageo</div>
+  <p class="logos-caption">Нам довіряють</p>
+  <div class="logos-marquee">
+    <div class="logos-track">
+      <div class="logos-set">
+        <div class="logo-client">Lactalis</div>
+        <div class="logo-client">Henkel</div>
+        <div class="logo-client">Bayadera</div>
+        <div class="logo-client">Schwarzkopf</div>
+        <div class="logo-client">Nestlé</div>
+        <div class="logo-client">Diageo</div>
+        <div class="logo-client">Carlsberg</div>
+      </div>
+      <div class="logos-set" aria-hidden="true">
+        <div class="logo-client">Lactalis</div>
+        <div class="logo-client">Henkel</div>
+        <div class="logo-client">Bayadera</div>
+        <div class="logo-client">Schwarzkopf</div>
+        <div class="logo-client">Nestlé</div>
+        <div class="logo-client">Diageo</div>
+        <div class="logo-client">Carlsberg</div>
+      </div>
+      <div class="logos-set" aria-hidden="true">
+        <div class="logo-client">Lactalis</div>
+        <div class="logo-client">Henkel</div>
+        <div class="logo-client">Bayadera</div>
+        <div class="logo-client">Schwarzkopf</div>
+        <div class="logo-client">Nestlé</div>
+        <div class="logo-client">Diageo</div>
+        <div class="logo-client">Carlsberg</div>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- ══════════════════ PAIN POINTS ══════════════════ -->
-<section id="pain" class="section">
+{{ partial "eco-architecture.html" . }}
+
+{{ partial "module-showcase.html" . }}
+
+{{ partial "unique-band.html" . }}
+
+{{ partial "closed-loop.html" . }}
+
+{{ partial "comparison.html" . }}
+
+{{ partial "calculator.html" . }}
+
+<!-- ══════════════════ SCREEN 10 — SECURITY / TRUST BAND ══════════════════ -->
+<section id="security" class="section">
   <div class="container">
     <div class="sec-head reveal">
-      <span class="tag">Проблеми ринку</span>
-      <h2>Де бізнес <span class="highlight">втрачає гроші</span> щодня</h2>
-      <p>Ці проблеми є у кожного FMCG виробника і дистриб'ютора. Питання — скільки коштує ігнорувати їх ще один рік.</p>
+      <span class="tag">Безпека та довіра</span>
+      <h2>Ваші дані — <span class="highlight">під захистом</span></h2>
+      <p>Інфраструктура в ЄС, рольовий доступ і GDPR-готовність — заявляємо лише те, що відповідає дійсності.</p>
     </div>
-
-    <div class="pain-grid">
-      <div class="pain-card reveal rd1">
-        <div class="pain-icon">⏱️</div>
-        <h3>"Ви дізнаєтесь про OOS не за місяць — за 2 хвилини або не дізнаєтесь взагалі"</h3>
-        <p>Порожня полиця = втрачений клієнт назавжди. Без реального контролю ви бачите це лише у звіті наступного місяця — коли конкурент вже зайняв ваше місце.</p>
+    <div class="sec-grid">
+      <div class="sec-item reveal rd1">
+        <div class="sec-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6-5.7-6-10a6 6 0 1 1 12 0c0 4.3-6 10-6 10z"/><circle cx="12" cy="11" r="2.4"/></svg></div>
+        <h3>Дані в ЄС (Франкфурт)</h3>
+        <p>Хостинг і бази даних розміщені у Франкфурті, ЄС.</p>
       </div>
-      <div class="pain-card reveal rd2">
-        <div class="pain-icon">🕵️</div>
-        <h3>"Фейкові фото, маніпуляції з GPS — ви платите за роботу яку ніхто не контролює"</h3>
-        <p>Агент звітує про 20 візитів. Скільки було реальних? GPS можна підробити. Фото — взяти зі старих. Excel-звіти — надіслати минулотижневі. Ви ніколи не дізнаєтесь.</p>
+      <div class="sec-item reveal rd2">
+        <div class="sec-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div>
+        <h3>Шифрування</h3>
+        <p>Дані шифруються під час передачі та зберігання; ключі — у сховищі.</p>
       </div>
-      <div class="pain-card reveal rd3">
-        <div class="pain-icon">📉</div>
-        <h3>"Конкуренти витісняють ваш бренд щодня — ви дізнаєтесь на квартальній зустрічі"</h3>
-        <p>Поки ваш Brand Manager готує звіт у PowerPoint, конкурент збільшив частку полиці на 15% в ключових мережах. Syndicated data — дорогі і завжди запізнілі.</p>
+      <div class="sec-item reveal rd3">
+        <div class="sec-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 7.6-7 9-4-1.4-7-4.5-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <h3>Рольовий доступ (RLS)</h3>
+        <p>Row-Level Security — кожен користувач бачить лише свої дані.</p>
       </div>
-      <div class="pain-card reveal rd4">
-        <div class="pain-icon">🍾</div>
-        <h3>"Після поставки в HoReCa — починається темрява. Де продукт? Скільки коштує у меню?"</h3>
-        <p>Ви відвантажуєте в ресторан і... тиша. Є ваш продукт у меню? За якою ціною? Скільки конкурентів поряд? Хто ще не є вашим клієнтом? Без PICSELL — ніколи не дізнаєтесь.</p>
+      <div class="sec-item reveal rd4">
+        <div class="sec-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l4 4v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M9.5 13l2 2 3.5-3.5"/></svg></div>
+        <h3>GDPR-готовність</h3>
+        <p>Побудовано з урахуванням вимог GDPR (це не заявка про сертифікацію).</p>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════ HOW IT WORKS ══════════════════ -->
-<section id="how" class="section" style="background:var(--bg1);">
-  <div class="container">
-    <div class="sec-head reveal">
-      <span class="tag">Як це працює</span>
-      <h2>Від фото до рішення — за <span class="hl-neon">&lt;2 секунди</span></h2>
-      <p>Три прості кроки. Ніяких складних впроваджень. Перші дані — вже в перший день роботи.</p>
-    </div>
-
-    <div class="steps-wrap">
-      <div class="step-card reveal rd1">
-        <div class="step-num">01</div>
-        <div class="step-emoji">📷</div>
-        <h3>Агент фотографує</h3>
-        <p>Торговий представник відкриває PICSELL і фотографує полицю або меню. <strong style="color:var(--t1)">AI перевіряє якість фото прямо в додатку</strong> — до завантаження. Офлайн-режим: все збережеться локально.</p>
-        <div class="step-time">⚡ 30 секунд на точку</div>
+      <div class="sec-item reveal rd5">
+        <div class="sec-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v12c0 1.7 3.1 3 7 3s7-1.3 7-3V6"/><path d="M5 12c0 1.7 3.1 3 7 3s7-1.3 7-3"/></svg></div>
+        <h3>Резервні копії</h3>
+        <p>Регулярні автоматичні резервні копії ваших даних.</p>
       </div>
-
-      <div class="step-card reveal rd2">
-        <div class="step-num">02</div>
-        <div class="step-emoji">🧠</div>
-        <h3>AI аналізує автоматично</h3>
-        <p>Наша нейромережа розпізнає <strong style="color:var(--t1)">кожен SKU, OOS, ціни, частку полиці і промо-матеріали</strong> за лічені секунди. Точність 99.9% завдяки симбіозу AI та людської верифікації.</p>
-        <div class="step-time">⚡ &lt;2 секунди обробка</div>
+      <div class="sec-item reveal rd6">
+        <div class="sec-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13v-1a8 8 0 0 1 16 0v1"/><rect x="2.5" y="13" width="4.5" height="6" rx="1.6"/><rect x="17" y="13" width="4.5" height="6" rx="1.6"/><path d="M20 19a3.5 3.5 0 0 1-3.5 3H13"/></svg></div>
+        <h3>Локальна підтримка (UA)</h3>
+        <p>Підтримка українською від локальної команди.</p>
       </div>
-
-      <div class="step-card reveal rd3">
-        <div class="step-num">03</div>
-        <div class="step-emoji">⚡</div>
-        <h3>Дані → Рішення</h3>
-        <p>Power BI дашборд оновлюється в реальному часі. <strong style="color:var(--t1)">AI-агент формує тригерні підказки</strong>: "В АТБ аномальне падіння частки полиці — рекомендуємо терміновий аудит".</p>
-        <div class="step-time">⚡ Алерт за 2 хвилини</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════ PRODUCTS ══════════════════ -->
-<section id="products" class="section" style="background:var(--bg2);">
-  <div class="container">
-    <div class="sec-head reveal">
-      <span class="tag">Продукти</span>
-      <h2>Модульна <span class="highlight">екосистема</span></h2>
-      <p>Беріть тільки те що потрібно зараз. Масштабуйте — коли готові. Все інтегровано в одну платформу.</p>
-    </div>
-
-    <div class="products-grid">
-      <a href="/vision-ai/" class="prod-card reveal rd1">
-        <div class="prod-icon">👁️</div>
-        <h3>Vision AI</h3>
-        <p>Розпізнавання полиці: OOS, Share of Shelf, ціни, Perfect Store — автоматично</p>
-        <div class="prod-tag prod-tag-blue">99.9% точність</div>
-        <div class="prod-arrow">→</div>
-      </a>
-      <a href="/sales-app/" class="prod-card reveal rd2">
-        <div class="prod-icon">📱</div>
-        <h3>Sales App</h3>
-        <p>Мобільний офіс агента: замовлення, маршрути, мерчандайзинг, CRM — офлайн</p>
-        <div class="prod-tag prod-tag-blue">500+ агентів</div>
-        <div class="prod-arrow">→</div>
-      </a>
-      <a href="/horeca/" class="prod-card reveal rd3">
-        <div class="prod-icon">🍽️</div>
-        <h3>HoReCa Intelligence</h3>
-        <p>Моніторинг меню, цін і конкурентів у тисячах закладів — автоматично</p>
-        <div class="prod-tag prod-tag-neon">Тільки в PICSELL</div>
-        <div class="prod-arrow">→</div>
-      </a>
-      <a href="/analytics/" class="prod-card reveal rd4">
-        <div class="prod-icon">📊</div>
-        <h3>Analytics</h3>
-        <p>Power BI дашборди + AI Copilot який сам знаходить аномалії і рекомендує дії</p>
-        <div class="prod-tag prod-tag-blue">AI Copilot</div>
-        <div class="prod-arrow">→</div>
-      </a>
-      <a href="/radar/" class="prod-card reveal rd5">
-        <div class="prod-icon">📡</div>
-        <h3>Radar</h3>
-        <p>Моніторинг ринку: ціни конкурентів, нові точки збуту, географічна аналітика</p>
-        <div class="prod-tag prod-tag-neon">300% ROI</div>
-        <div class="prod-arrow">→</div>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════ SOLUTIONS BY ROLE ══════════════════ -->
-<section id="solutions" class="section">
-  <div class="container">
-    <div class="sec-head reveal">
-      <span class="tag">Рішення за роллю</span>
-      <h2>Оберіть своє <span class="highlight">рішення</span></h2>
-    </div>
-
-    <div class="sol-grid">
-      <div class="sol-card reveal rd1">
-        <div class="sol-emoji">🏭</div>
-        <div class="sol-for">Для виробника / бренду</div>
-        <h3>Ваш бренд під контролем по кожному SKU, регіону і каналу</h3>
-        <p class="sol-desc">Share of Shelf, OOS Detection, Perfect Store Score, Anti-Fraud — все в реальному часі. Без фейкових звітів.</p>
-        <div class="sol-features">
-          <div class="sol-feat"><span class="sol-feat-icon">✓</span>OOS алерт за 2 хвилини</div>
-          <div class="sol-feat"><span class="sol-feat-icon">✓</span>Контроль виконання планограми</div>
-          <div class="sol-feat"><span class="sol-feat-icon">✓</span>Anti-Fraud: GPS + фото верифікація</div>
-        </div>
-        <a href="/solutions-brands/" class="sol-link">Переглянути рішення →</a>
-      </div>
-
-      <div class="sol-card reveal rd2">
-        <div class="sol-emoji">🚚</div>
-        <div class="sol-for">Для дистриб'ютора</div>
-        <h3>Більше візитів, менше витрат — мобільний офіс агента</h3>
-        <p class="sol-desc">Smart маршрути, замовлення в реальному часі, Supervisor View, CRM 360° — все що потрібно польовій команді.</p>
-        <div class="sol-features">
-          <div class="sol-feat"><span class="sol-feat-icon">✓</span>+40% візитів за рахунок маршрутів</div>
-          <div class="sol-feat"><span class="sol-feat-icon">✓</span>-3 год/день на рутину агента</div>
-          <div class="sol-feat"><span class="sol-feat-icon">✓</span>Офлайн-First: критично для UA</div>
-        </div>
-        <a href="/solutions-distributors/" class="sol-link">Переглянути рішення →</a>
-      </div>
-
-      <div class="sol-card reveal rd3">
-        <div class="sol-emoji">🥂</div>
-        <div class="sol-for">Для HoReCa каналу</div>
-        <h3>Ваші конкуренти вже є в 200 ресторанах — ви дізнаєтесь першими</h3>
-        <p class="sol-desc">Menu Intelligence, Competitive Map, Price Monitoring, Lead Generation — жоден конкурент в Україні не має аналогу.</p>
-        <div class="sol-features">
-          <div class="sol-feat"><span class="sol-feat-icon">✓</span>AI читає меню з фото, PDF, Instagram</div>
-          <div class="sol-feat"><span class="sol-feat-icon">✓</span>Знаходимо нові точки збуту автоматично</div>
-          <div class="sol-feat"><span class="sol-feat-icon">✓</span>Ціни конкурентів у реальному часі</div>
-        </div>
-        <a href="/solutions-horeca/" class="sol-link">Переглянути рішення →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════ METRICS ══════════════════ -->
-<section id="metrics" class="section" style="background:var(--bg2);">
-  <div class="container">
-    <div class="sec-head reveal">
-      <span class="tag">Наш масштаб</span>
-      <h2>Цифри, яким <span class="highlight">довіряють лідери</span> ринку</h2>
-    </div>
-
-    <div class="metrics-grid reveal">
-      <div class="metric-box">
-        <div class="metric-val"><span data-count="10" data-suffix="M+">0</span></div>
-        <div class="metric-label">SKU розпізнано</div>
-        <div class="metric-sub">і рахується далі</div>
-      </div>
-      <div class="metric-box">
-        <div class="metric-val"><span data-count="31" data-suffix="K+">0</span></div>
-        <div class="metric-label">Торгових точок покрито</div>
-        <div class="metric-sub">по всій Україні</div>
-      </div>
-      <div class="metric-box">
-        <div class="metric-val"><span data-count="500" data-suffix="+">0</span></div>
-        <div class="metric-label">Торгових представників</div>
-        <div class="metric-sub">активно онлайн</div>
-      </div>
-      <div class="metric-box">
-        <div class="metric-val" style="color:var(--neon);">99.9<span style="font-size:.6em;color:var(--neon);">%</span></div>
-        <div class="metric-label">Точність Vision AI</div>
-        <div class="metric-sub">власна нейромережа</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════ COMPARISON TABLE ══════════════════ -->
-<section id="compare" class="section">
-  <div class="container">
-    <div class="sec-head reveal">
-      <span class="tag">Чому PICSELL</span>
-      <h2>Порівняння з <span class="highlight">типовими рішеннями</span></h2>
-      <p>Ми єдині хто має Vision AI + SFA + HoReCa + Offline-First в одному продукті для українського ринку.</p>
-    </div>
-
-    <div class="table-wrap reveal">
-      <table class="comp-table">
-        <thead>
-          <tr>
-            <th>Платформа</th>
-            <th class="picsell-col">PICSELL ✦</th>
-            <th>Vision AI‑спеціаліст (UA)</th>
-            <th>Image Recognition (UA)</th>
-            <th>SFA-платформа (UA)</th>
-            <th>Global Vision AI</th>
-            <th>SFA-рішення (EU)</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Vision AI розпізнавання</td>
-            <td class="picsell-col"><span class="picsell-badge-cell"><span class="ic-yes">✓</span> 99.9%</span></td>
-            <td><span class="ic-part">◐</span> є</td>
-            <td><span class="ic-yes">✓</span></td>
-            <td><span class="ic-no">✗</span></td>
-            <td><span class="ic-yes">✓</span></td>
-            <td><span class="ic-no">✗</span></td>
-          </tr>
-          <tr>
-            <td>SFA / польові продажі</td>
-            <td class="picsell-col"><span class="ic-yes">✓</span></td>
-            <td><span class="ic-part">◐</span> базово</td>
-            <td><span class="ic-no">✗</span></td>
-            <td><span class="ic-yes">✓</span></td>
-            <td><span class="ic-no">✗</span></td>
-            <td><span class="ic-yes">✓</span></td>
-          </tr>
-          <tr>
-            <td>HoReCa Intelligence</td>
-            <td class="picsell-col"><span class="ic-yes">✓</span></td>
-            <td><span class="ic-no">✗</span></td>
-            <td><span class="ic-no">✗</span></td>
-            <td><span class="ic-no">✗</span></td>
-            <td><span class="ic-no">✗</span></td>
-            <td><span class="ic-no">✗</span></td>
-          </tr>
-          <tr>
-            <td>Offline-First режим</td>
-            <td class="picsell-col"><span class="ic-yes">✓</span></td>
-            <td><span class="ic-no">✗</span></td>
-            <td><span class="ic-no">✗</span></td>
-            <td><span class="ic-part">◐</span></td>
-            <td><span class="ic-no">✗</span></td>
-            <td><span class="ic-part">◐</span></td>
-          </tr>
-          <tr>
-            <td>Ціна для SMB</td>
-            <td class="picsell-col"><span class="ic-yes">✓</span> доступна</td>
-            <td><span class="ic-part">◐</span></td>
-            <td><span class="ic-yes">✓</span></td>
-            <td><span class="ic-no">✗</span> дорого</td>
-            <td><span class="ic-no">✗</span> enterprise</td>
-            <td><span class="ic-part">◐</span></td>
-          </tr>
-          <tr>
-            <td>Впровадження</td>
-            <td class="picsell-col"><span class="ic-yes">✓</span> 1-4 тижні</td>
-            <td><span class="ic-part">◐</span> 2-3 міс</td>
-            <td><span class="ic-yes">✓</span></td>
-            <td><span class="ic-no">✗</span> 6+ міс</td>
-            <td><span class="ic-no">✗</span> 3-6 міс</td>
-            <td><span class="ic-part">◐</span> 2-4 міс</td>
-          </tr>
-          <tr>
-            <td>Локальна UA підтримка</td>
-            <td class="picsell-col"><span class="ic-yes">✓</span></td>
-            <td><span class="ic-yes">✓</span></td>
-            <td><span class="ic-yes">✓</span></td>
-            <td><span class="ic-part">◐</span></td>
-            <td><span class="ic-no">✗</span></td>
-            <td><span class="ic-no">✗</span></td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="table-note">
-        <span class="table-note-icon">ℹ️</span>
-        <span>PICSELL — єдина платформа в Україні що має всі 7 критеріїв. <span style="color:var(--neon);">✓</span> = повна підтримка &nbsp;|&nbsp; <span style="color:var(--orange);">◐</span> = часткова &nbsp;|&nbsp; <span style="opacity:.4">✗</span> = відсутня</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════ CASE STUDY ══════════════════ -->
-<section id="case" class="section" style="background:var(--bg2);">
-  <div class="container">
-    <div class="sec-head reveal">
-      <span class="tag">Кейс клієнта</span>
-      <h2>Реальні результати. <span class="highlight">Реальні цифри.</span></h2>
-    </div>
-
-    <div class="case-card reveal">
-      <div class="case-left">
-        <div>
-          <div class="case-tag">Молочна промисловість · Перший повний перехід</div>
-          <div class="case-logo" style="margin-top:8px;">Lactalis</div>
-        </div>
-
-        <h3>Від Excel-звітів до реального часу — повний перехід на PICSELL за 4 тижні</h3>
-
-        <div class="case-quote">
-          "Перший клієнт PICSELL з повним переходом на екосистему. Жодного ручного звіту. Дані з полиці — в реальному часі, без Excel, без затримок."
-        </div>
-
-        <div class="case-results">
-          <div class="case-res-item">
-            <div class="case-res-val">0</div>
-            <div class="case-res-label">Ручних Excel-звітів</div>
-          </div>
-          <div class="case-res-item">
-            <div class="case-res-val">&lt;2хв</div>
-            <div class="case-res-label">Виявлення OOS</div>
-          </div>
-          <div class="case-res-item">
-            <div class="case-res-val">100%</div>
-            <div class="case-res-label">Дані в реальному часі</div>
-          </div>
-        </div>
-
-        <a href="/case-lactalis/" class="btn btn-s btn-sm">Читати повний кейс →</a>
-      </div>
-
-      <div class="case-right">
-        <div class="tag" style="margin-bottom:var(--s2);">Як відбувалось впровадження</div>
-        <div class="case-timeline">
-          <div class="case-tl-item">
-            <div class="case-tl-num">1</div>
-            <div class="case-tl-text">
-              <strong>Тиждень 1: Аудит і підключення</strong>
-              Завантажили базу SKU, підключили до облікової системи, налаштували планограми.
-            </div>
-          </div>
-          <div class="case-tl-item">
-            <div class="case-tl-num">2</div>
-            <div class="case-tl-text">
-              <strong>Тиждень 2: Навчання команди</strong>
-              Онбординг торгових представників — 30 хвилин на агента. Перші реальні фото.
-            </div>
-          </div>
-          <div class="case-tl-item">
-            <div class="case-tl-num">3</div>
-            <div class="case-tl-text">
-              <strong>Тиждень 3: Пілот 50 точок</strong>
-              Перші дані в дашборді. Виявлені перші OOS. Перші алерти менеджерам.
-            </div>
-          </div>
-          <div class="case-tl-item">
-            <div class="case-tl-num">4</div>
-            <div class="case-tl-text">
-              <strong>Тиждень 4: Повний запуск</strong>
-              Всі точки онлайн. Останній Excel-звіт написаний. Дані з полиці — в реальному часі.
-            </div>
-          </div>
-        </div>
-
-        <div style="display:flex;gap:var(--s2);flex-wrap:wrap;margin-top:var(--s3);">
-          <div class="badge-neon">Vision AI</div>
-          <div class="badge-blue">Sales App</div>
-          <div class="badge-blue">Power BI</div>
-        </div>
-      </div>
-    </div>
-
-    <div style="text-align:center;margin-top:var(--s4);">
-      <a href="/case-studies/" class="btn btn-g">Дивитись всі кейси →</a>
     </div>
   </div>
 </section>
 
 <!-- ══════════════════ CTA FORM ══════════════════ -->
-<section id="cta" class="section">
-  <div class="container">
-    <div class="cta-inner">
-      <div class="cta-left reveal-left">
-        <span class="tag" style="display:block;margin-bottom:var(--s2);">Замовити демо</span>
-        <h2>
-          <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2L13.5 10.5L22 12L13.5 13.5L12 22L10.5 13.5L2 12L10.5 10.5Z" fill="#0057FF"/></svg>
-          Готові побачити свою полицю інакше?
-        </h2>
-        <p>Замовте персональне демо — ми покажемо як PICSELL працює саме для вашого бізнесу. Без скриптів продажів. Без зобов'язань.</p>
-
-        <div class="cta-perks">
-          <div class="cta-perk"><span class="cta-perk-icon">✓</span>Live розпізнавання вашого SKU на реальній полиці</div>
-          <div class="cta-perk"><span class="cta-perk-icon">✓</span>Дашборд налаштований під ваші KPI — прямо на демо</div>
-          <div class="cta-perk"><span class="cta-perk-icon">✓</span>ROI розрахунок для вашої команди — конкретні цифри</div>
-          <div class="cta-perk"><span class="cta-perk-icon">✓</span>Відповідь за 2 години в робочий день</div>
-        </div>
-
-        <!-- Trust logos -->
-        <div style="margin-top:var(--s4);">
-          <div style="font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--t3);margin-bottom:var(--s2);">Вже використовують:</div>
-          <div style="display:flex;gap:var(--s2);flex-wrap:wrap;">
-            <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:8px 16px;font-size:13px;font-family:'Geologica',sans-serif;font-weight:700;color:var(--t2);">Lactalis</div>
-            <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:8px 16px;font-size:13px;font-family:'Geologica',sans-serif;font-weight:700;color:var(--t2);">Henkel</div>
-            <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:8px 16px;font-size:13px;font-family:'Geologica',sans-serif;font-weight:700;color:var(--t2);">Bayadera</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="reveal-right">
-        <div class="form-card">
-          <form id="mainForm" name="homepage-demo" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-            <input type="hidden" name="form-name" value="homepage-demo">
-            <input type="hidden" name="lang" value="uk">
-            <p style="display:none;"><label>Don't fill this out: <input name="bot-field"></label></p>
-            <h3 style="font-family:'Geologica',sans-serif;font-size:20px;font-weight:700;margin-bottom:var(--s3);">Замовте персональне демо</h3>
-            <div class="form-grid">
-              <div class="form-row">
-                <div class="form-group">
-                  <label class="form-label">Ім'я *</label>
-                  <input type="text" class="form-input" placeholder="Олексій" name="name" id="fi-name" required>
-                </div>
-                <div class="form-group">
-                  <label class="form-label">Компанія *</label>
-                  <input type="text" class="form-input" placeholder="Назва компанії" name="company" id="fi-company" required>
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="form-label">Ваша роль</label>
-                <select class="form-input form-select" name="role" id="fi-role">
-                  <option value="" disabled selected>Оберіть роль</option>
-                  <option>Власник / CEO</option>
-                  <option>Комерційний директор</option>
-                  <option>Brand Manager</option>
-                  <option>National Sales Manager</option>
-                  <option>Trade Marketing</option>
-                  <option>IT директор</option>
-                  <option>Дистриб'ютор</option>
-                  <option>Інше</option>
-                </select>
-              </div>
-              <div class="form-row">
-                <div class="form-group">
-                  <label class="form-label">Телефон *</label>
-                  <input type="tel" class="form-input" placeholder="+380 XX XXX XXXX" name="phone" id="fi-phone" required>
-                </div>
-                <div class="form-group">
-                  <label class="form-label">Email *</label>
-                  <input type="email" class="form-input" placeholder="your@company.com" name="email" id="fi-email" required>
-                </div>
-              </div>
-              <button type="submit" class="btn btn-p btn-full">
-                Записатись на демо →
-              </button>
-              <p class="form-note">🔒 Відповімо за 2 години в робочий день. Без зобов'язань. Без скриптів продажів.</p>
-            </div>
-          </form>
-
-          <div id="mainFormError" style="display:none;padding:var(--s3);background:rgba(255,60,60,.07);border:1px solid rgba(255,60,60,.2);border-radius:var(--r3);margin-top:var(--s2);text-align:center;">
-            <p style="color:#ff6b6b;font-weight:600;">&#9888; Щось пішло не так. Спробуйте ще раз або напишіть на <a href="mailto:info@picsell.ai" style="color:#ff6b6b;">info@picsell.ai</a></p>
-          </div>
-          <div id="mainFormSuccess" class="form-success">
-            <div class="form-success-icon">🎉</div>
-            <h3>Дякуємо! Заявку отримано.</h3>
-            <p>Наш менеджер зв'яжеться з вами протягом 2 годин у робочий день. Готуємо персональне демо під ваш бізнес.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+{{ partial "cta-demo.html" . }}
 
 <!-- ══════════════════ FOOTER ══════════════════ -->
 {{ end }}{{ end }}
@@ -1636,73 +731,126 @@
   else reg();
   window.addEventListener('load',reg);
 
-  // Counters
-  function animCount(el){
-    const t=parseFloat(el.dataset.count||0);
-    const suf=el.dataset.suffix||'';
-    const dur=1800;
-    let st=null;
-    const isF=String(t).includes('.');
-    function step(ts){
-      if(!st)st=ts;
-      const p=Math.min((ts-st)/dur,1);
-      const e=1-Math.pow(1-p,3);
-      el.textContent=(isF?(t*e).toFixed(1):Math.floor(t*e))+suf;
-      if(p<1)requestAnimationFrame(step);
-    }
-    requestAnimationFrame(step);
-  }
-  const cobs=new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{if(e.isIntersecting&&!e.target.dataset.counted){e.target.dataset.counted='1';animCount(e.target);cobs.unobserve(e.target);}});
-  },{threshold:0.3});
-  // Hero counters after animation
-  setTimeout(()=>document.querySelectorAll('[data-count]').forEach(c=>cobs.observe(c)),1200);
 })();
+</script>
 
-var mainForm=document.getElementById('mainForm');
-if(mainForm){
-  mainForm.addEventListener('submit',function(ev){
-    ev.preventDefault();
-    var fd=new FormData(mainForm);
-    // 1) Netlify Forms — залишаємо як було
-    fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(fd).toString()})
-    .then(function(res){
-      if(res.ok){
-        mainForm.style.display='none';
-        document.getElementById('mainFormSuccess').style.display='block';
-      } else {
-        document.getElementById('mainFormError').style.display='block';
+<!-- Hero interactive particle field (drift + cursor ring-displacement). Runs at
+     end of <body> so it never blocks LCP / hero text render. -->
+<script>
+(function(){
+  var host=document.getElementById('hero');
+  if(!host)return;
+  var canvas=document.getElementById('heroParticles');
+  if(!canvas)return;
+  var ctx=canvas.getContext('2d');
+  if(!ctx)return;
+
+  var mq=window.matchMedia||function(){return{matches:false};};
+  var hoverCapable=mq('(hover:hover)').matches;
+  var reduceMotion=mq('(prefers-reduced-motion: reduce)').matches;
+  var animate=hoverCapable&&!reduceMotion; // tap / reduced-motion → static field, no rAF
+
+  var PALETTE=['#0057FF','#0057FF','#0057FF','#0047D6','#3D7BFF','#0F1E37','#0F1E37','#C8FF00'];
+  var DPR=Math.min(window.devicePixelRatio||1,2);
+  var R=150, DISP=3.4;
+  var W=0,H=0,t=0,rafId=0,parts=[];
+  var mouse={x:-9999,y:-9999,active:false};
+  var media=host.querySelector('.hero-media'); // parallax target (not .hero-dashboard — it has float-anim)
+
+  function rnd(a,b){return a+Math.random()*(b-a);}
+
+  function build(){
+    var rect=host.getBoundingClientRect();
+    W=rect.width;H=rect.height;
+    canvas.width=Math.round(W*DPR);
+    canvas.height=Math.round(H*DPR);
+    canvas.style.width=W+'px';
+    canvas.style.height=H+'px';
+    ctx.setTransform(DPR,0,0,DPR,0,0);
+    var n=Math.min(260,Math.round(W*H/2300));
+    parts=[];
+    for(var i=0;i<n;i++){
+      parts.push({
+        x:Math.random()*W,y:Math.random()*H,
+        vx:rnd(-0.2,0.2),vy:rnd(-0.2,0.2),
+        r:rnd(1.1,2.2),
+        c:PALETTE[(Math.random()*PALETTE.length)|0],
+        a:rnd(0.35,0.85)
+      });
+    }
+  }
+
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    for(var i=0;i<parts.length;i++){
+      var p=parts[i],rr=p.r,aa=p.a;
+      if(mouse.active){
+        var dx=p.x-mouse.x,dy=p.y-mouse.y,dist=Math.sqrt(dx*dx+dy*dy);
+        if(dist<R&&dist>0.001){
+          var f=1-dist/R;          // falloff
+          var push=DISP*f;         // ring-halo displacement away from cursor
+          p.x+=(dx/dist)*push;
+          p.y+=(dy/dist)*push;
+          rr=p.r+f*1.8;            // grow near cursor
+          aa=Math.min(1,p.a+f*0.5);
+        }
       }
-    })
-    .catch(function(){
-      document.getElementById('mainFormError').style.display='block';
+      ctx.globalAlpha=aa;
+      if(p.c==='#C8FF00'){ctx.shadowBlur=6;ctx.shadowColor='#C8FF00';}else{ctx.shadowBlur=0;}
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,rr,0,6.2832);
+      ctx.fillStyle=p.c;
+      ctx.fill();
+    }
+    ctx.globalAlpha=1;ctx.shadowBlur=0;
+  }
+
+  function step(){
+    t+=0.01;
+    for(var i=0;i<parts.length;i++){
+      var p=parts[i];
+      p.vx+=Math.cos(p.y*0.009+t)*0.012;            // flow-field swirl
+      p.vy+=Math.sin(p.x*0.009+t)*0.012-0.004;       // + slight upward drift
+      var sp=Math.sqrt(p.vx*p.vx+p.vy*p.vy);
+      if(sp>0.62){p.vx=p.vx/sp*0.62;p.vy=p.vy/sp*0.62;} // clip speed
+      p.x+=p.vx;p.y+=p.vy;
+      if(p.x<-5)p.x=W+5;else if(p.x>W+5)p.x=-5;       // wrap
+      if(p.y<-5)p.y=H+5;else if(p.y>H+5)p.y=-5;
+    }
+    draw();
+    if(media){
+      if(mouse.active){
+        var mx=((mouse.x/W)-0.5)*-12, my=((mouse.y/H)-0.5)*-9;
+        media.style.transform='translate('+mx.toFixed(1)+'px,'+my.toFixed(1)+'px)';
+      }else{
+        media.style.transform='';
+      }
+    }
+    rafId=requestAnimationFrame(step);
+  }
+
+  build();
+
+  if(animate){
+    host.addEventListener('mousemove',function(e){
+      var rect=host.getBoundingClientRect();
+      mouse.x=e.clientX-rect.left;mouse.y=e.clientY-rect.top;mouse.active=true;
     });
-    // 2) Supabase leads — паралельно, не блокує UX
-    try{
-      var utm={};
-      try{utm=JSON.parse(sessionStorage.getItem('picsell_utm')||'{}');}catch(e){}
-      var lang=document.documentElement.lang||'uk';
-      fetch('https://iblorvxgiashmdnfzbbs.supabase.co/functions/v1/submit-lead',{
-        method:'POST',
-        headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({
-          full_name:fd.get('name')||'',
-          email:fd.get('email')||'',
-          phone:fd.get('phone')||'',
-          company:fd.get('company')||'',
-          message:fd.get('message')||'',
-          interests:fd.get('interests')||'',
-          source:'picsell.ai',
-          lang:lang,
-          utm_source:utm.utm_source||'direct',
-          utm_medium:utm.utm_medium||'direct',
-          utm_campaign:utm.utm_campaign||'',
-          utm_content:utm.utm_content||'',
-          landing_page:sessionStorage.getItem('picsell_landing')||window.location.pathname
-        })
-      }).catch(function(){});
-    }catch(e){}
-  });
-}
+    host.addEventListener('mouseleave',function(){
+      mouse.active=false;mouse.x=-9999;mouse.y=-9999;
+      if(media)media.style.transform='';
+    });
+    var ro;
+    window.addEventListener('resize',function(){
+      clearTimeout(ro);
+      ro=setTimeout(function(){cancelAnimationFrame(rafId);build();rafId=requestAnimationFrame(step);},150);
+    });
+    rafId=requestAnimationFrame(step);
+  }else{
+    draw(); // static field — single paint, no rAF load
+    var rs;
+    window.addEventListener('resize',function(){clearTimeout(rs);rs=setTimeout(function(){build();draw();},150);});
+  }
+})();
 </script>
 {{ end }}
