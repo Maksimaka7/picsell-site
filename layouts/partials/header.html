@@ -90,8 +90,9 @@ h1,h2,h3,h4{font-family:'Geologica',sans-serif;line-height:1.08;letter-spacing:-
 .nav-link:hover,.nav-link.active{color:var(--t1);background:rgba(255,255,255,.04);}
 .nav-chevron{font-size:10px;transition:transform .2s;}
 .nav-item:hover .nav-chevron{transform:rotate(180deg);}
-.dropdown{position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);background:var(--bg2);border:1px solid var(--border);border-radius:var(--r3);padding:8px;min-width:230px;opacity:0;visibility:hidden;pointer-events:none;transition:all .2s;box-shadow:0 20px 60px rgba(0,0,0,.7);}
-.nav-item:hover .dropdown{opacity:1;visibility:visible;pointer-events:all;}
+.nav-item>.dropdown::before{content:"";position:absolute;left:0;right:0;top:-10px;height:10px;}
+  .dropdown{position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);background:var(--bg2);border:1px solid var(--border);border-radius:var(--r3);padding:8px;min-width:230px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .18s,visibility .18s,transform .18s;transition-delay:.22s;box-shadow:0 20px 60px rgba(15,30,55,.16);}
+.nav-item:hover .dropdown,.nav-item:focus-within .dropdown{opacity:1;visibility:visible;pointer-events:all;transition-delay:0s;}
 .dd-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:var(--r2);color:var(--t2);font-size:14px;transition:background .15s,color .15s;}
 .dd-item:hover{background:rgba(0,87,255,.08);color:var(--t1);}
 .dd-icon{font-size:17px;width:26px;text-align:center;}

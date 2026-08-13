@@ -754,6 +754,7 @@
   var DPR=Math.min(window.devicePixelRatio||1,2);
   var R=150, DISP=3.4;
   var W=0,H=0,t=0,rafId=0,parts=[];
+  var lastTf='', hostRect={left:0,top:0}, running=false, visible=true;
   var mouse={x:-9999,y:-9999,active:false};
   var media=host.querySelector('.hero-media'); // parallax target (not .hero-dashboard — it has float-anim)
 
@@ -761,6 +762,7 @@
 
   function build(){
     var rect=host.getBoundingClientRect();
+    hostRect=rect;
     W=rect.width;H=rect.height;
     canvas.width=Math.round(W*DPR);
     canvas.height=Math.round(H*DPR);
@@ -795,8 +797,11 @@
           aa=Math.min(1,p.a+f*0.5);
         }
       }
+      if(p.c==='#C8FF00'){                    // cheap two-arc halo instead of shadowBlur
+        ctx.globalAlpha=aa*0.22;
+        ctx.beginPath();ctx.arc(p.x,p.y,rr+2.4,0,6.2832);ctx.fillStyle=p.c;ctx.fill();
+      }
       ctx.globalAlpha=aa;
-      if(p.c==='#C8FF00'){ctx.shadowBlur=6;ctx.shadowColor='#C8FF00';}else{ctx.shadowBlur=0;}
       ctx.beginPath();
       ctx.arc(p.x,p.y,rr,0,6.2832);
       ctx.fillStyle=p.c;
@@ -821,31 +826,55 @@
     if(media){
       if(mouse.active){
         var mx=((mouse.x/W)-0.5)*-12, my=((mouse.y/H)-0.5)*-9;
-        media.style.transform='translate('+mx.toFixed(1)+'px,'+my.toFixed(1)+'px)';
-      }else{
-        media.style.transform='';
+        var tf='translate3d('+mx.toFixed(1)+'px,'+my.toFixed(1)+'px,0)';
+        if(tf!==lastTf){media.style.transform=tf;lastTf=tf;}   // write only on change
+      }else if(lastTf!==''){
+        media.style.transform='';lastTf='';
       }
     }
     rafId=requestAnimationFrame(step);
   }
 
+  // The loop used to run forever: off-screen, and in a hidden tab. With 260
+  // particles that pinned a CPU core for the whole session and was the cause of
+  // the stutter/flicker users saw after scrolling away from the hero.
+  function start(){ if(running||!animate)return; running=true; rafId=requestAnimationFrame(step); }
+  function stop(){ if(!running)return; running=false; cancelAnimationFrame(rafId); }
+
   build();
 
   if(animate){
     host.addEventListener('mousemove',function(e){
-      var rect=host.getBoundingClientRect();
-      mouse.x=e.clientX-rect.left;mouse.y=e.clientY-rect.top;mouse.active=true;
-    });
+      // hostRect is cached; reading layout on every mousemove forced a sync reflow
+      mouse.x=e.clientX-hostRect.left;mouse.y=e.clientY-hostRect.top;mouse.active=true;
+    },{passive:true});
     host.addEventListener('mouseleave',function(){
       mouse.active=false;mouse.x=-9999;mouse.y=-9999;
-      if(media)media.style.transform='';
+      if(media){media.style.transform='';lastTf='';}
     });
     var ro;
     window.addEventListener('resize',function(){
       clearTimeout(ro);
-      ro=setTimeout(function(){cancelAnimationFrame(rafId);build();rafId=requestAnimationFrame(step);},150);
+      ro=setTimeout(function(){var was=running;stop();build();if(was)start();},150);
+    },{passive:true});
+    var st;
+    window.addEventListener('scroll',function(){        // rect only while the hero is actually live
+      if(!running)return;
+      clearTimeout(st);st=setTimeout(function(){hostRect=host.getBoundingClientRect();},80);
+    },{passive:true});
+
+    // pause when the hero scrolls out of view
+    if('IntersectionObserver' in window){
+      new IntersectionObserver(function(en){
+        visible=en[0].isIntersecting;
+        if(visible&&!document.hidden)start(); else {stop();mouse.active=false;if(media){media.style.transform='';lastTf='';}}
+      },{threshold:0}).observe(host);
+    }
+    // pause when the tab is in the background
+    document.addEventListener('visibilitychange',function(){
+      if(document.hidden)stop(); else if(visible)start();
     });
-    rafId=requestAnimationFrame(step);
+    start();
   }else{
     draw(); // static field — single paint, no rAF load
     var rs;
