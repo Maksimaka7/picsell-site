@@ -3,9 +3,10 @@
 **Репозиторій:** `Maksimaka7/picsell-site`
 **Гілка:** `main`
 **База:** `4829055` (блоб `head.html` = `f409191`)
-**Патч:** `docs/tasks/patches/hreflang-lang-2026-08-17e.patch`
+**Патч:** `docs/tasks/done/hreflang-lang-2026-08-17e.patch`
 **Пріоритет:** високий — до запуску реклами
 **Оцінка:** 5 хвилин
+**Виконано:** `dd50ee0`
 
 ---
 
@@ -25,7 +26,7 @@
 
 ```bash
 git checkout main && git pull
-git apply docs/tasks/patches/hreflang-lang-2026-08-17e.patch
+git apply docs/tasks/done/hreflang-lang-2026-08-17e.patch
 hugo --gc --minify
 git commit -am "fix(seo): label hreflang by URL, point x-default at the page itself"
 git push
