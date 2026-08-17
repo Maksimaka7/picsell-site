@@ -3,8 +3,9 @@
 **Репозиторій:** `Maksimaka7/picsell-site`
 **Гілка:** `main`
 **База:** `08a9825`
-**Патч:** `docs/tasks/patches/anim-idle-touch-2026-08-13d.patch`
+**Патч:** `docs/tasks/done/anim-idle-touch-2026-08-13d.patch`
 **Оцінка:** 5 хвилин
+**Виконано:** `e700e62`
 
 ---
 
