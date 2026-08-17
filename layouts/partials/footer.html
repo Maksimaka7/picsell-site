@@ -64,7 +64,7 @@
       <ul>
         <li><a href="{{ "/solutions-brands/" | relLangURL }}">{{ if strings.HasPrefix .RelPermalink "/en/" }}For Brands{{ else }}Для виробників{{ end }}</a></li>
 <li><a href="{{ "/solutions-distributors/" | relLangURL }}">{{ if strings.HasPrefix .RelPermalink "/en/" }}For Distributors{{ else }}Для дистриб'юторів{{ end }}</a></li>
-        <li><a href="{{ "/solutions-horeca/" | relLangURL }}">For HoReCa</a></li>
+        <li><a href="{{ "/solutions-horeca/" | relLangURL }}">{{ if strings.HasPrefix .RelPermalink "/en/" }}For HoReCa{{ else }}Для HoReCa{{ end }}</a></li>
       </ul>
     </div>
     <div class="footer-col">
