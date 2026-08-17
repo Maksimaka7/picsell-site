@@ -1,0 +1,25 @@
+diff --git a/layouts/partials/head.html b/layouts/partials/head.html
+index f409191..ec4cd09 100644
+--- a/layouts/partials/head.html
++++ b/layouts/partials/head.html
+@@ -88,10 +88,18 @@
+ 
+ <!-- Canonical & hreflang -->
+ <link rel="canonical" href="{{ $canonical }}"/>
++{{/* Both language trees live under the default Hugo language, so .Language.Lang
++     reports "uk" for every page — including the English ones, which told Google
++     the English site was Ukrainian. Derive the label from the URL instead, the
++     same way every other template in this repo does. */}}
++{{ $ukHref := "" }}
+ {{ range .AllTranslations }}
+-<link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}"/>
++{{ $isEn := strings.HasPrefix .RelPermalink "/en/" }}
++{{ if not $isEn }}{{ $ukHref = .Permalink }}{{ end }}
++<link rel="alternate" hreflang="{{ cond $isEn "en" "uk" }}" href="{{ .Permalink }}"/>
+ {{ end }}
+-<link rel="alternate" hreflang="x-default" href="{{ .Site.BaseURL }}"/>
++{{/* x-default belongs to this page's default-language version, not the site root. */}}
++<link rel="alternate" hreflang="x-default" href="{{ $ukHref | default $canonical }}"/>
+ 
+ <!-- Favicon -->
+ <link rel="icon" type="image/png" sizes="64x64" href="/favicon-64.png"/>
