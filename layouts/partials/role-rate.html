@@ -1,0 +1,10 @@
+{{- /* Seat rate with a thin space for thousands, matching how the calculator
+       renders it (₴1 400, not ₴1,400). lang.FormatNumberCustom takes its
+       separators as one space-delimited option string, which cannot express a
+       space as the grouping separator — so do it explicitly. Rates are 3–4
+       digits, and the calculator is the source these must agree with. */ -}}
+{{- if ge . 1000 -}}
+{{ printf "%d %03d" (div . 1000) (mod . 1000) }}
+{{- else -}}
+{{ . }}
+{{- end -}}

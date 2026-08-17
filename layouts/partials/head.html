@@ -1,5 +1,21 @@
-{{ $title := .Params.seoTitle | default (and .IsHome site.Params.seoTitle) | default .Title | default site.Title }}
-{{ $description := .Params.seoDescription | default (and .IsHome site.Params.seoDescription) | default site.Params.description }}
+{{/* The roles hub and the four role pages keep their copy in data/roles.yaml, so
+     their front matter carries routing only. Resolve title/description here rather
+     than in the page layout — a second <title> in head-extra is exactly the bug the
+     homepage had. */}}
+{{ $lang := cond (strings.HasPrefix .RelPermalink "/en/") "en" "uk" }}
+{{ $dataTitle := "" }}
+{{ $dataDesc := "" }}
+{{ if eq .Params.layout "roles" }}
+  {{ $h := index site.Data.roles.hub $lang }}
+  {{ $dataTitle = $h.title }}{{ $dataDesc = $h.description }}
+{{ else if .Params.roleSlug }}
+  {{ range where site.Data.roles.roles "slug" .Params.roleSlug }}
+    {{ $r := index . $lang }}
+    {{ $dataTitle = $r.title }}{{ $dataDesc = $r.description }}
+  {{ end }}
+{{ end }}
+{{ $title := .Params.seoTitle | default $dataTitle | default (and .IsHome site.Params.seoTitle) | default .Title | default site.Title }}
+{{ $description := .Params.seoDescription | default $dataDesc | default (and .IsHome site.Params.seoDescription) | default site.Params.description }}
 {{ $ogImage := .Params.ogImage | default site.Params.ogImage }}
 {{ $canonical := .Permalink }}
 

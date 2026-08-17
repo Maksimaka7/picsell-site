@@ -1,5 +1,7 @@
 {{ define "head-extra" }}
 <style>
+.interest-role{display:block;margin-bottom:var(--s3);padding:10px 14px;border-radius:var(--r2);background:rgba(0,87,255,.08);border:1px solid rgba(0,87,255,.2);font-size:14px;color:var(--t1);}
+
 /* HERO */
 #hero{position:relative;padding:140px 0 var(--s7);background:var(--bg0);overflow:hidden;}
 .dot-grid{position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.05) 1px,transparent 1px);background-size:30px 30px;pointer-events:none;}
@@ -117,7 +119,8 @@
 
       <div class="h-anim h-d2">
         <div class="form-card">
-          <form id="demoForm" name="demo-request" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+          <div class="interest-role" id="interestRole" hidden></div>
+            <form id="demoForm" name="demo-request" method="POST" data-netlify="true" netlify-honeypot="bot-field">
             <input type="hidden" name="form-name" value="demo-request">
             <input type="hidden" name="lang" value="uk">
             <p style="display:none;"><label>Don't fill this out: <input name="bot-field"></label></p>
@@ -295,7 +298,8 @@
 
       <div class="h-anim h-d2">
         <div class="form-card">
-          <form id="demoForm" name="demo-request" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+          <div class="interest-role" id="interestRole" hidden></div>
+            <form id="demoForm" name="demo-request" method="POST" data-netlify="true" netlify-honeypot="bot-field">
             <input type="hidden" name="form-name" value="demo-request">
             <input type="hidden" name="lang" value="uk">
             <p style="display:none;"><label>Don't fill this out: <input name="bot-field"></label></p>
@@ -455,6 +459,18 @@
     });
   });
 })();
+/* Shows which role page the visitor came from. Data-driven label, so the two
+   languages stay in sync with data/roles.yaml. */
+var ROLE_LABEL = {{ $rl := dict }}{{ $lang := cond (strings.HasPrefix .RelPermalink "/en/") "en" "uk" }}{{ range site.Data.roles.roles }}{{ $rl = merge $rl (dict .slug (index . $lang).name) }}{{ end }}{{ $rl | jsonify | safeJS }};
+(function(){
+  var slug = new URLSearchParams(location.search).get('role');
+  if(!slug || !ROLE_LABEL[slug]) return;
+  var pre = {{ if strings.HasPrefix .RelPermalink "/en/" }}'Interested in the role: '{{ else }}'Цікавить роль: '{{ end }};
+  document.querySelectorAll('#interestRole').forEach(function(el){
+    el.textContent = pre + ROLE_LABEL[slug];
+    el.hidden = false;
+  });
+})();
 function submitDemoForm(form) {
   var fd = new FormData(form);
   // Збираємо чекбокси вручну (URLSearchParams не передає множинні значення)
@@ -494,6 +510,10 @@ function submitDemoForm(form) {
             agents:fd.get('agents')||'',
             message:[fd.get('role')?('роль: '+fd.get('role')):'',fd.get('agents')?('агентів: '+fd.get('agents')):'',checked.length?('цікавить: '+checked.join(', ')):''].filter(Boolean).join(' | '),
             interests:checked.join(', '),
+            /* Which role page sent this lead. Deliberately NOT mapped onto the
+               `role` select — that field holds buyer job titles (CEO, Commercial
+               Director), and a slug does not belong in it. */
+            interest_role:(new URLSearchParams(location.search).get('role')||''),
             source:'picsell.ai/demo',
             form_id:'demo',
         lang:lang,

@@ -68,6 +68,16 @@
       </ul>
     </div>
     <div class="footer-col">
+      <div class="footer-col-title">{{ if strings.HasPrefix .RelPermalink "/en/" }}Roles{{ else }}Ролі{{ end }}</div>
+      <ul>
+        {{ $flang := cond (strings.HasPrefix .RelPermalink "/en/") "en" "uk" }}
+        {{ range site.Data.roles.roles }}
+        <li><a href="{{ printf "/roles/%s/" .slug | relLangURL }}">{{ (index . $flang).name }}</a></li>
+        {{ end }}
+        <li><a href="{{ "/roles/" | relLangURL }}">{{ if strings.HasPrefix .RelPermalink "/en/" }}All roles →{{ else }}Усі ролі →{{ end }}</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
       <div class="footer-col-title">{{ if strings.HasPrefix .RelPermalink "/en/" }}Company{{ else }}Компанія{{ end }}</div>
       <ul>
         <li><a href="{{ "/pricing/" | relLangURL }}">{{ if strings.HasPrefix .RelPermalink "/en/" }}Pricing{{ else }}Ціни{{ end }}</a></li>

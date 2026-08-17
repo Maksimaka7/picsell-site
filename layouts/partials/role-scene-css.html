@@ -1,0 +1,179 @@
+{{/* Animated stage for the capability explorer — four scenes, one per role.
+     Ported verbatim from docs/tasks/proto/roles-prototype.html except that the
+     .wv / .pin delays moved from nth-of-type to explicit classes: nth-of-type
+     counts every element of that type, not only the ones carrying the class,
+     which is how half a scene silently stops playing.
+     transform and opacity only. The single exception is stroke-dashoffset on the
+     trend line — one element, small area, no layout work. */}}
+.stage{background:#0B0E14;border-radius:var(--r4);padding:34px 38px;display:flex;align-items:center;gap:40px;flex-wrap:wrap;overflow:hidden;}
+.stage-l{min-width:230px;}
+.stage-num{font-size:76px;font-weight:900;letter-spacing:-.04em;line-height:1;color:#fff;font-variant-numeric:tabular-nums;font-feature-settings:'tnum' 1;transition:color .25s;}
+.stage-num.counting{color:#C8FF00;}
+.stage-sub{font-family:var(--mono);font-size:13px;color:#8A93A3;margin-top:10px;line-height:1.5;max-width:250px;}
+.stage-r{flex:1;min-width:300px;position:relative;height:196px;}
+.anim{position:absolute;inset:0;width:100%;height:100%;opacity:0;transition:opacity .35s;}
+.anim.on{opacity:1;}
+
+/* scene M · shelf scan — each column is delayed to match the beam's arrival, so
+   recognition reads as caused by the beam rather than a decorative blink */
+.sh-bar{fill:#232937}
+.sku{fill:#1B2231;opacity:.4}
+.det{fill:none;stroke:#0057FF;stroke-width:1.5;opacity:0;transform-origin:center}
+.tag{fill:#2A3242}
+.oos{fill:none;stroke:#FF4D5E;stroke-width:1.5;stroke-dasharray:4 4}
+.anim.on .oos{animation:oosPulse 1.7s ease-in-out infinite}
+@keyframes oosPulse{0%,100%{opacity:.3}50%{opacity:1}}
+.beam-glow{fill:#0057FF;opacity:.14}
+.beam-core{fill:#7AACFF;opacity:.9}
+.anim.on .beam{animation:beamX 5.4s cubic-bezier(.4,0,.6,1) infinite}
+@keyframes beamX{0%{transform:translateX(14px)}70%,100%{transform:translateX(496px)}}
+.anim.on .col .sku{animation:skuLit 5.4s ease-out infinite}
+.anim.on .col .det{animation:detIn 5.4s ease-out infinite}
+.anim.on .col .tag{animation:tagLit 5.4s ease-out infinite}
+@keyframes skuLit{0%,4%{fill:#1B2231;opacity:.4}10%,84%{fill:#0057FF;opacity:.85}96%,100%{fill:#1B2231;opacity:.4}}
+@keyframes detIn{0%,4%{opacity:0;transform:scale(1.25)}9%{opacity:1;transform:scale(1)}22%,84%{opacity:.35;transform:scale(1)}96%,100%{opacity:0}}
+@keyframes tagLit{0%,6%{fill:#2A3242}12%,84%{fill:#C8FF00}96%,100%{fill:#2A3242}}
+.anim.on .col:nth-child(1) *{animation-delay:.10s}
+.anim.on .col:nth-child(2) *{animation-delay:.55s}
+.anim.on .col:nth-child(3) *{animation-delay:1.00s}
+.anim.on .col:nth-child(4) *{animation-delay:1.45s}
+.anim.on .col:nth-child(5) *{animation-delay:1.90s}
+.anim.on .col:nth-child(6) *{animation-delay:2.35s}
+.anim.on .col:nth-child(7) *{animation-delay:2.80s}
+.anim.on .col:nth-child(8) *{animation-delay:3.25s}
+.oos-chip rect{fill:#2A1218;stroke:#FF4D5E;stroke-width:1}
+.oos-chip circle{fill:#FF4D5E}
+.oos-chip text{fill:#FF8A96;font-family:var(--mono);font-size:10px;font-weight:700}
+.oos-chip{opacity:0;transform-origin:196px 89px}
+.anim.on .oos-chip{animation:chipIn 5.4s ease-out infinite;animation-delay:1.05s}
+@keyframes chipIn{0%{opacity:0;transform:scale(.8) translateX(-8px)}6%{opacity:1;transform:scale(1) translateX(0)}78%{opacity:1;transform:none}90%,100%{opacity:0;transform:none}}
+.sum-chip rect{fill:#12253F;stroke:#0057FF;stroke-width:1}
+.sum-chip text{fill:#9CC2FF;font-family:var(--mono);font-size:10.5px;font-weight:700}
+.sum-chip{opacity:0}
+.anim.on .sum-chip{animation:chipIn 5.4s ease-out infinite;animation-delay:3.5s}
+
+/* scene T · order assembly */
+.cat-bg{fill:#141B27;stroke:#232937;stroke-width:1}
+.cat-h{fill:#0057FF;opacity:.75}
+.cat-i rect{fill:#222A38}
+.anim.on .cat-i{animation:catPick 5s ease-out infinite}
+.anim.on .ci1{animation-delay:.15s}
+.anim.on .ci2{animation-delay:1.05s}
+.anim.on .ci3{animation-delay:1.95s}
+@keyframes catPick{0%,2%{opacity:.5}6%{opacity:1;transform:translateX(4px)}16%,100%{opacity:.5;transform:none}}
+.fly rect{fill:#0057FF}
+.fly{opacity:0}
+.anim.on .fly{animation:flyOver 5s cubic-bezier(.5,0,.4,1) infinite}
+.anim.on .fly1{animation-delay:.35s}
+.anim.on .fly2{animation-delay:1.25s}
+.anim.on .fly3{animation-delay:2.15s}
+@keyframes flyOver{0%{opacity:0;transform:translate(30px,62px) scale(.9)}6%{opacity:1}14%{opacity:1;transform:translate(232px,54px) scale(1)}20%,100%{opacity:0;transform:translate(232px,54px) scale(1)}}
+.doc{fill:#141B27;stroke:#232937;stroke-width:1}
+.doc-h{fill:#0057FF;opacity:.8}
+.ln rect{fill:#2A3242}.ln .amt{fill:#3A4456}
+.anim.on .ln{opacity:0;animation:lnIn 5s ease-out infinite}
+.anim.on .ln1{animation-delay:.75s}
+.anim.on .ln2{animation-delay:1.65s}
+.anim.on .ln3{animation-delay:2.55s}
+@keyframes lnIn{0%{opacity:0;transform:translateY(5px)}6%,88%{opacity:1;transform:none}100%{opacity:0}}
+.rule{stroke:#232937;stroke-width:1;opacity:0}
+.anim.on .rule{animation:lnIn 5s ease-out infinite;animation-delay:2.9s}
+.total rect{fill:#2A3242}.total .tot-a{fill:#0057FF}
+.total{opacity:0}
+.anim.on .total{animation:lnIn 5s ease-out infinite;animation-delay:3.1s}
+.debt rect{fill:#14301F;stroke:#3FA96B;stroke-width:1}
+.debt text{fill:#8FE0AE;font-family:var(--mono);font-size:10px;font-weight:700}
+.debt{opacity:0}
+.anim.on .debt{animation:chipIn 5s ease-out infinite;animation-delay:.5s}
+.stamp circle{fill:none;stroke:#C8FF00;stroke-width:2}
+.stamp path{fill:none;stroke:#C8FF00;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.stamp{opacity:0;transform-origin:468px 150px}
+.anim.on .stamp{animation:stampIn 5s ease-out infinite;animation-delay:3.5s}
+@keyframes stampIn{0%{opacity:0;transform:scale(1.9) rotate(-12deg)}7%{opacity:1;transform:scale(1) rotate(0)}84%{opacity:1}100%{opacity:0}}
+
+/* scene S · moderation + plan-fact */
+.ph{fill:#141B27;stroke:#232937;stroke-width:1}
+.ph2{opacity:.6}.ph3{opacity:.35}
+.ph-i{fill:#222A38}.ph-m{fill:#2A3242}
+.anim.on .card{animation:cardOut 5.2s ease-in-out infinite}
+@keyframes cardOut{0%,6%{opacity:1;transform:none}20%{opacity:0;transform:translate(150px,-6px) scale(.85)}100%{opacity:1;transform:none}}
+.flyc rect{fill:#1B2231;stroke:#2E3646;stroke-width:1}
+.flyc{opacity:0}
+.anim.on .flyc{animation:sortFly 5.2s cubic-bezier(.5,0,.4,1) infinite}
+.anim.on .flyc1{animation-delay:.2s}
+.anim.on .flyc2{animation-delay:1.5s;animation-name:sortFlyNo}
+.anim.on .flyc3{animation-delay:2.8s}
+@keyframes sortFly{0%{opacity:0;transform:translate(44px,68px) scale(1)}5%{opacity:1}17%{opacity:1;transform:translate(238px,38px) scale(.72)}24%,100%{opacity:0;transform:translate(238px,38px) scale(.72)}}
+@keyframes sortFlyNo{0%{opacity:0;transform:translate(44px,68px) scale(1)}5%{opacity:1}17%{opacity:1;transform:translate(238px,120px) scale(.72)}24%,100%{opacity:0;transform:translate(238px,120px) scale(.72)}}
+.lane-bg{fill:#141B27;stroke:#232937;stroke-width:1}
+.lane-l{fill:#2A3242}
+.lane .ok{fill:none;stroke:#C8FF00;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;opacity:0;transform-origin:272px 56px}
+.lane .no{fill:none;stroke:#FF4D5E;stroke-width:4;stroke-linecap:round;opacity:0;transform-origin:278px 142px}
+.anim.on .lane-ok .ok{animation:markIn 5.2s ease-out infinite;animation-delay:.9s}
+.anim.on .lane-no .no{animation:markIn 5.2s ease-out infinite;animation-delay:2.2s}
+@keyframes markIn{0%{opacity:0;transform:scale(.4)}5%{opacity:1;transform:scale(1.15)}9%,84%{opacity:1;transform:scale(1)}100%{opacity:0}}
+.pf-track{fill:#1B2231}
+.pf-fill{fill:#0057FF;transform-origin:center bottom;transform:scaleY(0)}
+.anim.on .pf-fill{animation:pfUp 5.2s cubic-bezier(.2,.7,.3,1) infinite}
+.anim.on .f1{animation-delay:3.2s}.anim.on .f2{animation-delay:3.35s}
+.anim.on .f3{animation-delay:3.5s}.anim.on .f4{animation-delay:3.65s}
+@keyframes pfUp{0%{transform:scaleY(0)}12%{transform:scaleY(.62)}18%,86%{transform:scaleY(.86)}100%{transform:scaleY(0)}}
+
+/* scene R · territory + dashboard */
+.terr{fill:#111927;stroke:#2A3242;stroke-width:1.5;opacity:0}
+.anim.on .terr{animation:terrIn 5.6s ease-out infinite}
+@keyframes terrIn{0%{opacity:0;transform:scale(.97)}5%,90%{opacity:1;transform:scale(1)}100%{opacity:0}}
+.wv{fill:none;stroke:#0057FF;stroke-width:1.5;opacity:0;transform-origin:center}
+.anim.on .wv{animation:wave 5.6s ease-out infinite}
+.anim.on .w1{animation-delay:.7s}
+.anim.on .w2{animation-delay:1.0s}
+.anim.on .w3{animation-delay:1.3s}
+.anim.on .w4{animation-delay:1.6s}
+@keyframes wave{0%{opacity:0;transform:scale(.4)}8%{opacity:.7}26%{opacity:0;transform:scale(3.1)}100%{opacity:0;transform:scale(3.1)}}
+.pin{fill:#0057FF;opacity:0;transform-origin:center}
+.anim.on .pin{animation:pinIn 5.6s cubic-bezier(.3,1.4,.5,1) infinite}
+.anim.on .p1{animation-delay:.65s}
+.anim.on .p2{animation-delay:.95s}
+.anim.on .p3{animation-delay:1.25s}
+.anim.on .p4{animation-delay:1.55s}
+.anim.on .p5{animation-delay:1.85s}
+.anim.on .p6{animation-delay:2.15s}
+.anim.on .p7{animation-delay:2.45s}
+.anim.on .p8{animation-delay:2.75s}
+@keyframes pinIn{0%{opacity:0;transform:scale(0)}6%{opacity:1;transform:scale(1.35)}11%,88%{opacity:1;transform:scale(1)}100%{opacity:0}}
+.ws circle{fill:none;stroke:#C8FF00;stroke-width:1.5;stroke-dasharray:3 3}
+.ws text{fill:#C8FF00;font-family:var(--mono);font-size:10px;font-weight:700}
+.ws{opacity:0}
+.anim.on .ws{animation:chipIn 5.6s ease-out infinite;animation-delay:3s}
+.d-bg{fill:#111927;stroke:#232937;stroke-width:1}
+.d-base{fill:#2A3242}
+.bar{fill:#0057FF;transform-origin:center bottom;transform:scaleY(0)}
+.anim.on .bar{animation:barUp 5.6s cubic-bezier(.2,.7,.3,1) infinite}
+.anim.on .b1{animation-delay:2.6s}
+.anim.on .b2{animation-delay:2.78s}
+.anim.on .b3{animation-delay:2.96s}
+.anim.on .b4{animation-delay:3.14s}
+@keyframes barUp{0%{transform:scaleY(0)}10%{transform:scaleY(.5)}16%,88%{transform:scaleY(.82)}100%{transform:scaleY(0)}}
+.trend{fill:none;stroke:#C8FF00;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:190;stroke-dashoffset:190}
+.anim.on .trend{animation:draw 5.6s ease-out infinite;animation-delay:3.3s}
+@keyframes draw{0%{stroke-dashoffset:190}14%,88%{stroke-dashoffset:0}100%{stroke-dashoffset:190}}
+.tp{fill:#C8FF00;opacity:0;transform-origin:center}
+.anim.on .tp{animation:markIn 5.6s ease-out infinite;animation-delay:4.1s}
+
+/* the class the IntersectionObserver toggles */
+.stage.idle *{animation-play-state:paused!important}
+
+/* reduced motion gets the finished frame of every scene, not an empty box */
+@media(prefers-reduced-motion:reduce){
+  .stage *{animation:none!important}
+  .anim.on .sku{fill:#0057FF;opacity:.85}
+  .anim.on .det{opacity:.35}
+  .anim.on .tag{fill:#C8FF00}
+  .anim.on .beam{transform:translateX(496px)}
+  .anim.on .oos-chip,.anim.on .sum-chip,.anim.on .ln,.anim.on .rule,.anim.on .total,
+  .anim.on .debt,.anim.on .stamp,.anim.on .pin,.anim.on .terr,.anim.on .ws,.anim.on .tp,
+  .anim.on .lane .ok,.anim.on .lane .no{opacity:1;transform:none}
+  .anim.on .bar,.anim.on .pf-fill{transform:scaleY(.82)}
+  .anim.on .trend{stroke-dashoffset:0}
+  .anim.on .fly,.anim.on .flyc,.anim.on .wv{opacity:0}
+}

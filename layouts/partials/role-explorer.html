@@ -1,0 +1,285 @@
+{{/* Capability explorer — the evidence block on every role page.
+     238 features in 21 categories, filtered by role. Layout ported from
+     docs/tasks/proto/roles-prototype.html; the feature list comes from
+     data/role-features.yaml so nothing is duplicated in markup.
+     This is the only full-dark block on the page — that is what makes it the
+     visual centre. */}}
+{{ $en := strings.HasPrefix .RelPermalink "/en/" }}
+{{ $lang := cond $en "en" "uk" }}
+{{ $features := index site.Data "role-features" }}
+
+{{/* [{d: domain, c: category, i: [{n: name, r: roleFlags}, …]}, …]
+     Objects rather than [name, flags] pairs: Hugo types a slice by its first
+     element, so appending a slice into a slice of strings is rejected outright. */}}
+{{ $feat := slice }}
+{{ range $features.categories }}
+  {{ $items := slice }}
+  {{ range .items }}{{ $items = $items | append (dict "n" .n "r" .r) }}{{ end }}
+  {{ $feat = $feat | append (dict "d" .domain "c" .name "i" $items) }}
+{{ end }}
+
+{{/* Genitive-free wording: roles.yaml carries nominative names only, and the
+     sub-line has to read correctly in both languages without extra data. */}}
+{{ $letters := dict "merchandiser" "M" "sales-rep" "T" "supervisor" "S" "regional-manager" "R" }}
+{{ $names := dict }}
+{{ range site.Data.roles.roles }}
+  {{ $r := index . $lang }}
+  {{ $names = merge $names (dict (index $letters .slug) $r.name) }}
+{{ end }}
+
+{{/* A role page opens the explorer on its own tab; the hub opens on the first. */}}
+{{ $selfRole := "M" }}
+{{ with .Params.roleSlug }}{{ $selfRole = index $letters . }}{{ end }}
+
+<section class="section exp" id="explorer">
+  <div class="container">
+
+    <div class="stage" id="stage">
+      <div class="stage-l">
+        <div class="stage-num" id="expNum">0</div>
+        <div class="stage-sub" id="expSub"></div>
+      </div>
+      <div class="stage-r">
+
+        {{/* M — beam scans the shelf; each column lights as the beam reaches it */}}
+        <svg class="anim" data-role="M" viewBox="0 0 520 196" aria-hidden="true">
+          <g class="shelf">
+            <rect class="sh-bar" x="12" y="60" width="478" height="2"/>
+            <rect class="sh-bar" x="12" y="118" width="478" height="2"/>
+            <rect class="sh-bar" x="12" y="176" width="478" height="2"/>
+          </g>
+          <g class="grid">
+            <g class="col"><rect class="sku" x="20" y="22" width="50" height="36" rx="3"/><rect class="det" x="18" y="20" width="54" height="40" rx="4"/><rect class="sku" x="20" y="80" width="50" height="36" rx="3"/><rect class="det" x="18" y="78" width="54" height="40" rx="4"/><rect class="sku" x="20" y="138" width="50" height="36" rx="3"/><rect class="det" x="18" y="136" width="54" height="40" rx="4"/><rect class="tag" x="32" y="182" width="26" height="4" rx="2"/></g>
+            <g class="col"><rect class="sku" x="78" y="22" width="50" height="36" rx="3"/><rect class="det" x="76" y="20" width="54" height="40" rx="4"/><rect class="sku" x="78" y="80" width="50" height="36" rx="3"/><rect class="det" x="76" y="78" width="54" height="40" rx="4"/><rect class="sku" x="78" y="138" width="50" height="36" rx="3"/><rect class="det" x="76" y="136" width="54" height="40" rx="4"/><rect class="tag" x="90" y="182" width="26" height="4" rx="2"/></g>
+            <g class="col"><rect class="sku" x="136" y="22" width="50" height="36" rx="3"/><rect class="det" x="134" y="20" width="54" height="40" rx="4"/><rect class="oos" x="136" y="80" width="50" height="36" rx="3"/><rect class="sku" x="136" y="138" width="50" height="36" rx="3"/><rect class="det" x="134" y="136" width="54" height="40" rx="4"/><rect class="tag" x="148" y="182" width="26" height="4" rx="2"/></g>
+            <g class="col"><rect class="sku" x="194" y="22" width="50" height="36" rx="3"/><rect class="det" x="192" y="20" width="54" height="40" rx="4"/><rect class="sku" x="194" y="80" width="50" height="36" rx="3"/><rect class="det" x="192" y="78" width="54" height="40" rx="4"/><rect class="sku" x="194" y="138" width="50" height="36" rx="3"/><rect class="det" x="192" y="136" width="54" height="40" rx="4"/><rect class="tag" x="206" y="182" width="26" height="4" rx="2"/></g>
+            <g class="col"><rect class="sku" x="252" y="22" width="50" height="36" rx="3"/><rect class="det" x="250" y="20" width="54" height="40" rx="4"/><rect class="sku" x="252" y="80" width="50" height="36" rx="3"/><rect class="det" x="250" y="78" width="54" height="40" rx="4"/><rect class="sku" x="252" y="138" width="50" height="36" rx="3"/><rect class="det" x="250" y="136" width="54" height="40" rx="4"/><rect class="tag" x="264" y="182" width="26" height="4" rx="2"/></g>
+            <g class="col"><rect class="sku" x="310" y="22" width="50" height="36" rx="3"/><rect class="det" x="308" y="20" width="54" height="40" rx="4"/><rect class="sku" x="310" y="80" width="50" height="36" rx="3"/><rect class="det" x="308" y="78" width="54" height="40" rx="4"/><rect class="sku" x="310" y="138" width="50" height="36" rx="3"/><rect class="det" x="308" y="136" width="54" height="40" rx="4"/><rect class="tag" x="322" y="182" width="26" height="4" rx="2"/></g>
+            <g class="col"><rect class="sku" x="368" y="22" width="50" height="36" rx="3"/><rect class="det" x="366" y="20" width="54" height="40" rx="4"/><rect class="sku" x="368" y="80" width="50" height="36" rx="3"/><rect class="det" x="366" y="78" width="54" height="40" rx="4"/><rect class="sku" x="368" y="138" width="50" height="36" rx="3"/><rect class="det" x="366" y="136" width="54" height="40" rx="4"/><rect class="tag" x="380" y="182" width="26" height="4" rx="2"/></g>
+            <g class="col"><rect class="sku" x="426" y="22" width="50" height="36" rx="3"/><rect class="det" x="424" y="20" width="54" height="40" rx="4"/><rect class="sku" x="426" y="80" width="50" height="36" rx="3"/><rect class="det" x="424" y="78" width="54" height="40" rx="4"/><rect class="sku" x="426" y="138" width="50" height="36" rx="3"/><rect class="det" x="424" y="136" width="54" height="40" rx="4"/><rect class="tag" x="438" y="182" width="26" height="4" rx="2"/></g>
+          </g>
+          <g class="beam">
+            <rect class="beam-glow" x="-26" y="6" width="52" height="176"/>
+            <rect class="beam-core" x="-1" y="6" width="2" height="176"/>
+          </g>
+          <g class="oos-chip">
+            <rect x="196" y="78" width="112" height="22" rx="11"/>
+            <circle cx="209" cy="89" r="3.5"/>
+            <text x="219" y="93">OOS · SKU-018</text>
+          </g>
+          <g class="sum-chip">
+            <rect x="330" y="4" width="176" height="26" rx="13"/>
+            <text x="344" y="21">23 SKU · 1 OOS</text>
+          </g>
+        </svg>
+
+        {{/* T — catalogue line flies into the document, becomes a row, then totals */}}
+        <svg class="anim" data-role="T" viewBox="0 0 520 196" aria-hidden="true">
+          <g class="cat">
+            <rect class="cat-bg" x="8" y="18" width="150" height="160" rx="8"/>
+            <rect class="cat-h" x="24" y="34" width="60" height="6" rx="3"/>
+            <g class="cat-i ci1"><rect x="24" y="58" width="118" height="24" rx="4"/></g>
+            <g class="cat-i ci2"><rect x="24" y="90" width="118" height="24" rx="4"/></g>
+            <g class="cat-i ci3"><rect x="24" y="122" width="118" height="24" rx="4"/></g>
+          </g>
+          <g class="fly fly1"><rect x="0" y="0" width="76" height="18" rx="9"/></g>
+          <g class="fly fly2"><rect x="0" y="0" width="76" height="18" rx="9"/></g>
+          <g class="fly fly3"><rect x="0" y="0" width="76" height="18" rx="9"/></g>
+          <rect class="doc" x="212" y="12" width="230" height="172" rx="8"/>
+          <rect class="doc-h" x="234" y="32" width="78" height="7" rx="3.5"/>
+          <g class="lines">
+            <g class="ln ln1"><rect x="234" y="58" width="118" height="7" rx="3.5"/><rect class="amt" x="374" y="58" width="44" height="7" rx="3.5"/></g>
+            <g class="ln ln2"><rect x="234" y="80" width="96" height="7" rx="3.5"/><rect class="amt" x="374" y="80" width="44" height="7" rx="3.5"/></g>
+            <g class="ln ln3"><rect x="234" y="102" width="132" height="7" rx="3.5"/><rect class="amt" x="374" y="102" width="44" height="7" rx="3.5"/></g>
+          </g>
+          <line class="rule" x1="234" y1="126" x2="418" y2="126"/>
+          <g class="total"><rect x="234" y="140" width="80" height="10" rx="5"/><rect class="tot-a" x="352" y="136" width="66" height="16" rx="8"/></g>
+          <g class="debt"><rect x="452" y="52" width="60" height="22" rx="11"/><text x="464" y="67">{{ if $en }}debt 0{{ else }}борг 0{{ end }}</text></g>
+          <g class="stamp"><circle cx="468" cy="150" r="21"/><path d="M458 150l7 7 15-15"/></g>
+        </svg>
+
+        {{/* S — a photo card leaves the stack into the accepted or rejected lane */}}
+        <svg class="anim" data-role="S" viewBox="0 0 520 196" aria-hidden="true">
+          <g class="inbox">
+            <rect class="ph ph3" x="26" y="60" width="112" height="76" rx="6"/>
+            <rect class="ph ph2" x="20" y="54" width="112" height="76" rx="6"/>
+            <g class="card">
+              <rect class="ph ph1" x="14" y="48" width="112" height="76" rx="6"/>
+              <rect class="ph-i" x="26" y="60" width="88" height="42" rx="3"/>
+              <rect class="ph-m" x="26" y="108" width="52" height="5" rx="2.5"/>
+            </g>
+          </g>
+          <g class="lane lane-ok">
+            <rect class="lane-bg" x="212" y="26" width="128" height="62" rx="8"/>
+            <path class="ok" d="M262 56l10 10 22-22"/>
+            <rect class="lane-l" x="228" y="72" width="42" height="5" rx="2.5"/>
+          </g>
+          <g class="lane lane-no">
+            <rect class="lane-bg" x="212" y="108" width="128" height="62" rx="8"/>
+            <path class="no" d="M264 128l28 28M292 128l-28 28"/>
+            <rect class="lane-l" x="228" y="154" width="42" height="5" rx="2.5"/>
+          </g>
+          <g class="flyc flyc1"><rect x="0" y="0" width="52" height="34" rx="4"/></g>
+          <g class="flyc flyc2"><rect x="0" y="0" width="52" height="34" rx="4"/></g>
+          <g class="flyc flyc3"><rect x="0" y="0" width="52" height="34" rx="4"/></g>
+          <g class="pf">
+            <rect class="pf-track" x="374" y="30" width="10" height="140" rx="5"/>
+            <rect class="pf-track" x="404" y="30" width="10" height="140" rx="5"/>
+            <rect class="pf-track" x="434" y="30" width="10" height="140" rx="5"/>
+            <rect class="pf-track" x="464" y="30" width="10" height="140" rx="5"/>
+            <rect class="pf-fill f1" x="374" y="30" width="10" height="140" rx="5"/>
+            <rect class="pf-fill f2" x="404" y="30" width="10" height="140" rx="5"/>
+            <rect class="pf-fill f3" x="434" y="30" width="10" height="140" rx="5"/>
+            <rect class="pf-fill f4" x="464" y="30" width="10" height="140" rx="5"/>
+          </g>
+        </svg>
+
+        {{/* R — territory outline, coverage pins, white spot, dashboard + trend.
+             Delays sit on explicit classes (w1…w4, p1…p8): nth-of-type counts every
+             element of that type, not only the ones carrying the class. */}}
+        <svg class="anim" data-role="R" viewBox="0 0 520 196" aria-hidden="true">
+          <path class="terr" d="M28 96 L58 40 L118 26 L176 44 L206 34 L246 62 L238 122 L196 166 L124 176 L64 152 Z"/>
+          <g class="waves">
+            <circle class="wv w1" cx="82" cy="72" r="10"/><circle class="wv w2" cx="158" cy="62" r="10"/>
+            <circle class="wv w3" cx="196" cy="112" r="10"/><circle class="wv w4" cx="112" cy="132" r="10"/>
+          </g>
+          <g class="pins">
+            <circle class="pin p1" cx="82"  cy="72"  r="6"/><circle class="pin p2" cx="158" cy="62"  r="6"/>
+            <circle class="pin p3" cx="196" cy="112" r="6"/><circle class="pin p4" cx="112" cy="132" r="6"/>
+            <circle class="pin p5" cx="140" cy="98"  r="6"/><circle class="pin p6" cx="64"  cy="112" r="6"/>
+            <circle class="pin p7" cx="182" cy="150" r="6"/><circle class="pin p8" cx="122" cy="46"  r="6"/>
+          </g>
+          <g class="ws"><circle cx="228" cy="88" r="9"/><text x="240" y="93">white spot</text></g>
+          <g class="dash">
+            <rect class="d-bg" x="298" y="18" width="212" height="160" rx="8"/>
+            <rect class="bar b1" x="322" y="46" width="26" height="112" rx="3"/>
+            <rect class="bar b2" x="364" y="46" width="26" height="112" rx="3"/>
+            <rect class="bar b3" x="406" y="46" width="26" height="112" rx="3"/>
+            <rect class="bar b4" x="448" y="46" width="26" height="112" rx="3"/>
+            <polyline class="trend" points="335,120 377,96 419,78 461,52"/>
+            <circle class="tp" cx="461" cy="52" r="4"/>
+            <rect class="d-base" x="316" y="158" width="164" height="2"/>
+          </g>
+        </svg>
+
+      </div>
+    </div>
+
+    <div class="exp-top">
+      <div>
+        <span class="eyebrow">{{ if $en }}Full capability map{{ else }}Повна карта можливостей{{ end }}</span>
+        <h2 style="margin-top:14px">{{ if $en }}Not a list of benefits.<br>A list of what <span class="hl">actually ships</span>.{{ else }}Не список переваг.<br>Перелік того, що <span class="hl">реально працює</span>.{{ end }}</h2>
+      </div>
+    </div>
+
+    <div class="tabs-row">
+      <div class="tabs" role="group" aria-label="{{ if $en }}Role{{ else }}Роль{{ end }}">
+        {{ range site.Data.roles.roles }}
+          {{ $r := index . $lang }}
+          <button class="tab" type="button" aria-pressed="false" data-role="{{ index $letters .slug }}">{{ $r.name }}</button>
+        {{ end }}
+      </div>
+      <input class="exp-search" id="expQ" type="search" placeholder="{{ if $en }}Find a feature…{{ else }}Знайти функцію…{{ end }}" aria-label="{{ if $en }}Search features{{ else }}Пошук по функціях{{ end }}">
+    </div>
+
+    <div class="exp-grid" id="expGrid"></div>
+    <p class="exp-note">{{ if $en }}Only what works today. Roadmap items are not shown — we cover those on the demo.{{ else }}Показано лише те, що працює сьогодні. Плани не показуємо — про них розкажемо на демо.{{ end }}</p>
+  </div>
+</section>
+
+<script>
+(function(){
+  var FEAT = {{ $feat | jsonify | safeJS }};
+  var ROLE_NAME = {{ $names | jsonify | safeJS }};
+  var EN = {{ $en }};
+  var T = EN
+    ? {sub:function(n){return 'features across '+n+' areas for the '+ROLE_NAME[role]+' role';}, empty:'Nothing matched. Try another query.'}
+    : {sub:function(n){return 'функцій у '+n+' напрямах для ролі «'+ROLE_NAME[role]+'»';}, empty:'Нічого не знайшлося. Спробуйте інший запит.'};
+
+  var role = {{ $selfRole | jsonify | safeJS }};
+  var q = '';
+
+  /* The jump from 47 to 123 is the argument — let it be seen, not swapped.
+     rAF is cancelled on every call so rapid tab clicks can never leave two
+     counters racing over the same field. */
+  var numEl = document.getElementById('expNum');
+  var shown = null, raf = 0;
+  function countTo(target){
+    cancelAnimationFrame(raf);
+    if(shown === null || document.hidden || matchMedia('(prefers-reduced-motion: reduce)').matches){
+      shown = target; numEl.textContent = target; return;
+    }
+    if(shown === target) return;
+    var from = shown, delta = target - from, dur = 550, t0 = performance.now();
+    numEl.classList.add('counting');
+    (function step(now){
+      var p = Math.min(1, (now - t0) / dur);
+      var e = 1 - Math.pow(1 - p, 3);
+      numEl.textContent = Math.round(from + delta * e);
+      if(p < 1){ raf = requestAnimationFrame(step); }
+      else { shown = target; numEl.textContent = target; numEl.classList.remove('counting'); }
+    })(performance.now());
+    shown = target;
+  }
+
+  function esc(t){ return t.replace(/[&<>]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c]; }); }
+  function hi(t){
+    if(!q) return esc(t);
+    var i = t.toLowerCase().indexOf(q);
+    if(i < 0) return esc(t);
+    return esc(t.slice(0,i)) + '<mark>' + esc(t.slice(i, i+q.length)) + '</mark>' + esc(t.slice(i+q.length));
+  }
+
+  var grid = document.getElementById('expGrid');
+  function render(){
+    var total = 0, cats = 0, html = '';
+    FEAT.forEach(function(b, bi){
+      var items = b.i.filter(function(it){
+        return it.r.indexOf(role) >= 0 && (!q || it.n.toLowerCase().indexOf(q) >= 0);
+      });
+      if(!items.length) return;
+      total += items.length; cats++;
+      html += '<div class="exp-cat' + (q ? ' open' : '') + '">' +
+        '<button class="exp-h" type="button" data-i="' + bi + '"><span class="exp-arw">▶</span><b>' + esc(b.c) + '</b><span class="exp-n">' + items.length + '</span></button>' +
+        '<ul class="exp-body">' + items.map(function(it){ return '<li>' + hi(it.n) + '</li>'; }).join('') + '</ul></div>';
+    });
+    grid.innerHTML = html || '<div class="exp-empty">' + T.empty + '</div>';
+    countTo(total);
+    document.getElementById('expSub').textContent = T.sub(cats);
+  }
+
+  var tabs = document.querySelectorAll('.tab');
+  tabs.forEach(function(t){
+    if(t.dataset.role === role) t.setAttribute('aria-pressed','true');
+    t.addEventListener('click', function(){
+      tabs.forEach(function(x){ x.setAttribute('aria-pressed', x === t ? 'true' : 'false'); });
+      role = t.dataset.role; setAnim(); render();
+    });
+  });
+
+  function setAnim(){
+    document.querySelectorAll('.anim').forEach(function(a){ a.classList.toggle('on', a.dataset.role === role); });
+  }
+  setAnim();
+
+  /* Same discipline as the rest of the site: freeze when off-screen or in a
+     background tab. transform and opacity only — nothing here triggers layout. */
+  var stage = document.getElementById('stage');
+  var vis = true;
+  function idle(){ stage.classList.toggle('idle', document.hidden || !vis); }
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(e){ vis = e[0].isIntersecting; idle(); }, {threshold:0}).observe(stage);
+  }
+  document.addEventListener('visibilitychange', idle);
+  idle();
+
+  document.getElementById('expQ').addEventListener('input', function(e){
+    q = e.target.value.trim().toLowerCase(); render();
+  });
+  grid.addEventListener('click', function(e){
+    var h = e.target.closest('.exp-h'); if(!h) return;
+    h.parentElement.classList.toggle('open');
+  });
+  render();
+})();
+</script>

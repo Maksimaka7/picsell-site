@@ -1,0 +1,77 @@
+{{/* /roles/ — the hub the menu's "All roles" points at. Four cards, one per
+     role, each carrying the seat bundle and rate so the page answers "what does
+     this cost me" before the click. All copy from data/roles.yaml. */}}
+{{ define "head-extra" }}
+<style>
+.rp{--mono:'Orbitron',sans-serif;}
+.rp h1{font-size:clamp(38px,5vw,56px);font-weight:900;line-height:1.08;letter-spacing:-.02em;}
+.rp h3{font-size:19px;font-weight:700;line-height:1.15;letter-spacing:-.01em;}
+.rp .eyebrow{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--t3);}
+.rp .hl{color:var(--blue);}
+.rp .lead{font-size:19px;color:var(--t2);line-height:1.6;max-width:640px;}
+.rp-hero{padding:120px 0 56px;background:var(--bg1);}
+.rp-hero .eyebrow{margin-bottom:18px;display:block;}
+.rp-hero h1{margin-bottom:22px;max-width:800px;}
+.hub{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.hub-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:36px;}
+.hub-card{display:block;background:#fff;border:1px solid var(--border);border-radius:var(--r3);padding:26px 22px;transition:border-color .2s,transform .2s;}
+.hub-card:hover{border-color:rgba(0,87,255,.4);transform:translateY(-2px);}
+.hub-card .eyebrow{display:block;margin-bottom:14px;font-size:10px;}
+.hub-card h3{margin-bottom:10px;}
+.hub-card p{font-size:14px;color:var(--t2);line-height:1.5;margin-bottom:16px;}
+.hub-meta{font-family:var(--mono);font-size:12px;color:var(--t3);padding-top:14px;border-top:1px solid var(--border);}
+.hub-meta b{color:var(--t1);font-weight:700;}
+.rp-cta{background:var(--bg1);text-align:center;}
+.rp-cta h2{font-size:clamp(28px,3.4vw,38px);font-weight:800;line-height:1.1;letter-spacing:-.02em;margin-bottom:16px;}
+.rp-cta .lead{margin:0 auto 30px;}
+.rp-btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;}
+@media(max-width:1000px){.hub-grid{grid-template-columns:1fr;}}
+</style>
+{{ end }}
+
+{{ define "main" }}
+{{ $en := strings.HasPrefix .RelPermalink "/en/" }}
+{{ $lang := cond $en "en" "uk" }}
+{{ $H := index site.Data.roles.hub $lang }}
+{{ $L := index site.Data.roles.labels $lang }}
+
+<div class="rp">
+
+<section class="rp-hero">
+  <div class="container">
+    <span class="eyebrow">{{ $H.pick }}</span>
+    <h1>{{ $H.h1 }}</h1>
+    <p class="lead">{{ $H.lead }}</p>
+  </div>
+</section>
+
+<section class="section hub">
+  <div class="container">
+    <span class="eyebrow">{{ $H.pick }}</span>
+    <div class="hub-grid">
+      {{ range site.Data.roles.roles }}
+        {{ $r := index . $lang }}
+        <a class="hub-card" href="{{ printf "/roles/%s/" .slug | relLangURL }}">
+          <span class="eyebrow">{{ $r.tag }}</span>
+          <h3>{{ $r.name }}</h3>
+          <p>{{ $r.lead | truncate 120 }}</p>
+          <div class="hub-meta">{{ .seat }} · <b>₴{{ partial "role-rate.html" .rate }}</b> {{ $L.per_seat }}</div>
+        </a>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+<section class="section rp-cta">
+  <div class="container">
+    <h2>{{ if $en }}See it on <span class="hl">your team</span>{{ else }}Подивіться це на <span class="hl">вашій команді</span>{{ end }}</h2>
+    <p class="lead">{{ if $en }}A demo on your outlets and your assortment. 30 minutes, no slide deck.{{ else }}Демо на ваших точках і вашому асортименті. 30 хвилин, без презентації.{{ end }}</p>
+    <div class="rp-btns">
+      <a href="{{ "/demo/" | relLangURL }}" class="btn btn-p btn-lg">{{ $H.cta }}</a>
+      <a href="{{ "/calculator/" | relLangURL }}" class="btn btn-g">{{ $L.calc }}</a>
+    </div>
+  </div>
+</section>
+
+</div>
+{{ end }}
