@@ -3,8 +3,9 @@
 **Репозиторій:** `Maksimaka7/picsell-site`
 **Гілка:** `main`
 **База:** `6558d69` (блоби: `footer.html` = `ae67c06`, `header.html` = `c017717`)
-**Патч:** `docs/tasks/patches/horeca-i18n-2026-08-17c.patch`
+**Патч:** `docs/tasks/done/horeca-i18n-2026-08-17c.patch`
 **Оцінка:** 3 хвилини
+**Виконано:** `eb0e3dc`
 
 ---
 
@@ -27,7 +28,7 @@
 
 ```bash
 git checkout main && git pull
-git apply docs/tasks/patches/horeca-i18n-2026-08-17c.patch
+git apply docs/tasks/done/horeca-i18n-2026-08-17c.patch
 hugo --gc --minify
 git commit -am "fix(i18n): localise the For HoReCa nav link in footer and mobile menu"
 git push

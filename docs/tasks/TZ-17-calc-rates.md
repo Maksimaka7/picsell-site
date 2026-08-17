@@ -3,8 +3,9 @@
 **Репозиторій:** `Maksimaka7/picsell-site`
 **Гілка:** `main`
 **База:** `e36202f` (блоб `calculator.html` = `3a3df09`)
-**Патч:** `docs/tasks/patches/calc-rates-2026-08-17d.patch`
+**Патч:** `docs/tasks/done/calc-rates-2026-08-17d.patch`
 **Оцінка:** 3 хвилини
+**Виконано:** `993e000`
 
 > Незалежний від ТЗ-16 — інший файл.
 
@@ -34,7 +35,7 @@
 
 ```bash
 git checkout main && git pull
-git apply docs/tasks/patches/calc-rates-2026-08-17d.patch
+git apply docs/tasks/done/calc-rates-2026-08-17d.patch
 hugo --gc --minify
 git commit -am "feat(pricing): update per-seat rates in the calculator"
 git push
