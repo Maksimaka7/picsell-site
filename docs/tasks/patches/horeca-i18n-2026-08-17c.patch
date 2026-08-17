@@ -1,0 +1,26 @@
+diff --git a/layouts/partials/footer.html b/layouts/partials/footer.html
+index ae67c06..6aec718 100644
+--- a/layouts/partials/footer.html
++++ b/layouts/partials/footer.html
+@@ -64,7 +64,7 @@
+       <ul>
+         <li><a href="{{ "/solutions-brands/" | relLangURL }}">{{ if strings.HasPrefix .RelPermalink "/en/" }}For Brands{{ else }}Для виробників{{ end }}</a></li>
+ <li><a href="{{ "/solutions-distributors/" | relLangURL }}">{{ if strings.HasPrefix .RelPermalink "/en/" }}For Distributors{{ else }}Для дистриб'юторів{{ end }}</a></li>
+-        <li><a href="{{ "/solutions-horeca/" | relLangURL }}">For HoReCa</a></li>
++        <li><a href="{{ "/solutions-horeca/" | relLangURL }}">{{ if strings.HasPrefix .RelPermalink "/en/" }}For HoReCa{{ else }}Для HoReCa{{ end }}</a></li>
+       </ul>
+     </div>
+     <div class="footer-col">
+diff --git a/layouts/partials/header.html b/layouts/partials/header.html
+index c017717..ecf7379 100644
+--- a/layouts/partials/header.html
++++ b/layouts/partials/header.html
+@@ -180,7 +180,7 @@ h1,h2,h3,h4{font-family:'Geologica',sans-serif;line-height:1.08;letter-spacing:-
+   <span class="mob-section">{{ if strings.HasPrefix .RelPermalink "/en/" }}Solutions{{ else }}Рішення{{ end }}</span>
+   <a href="{{ "/solutions-brands/" | relLangURL }}">{{ if strings.HasPrefix .RelPermalink "/en/" }}For Brands{{ else }}Для виробників{{ end }}</a>
+   <a href="{{ "/solutions-distributors/" | relLangURL }}">{{ if strings.HasPrefix .RelPermalink "/en/" }}For Distributors{{ else }}Для дистриб'юторів{{ end }}</a>
+-  <a href="{{ "/solutions-horeca/" | relLangURL }}">For HoReCa</a>
++  <a href="{{ "/solutions-horeca/" | relLangURL }}">{{ if strings.HasPrefix .RelPermalink "/en/" }}For HoReCa{{ else }}Для HoReCa{{ end }}</a>
+   <span class="mob-section">{{ if strings.HasPrefix .RelPermalink "/en/" }}Company{{ else }}Компанія{{ end }}</span>
+   <a href="{{ "/pricing/" | relLangURL }}">{{ if strings.HasPrefix .RelPermalink "/en/" }}Pricing{{ else }}Ціни{{ end }}</a>
+   <a href="{{ "/case-studies/" | relLangURL }}">{{ if strings.HasPrefix .RelPermalink "/en/" }}Cases{{ else }}Кейси{{ end }}</a>
