@@ -3,8 +3,9 @@
 **Репозиторій:** `Maksimaka7/picsell-site`
 **Гілка:** `main`
 **База:** `4efebb3` (блоб `layouts/index.html` = `f6ecd98`)
-**Патч:** `docs/tasks/patches/drop-unconditional-start-2026-08-17a.patch`
+**Патч:** `docs/tasks/done/drop-unconditional-start-2026-08-17a.patch`
 **Оцінка:** 3 хвилини
+**Виконано:** `50cac14`
 
 ---
 

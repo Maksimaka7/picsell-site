@@ -3,8 +3,9 @@
 **Репозиторій:** `Maksimaka7/picsell-site`
 **Гілка:** `main`
 **База:** `a329f6d` (блоби: `footer.html` = `faef706`, `head.html` = `06f1cf2`)
-**Патч:** `docs/tasks/patches/support-phone-2026-08-17b.patch`
+**Патч:** `docs/tasks/done/support-phone-2026-08-17b.patch`
 **Оцінка:** 5 хвилин
+**Виконано:** `ce78dfa`
 
 > Незалежний від ТЗ-14 — інші файли, порядок не важливий.
 
