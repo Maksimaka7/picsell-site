@@ -852,6 +852,16 @@
 
   build();
 
+  // Freezing the CSS animations is independent of the canvas loop, so it must sit
+  // outside the `animate` branch: on touch and prefers-reduced-motion the canvas is
+  // static, but scanLine/pulseDot/bboxBlink/float would otherwise run forever —
+  // exactly the devices where battery matters most.
+  function setIdle(){ host.classList.toggle('anim-idle', document.hidden || !visible); }
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(en){ visible=en[0].isIntersecting; setIdle(); },{threshold:0}).observe(host);
+  }
+  document.addEventListener('visibilitychange',setIdle);
+
   if(animate){
     host.addEventListener('mousemove',function(e){
       // hostRect is cached; reading layout on every mousemove forced a sync reflow
@@ -875,14 +885,12 @@
     // pause when the hero scrolls out of view
     if('IntersectionObserver' in window){
       new IntersectionObserver(function(en){
-        visible=en[0].isIntersecting;
-        host.classList.toggle('anim-idle',!visible);   // freeze CSS animations too
+        visible=en[0].isIntersecting; setIdle();
         if(visible&&!document.hidden)start(); else {stop();mouse.active=false;if(media){media.style.transform='';lastTf='';}}
       },{threshold:0}).observe(host);
     }
     // pause when the tab is in the background
     document.addEventListener('visibilitychange',function(){
-      host.classList.toggle('anim-idle',document.hidden||!visible);
       if(document.hidden)stop(); else if(visible)start();
     });
     start();
