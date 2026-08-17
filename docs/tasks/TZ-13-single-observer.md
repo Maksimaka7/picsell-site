@@ -3,8 +3,9 @@
 **Репозиторій:** `Maksimaka7/picsell-site`
 **Гілка:** `main`
 **База:** `ef4d9aa` (блоб `layouts/index.html` = `35bbdd5`)
-**Патч:** `docs/tasks/patches/single-observer-2026-08-13e.patch`
+**Патч:** `docs/tasks/done/single-observer-2026-08-13e.patch`
 **Оцінка:** 5 хвилин
+**Виконано:** `40277fe`
 
 ---
 
