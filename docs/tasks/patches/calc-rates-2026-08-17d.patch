@@ -1,0 +1,31 @@
+diff --git a/layouts/partials/calculator.html b/layouts/partials/calculator.html
+index 3a3df09..549a1c3 100644
+--- a/layouts/partials/calculator.html
++++ b/layouts/partials/calculator.html
+@@ -72,20 +72,20 @@
+       <div class="calc-panel">
+         <div class="calc-block-h">{{ if $en }}Roles (per seat / mo){{ else }}Ролі (за місце / міс){{ end }}</div>
+         <div class="calc-roles">
+-          <div class="calc-role" data-rate="1800">
+-            <div class="calc-role-i"><strong>{{ if $en }}Merchandiser{{ else }}Мерчандайзер{{ end }}</strong><span>Core + Vision · <b>₴1 800</b></span></div>
++          <div class="calc-role" data-rate="1400">
++            <div class="calc-role-i"><strong>{{ if $en }}Merchandiser{{ else }}Мерчандайзер{{ end }}</strong><span>Core + Vision · <b>₴1 400</b></span></div>
+             <div class="calc-step"><button type="button" class="calc-btn" data-d="-1">−</button><input class="calc-num" type="number" min="0" value="5" data-role="{{ if $en }}Merchandiser{{ else }}Мерчандайзер{{ end }}"><button type="button" class="calc-btn" data-d="1">+</button></div>
+           </div>
+-          <div class="calc-role" data-rate="1000">
+-            <div class="calc-role-i"><strong>{{ if $en }}Sales rep{{ else }}Торговий{{ end }}</strong><span>Core + Field · <b>₴1 000</b></span></div>
++          <div class="calc-role" data-rate="1400">
++            <div class="calc-role-i"><strong>{{ if $en }}Sales rep{{ else }}Торговий{{ end }}</strong><span>Core + Field · <b>₴1 400</b></span></div>
+             <div class="calc-step"><button type="button" class="calc-btn" data-d="-1">−</button><input class="calc-num" type="number" min="0" value="3" data-role="{{ if $en }}Sales rep{{ else }}Торговий{{ end }}"><button type="button" class="calc-btn" data-d="1">+</button></div>
+           </div>
+           <div class="calc-role" data-rate="1000">
+             <div class="calc-role-i"><strong>{{ if $en }}Supervisor{{ else }}Супервайзер{{ end }}</strong><span>Core + Analytics · <b>₴1 000</b></span></div>
+             <div class="calc-step"><button type="button" class="calc-btn" data-d="-1">−</button><input class="calc-num" type="number" min="0" value="1" data-role="{{ if $en }}Supervisor{{ else }}Супервайзер{{ end }}"><button type="button" class="calc-btn" data-d="1">+</button></div>
+           </div>
+-          <div class="calc-role" data-rate="1400">
+-            <div class="calc-role-i"><strong>{{ if $en }}User{{ else }}Користувач{{ end }}</strong><span>Core · <b>₴1 400</b></span></div>
++          <div class="calc-role" data-rate="900">
++            <div class="calc-role-i"><strong>{{ if $en }}User{{ else }}Користувач{{ end }}</strong><span>Core · <b>₴900</b></span></div>
+             <div class="calc-step"><button type="button" class="calc-btn" data-d="-1">−</button><input class="calc-num" type="number" min="0" value="0" data-role="{{ if $en }}User{{ else }}Користувач{{ end }}"><button type="button" class="calc-btn" data-d="1">+</button></div>
+           </div>
+           <div class="calc-role" data-rate="0">
