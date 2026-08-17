@@ -1,0 +1,42 @@
+diff --git a/layouts/index.html b/layouts/index.html
+index 35bbdd5..f6ecd98 100644
+--- a/layouts/index.html
++++ b/layouts/index.html
+@@ -857,10 +857,17 @@
+   // static, but scanLine/pulseDot/bboxBlink/float would otherwise run forever —
+   // exactly the devices where battery matters most.
+   function setIdle(){ host.classList.toggle('anim-idle', document.hidden || !visible); }
++  function sync(){                       // one observer drives both CSS and canvas
++    setIdle();
++    if(!animate) return;
++    if(visible && !document.hidden) start();
++    else { stop(); mouse.active=false; if(media){media.style.transform='';lastTf='';} }
++  }
+   if('IntersectionObserver' in window){
+-    new IntersectionObserver(function(en){ visible=en[0].isIntersecting; setIdle(); },{threshold:0}).observe(host);
++    new IntersectionObserver(function(en){ visible=en[0].isIntersecting; sync(); },{threshold:0}).observe(host);
+   }
+-  document.addEventListener('visibilitychange',setIdle);
++  document.addEventListener('visibilitychange',sync);
++  sync();   // a tab opened in the background gets no IO callback, so seed the state
+ 
+   if(animate){
+     host.addEventListener('mousemove',function(e){
+@@ -882,17 +889,6 @@
+       clearTimeout(st);st=setTimeout(function(){hostRect=host.getBoundingClientRect();},80);
+     },{passive:true});
+ 
+-    // pause when the hero scrolls out of view
+-    if('IntersectionObserver' in window){
+-      new IntersectionObserver(function(en){
+-        visible=en[0].isIntersecting; setIdle();
+-        if(visible&&!document.hidden)start(); else {stop();mouse.active=false;if(media){media.style.transform='';lastTf='';}}
+-      },{threshold:0}).observe(host);
+-    }
+-    // pause when the tab is in the background
+-    document.addEventListener('visibilitychange',function(){
+-      if(document.hidden)stop(); else if(visible)start();
+-    });
+     start();
+   }else{
+     draw(); // static field — single paint, no rAF load
