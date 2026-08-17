@@ -888,8 +888,9 @@
       if(!running)return;
       clearTimeout(st);st=setTimeout(function(){hostRect=host.getBoundingClientRect();},80);
     },{passive:true});
-
-    start();
+    // No start() here: sync() above already owns that decision and correctly
+    // declines to start in a background tab. A second unconditional call would
+    // undo the seeding it just did.
   }else{
     draw(); // static field — single paint, no rAF load
     var rs;
