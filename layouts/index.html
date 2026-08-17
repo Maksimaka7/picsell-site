@@ -38,8 +38,8 @@
 .hero-left{}
 .hero-eyebrow{display:flex;align-items:center;gap:var(--s2);margin-bottom:var(--s2);}
 .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(200,255,0,.07);border:1px solid rgba(200,255,0,.2);border-radius:999px;padding:6px 14px 6px 8px;}
-.badge-dot{width:6px;height:6px;background:var(--neon);border-radius:50%;animation:pulseDot 2s ease-in-out infinite;}
-@keyframes pulseDot{0%,100%{box-shadow:0 0 0 0 rgba(200,255,0,.6);}50%{box-shadow:0 0 0 6px rgba(200,255,0,0);}}
+.badge-dot{width:6px;height:6px;background:var(--neon);border-radius:50%;position:relative;}
+@keyframes pulseDot{0%,100%{transform:scale(1);opacity:.55;}50%{transform:scale(3);opacity:0;}}
 .badge-text{font-family:'Orbitron',sans-serif;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--neon-ink);}
 
 .hero-h1{font-size:clamp(42px,5.2vw,72px);font-weight:900;line-height:1.1;letter-spacing:-.03em;margin-bottom:var(--s4);}
@@ -62,7 +62,7 @@
 .dash-dot-r{background:#FF5F57;} .dash-dot-y{background:#FEBC2E;} .dash-dot-g{background:#28C840;}
 .dash-title{font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.14em;color:var(--t2);text-transform:uppercase;}
 .dash-status{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--neon-ink);}
-.dash-status-dot{width:6px;height:6px;background:var(--neon);border-radius:50%;animation:pulseDot 1.5s ease-in-out infinite;}
+.dash-status-dot{width:6px;height:6px;background:var(--neon);border-radius:50%;position:relative;}
 .dash-body{padding:var(--s3);}
 .kpi-row{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s2);margin-bottom:var(--s3);}
 .kpi-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r3);padding:14px;}
@@ -84,8 +84,12 @@
 .sku-c{background:rgba(80,80,90,.3);border-color:rgba(80,80,90,.4);color:var(--t2);height:40px;}
 .sku-oos{background:rgba(255,0,61,.06);border:1.5px dashed rgba(255,0,61,.4);height:50px;position:relative;}
 .oos-label{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Orbitron',sans-serif;font-size:7px;font-weight:700;color:var(--red);white-space:nowrap;letter-spacing:.05em;}
-.ai-scan{position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--blue),var(--cyan),var(--blue),transparent);animation:scanLine 2.5s linear infinite;opacity:.7;}
-@keyframes scanLine{0%{top:30px;}100%{top:calc(100% - 10px);}}
+.ai-scan{position:absolute;top:0;left:0;right:0;height:100%;pointer-events:none;animation:scanLine 2.5s linear infinite;will-change:transform;}
+    .ai-scan::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--blue),var(--cyan),var(--blue),transparent);opacity:.7;}
+/* The canvas loop already pauses off-screen; these CSS animations did not, so the
+   dashboard kept repainting behind the fixed blurred header for the whole session. */
+    #hero.anim-idle *,#hero.anim-idle *::after,#hero.anim-idle *::before{animation-play-state:paused!important;}
+    @keyframes scanLine{0%{transform:translateY(30px);}100%{transform:translateY(calc(100% - 10px));}}
 .ai-bbox{position:absolute;border:1.5px solid var(--blue);border-radius:3px;animation:bboxBlink 2s ease-in-out infinite;}
 .ai-bbox-oos{border-color:var(--red);animation:bboxBlink 1.5s ease-in-out infinite;}
 @keyframes bboxBlink{0%,100%{opacity:1;}50%{opacity:.2;}}
@@ -93,7 +97,12 @@
 .ai-tag-r{background:var(--red);}
 .alert-row{margin-top:var(--s2);}
 .alert-item{display:flex;align-items:center;gap:8px;background:rgba(255,0,61,.06);border:1px solid rgba(255,0,61,.15);border-radius:var(--r2);padding:8px 12px;font-size:11px;color:var(--t2);}
-.alert-dot{width:6px;height:6px;background:var(--red);border-radius:50%;flex-shrink:0;animation:pulseDot 1.5s ease-in-out infinite;}
+.alert-dot{width:6px;height:6px;background:var(--red);border-radius:50%;flex-shrink:0;position:relative;}
+    /* halo is a scaled pseudo-ring: transform+opacity are composited, while the
+       old box-shadow spread forced a full repaint every frame on three dots. */
+    .badge-dot::after,.dash-status-dot::after,.alert-dot::after{content:'';position:absolute;inset:0;border-radius:50%;background:inherit;will-change:transform,opacity;}
+    .badge-dot::after{animation:pulseDot 2s ease-in-out infinite;}
+    .dash-status-dot::after,.alert-dot::after{animation:pulseDot 1.5s ease-in-out infinite;}
 .alert-neon{background:rgba(200,255,0,.05);border-color:rgba(200,255,0,.15);}
 .alert-neon .alert-dot{background:var(--neon);}
 
@@ -867,11 +876,13 @@
     if('IntersectionObserver' in window){
       new IntersectionObserver(function(en){
         visible=en[0].isIntersecting;
+        host.classList.toggle('anim-idle',!visible);   // freeze CSS animations too
         if(visible&&!document.hidden)start(); else {stop();mouse.active=false;if(media){media.style.transform='';lastTf='';}}
       },{threshold:0}).observe(host);
     }
     // pause when the tab is in the background
     document.addEventListener('visibilitychange',function(){
+      host.classList.toggle('anim-idle',document.hidden||!visible);
       if(document.hidden)stop(); else if(visible)start();
     });
     start();
