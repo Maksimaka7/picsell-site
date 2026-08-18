@@ -1,7 +1,9 @@
 <style>
 /* ═══════════════════════════ FOOTER ═══════════════════════════ */
 #footer{background:#060608;border-top:1px solid var(--border);padding:var(--s7) 0 var(--s4);}
-.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:var(--s6);margin-bottom:var(--s6);}
+.footer-grid{display:grid;grid-template-columns:1.5fr repeat(4,minmax(0,1fr));gap:40px;margin-bottom:var(--s6);}
+/* minmax(0,1fr) keeps a long label like «Регіональний менеджер» from pushing
+   its track wider than its share and squeezing the neighbours. */
 .footer-brand-desc{color:var(--t2);font-size:14px;line-height:1.7;margin:var(--s2) 0 var(--s3);max-width:270px;}
 .footer-col-title{font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--t3);margin-bottom:var(--s3);}
 .footer-col ul{display:flex;flex-direction:column;gap:10px;}
@@ -17,10 +19,14 @@
 .soc-btn:hover{border-color:var(--blue);color:var(--blue);background:rgba(0,87,255,.08);}
 .soc-btn svg{width:16px;height:16px;fill:currentColor;flex-shrink:0;}
 
-@media(max-width:1024px){
-  .footer-grid{grid-template-columns:1fr 1fr;gap:var(--s4);}
+@media(max-width:1100px){
+  .footer-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--s4);}
+  .footer-brand{grid-column:1/-1;}
 }
 @media(max-width:768px){
+  .footer-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
+}
+@media(max-width:480px){
   .footer-grid{grid-template-columns:1fr;}
 }
 </style>
