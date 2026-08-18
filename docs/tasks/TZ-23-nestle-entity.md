@@ -3,9 +3,10 @@
 **Репозиторій:** `Maksimaka7/picsell-site`
 **Гілка:** `main`
 **База:** `1e92797` (блоби: `about.html` = `abd3904`, `case-studies.html` = `4f0594c`)
-**Патч:** `docs/tasks/patches/nestle-entity-2026-08-18c.patch`
+**Патч:** `docs/tasks/done/nestle-entity-2026-08-18c.patch`
 **Пріоритет:** на проді зараз
 **Оцінка:** 5 хвилин
+**Виконано:** `5dafe34`
 
 ---
 
@@ -29,7 +30,7 @@
 
 ```bash
 git checkout main && git pull
-git apply docs/tasks/patches/nestle-entity-2026-08-18c.patch
+git apply docs/tasks/done/nestle-entity-2026-08-18c.patch
 hugo --gc --minify
 git commit -am "content(clients): remove the entity-encoded Nestle from the Ukrainian blocks"
 git push
