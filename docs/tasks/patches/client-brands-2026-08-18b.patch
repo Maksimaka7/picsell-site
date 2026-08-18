@@ -1,0 +1,85 @@
+diff --git a/layouts/index.html b/layouts/index.html
+index 5210e1e..552f10c 100644
+--- a/layouts/index.html
++++ b/layouts/index.html
+@@ -395,27 +395,30 @@
+         <div class="logo-client">Henkel</div>
+         <div class="logo-client">Bayadera</div>
+         <div class="logo-client">Schwarzkopf</div>
+-        <div class="logo-client">Nestlé</div>
+         <div class="logo-client">Diageo</div>
+-        <div class="logo-client">Carlsberg</div>
++        <div class="logo-client">Colgate</div>
++        <div class="logo-client">Masafi</div>
++        <div class="logo-client">IDS Borjomi</div>
+       </div>
+       <div class="logos-set" aria-hidden="true">
+         <div class="logo-client">Lactalis</div>
+         <div class="logo-client">Henkel</div>
+         <div class="logo-client">Bayadera</div>
+         <div class="logo-client">Schwarzkopf</div>
+-        <div class="logo-client">Nestlé</div>
+         <div class="logo-client">Diageo</div>
+-        <div class="logo-client">Carlsberg</div>
++        <div class="logo-client">Colgate</div>
++        <div class="logo-client">Masafi</div>
++        <div class="logo-client">IDS Borjomi</div>
+       </div>
+       <div class="logos-set" aria-hidden="true">
+         <div class="logo-client">Lactalis</div>
+         <div class="logo-client">Henkel</div>
+         <div class="logo-client">Bayadera</div>
+         <div class="logo-client">Schwarzkopf</div>
+-        <div class="logo-client">Nestlé</div>
+         <div class="logo-client">Diageo</div>
+-        <div class="logo-client">Carlsberg</div>
++        <div class="logo-client">Colgate</div>
++        <div class="logo-client">Masafi</div>
++        <div class="logo-client">IDS Borjomi</div>
+       </div>
+     </div>
+   </div>
+@@ -623,27 +626,30 @@
+         <div class="logo-client">Henkel</div>
+         <div class="logo-client">Bayadera</div>
+         <div class="logo-client">Schwarzkopf</div>
+-        <div class="logo-client">Nestlé</div>
+         <div class="logo-client">Diageo</div>
+-        <div class="logo-client">Carlsberg</div>
++        <div class="logo-client">Colgate</div>
++        <div class="logo-client">Masafi</div>
++        <div class="logo-client">IDS Borjomi</div>
+       </div>
+       <div class="logos-set" aria-hidden="true">
+         <div class="logo-client">Lactalis</div>
+         <div class="logo-client">Henkel</div>
+         <div class="logo-client">Bayadera</div>
+         <div class="logo-client">Schwarzkopf</div>
+-        <div class="logo-client">Nestlé</div>
+         <div class="logo-client">Diageo</div>
+-        <div class="logo-client">Carlsberg</div>
++        <div class="logo-client">Colgate</div>
++        <div class="logo-client">Masafi</div>
++        <div class="logo-client">IDS Borjomi</div>
+       </div>
+       <div class="logos-set" aria-hidden="true">
+         <div class="logo-client">Lactalis</div>
+         <div class="logo-client">Henkel</div>
+         <div class="logo-client">Bayadera</div>
+         <div class="logo-client">Schwarzkopf</div>
+-        <div class="logo-client">Nestlé</div>
+         <div class="logo-client">Diageo</div>
+-        <div class="logo-client">Carlsberg</div>
++        <div class="logo-client">Colgate</div>
++        <div class="logo-client">Masafi</div>
++        <div class="logo-client">IDS Borjomi</div>
+       </div>
+     </div>
+   </div>
+diff --git a/layouts/page/about.html b/layouts/page/about.html
+index 6e21f18..1d13a34 100644
+--- a/layouts/page/about.html
++++ b/layouts/page/about.html
+@@ -1,4 +1,4 @@
+-<div style="text-align:center;"><div style="font-family:'Geologica',sans-serif;font-weight:900;font-size:18px;">Nestlé</div><div style="font-size:11px;color:var(--blue3);margin-top:4px;">Vision AI</div></div>
++<div style="text-align:center;"><div style="font-family:'Geologica',sans-serif;font-weight:900;font-size:18px;">Colgate</div><div style="font-size:11px;color:var(--blue3);margin-top:4px;">Vision AI</div></div>
