@@ -3,8 +3,9 @@
 **Репозиторій:** `Maksimaka7/picsell-site`
 **Гілка:** `main`
 **База:** `0a86920` (блоб `index.html` = `5210e1e`)
-**Патч:** `docs/tasks/patches/client-brands-2026-08-18b.patch`
+**Патч:** `docs/tasks/done/client-brands-2026-08-18b.patch`
 **Оцінка:** 5 хвилин
+**Виконано:** `ecc65ca`
 
 ---
 
@@ -42,7 +43,7 @@ Carlsberg був лише на головній — його додавали р
 
 ```bash
 git checkout main && git pull
-git apply docs/tasks/patches/client-brands-2026-08-18b.patch
+git apply docs/tasks/done/client-brands-2026-08-18b.patch
 hugo --gc --minify
 git commit -am "content(clients): drop Nestle and Carlsberg, add Colgate, Masafi, IDS Borjomi"
 git push
