@@ -14,7 +14,9 @@
 {{ $feat := slice }}
 {{ range $features.categories }}
   {{ $items := slice }}
-  {{ range .items }}{{ $items = $items | append (dict "n" .n "r" .r) }}{{ end }}
+  {{/* .name, not .n — see the header of data/role-features.yaml. The emitted JSON
+       key stays short because that side is JavaScript, where `n` is just a key. */}}
+  {{ range .items }}{{ $items = $items | append (dict "n" .name "r" .r) }}{{ end }}
   {{ $feat = $feat | append (dict "d" .domain "c" .name "i" $items) }}
 {{ end }}
 
