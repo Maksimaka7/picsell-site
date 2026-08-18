@@ -1,0 +1,26 @@
+diff --git a/layouts/page/about.html b/layouts/page/about.html
+index abd3904..cb358a3 100644
+--- a/layouts/page/about.html
++++ b/layouts/page/about.html
+@@ -221,7 +221,7 @@
+             <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--r3);padding:var(--s3);text-align:center;"><div style="font-family:'Geologica',sans-serif;font-weight:900;font-size:18px;">Lactalis</div><div style="font-size:11px;color:var(--neon-ink);margin-top:4px;">&#1055;&#1086;&#1074;&#1085;&#1080;&#1081; &#1087;&#1077;&#1088;&#1077;&#1093;&#1110;&#1076;</div></div>
+             <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--r3);padding:var(--s3);text-align:center;"><div style="font-family:'Geologica',sans-serif;font-weight:900;font-size:18px;">Henkel</div><div style="font-size:11px;color:var(--blue3);margin-top:4px;">Perfect Store</div></div>
+             <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--r3);padding:var(--s3);text-align:center;"><div style="font-family:'Geologica',sans-serif;font-weight:900;font-size:18px;">Bayadera</div><div style="font-size:11px;color:var(--blue3);margin-top:4px;">Sales App</div></div>
+-            <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--r3);padding:var(--s3);text-align:center;"><div style="font-family:'Geologica',sans-serif;font-weight:900;font-size:18px;">Nestl&#233;</div><div style="font-size:11px;color:var(--blue3);margin-top:4px;">Vision AI</div></div>
++            <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--r3);padding:var(--s3);text-align:center;"><div style="font-family:'Geologica',sans-serif;font-weight:900;font-size:18px;">Colgate</div><div style="font-size:11px;color:var(--blue3);margin-top:4px;">Vision AI</div></div>
+           </div>
+         </div>
+       </div>
+diff --git a/layouts/page/case-studies.html b/layouts/page/case-studies.html
+index 4f0594c..7662720 100644
+--- a/layouts/page/case-studies.html
++++ b/layouts/page/case-studies.html
+@@ -286,7 +286,7 @@
+         <div style="font-family:'Geologica',sans-serif;font-weight:700;font-size:18px;color:var(--t3);">Henkel</div>
+         <div style="font-family:'Geologica',sans-serif;font-weight:700;font-size:18px;color:var(--t3);">Bayadera</div>
+         <div style="font-family:'Geologica',sans-serif;font-weight:700;font-size:18px;color:var(--t3);">Schwarzkopf</div>
+-        <div style="font-family:'Geologica',sans-serif;font-weight:700;font-size:18px;color:var(--t3);">Nestl&#233;</div>
++        <div style="font-family:'Geologica',sans-serif;font-weight:700;font-size:18px;color:var(--t3);">Colgate</div>
+         <div style="font-family:'Geologica',sans-serif;font-weight:700;font-size:18px;color:var(--t3);">Diageo</div>
+       </div>
+       <p style="font-size:15px;color:var(--t2);">&#1042;&#1110;&#1076; &#1084;&#1086;&#1083;&#1086;&#1095;&#1085;&#1086;&#1111; &#1087;&#1088;&#1086;&#1084;&#1080;&#1089;&#1083;&#1086;&#1074;&#1086;&#1089;&#1090;&#1110; &#1076;&#1086; &#1072;&#1083;&#1082;&#1086;&#1075;&#1086;&#1083;&#1102; &#1110; &#1082;&#1086;&#1089;&#1084;&#1077;&#1090;&#1080;&#1082;&#1080; &#8212; &#1091;&#1089;&#1110; &#1090;&#1080;&#1087;&#1080; FMCG &#1074;&#1080;&#1088;&#1086;&#1073;&#1085;&#1080;&#1082;&#1110;&#1074;</p>
