@@ -3,9 +3,10 @@
 **Репозиторій:** `Maksimaka7/picsell-site`
 **Гілка:** `main`
 **База:** `42681b5` (блоб `footer.html` = `b3683f8`)
-**Патч:** `docs/tasks/patches/footer-grid-2026-08-18a.patch`
+**Патч:** `docs/tasks/done/footer-grid-2026-08-18a.patch`
 **Пріоритет:** зламано на проді, видно на всіх 67 сторінках
 **Оцінка:** 10 хвилин
+**Виконано:** `5a382ec`
 
 ---
 
@@ -25,7 +26,7 @@
 
 ```bash
 git checkout main && git pull
-git apply docs/tasks/patches/footer-grid-2026-08-18a.patch
+git apply docs/tasks/done/footer-grid-2026-08-18a.patch
 hugo --gc --minify
 git commit -am "fix(footer): five columns now that Roles was added"
 git push
