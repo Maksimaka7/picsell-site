@@ -1,5 +1,9 @@
 <!DOCTYPE html>
-<html lang="{{ .Language.Lang }}">
+{{/* Same trap as hreflang in TZ-19: both language trees sit under Hugo's default
+     language, so .Language.Lang reports "uk" for all but the homepage. 31 of 32
+     English pages were declaring themselves Ukrainian — to screen readers, to
+     translation tools, and to any script reading documentElement.lang. */}}
+<html lang="{{ cond (strings.HasPrefix .RelPermalink "/en/") "en" "uk" }}">
 <head>
 {{/* THEME: the light theme is now site-wide. Declared once — both the <body> class and
      the CSS partial read this single value, so they cannot drift apart. /admin/ (Decap CMS)
@@ -25,6 +29,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- Netlify only records fields declared in this detection stub. `interests`
        was missing, so the checkbox answers never reached Netlify Forms. -->
   <input type="text" name="interests">
+  <input type="text" name="lang">
   <input type="text" name="bot-field">
 </form>
 <form name="homepage-demo" netlify netlify-honeypot="bot-field" hidden>
