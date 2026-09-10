@@ -3,8 +3,9 @@
 **Репозиторій:** `Maksimaka7/picsell-site`
 **Гілка:** `main`
 **База:** `40d7b5e` (блоби: `head.html` = `ec4cd09`, `header.html` = `8388334`, `theme-light.html` = `fe4d411`)
-**Патч:** `docs/tasks/patches/lang-remnants-2026-09-10c.patch`
+**Патч:** `docs/tasks/done/lang-remnants-2026-09-10c.patch`
 **Оцінка:** 10 хвилин
+**Виконано:** `b70a39a`
 
 ---
 
