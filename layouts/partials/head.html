@@ -31,7 +31,10 @@
 <meta property="og:title" content="{{ $title }}"/>
 <meta property="og:description" content="{{ $description }}"/>
 <meta property="og:image" content="{{ $ogImage | absURL }}"/>
-<meta property="og:locale" content="{{ cond (eq .Language.Lang "uk") "uk_UA" "en_US" }}"/>
+{{/* Fourth site of the same root cause, after html lang and hreflang: .Language.Lang
+     is "uk" on every page but the homepage, so 31 English pages announced uk_UA to
+     Facebook, LinkedIn and every other scraper reading Open Graph. */}}
+<meta property="og:locale" content="{{ cond (strings.HasPrefix .RelPermalink "/en/") "en_US" "uk_UA" }}"/>
 <meta property="og:site_name" content="PICSELL"/>
 
 <!-- Twitter Card -->
