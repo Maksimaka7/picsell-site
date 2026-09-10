@@ -3,9 +3,10 @@
 **Репозиторій:** `Maksimaka7/picsell-site`
 **Гілка:** `main`
 **База:** `ff5f9ea` (блоби: `baseof.html` = `2d77502`, `theme-light.html` = `d0993ca`)
-**Патч:** `docs/tasks/patches/lang-attr-mockups-2026-09-10b.patch`
+**Патч:** `docs/tasks/done/lang-attr-mockups-2026-09-10b.patch`
 **Пріоритет:** високий — впливає на SEO й доступність
 **Оцінка:** 10 хвилин
+**Виконано:** `ae4e2df`
 
 ---
 
