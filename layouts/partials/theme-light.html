@@ -36,6 +36,24 @@
 .theme-light .feat-table tr:hover td{background:rgba(0,87,255,.03);}
 .theme-light .comp-table tr:hover td{background:rgba(0,87,255,.03);}
 .theme-light .data-table tr:hover td{background:rgba(0,87,255,.03);}
+/* Product-page hero mockups (TZ-24). Drawn for the dark theme: the shell used --bg3
+   and every inner card --bg2, which after the light rollout became white-on-white,
+   with a shadow computed for a dark backdrop. Shell stays white; inner surfaces step
+   down a tone from the page ground so the cards read. Kept here rather than in the
+   page templates so sales-app and horeca cannot drift apart. */
+.theme-light .phone-mock,
+.theme-light .dash-mock{box-shadow:0 0 60px rgba(0,87,255,.08),0 24px 50px rgba(15,30,55,.12);}
+.theme-light .phone-notch,
+.theme-light .app-header,
+.theme-light .route-card,
+.theme-light .pkpi,
+.theme-light .dash-hdr,
+.theme-light .map-section,
+.theme-light .kpi-mini{background:#E6EBF3;border-color:#D5DCE7;}
+.theme-light .phone-notch,
+.theme-light .rc-header{border-bottom-color:#D5DCE7;}
+.theme-light .rc-pending{background:rgba(15,30,55,.08);color:var(--t2);}
+.theme-light .map-area{background:linear-gradient(135deg,rgba(0,87,255,.07),rgba(15,30,55,.05));}
 /* Footer → light surface */
 .theme-light #footer{background:var(--bg2);border-top-color:var(--border);}
 /* ═══════════════════════════ END LIGHT FOUNDATION ═══════════════════════════ */

@@ -127,7 +127,12 @@
         message:message,lang:(EN?'en':'uk')
       })
     }).then(function(res){
-      if(res.ok){document.getElementById('ctaFields').style.display='none';document.getElementById('ctaSuccess').style.display='block';}
+      if(res.ok){
+        document.getElementById('ctaFields').style.display='none';document.getElementById('ctaSuccess').style.display='block';
+        /* Fired here, not on a submit listener: the homepage CTA has no <form>,
+           and this branch only runs when submit-lead accepted the lead. */
+        if(window.gtag)gtag('event','generate_lead',{event_category:'conversion',event_label:'homepage_demo',value:1,currency:'USD'});
+      }
       else{btn.disabled=false;btn.textContent=EN?'Book a demo →':'Замовити демо →';showMsg(EN?'Something went wrong. Try again.':'Щось пішло не так. Спробуйте ще раз.');}
     }).catch(function(){btn.disabled=false;btn.textContent=EN?'Book a demo →':'Замовити демо →';showMsg(EN?'Network error. Try again.':'Помилка мережі. Спробуйте ще раз.');});
   });

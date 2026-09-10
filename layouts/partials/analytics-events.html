@@ -108,17 +108,10 @@
   }
 
   // ── 4. HOMEPAGE FORM SUBMIT ──────────────────────────────────
-  var mainForm = document.getElementById('mainForm');
-  if(mainForm){
-    mainForm.addEventListener('submit', function(){
-      gtag('event', 'generate_lead', {
-        'event_category': 'conversion',
-        'event_label': 'homepage_demo',
-        'value': 1,
-        'currency': 'USD'
-      });
-    });
-  }
+  // Removed in TZ-24: the homepage CTA is a button with a click handler, not a
+  // <form>, so #mainForm never existed and this listener never attached. The
+  // event now fires from the success branch in partials/cta-demo.html, which
+  // counts sends that actually reached submit-lead instead of attempts.
 
   // ── 5. BLOG SUBSCRIBE ────────────────────────────────────────
   var subForm = document.querySelector('form[name="subscribe"]');

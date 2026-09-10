@@ -1,6 +1,9 @@
 {{ define "head-extra" }}
 <style>
 .interest-role{display:block;margin-bottom:var(--s3);padding:10px 14px;border-radius:var(--r2);background:rgba(0,87,255,.08);border:1px solid rgba(0,87,255,.2);font-size:14px;color:var(--t1);}
+/* `display:block` above outranks the browser default for [hidden], so the empty
+   pill kept its background and padding until JS filled it. Hide it explicitly. */
+.interest-role[hidden]{display:none;}
 
 /* HERO */
 #hero{position:relative;padding:140px 0 var(--s7);background:var(--bg0);overflow:hidden;}
@@ -26,7 +29,9 @@
 .form-row-2{display:grid;grid-template-columns:1fr 1fr;gap:var(--s2);}
 .form-group{display:flex;flex-direction:column;gap:6px;}
 .form-label{font-size:13px;font-weight:500;color:var(--t2);}
-.form-input,.form-select{background:rgba(6,6,8,.9);border:1px solid var(--border);border-radius:var(--r2);padding:12px 16px;font-family:'Inter',sans-serif;font-size:15px;color:var(--t1);transition:border-color .2s,box-shadow .2s;outline:none;width:100%;}
+/* Was a hardcoded near-black left over from the dark theme; on the light card it
+   read as a hole. --bg2 on a --bg3 card matches the calculator on the homepage. */
+.form-input,.form-select{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);padding:12px 16px;font-family:'Inter',sans-serif;font-size:15px;color:var(--t1);transition:border-color .2s,box-shadow .2s;outline:none;width:100%;}
 .form-input::placeholder{color:var(--t3);}
 .form-input:focus,.form-select:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,87,255,.12);}
 .form-select{cursor:pointer;appearance:none;}
@@ -129,39 +134,12 @@
             <div class="form-grid">
               <div class="form-row-2">
                 <div class="form-group">
-                  <label class="form-label">Full Name *</label>
+                  <label class="form-label">Name *</label>
                   <input type="text" class="form-input" placeholder="John Smith" name="name" id="df-name" required>
                 </div>
                 <div class="form-group">
                   <label class="form-label">Company *</label>
                   <input type="text" class="form-input" placeholder="Company name" name="company" id="df-company" required>
-                </div>
-              </div>
-              <div class="form-row-2">
-                <div class="form-group">
-                  <label class="form-label">Job Title</label>
-                  <select class="form-input form-select" name="role" id="df-role">
-                    <option value="" disabled selected>Select title</option>
-                    <option>Owner / CEO</option>
-                    <option>Commercial Director</option>
-                    <option>Brand Manager</option>
-                    <option>National Sales Manager</option>
-                    <option>Trade Marketing</option>
-                    <option>IT Director</option>
-                    <option>Distributor</option>
-                    <option>Other</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label class="form-label">Number of Agents</label>
-                  <select class="form-input form-select" name="agents" id="df-agents">
-                    <option value="" disabled selected>Select</option>
-                    <option>Up to 10 agents</option>
-                    <option>10-50 agents</option>
-                    <option>50-200 agents</option>
-                    <option>200-500 agents</option>
-                    <option>500+ agents</option>
-                  </select>
                 </div>
               </div>
               <div class="form-row-2">
@@ -308,39 +286,12 @@
             <div class="form-grid">
               <div class="form-row-2">
                 <div class="form-group">
-                  <label class="form-label">Ім'я та прізвище *</label>
+                  <label class="form-label">Ім'я *</label>
                   <input type="text" class="form-input" placeholder="Олексій Коваленко" name="name" id="df-name" required>
                 </div>
                 <div class="form-group">
                   <label class="form-label">Компанія *</label>
                   <input type="text" class="form-input" placeholder="Назва компанії" name="company" id="df-company" required>
-                </div>
-              </div>
-              <div class="form-row-2">
-                <div class="form-group">
-                  <label class="form-label">Посада</label>
-                  <select class="form-input form-select" name="role" id="df-role">
-                    <option value="" disabled selected>Оберіть посаду</option>
-                    <option>Власник / CEO</option>
-                    <option>Комерційний директор</option>
-                    <option>Brand Manager</option>
-                    <option>National Sales Manager</option>
-                    <option>Trade Marketing</option>
-                    <option>IT директор</option>
-                    <option>Дистриб'ютор</option>
-                    <option>Інше</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label class="form-label">К-сть агентів</label>
-                  <select class="form-input form-select" name="agents" id="df-agents">
-                    <option value="" disabled selected>Виберіть</option>
-                    <option>До 10 агентів</option>
-                    <option>10-50 агентів</option>
-                    <option>50-200 агентів</option>
-                    <option>200-500 агентів</option>
-                    <option>500+ агентів</option>
-                  </select>
                 </div>
               </div>
               <div class="form-row-2">
@@ -506,9 +457,10 @@ function submitDemoForm(form) {
             email:fd.get('email')||'',
             phone:fd.get('phone')||'',
             company:fd.get('company')||'',
-            position:fd.get('role')||'',
-            agents:fd.get('agents')||'',
-            message:[fd.get('role')?('роль: '+fd.get('role')):'',fd.get('agents')?('агентів: '+fd.get('agents')):'',checked.length?('цікавить: '+checked.join(', ')):''].filter(Boolean).join(' | '),
+            /* `position` and `agents` were dropped from the form in TZ-24. The
+               Netlify detection stub in baseof.html still declares them so the
+               existing submissions keep their columns. */
+            message:(checked.length?('цікавить: '+checked.join(', ')):''),
             interests:checked.join(', '),
             /* Which role page sent this lead. Deliberately NOT mapped onto the
                `role` select — that field holds buyer job titles (CEO, Commercial
