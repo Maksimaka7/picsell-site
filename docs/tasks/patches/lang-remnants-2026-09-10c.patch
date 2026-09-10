@@ -1,0 +1,47 @@
+diff --git a/layouts/partials/head.html b/layouts/partials/head.html
+index ec4cd09..b7f130e 100644
+--- a/layouts/partials/head.html
++++ b/layouts/partials/head.html
+@@ -31,7 +31,10 @@
+ <meta property="og:title" content="{{ $title }}"/>
+ <meta property="og:description" content="{{ $description }}"/>
+ <meta property="og:image" content="{{ $ogImage | absURL }}"/>
+-<meta property="og:locale" content="{{ cond (eq .Language.Lang "uk") "uk_UA" "en_US" }}"/>
++{{/* Fourth site of the same root cause, after html lang and hreflang: .Language.Lang
++     is "uk" on every page but the homepage, so 31 English pages announced uk_UA to
++     Facebook, LinkedIn and every other scraper reading Open Graph. */}}
++<meta property="og:locale" content="{{ cond (strings.HasPrefix .RelPermalink "/en/") "en_US" "uk_UA" }}"/>
+ <meta property="og:site_name" content="PICSELL"/>
+ 
+ <!-- Twitter Card -->
+diff --git a/layouts/partials/header.html b/layouts/partials/header.html
+index 8388334..85a98a6 100644
+--- a/layouts/partials/header.html
++++ b/layouts/partials/header.html
+@@ -170,9 +170,9 @@ h1,h2,h3,h4{font-family:'Geologica',sans-serif;line-height:1.08;letter-spacing:-
+   <div class="nav-r"><a href="tel:+380778809888" class="nav-link nav-phone" style="color:var(--t1);font-weight:600;font-size:13px;" aria-label="{{ if strings.HasPrefix .RelPermalink "/en/" }}PICSELL phone{{ else }}Телефон PICSELL{{ end }}">+380&nbsp;77&nbsp;880&nbsp;98&nbsp;88</a><div class="lang-switch">
+   {{ if not (strings.HasPrefix .RelPermalink "/en/") }}
+     <span class="lang-btn lang-active" title="Українська">🇺🇦 UA</span>
+-    {{ if .Translations }}{{ range .Translations }}<a href="{{ .Permalink }}" class="lang-btn" hreflang="{{ .Language.Lang }}" title="English">🇺🇸 EN</a>{{ end }}{{ else }}<a href="/en/" class="lang-btn" hreflang="en" title="English">🇺🇸 EN</a>{{ end }}
++    {{ if .Translations }}{{ range .Translations }}<a href="{{ .Permalink }}" class="lang-btn" hreflang="en" title="English">🇺🇸 EN</a>{{ end }}{{ else }}<a href="/en/" class="lang-btn" hreflang="en" title="English">🇺🇸 EN</a>{{ end }}
+   {{ else }}
+-    {{ if .Translations }}{{ range .Translations }}<a href="{{ .Permalink }}" class="lang-btn" hreflang="{{ .Language.Lang }}" title="Ukrainian">🇺🇦 UA</a>{{ end }}{{ else }}<a href="/" class="lang-btn" hreflang="uk" title="Ukrainian">🇺🇦 UA</a>{{ end }}
++    {{ if .Translations }}{{ range .Translations }}<a href="{{ .Permalink }}" class="lang-btn" hreflang="uk" title="Ukrainian">🇺🇦 UA</a>{{ end }}{{ else }}<a href="/" class="lang-btn" hreflang="uk" title="Ukrainian">🇺🇦 UA</a>{{ end }}
+     <span class="lang-btn lang-active" title="English">🇺🇸 EN</span>
+   {{ end }}
+ </div><a href="{{ "/demo/" | relLangURL }}" class="btn btn-p btn-sm">{{ if strings.HasPrefix .RelPermalink "/en/" }}Book Demo{{ else }}Замовити демо{{ end }}</a><button class="hamburger" id="hamburger" aria-label="{{ if strings.HasPrefix .RelPermalink "/en/" }}Menu{{ else }}Меню{{ end }}"><span></span><span></span><span></span></button></div>
+diff --git a/layouts/partials/theme-light.html b/layouts/partials/theme-light.html
+index fe4d411..8a047af 100644
+--- a/layouts/partials/theme-light.html
++++ b/layouts/partials/theme-light.html
+@@ -73,7 +73,9 @@
+ .theme-light .chat-hdr,
+ .theme-light .rv-hdr,
+ .theme-light .ad-hdr{border-bottom-color:#D5DCE7;}
+-.theme-light .rc-pending{background:rgba(15,30,55,.08);color:var(--t2);}
++.theme-light .rc-pending,
++.theme-light .rt-stop.pending{background:rgba(15,30,55,.08);border-color:rgba(15,30,55,.14);color:var(--t2);}
++.theme-light .rtsb-pending{background:rgba(15,30,55,.10);color:var(--t2);}
+ .theme-light .map-area{background:linear-gradient(135deg,rgba(0,87,255,.07),rgba(15,30,55,.05));}
+ /* Footer → light surface */
+ .theme-light #footer{background:var(--bg2);border-top-color:var(--border);}
