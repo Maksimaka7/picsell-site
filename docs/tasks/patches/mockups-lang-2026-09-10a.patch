@@ -1,0 +1,53 @@
+diff --git a/layouts/page/demo.html b/layouts/page/demo.html
+index 002168a..32a188d 100644
+--- a/layouts/page/demo.html
++++ b/layouts/page/demo.html
+@@ -127,7 +127,7 @@
+           <div class="interest-role" id="interestRole" hidden></div>
+             <form id="demoForm" name="demo-request" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+             <input type="hidden" name="form-name" value="demo-request">
+-            <input type="hidden" name="lang" value="uk">
++            <input type="hidden" name="lang" value="en">
+             <p style="display:none;"><label>Don't fill this out: <input name="bot-field"></label></p>
+             <h2>Book a Demo</h2>
+             <p style="font-size:14px;color:var(--t2);margin-bottom:var(--s3);">Fill in the form — we'll reach out within 2 hours to confirm a convenient time.</p>
+diff --git a/layouts/partials/theme-light.html b/layouts/partials/theme-light.html
+index f8a3427..d0993ca 100644
+--- a/layouts/partials/theme-light.html
++++ b/layouts/partials/theme-light.html
+@@ -42,16 +42,32 @@
+    down a tone from the page ground so the cards read. Kept here rather than in the
+    page templates so sales-app and horeca cannot drift apart. */
+ .theme-light .phone-mock,
+-.theme-light .dash-mock{box-shadow:0 0 60px rgba(0,87,255,.08),0 24px 50px rgba(15,30,55,.12);}
++.theme-light .dash-mock,
++.theme-light .demo-visual,
++.theme-light .chat-mock,
++.theme-light .radar-visual{box-shadow:0 0 60px rgba(0,87,255,.08),0 24px 50px rgba(15,30,55,.12);}
+ .theme-light .phone-notch,
+ .theme-light .app-header,
+ .theme-light .route-card,
+ .theme-light .pkpi,
+ .theme-light .dash-hdr,
+ .theme-light .map-section,
+-.theme-light .kpi-mini{background:#E6EBF3;border-color:#D5DCE7;}
++.theme-light .kpi-mini,
++.theme-light .demo-header,
++.theme-light .shelf-section,
++.theme-light .dstat,
++.theme-light .chat-hdr,
++.theme-light .msg-ai,
++.theme-light .kpi-box,
++.theme-light .chart-mini,
++.theme-light .rv-hdr,
++.theme-light .price-card,
++.theme-light .gmap-card{background:#E6EBF3;border-color:#D5DCE7;}
+ .theme-light .phone-notch,
+-.theme-light .rc-header{border-bottom-color:#D5DCE7;}
++.theme-light .rc-header,
++.theme-light .demo-header,
++.theme-light .chat-hdr,
++.theme-light .rv-hdr{border-bottom-color:#D5DCE7;}
+ .theme-light .rc-pending{background:rgba(15,30,55,.08);color:var(--t2);}
+ .theme-light .map-area{background:linear-gradient(135deg,rgba(0,87,255,.07),rgba(15,30,55,.05));}
+ /* Footer → light surface */
