@@ -3,8 +3,9 @@
 **Репозиторій:** `Maksimaka7/picsell-site`
 **Гілка:** `main`
 **База:** `142e715` (блоби: `demo.html` = `002168a`, `theme-light.html` = `f8a3427`)
-**Патч:** `docs/tasks/patches/mockups-lang-2026-09-10a.patch`
+**Патч:** `docs/tasks/done/mockups-lang-2026-09-10a.patch`
 **Оцінка:** 10 хвилин
+**Виконано:** `76de3be`
 
 ---
 
