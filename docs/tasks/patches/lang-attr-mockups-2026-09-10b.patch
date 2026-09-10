@@ -1,0 +1,64 @@
+diff --git a/layouts/_default/baseof.html b/layouts/_default/baseof.html
+index 2d77502..d9faf50 100644
+--- a/layouts/_default/baseof.html
++++ b/layouts/_default/baseof.html
+@@ -1,5 +1,9 @@
+ <!DOCTYPE html>
+-<html lang="{{ .Language.Lang }}">
++{{/* Same trap as hreflang in TZ-19: both language trees sit under Hugo's default
++     language, so .Language.Lang reports "uk" for all but the homepage. 31 of 32
++     English pages were declaring themselves Ukrainian — to screen readers, to
++     translation tools, and to any script reading documentElement.lang. */}}
++<html lang="{{ cond (strings.HasPrefix .RelPermalink "/en/") "en" "uk" }}">
+ <head>
+ {{/* THEME: the light theme is now site-wide. Declared once — both the <body> class and
+      the CSS partial read this single value, so they cannot drift apart. /admin/ (Decap CMS)
+@@ -25,6 +29,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+   <!-- Netlify only records fields declared in this detection stub. `interests`
+        was missing, so the checkbox answers never reached Netlify Forms. -->
+   <input type="text" name="interests">
++  <input type="text" name="lang">
+   <input type="text" name="bot-field">
+ </form>
+ <form name="homepage-demo" netlify netlify-honeypot="bot-field" hidden>
+diff --git a/layouts/partials/theme-light.html b/layouts/partials/theme-light.html
+index d0993ca..fe4d411 100644
+--- a/layouts/partials/theme-light.html
++++ b/layouts/partials/theme-light.html
+@@ -45,7 +45,9 @@
+ .theme-light .dash-mock,
+ .theme-light .demo-visual,
+ .theme-light .chat-mock,
+-.theme-light .radar-visual{box-shadow:0 0 60px rgba(0,87,255,.08),0 24px 50px rgba(15,30,55,.12);}
++.theme-light .radar-visual,
++.theme-light .kpi-dash,
++.theme-light .agent-dash{box-shadow:0 0 60px rgba(0,87,255,.08),0 24px 50px rgba(15,30,55,.12);}
+ .theme-light .phone-notch,
+ .theme-light .app-header,
+ .theme-light .route-card,
+@@ -55,19 +57,22 @@
+ .theme-light .kpi-mini,
+ .theme-light .demo-header,
+ .theme-light .shelf-section,
+-.theme-light .dstat,
+ .theme-light .chat-hdr,
+ .theme-light .msg-ai,
+ .theme-light .kpi-box,
+ .theme-light .chart-mini,
+ .theme-light .rv-hdr,
+ .theme-light .price-card,
+-.theme-light .gmap-card{background:#E6EBF3;border-color:#D5DCE7;}
++.theme-light .gmap-card,
++.theme-light .ad-hdr,
++.theme-light .akpi,
++.theme-light .route-track{background:#E6EBF3;border-color:#D5DCE7;}
+ .theme-light .phone-notch,
+ .theme-light .rc-header,
+ .theme-light .demo-header,
+ .theme-light .chat-hdr,
+-.theme-light .rv-hdr{border-bottom-color:#D5DCE7;}
++.theme-light .rv-hdr,
++.theme-light .ad-hdr{border-bottom-color:#D5DCE7;}
+ .theme-light .rc-pending{background:rgba(15,30,55,.08);color:var(--t2);}
+ .theme-light .map-area{background:linear-gradient(135deg,rgba(0,87,255,.07),rgba(15,30,55,.05));}
+ /* Footer → light surface */
