@@ -190,34 +190,33 @@
   bm.addEventListener('click',function(){mode='monthly';bm.classList.add('active');ba.classList.remove('active');render();});
   ba.addEventListener('click',function(){mode='annual';ba.classList.add('active');bm.classList.remove('active');render();});
   // lead capture
-  function getUtm(){var u={};try{u=JSON.parse(sessionStorage.getItem('picsell_utm')||'{}');}catch(e){}
-    try{var p=new URLSearchParams(window.location.search);['utm_source','utm_medium','utm_campaign','utm_content'].forEach(function(k){if(p.get(k))u[k]=p.get(k);});}catch(e){}return u;}
   var emailEl=document.getElementById('calcEmail'),btn=document.getElementById('calcSubmit'),msg=document.getElementById('calcMsg');
   function showMsg(ok,text){msg.textContent=text;msg.className='calc-msg show '+(ok?'ok':'bad');}
   btn.addEventListener('click',function(){
     var email=(emailEl.value||'').trim();
     if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){emailEl.classList.add('err');showMsg(false,EN?'Please enter a valid email.':'Введіть коректний email.');return;}
     emailEl.classList.remove('err');
-    var d=calc();var utm=getUtm();
+    var d=calc();
+    /* Read at send time, not at page load: the visitor may have arrived on this
+       page from a campaign landing several clicks ago. */
+    var attr=window.picsellAttr?window.picsellAttr.payload():{};
     var periodTxt=mode==='annual'?(EN?'Annual':'Річно'):(EN?'Monthly':'Щомісяця');
     var est=mode==='annual'?fmt(d.annual)+(EN?'/yr':'/рік'):fmt(d.monthly)+(EN?'/mo':'/міс');
     var message=(EN?'Calculator: ':'Калькулятор: ')+d.lines.join(', ')+' | '+periodTxt+' | ≈ '+est;
     btn.disabled=true;btn.textContent=EN?'Sending…':'Надсилаємо…';
     fetch('https://iblorvxgiashmdnfzbbs.supabase.co/functions/v1/submit-lead',{
       method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({
+      body:JSON.stringify(Object.assign({
         email:email,source:'website',form_id:'calculator',
-        utm_source:utm.utm_source||'direct',utm_medium:utm.utm_medium||'direct',
-        utm_campaign:utm.utm_campaign||'',utm_content:utm.utm_content||'',
-        landing_page:(sessionStorage.getItem('picsell_landing')||window.location.pathname),
         message:message,lang:(EN?'en':'uk')
-      })
+      },attr))
     }).then(function(res){
       if(res.ok){
         /* Same hole as the homepage CTA: a lead-capture button with no <form>,
            so no submit listener ever saw it. Separate label so calculator
            requests stay distinguishable from demo requests in GA4. */
         if(window.gtag)gtag('event','generate_lead',{event_category:'conversion',event_label:'calculator',value:1,currency:'USD'});
+        if(window.picsellAttr)window.picsellAttr.push('calculator');
         document.querySelector('.calc-lead').innerHTML='<div class="calc-msg show ok" style="font-size:14px;">'+(EN?'✓ Thank you! We will send a detailed quote shortly.':'✓ Дякуємо! Надішлемо детальну пропозицію найближчим часом.')+'</div>';}
       else{btn.disabled=false;btn.textContent=EN?'Get a detailed quote':'Отримати детальну пропозицію';showMsg(false,EN?'Something went wrong. Try again.':'Щось пішло не так. Спробуйте ще раз.');}
     }).catch(function(){btn.disabled=false;btn.textContent=EN?'Get a detailed quote':'Отримати детальну пропозицію';showMsg(false,EN?'Network error. Try again.':'Помилка мережі. Спробуйте ще раз.');});

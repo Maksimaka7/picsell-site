@@ -1,0 +1,108 @@
+<script>
+/* ── Attribution: first & last touch (TZ-28) ─────────────────────────────────
+   Stores where the visit came from so it survives internal navigation, a closed
+   tab and a return visit days later. Every lead point reads it AT SEND TIME via
+   window.picsellAttr.payload() and adds the fields to the submit-lead body.
+
+   Storage: localStorage, fallback first-party cookie. Two objects, each carries
+   its own `exp` (90 days from write) and is ignored once expired:
+     picsell_first_touch — written once, never overwritten.
+     picsell_last_touch  — overwritten only by a NON-direct arrival: UTM / click
+                           id in the URL, or an external referrer. A direct
+                           arrival or an internal page view never touches it.
+   Nothing is added to links, the URL is never changed.
+
+   No UTM but an external referrer is classified (google → google/organic,
+   linkedin → linkedin/social …). Without this every organic visitor was
+   recorded as "direct" — the main reason CC showed 228 of 261 leads as Direct. */
+(function(){
+  var DAY = 864e5, TTL = 90 * DAY;
+  var K_FIRST = 'picsell_first_touch', K_LAST = 'picsell_last_touch';
+  var UTM = ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','utm_id'];
+  var CLICK = ['gclid','gbraid','wbraid','fbclid','ttclid','msclkid'];
+  var CLICK_SRC = {gclid:'google',gbraid:'google',wbraid:'google',fbclid:'facebook',ttclid:'tiktok',msclkid:'bing'};
+  var SEARCH = ['google.','bing.','yahoo.','duckduckgo.','ecosia.','search.brave.','yandex.'];
+  var SOCIAL = {'facebook.com':'facebook','fb.com':'facebook','m.facebook.com':'facebook','l.facebook.com':'facebook',
+    'instagram.com':'instagram','l.instagram.com':'instagram','linkedin.com':'linkedin','lnkd.in':'linkedin',
+    't.me':'telegram','web.telegram.org':'telegram','x.com':'twitter','t.co':'twitter','twitter.com':'twitter',
+    'youtube.com':'youtube','tiktok.com':'tiktok'};
+  var OWN = /(^|\.)picsell\.ai$|\.netlify\.app$|^localhost$/;
+
+  function lsGet(k){ try{ return localStorage.getItem(k); }catch(e){ return ckGet(k); } }
+  function lsSet(k,v){ try{ localStorage.setItem(k,v); return; }catch(e){} ckSet(k,v); }
+  function ckGet(k){ try{ var m=document.cookie.match(new RegExp('(?:^|; )'+k+'=([^;]*)')); return m?decodeURIComponent(m[1]):null; }catch(e){ return null; } }
+  function ckSet(k,v){ try{ document.cookie=k+'='+encodeURIComponent(v)+'; path=/; max-age='+(TTL/1000)+'; SameSite=Lax'+(location.protocol==='https:'?'; Secure':''); }catch(e){} }
+  function read(k){ try{ var o=JSON.parse(lsGet(k)||'null'); return (o && o.exp > Date.now()) ? o : null; }catch(e){ return null; } }
+  function write(k,o){ o.exp = Date.now() + TTL; lsSet(k, JSON.stringify(o)); }
+
+  function host(u){ try{ return new URL(u).hostname.replace(/^www\./,''); }catch(e){ return ''; } }
+
+  function classify(){
+    var p; try{ p = new URLSearchParams(location.search); }catch(e){ p = { get:function(){ return null; } }; }
+    var t = { source:'', medium:'', campaign:'', content:'', term:'', id:'',
+              landing: location.href, referrer:'', time: new Date().toISOString() };
+    var ref = document.referrer || '', rh = host(ref);
+    if (rh && !OWN.test(rh)) t.referrer = ref;
+    var hasUtm = false, hasClick = false, i;
+    for (i=0;i<UTM.length;i++){ var v=p.get(UTM[i]); if(v){ t[UTM[i].slice(4)]=v.slice(0,200); hasUtm=true; } }
+    for (i=0;i<CLICK.length;i++){ var c=p.get(CLICK[i]); if(c){ t[CLICK[i]]=c.slice(0,200); hasClick=true; } }
+    if (hasUtm || hasClick){
+      if (!t.source){ for(i=0;i<CLICK.length;i++) if(t[CLICK[i]]){ t.source=CLICK_SRC[CLICK[i]]; break; } }
+      if (!t.medium) t.medium = hasClick ? 'cpc' : (t.referrer ? 'referral' : 'none');
+      t.kind = 'campaign';
+    } else if (t.referrer){
+      var soc = SOCIAL[rh] || SOCIAL[rh.split('.').slice(-2).join('.')];
+      if (SEARCH.some(function(s){ return rh.indexOf(s) !== -1; })){ t.source = rh.split('.')[0]==='search' ? rh.split('.')[1] : rh.split('.')[0]; t.medium='organic'; }
+      else if (soc){ t.source = soc; t.medium = 'social'; }
+      else { t.source = rh; t.medium = 'referral'; }
+      t.kind = 'referral';
+    } else {
+      t.source = 'direct'; t.medium = 'none'; t.kind = 'direct';
+    }
+    return t;
+  }
+
+  /* Only the first page of a visit is classified. An internal navigation has a
+     picsell.ai referrer → kind would be 'direct' and is skipped below anyway,
+     but checking it explicitly keeps a reload from re-stamping `landing`. */
+  var refHost = host(document.referrer || '');
+  var internal = refHost && OWN.test(refHost);
+  var now = classify();
+  if (!internal || now.kind === 'campaign'){
+    if (!read(K_FIRST)) write(K_FIRST, now);
+    if (now.kind !== 'direct' || !read(K_LAST)) write(K_LAST, now);
+  }
+
+  window.picsellAttr = {
+    first: function(){ return read(K_FIRST); },
+    last:  function(){ return read(K_LAST) || read(K_FIRST); },
+    /* Flat fields for submit-lead. Never throws; empty strings when storage is
+       empty or blocked, so a form always sends. */
+    payload: function(){
+      var f = {}, l = {}, out = {}, i;
+      try{ f = read(K_FIRST) || {}; l = read(K_LAST) || f; }catch(e){}
+      var keys = ['source','medium','campaign','content','term','landing','referrer'];
+      for (i=0;i<keys.length;i++){ out['ft_'+keys[i]] = f[keys[i]] || ''; out['lt_'+keys[i]] = l[keys[i]] || ''; }
+      out.ft_time = f.time || '';
+      for (i=0;i<CLICK.length;i++) out[CLICK[i]] = l[CLICK[i]] || '';
+      out.form_page = location.href;
+      /* Legacy flat fields = last touch; older RPC paths and reports read them. */
+      out.utm_source = out.lt_source || 'direct';
+      out.utm_medium = out.lt_medium || 'none';
+      out.utm_campaign = out.lt_campaign;
+      out.utm_content = out.lt_content;
+      out.landing_page = out.ft_landing || location.href;
+      out.referrer = out.ft_referrer;
+      return out;
+    },
+    /* GTM: one push per successful send. */
+    push: function(formName){
+      try{
+        var a = this.payload();
+        (window.dataLayer = window.dataLayer || []).push({ event:'lead_submit', form_name: formName,
+          lt_source: a.lt_source, lt_medium: a.lt_medium, lt_campaign: a.lt_campaign });
+      }catch(e){}
+    }
+  };
+})();
+</script>

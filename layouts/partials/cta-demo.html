@@ -102,8 +102,6 @@
   var emailEl=document.getElementById('ctaEmail'),btn=document.getElementById('ctaSubmit'),msg=document.getElementById('ctaMsg');
   function showMsg(text){msg.textContent=text;msg.style.display='block';}
   function val(id){var e=document.getElementById(id);return e?(e.value||'').trim():'';}
-  function getUtm(){var u={};try{u=JSON.parse(sessionStorage.getItem('picsell_utm')||'{}');}catch(e){}
-    try{var p=new URLSearchParams(window.location.search);['utm_source','utm_medium','utm_campaign','utm_content'].forEach(function(k){if(p.get(k))u[k]=p.get(k);});}catch(e){}return u;}
   btn.addEventListener('click',function(){
     var email=val('ctaEmail');
     if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){emailEl.classList.add('err');showMsg(EN?'Please enter a valid email.':'Введіть коректний email.');return;}
@@ -114,24 +112,24 @@
     if(team)parts.push((EN?'team ':'команда ')+team);
     if(src)parts.push((EN?'channel: ':'канал: ')+src);
     var message=(EN?'Demo request':'Заявка на демо')+(parts.length?' | '+parts.join(' | '):'');
-    var utm=getUtm();
+    /* Read at send time, not at page load: the visitor may have arrived on this
+       page from a campaign landing several clicks ago. */
+    var attr=window.picsellAttr?window.picsellAttr.payload():{};
     btn.disabled=true;btn.textContent=EN?'Sending…':'Надсилаємо…';
     fetch('https://iblorvxgiashmdnfzbbs.supabase.co/functions/v1/submit-lead',{
       method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({
+      body:JSON.stringify(Object.assign({
         email:email,full_name:val('ctaName'),phone:val('ctaPhone'),company:val('ctaCompany'),
         source:'website',form_id:'homepage',
-        utm_source:utm.utm_source||'direct',utm_medium:utm.utm_medium||'direct',
-        utm_campaign:utm.utm_campaign||'',utm_content:utm.utm_content||'',
-        landing_page:(sessionStorage.getItem('picsell_landing')||window.location.pathname),
         message:message,lang:(EN?'en':'uk')
-      })
+      },attr))
     }).then(function(res){
       if(res.ok){
         document.getElementById('ctaFields').style.display='none';document.getElementById('ctaSuccess').style.display='block';
         /* Fired here, not on a submit listener: the homepage CTA has no <form>,
            and this branch only runs when submit-lead accepted the lead. */
         if(window.gtag)gtag('event','generate_lead',{event_category:'conversion',event_label:'homepage_demo',value:1,currency:'USD'});
+        if(window.picsellAttr)window.picsellAttr.push('homepage_demo');
       }
       else{btn.disabled=false;btn.textContent=EN?'Book a demo →':'Замовити демо →';showMsg(EN?'Something went wrong. Try again.':'Щось пішло не так. Спробуйте ще раз.');}
     }).catch(function(){btn.disabled=false;btn.textContent=EN?'Book a demo →':'Замовити демо →';showMsg(EN?'Network error. Try again.':'Помилка мережі. Спробуйте ще раз.');});

@@ -446,35 +446,33 @@ function submitDemoForm(form) {
   });
   // 2) Supabase leads — паралельно, не блокує UX
   try{
-    var utm={};
-    try{utm=JSON.parse(sessionStorage.getItem('picsell_utm')||'{}');}catch(e){}
     var lang=document.documentElement.lang||'uk';
+    var body={
+      full_name:fd.get('name')||'',
+      email:fd.get('email')||'',
+      phone:fd.get('phone')||'',
+      company:fd.get('company')||'',
+      /* `position` and `agents` were dropped from the form in TZ-24. The
+         Netlify detection stub in baseof.html still declares them so the
+         existing submissions keep their columns. */
+      message:(checked.length?('цікавить: '+checked.join(', ')):''),
+      interests:checked.join(', '),
+      /* Which role page sent this lead. Deliberately NOT mapped onto the
+         `role` select — that field holds buyer job titles (CEO, Commercial
+         Director), and a slug does not belong in it. */
+      interest_role:(new URLSearchParams(location.search).get('role')||''),
+      source:'picsell.ai/demo',
+      form_id:'demo',
+      lang:lang
+    };
+    /* Attribution is read at send time and merged in; see partials/attribution.html. */
+    try{var at=window.picsellAttr?window.picsellAttr.payload():{};for(var k in at)body[k]=at[k];}catch(e){}
     fetch('https://iblorvxgiashmdnfzbbs.supabase.co/functions/v1/submit-lead',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({
-        full_name:fd.get('name')||'',
-            email:fd.get('email')||'',
-            phone:fd.get('phone')||'',
-            company:fd.get('company')||'',
-            /* `position` and `agents` were dropped from the form in TZ-24. The
-               Netlify detection stub in baseof.html still declares them so the
-               existing submissions keep their columns. */
-            message:(checked.length?('цікавить: '+checked.join(', ')):''),
-            interests:checked.join(', '),
-            /* Which role page sent this lead. Deliberately NOT mapped onto the
-               `role` select — that field holds buyer job titles (CEO, Commercial
-               Director), and a slug does not belong in it. */
-            interest_role:(new URLSearchParams(location.search).get('role')||''),
-            source:'picsell.ai/demo',
-            form_id:'demo',
-        lang:lang,
-        utm_source:utm.utm_source||'direct',
-        utm_medium:utm.utm_medium||'direct',
-        utm_campaign:utm.utm_campaign||'',
-        utm_content:utm.utm_content||'',
-        landing_page:sessionStorage.getItem('picsell_landing')||window.location.pathname
-      })
+      body:JSON.stringify(body)
+    }).then(function(res){
+      if(res.ok&&window.picsellAttr)window.picsellAttr.push('demo_request');
     }).catch(function(){});
   }catch(e){}
 }
