@@ -118,6 +118,23 @@
 .hero-media{position:relative;}
 .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:var(--r4);border:1px solid var(--border);opacity:0;transition:opacity .5s ease;z-index:3;}
 .hero-video.ready{opacity:1;}
+/* Hero video facade (UK homepage). The 16:9 box is reserved up front, so swapping
+   the poster for the player shifts nothing. Play button sits bottom-left: the
+   poster's centre carries the logo and the film's own end-card button. */
+.hero-yt{position:relative;display:block;width:100%;aspect-ratio:16/9;padding:0;border:1px solid var(--border);border-radius:var(--r4);overflow:hidden;background:#061826;cursor:pointer;box-shadow:0 0 60px rgba(0,87,255,.10),0 24px 50px rgba(15,30,55,.18);}
+.hero-yt img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s ease;}
+.hero-yt:hover img{transform:scale(1.02);}
+.hero-yt-play{position:absolute;left:24px;bottom:24px;width:64px;height:64px;border-radius:50%;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(0,87,255,.45);transition:transform .2s ease;}
+.hero-yt:hover .hero-yt-play,.hero-yt:focus-visible .hero-yt-play{transform:scale(1.08);}
+.hero-yt-label{position:absolute;left:100px;bottom:44px;font:600 14px 'Inter',sans-serif;color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.5);}
+.hero-yt:focus-visible{outline:3px solid var(--blue);outline-offset:4px;}
+.hero-yt.is-active{cursor:default;}
+.hero-yt iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
+/* The particle loop writes an inline translate on .hero-media for parallax; a
+   player sliding under the cursor mid-watch is unusable, so it is pinned once playing. */
+.hero-media.is-playing{transform:none!important;}
+@media(max-width:480px){.hero-yt-play{left:14px;bottom:14px;width:52px;height:52px;}.hero-yt-label{display:none;}}
+@media(prefers-reduced-motion:reduce){.hero-yt img,.hero-yt-play{transition:none;}}
 
 /* Screen 2 — Trust strip (text wordmark placeholders until real client logos supplied) */
 .logos-strip{padding:var(--s6) 0;background:#0B0E14;overflow:hidden;}
@@ -519,97 +536,22 @@
         </div>
       </div>
 
-      <!-- RIGHT — hero media: video (when supplied) over the animated dashboard fallback -->
+      <!-- RIGHT — hero video. Replaces the animated dashboard on the Ukrainian homepage.
+           A facade: the poster and play button are plain HTML, and the YouTube player
+           with its scripts loads only after a click, so it never competes with the hero
+           for first paint. The /en/ branch keeps the dashboard — the film is in Ukrainian. -->
       <div class="hero-right h-anim h-d3">
         <div class="hero-media">
-          <!-- VIDEO PLACEHOLDER (HOMEPAGE-V2-HANDOFF §4). Enable once Maksim supplies the
-               6-shot hero film (Grok frames), 16:9 desktop. Drop /videos/hero-desktop.{webm,mp4}
-               + /images/hero-poster.jpg and uncomment — onerror removes it so the dashboard
-               fallback below always stays visible.
-          <video class="hero-video" autoplay muted loop playsinline preload="none"
-                 poster="/images/hero-poster.jpg"
-                 onloadeddata="this.classList.add('ready')" onerror="this.remove()">
-            <source src="/videos/hero-desktop.webm" type="video/webm">
-            <source src="/videos/hero-desktop.mp4" type="video/mp4">
-          </video>
-          -->
-          <div class="hero-dashboard float-anim">
-          <div class="dash-header">
-            <div class="dash-dots">
-              <div class="dash-dot dash-dot-r"></div>
-              <div class="dash-dot dash-dot-y"></div>
-              <div class="dash-dot dash-dot-g"></div>
-            </div>
-            <div class="dash-title">PICSELL · Live Dashboard</div>
-            <div class="dash-status">
-              <div class="dash-status-dot"></div>
-              <span>Real-time</span>
-            </div>
-          </div>
-
-          <div class="dash-body">
-            <div class="kpi-row">
-              <div class="kpi-card">
-                <div class="kpi-label">Share of Shelf</div>
-                <div class="kpi-val blue">62%</div>
-                <div class="kpi-delta up">↑ +8% vs минулий місяць</div>
-              </div>
-              <div class="kpi-card">
-                <div class="kpi-label">OOS Рівень</div>
-                <div class="kpi-val red">1.8%</div>
-                <div class="kpi-delta up">↓ -2.4% покращення</div>
-              </div>
-              <div class="kpi-card">
-                <div class="kpi-label">Perfect Store</div>
-                <div class="kpi-val neon">87%</div>
-                <div class="kpi-delta up">↑ +12% за квартал</div>
-              </div>
-            </div>
-
-            <div class="shelf-vis">
-              <div class="shelf-label">Полиця в реальному часі — АТБ Київ, вул. Хрещатик</div>
-              <div class="ai-scan"></div>
-
-              <div class="shelf-row">
-                <div class="sku sku-p">PICSELL</div>
-                <div class="sku sku-p2">PICSELL</div>
-                <div class="sku sku-c">Конк.</div>
-                <div class="sku sku-p3">PICSELL</div>
-                <div class="sku sku-c">Конк.</div>
-                <div class="sku sku-p">PICSELL</div>
-              </div>
-              <div class="shelf-row">
-                <div class="sku sku-p2">PICSELL</div>
-                <div class="sku sku-oos"><div class="oos-label">OOS!</div></div>
-                <div class="sku sku-c">Конк.</div>
-                <div class="sku sku-p">PICSELL</div>
-                <div class="sku sku-p3">PICSELL</div>
-                <div class="sku sku-c">Конк.</div>
-              </div>
-
-              <!-- AI bboxes -->
-              <div style="position:absolute;inset:0;pointer-events:none;">
-                <div class="ai-bbox" style="top:42px;left:8px;width:42px;height:56px;">
-                  <div class="ai-tag">SKU-001</div>
-                </div>
-                <div class="ai-bbox ai-bbox-oos" style="top:100px;left:52px;width:42px;height:54px;">
-                  <div class="ai-tag ai-tag-r">⚠ OOS</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="alert-row" style="display:flex;flex-direction:column;gap:5px;margin-top:10px;">
-              <div class="alert-item">
-                <div class="alert-dot"></div>
-                <span><strong style="color:var(--t1)">АТБ Хрещатик:</strong> OOS по SKU-018 — рекомендуємо терміновий доозамовлення</span>
-              </div>
-              <div class="alert-item alert-neon">
-                <div class="alert-dot"></div>
-                <span><strong style="color:var(--t1)">Сільпо Оболонь:</strong> Perfect Store Score виріс до 91% після аудиту</span>
-              </div>
-            </div>
-          </div>
-        </div>
+          <button type="button" class="hero-yt" data-video="JGZKmvkHOW8"
+                  data-title="PICSELL — мерчендайзинг, продажі й аналітика в одному застосунку"
+                  aria-label="Відтворити відео: PICSELL — мерчендайзинг, продажі й аналітика в одному застосунку">
+            <img src="/images/hero-video-poster.jpg" width="1280" height="720" alt=""
+                 fetchpriority="high" decoding="async">
+            <span class="hero-yt-play" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="28" height="28"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg>
+            </span>
+            <span class="hero-yt-label" aria-hidden="true">Дивитись відео</span>
+          </button>
         </div>
       </div>
     </div>
@@ -746,6 +688,30 @@
   else reg();
   window.addEventListener('load',reg);
 
+})();
+/* Hero video facade: swap the poster for the YouTube player on the first click.
+   youtube-nocookie sets no cookies until playback; the explicit referrerpolicy keeps
+   the embed working even if the site-wide Referrer-Policy is ever tightened (YouTube
+   refuses to play in an iframe that sends no referrer). The click also reaches the
+   generic `button[data-video]` listener in analytics-events.html → `video_click`. */
+(function(){
+  var btn=document.querySelector('.hero-yt[data-video]');
+  if(!btn)return;
+  btn.addEventListener('click',function(){
+    var box=document.createElement('div');
+    box.className='hero-yt is-active';
+    var f=document.createElement('iframe');
+    f.src='https://www.youtube-nocookie.com/embed/'+encodeURIComponent(btn.getAttribute('data-video'))+'?autoplay=1&rel=0&playsinline=1';
+    f.title=btn.getAttribute('data-title')||'PICSELL';
+    f.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+    f.setAttribute('referrerpolicy','strict-origin-when-cross-origin');
+    f.allowFullscreen=true;
+    box.appendChild(f);
+    var media=btn.closest('.hero-media');
+    if(media)media.classList.add('is-playing');
+    btn.replaceWith(box);
+    f.focus();   // keyboard users land in the player, not back at the top of the page
+  },{once:true});
 })();
 </script>
 
