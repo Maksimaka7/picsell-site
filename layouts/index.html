@@ -135,6 +135,31 @@
 .hero-media.is-playing{transform:none!important;}
 @media(max-width:480px){.hero-yt-play{left:14px;bottom:14px;width:52px;height:52px;}.hero-yt-label{display:none;}}
 @media(prefers-reduced-motion:reduce){.hero-yt img,.hero-yt-play{transition:none;}}
+/* #hero is a flex row, so its .container is sized by content. The dashboard had an
+   intrinsic width that filled it; a 16:9 video has none, so on tablets the column
+   shrank to the subtitle's 520px, and on desktop container-type (below) collapsed the
+   grid to a few pixels. An explicit width fixes both. */
+#hero.hero--video > .container{width:100%;}
+/* UK hero with the film. At 72px the three sentences wrapped to five lines, the
+   left column grew taller than the video and the player sat in a gap. Here each
+   sentence stays on one line and is sized to the column (cqi, with a vw fallback),
+   the video column is a little wider, and the hero is as tall as its content. */
+@media(min-width:1025px){
+  #hero.hero--video{min-height:auto;padding-bottom:var(--s6);}
+  .hero--video .hero-content{grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:var(--s5);padding-top:var(--s6);}
+  .hero--video .hero-left{container-type:inline-size;}
+  /* Longest line, "Володієш ринком.", measures 9.28em in Geologica 900: 10cqi keeps
+     it inside the column with ~7% to spare at every width. */
+  .hero--video .hero-h1{font-size:clamp(36px,4.2vw,54px);font-size:clamp(36px,10cqi,58px);}
+  .hero--video .hero-h1 .line{white-space:nowrap;}
+}
+/* Below ~1200px the two large CTAs (227 + 260px) overflowed the column and the second
+   wrapped to its own row, adding ~80px of height beside the video. Slightly tighter
+   buttons keep them on one row down to 1025px. */
+@media(min-width:1025px) and (max-width:1199px){
+  .hero--video .hero-ctas{gap:12px;}
+  .hero--video .hero-ctas .btn-lg{padding:16px 22px;font-size:16px;}
+}
 
 /* Screen 2 — Trust strip (text wordmark placeholders until real client logos supplied) */
 .logos-strip{padding:var(--s6) 0;background:#0B0E14;overflow:hidden;}
@@ -502,7 +527,7 @@
 <!-- ══════════════════ FOOTER ══════════════════ -->
 {{ else }}
 <!-- ══════════════════ HERO ══════════════════ -->
-<section id="hero">
+<section id="hero" class="hero--video">
   <div class="hero-bg">
     <canvas id="heroParticles" class="hero-canvas" aria-hidden="true"></canvas>
     <div class="glow1"></div>
