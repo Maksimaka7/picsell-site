@@ -130,6 +130,8 @@
            and this branch only runs when submit-lead accepted the lead. */
         if(window.gtag)gtag('event','generate_lead',{event_category:'conversion',event_label:'homepage_demo',value:1,currency:'USD'});
         if(window.picsellAttr)window.picsellAttr.push('homepage_demo');
+        /* Meta pixel (loaded by GTM) — custom event requested by the ads team. */
+        if(typeof window.fbq==='function')fbq('trackCustom','fb_generate_lead',{form_name:'homepage_demo'});
       }
       else{btn.disabled=false;btn.textContent=EN?'Book a demo →':'Замовити демо →';showMsg(EN?'Something went wrong. Try again.':'Щось пішло не так. Спробуйте ще раз.');}
     }).catch(function(){btn.disabled=false;btn.textContent=EN?'Book a demo →':'Замовити демо →';showMsg(EN?'Network error. Try again.':'Помилка мережі. Спробуйте ще раз.');});

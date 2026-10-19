@@ -217,6 +217,8 @@
            requests stay distinguishable from demo requests in GA4. */
         if(window.gtag)gtag('event','generate_lead',{event_category:'conversion',event_label:'calculator',value:1,currency:'USD'});
         if(window.picsellAttr)window.picsellAttr.push('calculator');
+        /* Meta pixel (loaded by GTM) — custom event requested by the ads team. */
+        if(typeof window.fbq==='function')fbq('trackCustom','fb_generate_lead',{form_name:'calculator'});
         document.querySelector('.calc-lead').innerHTML='<div class="calc-msg show ok" style="font-size:14px;">'+(EN?'✓ Thank you! We will send a detailed quote shortly.':'✓ Дякуємо! Надішлемо детальну пропозицію найближчим часом.')+'</div>';}
       else{btn.disabled=false;btn.textContent=EN?'Get a detailed quote':'Отримати детальну пропозицію';showMsg(false,EN?'Something went wrong. Try again.':'Щось пішло не так. Спробуйте ще раз.');}
     }).catch(function(){btn.disabled=false;btn.textContent=EN?'Get a detailed quote':'Отримати детальну пропозицію';showMsg(false,EN?'Network error. Try again.':'Помилка мережі. Спробуйте ще раз.');});
