@@ -12,6 +12,11 @@
 .hero-inner{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:var(--s7);align-items:start;}
 .hero-left h1{font-size:clamp(36px,5vw,58px);font-weight:900;line-height:1.06;margin-bottom:var(--s3);}
 .hero-left p{font-size:17px;color:var(--t2);line-height:1.7;margin-bottom:var(--s4);}
+/* Demo host line: a named person instead of generic copy. Photo optional (see markup). */
+.demo-host{display:flex;align-items:center;gap:var(--s2);margin-bottom:var(--s4);}
+.demo-host p{margin-bottom:0;}
+.demo-host p strong{color:var(--t1);font-weight:600;white-space:nowrap;}
+.demo-host-photo{width:72px;height:72px;border-radius:50%;object-fit:cover;flex-shrink:0;border:3px solid var(--bg3);box-shadow:0 0 0 1px var(--border),0 8px 20px rgba(15,30,55,.12);}
 .what-happens{display:flex;flex-direction:column;gap:var(--s2);margin-bottom:var(--s4);}
 .wh-item{display:flex;align-items:flex-start;gap:var(--s2);padding:var(--s2) var(--s3);background:var(--bg3);border:1px solid var(--border);border-radius:var(--r3);transition:border-color .3s;}
 .wh-item:hover{border-color:rgba(0,87,255,.3);}
@@ -91,7 +96,12 @@
           <span style="font-family:'Orbitron',sans-serif;font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);">Book a Demo</span>
         </div>
         <h1 class="h-anim h-d2">See PICSELL in Action — in <span class="highlight">30 Minutes</span></h1>
-        <p class="h-anim h-d3">A personalized demo for your business. No sales scripts. No obligations. Just the real system and real data from your market.</p>
+        {{/* Demo host. The portrait renders only once the file exists, so the page never
+             shows an empty frame or a stand-in face before the real photo is supplied. */}}
+        <div class="demo-host h-anim h-d3">
+          {{ if fileExists "static/images/team/polina-sydorenko.jpg" }}<img class="demo-host-photo" src="/images/team/polina-sydorenko.jpg" width="72" height="72" alt="Polina Sydorenko, Head of Sales at PICSELL" decoding="async">{{ end }}
+          <p>A personal demo from <strong>Polina Sydorenko</strong>, Head of Sales.</p>
+        </div>
 
         <div class="what-happens h-anim h-d3" style="margin-bottom:var(--s4);">
           <div style="font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--t3);margin-bottom:var(--s2);">What's included in the demo:</div>
@@ -152,15 +162,9 @@
                   <input type="email" class="form-input" placeholder="your@company.com" name="email" id="df-email" required>
                 </div>
               </div>
-              <div class="form-group">
-                <label class="form-label">What interests you most?</label>
-                <div class="checkbox-group">
-                  <label class="checkbox-item"><input type="checkbox" name="interests" value="Vision AI — shelf recognition"> Vision AI — shelf recognition</label>
-                  <label class="checkbox-item"><input type="checkbox" name="interests" value="Sales App — field teams"> Sales App — field teams</label>
-                  <label class="checkbox-item"><input type="checkbox" name="interests" value="HoReCa Intelligence"> HoReCa Intelligence</label>
-                  <label class="checkbox-item"><input type="checkbox" name="interests" value="Analytics — dashboards and AI Copilot"> Analytics — dashboards and AI Copilot</label>
-                </div>
-              </div>
+              {{/* The "what interests you" checkboxes were removed on request (2026-10-19) to
+                   shorten the form; restore from 4505c9e. submitDemoForm() already copes with
+                   none being present — `interests` and `message` are simply sent empty. */}}
               <button type="submit" class="btn btn-p btn-full btn-lg">
                 Book a Demo →
               </button>
@@ -243,7 +247,12 @@
           <span style="font-family:'Orbitron',sans-serif;font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);">Замовити демо</span>
         </div>
         <h1 class="h-anim h-d2">Побачте PICSELL в дії — за <span class="highlight">30 хвилин</span></h1>
-        <p class="h-anim h-d3">Персональне демо під ваш бізнес. Без скриптів продажів. Без зобов'язань. Тільки реальна система і реальні дані вашого ринку.</p>
+        {{/* Demo host. The portrait renders only once the file exists, so the page never
+             shows an empty frame or a stand-in face before the real photo is supplied. */}}
+        <div class="demo-host h-anim h-d3">
+          {{ if fileExists "static/images/team/polina-sydorenko.jpg" }}<img class="demo-host-photo" src="/images/team/polina-sydorenko.jpg" width="72" height="72" alt="Поліна Сидоренко, керівник відділу продажів PICSELL" decoding="async">{{ end }}
+          <p>Персональне демо від керівника відділу продажів <strong>Поліни Сидоренко</strong>.</p>
+        </div>
 
         <div class="what-happens h-anim h-d3" style="margin-bottom:var(--s4);">
           <div style="font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--t3);margin-bottom:var(--s2);">Що буде на демо:</div>
@@ -304,15 +313,9 @@
                   <input type="email" class="form-input" placeholder="your@company.com" name="email" id="df-email" required>
                 </div>
               </div>
-              <div class="form-group">
-                <label class="form-label">Що вас цікавить більше всього?</label>
-                <div class="checkbox-group">
-                  <label class="checkbox-item"><input type="checkbox" name="interests" value="Vision AI — розпізнавання полиці"> Vision AI — розпізнавання полиці</label>
-                  <label class="checkbox-item"><input type="checkbox" name="interests" value="Sales App — польові команди"> Sales App — польові команди</label>
-                  <label class="checkbox-item"><input type="checkbox" name="interests" value="HoReCa Intelligence"> HoReCa Intelligence</label>
-                  <label class="checkbox-item"><input type="checkbox" name="interests" value="Analytics — дашборди і AI Copilot"> Analytics — дашборди і AI Copilot</label>
-                </div>
-              </div>
+              {{/* The "what interests you" checkboxes were removed on request (2026-10-19) to
+                   shorten the form; restore from 4505c9e. submitDemoForm() already copes with
+                   none being present — `interests` and `message` are simply sent empty. */}}
               <button type="submit" class="btn btn-p btn-full btn-lg">
                 Записатись на демо →
               </button>
@@ -472,7 +475,11 @@ function submitDemoForm(form) {
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify(body)
     }).then(function(res){
-      if(res.ok&&window.picsellAttr)window.picsellAttr.push('demo_request');
+      if(!res.ok)return;
+      if(window.picsellAttr)window.picsellAttr.push('demo_request');
+      /* Meta pixel (loaded by GTM) — custom event requested by the ads team. Fired on
+         submit-lead's success, like lead_submit: that is where the lead reaches the CRM. */
+      if(typeof window.fbq==='function')fbq('trackCustom','fb_generate_lead',{form_name:'demo_request'});
     }).catch(function(){});
   }catch(e){}
 }
