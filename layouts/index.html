@@ -710,7 +710,11 @@
     var media=btn.closest('.hero-media');
     if(media)media.classList.add('is-playing');
     btn.replaceWith(box);
-    f.focus();   // keyboard users land in the player, not back at the top of the page
+    /* Keyboard users land in the player, not back at the top of the page.
+       preventScroll matters: #hero is overflow:hidden but still scrollable from
+       script, its decorations overhang by 64px, and a plain focus() scrolled the
+       whole hero sideways and cut the headline off. */
+    f.focus({preventScroll:true});
   },{once:true});
 })();
 </script>
