@@ -79,5 +79,22 @@
 .theme-light .map-area{background:linear-gradient(135deg,rgba(0,87,255,.07),rgba(15,30,55,.05));}
 /* Footer → light surface */
 .theme-light #footer{background:var(--bg2);border-top-color:var(--border);}
+/* Mobile: the page was wider than the screen (598px at 375). Section glows
+   (#modules 820px, #closedloop/#calc 760px, centred with translateX(-50%)) and
+   .reveal-right's pre-reveal translateX overhung the viewport; phones widened the
+   layout viewport to fit, the fixed header stretched with it and the menu and the
+   CTA ended up off-screen. body{overflow-x:hidden} does not stop that on mobile.
+   clip (not hidden): no scroll container, position:sticky keeps working. */
+.section{overflow-x:clip;}
+/* Calculator on phones: 48px panel padding left ~230px for a ~300px role row, and
+   the 1fr column refused to shrink below its content. #calc beats the partial's
+   own later rules on specificity. */
+@media(max-width:900px){#calc .calc-grid{grid-template-columns:minmax(0,1fr);}}
+@media(max-width:480px){
+  #calc .calc-panel,#calc .calc-summary{padding:20px 16px;}
+  #calc .calc-step{gap:6px;}
+  #calc .calc-num{width:34px;}
+  #cta .form-card{padding:24px 18px;}
+}
 /* ═══════════════════════════ END LIGHT FOUNDATION ═══════════════════════════ */
 </style>
