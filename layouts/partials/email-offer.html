@@ -1,0 +1,62 @@
+{{/* Light conversion for cold traffic: "send me prices and the deck" — one email
+     field. People from a Facebook ad rarely book a call on the first visit, but
+     they will leave an email. Lands in CC as form_id "pricing" (Вхідний stage,
+     Polina) with full attribution; Polina sends the prices and the presentation.
+     Usage: {{ partial "email-offer.html" (dict "page" . "place" "homepage") }} */}}
+{{ $en := strings.HasPrefix .page.RelPermalink "/en/" }}
+{{ $id := printf "eo-%s" .place }}
+<div class="eo" id="{{ $id }}" data-place="{{ .place }}">
+  <div class="eo-fields">
+    <div class="eo-title">{{ if $en }}Not ready for a call?{{ else }}Не готові до дзвінка?{{ end }}</div>
+    <div class="eo-sub">{{ if $en }}Get prices and the presentation by email.{{ else }}Надішлемо ціни та презентацію на email.{{ end }}</div>
+    <div class="eo-row">
+      <input type="email" class="eo-input" placeholder="your@company.com" autocomplete="email" aria-label="Email">
+      <button type="button" class="eo-btn">{{ if $en }}Send{{ else }}Надіслати{{ end }}</button>
+    </div>
+    <div class="eo-msg" role="alert"></div>
+  </div>
+  <div class="eo-done">✓ {{ if $en }}Done — prices and the presentation will arrive within a business day.{{ else }}Готово — ціни та презентація прийдуть протягом робочого дня.{{ end }}</div>
+</div>
+<style>
+.eo{margin-top:20px;padding-top:18px;border-top:1px dashed rgba(127,140,160,.35);}
+.eo-title{font-family:'Geologica',sans-serif;font-weight:700;font-size:15px;}
+.eo-sub{font-size:13px;opacity:.75;margin:2px 0 10px;}
+.eo-row{display:flex;gap:8px;}
+.eo-input{flex:1;min-width:0;padding:11px 12px;border-radius:10px;border:1px solid rgba(127,140,160,.45);background:transparent;color:inherit;font:inherit;font-size:14px;}
+.eo-input.err{border-color:#FF003D;}
+.eo-btn{flex:none;padding:11px 16px;border-radius:10px;border:1px solid #0057FF;background:transparent;color:inherit;font-family:'Geologica',sans-serif;font-weight:600;font-size:14px;cursor:pointer;}
+.eo-btn:hover{background:rgba(0,87,255,.10);}
+.eo-btn[disabled]{opacity:.6;cursor:default;}
+.eo-msg{display:none;font-size:12px;color:#FF003D;margin-top:6px;}
+.eo-done{display:none;font-size:14px;font-weight:600;}
+.eo.sent .eo-fields{display:none;}.eo.sent .eo-done{display:block;}
+</style>
+<script>
+(function(){
+  var box=document.getElementById('{{ $id }}'); if(!box||box.__eo) return; box.__eo=1;
+  var EN=document.documentElement.lang==='en', place=box.getAttribute('data-place');
+  var inp=box.querySelector('.eo-input'), btn=box.querySelector('.eo-btn'), msg=box.querySelector('.eo-msg');
+  function fail(t){msg.textContent=t;msg.style.display='block';btn.disabled=false;}
+  btn.addEventListener('click',function(){
+    var email=(inp.value||'').trim();
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){inp.classList.add('err');fail(EN?'Please enter a valid email.':'Введіть коректний email.');return;}
+    inp.classList.remove('err');msg.style.display='none';btn.disabled=true;
+    var attr=window.picsellAttr?window.picsellAttr.payload():{};
+    fetch('https://iblorvxgiashmdnfzbbs.supabase.co/functions/v1/submit-lead',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(Object.assign({
+        /* create_inbound_lead requires a name; the email is all we have. */
+        full_name:email, email:email, source:'website', form_id:'pricing',
+        message:(EN?'Wants prices and the presentation by email':'Хоче ціни та презентацію на email')+' ('+place+')',
+        lang:(EN?'en':'uk')
+      },attr))
+    }).then(function(res){
+      if(!res.ok){fail(EN?'Something went wrong. Try again.':'Щось пішло не так. Спробуйте ще раз.');return;}
+      box.classList.add('sent');
+      if(window.gtag)gtag('event','generate_lead',{event_category:'conversion',event_label:'pricing_email',value:1,currency:'USD'});
+      if(window.picsellAttr)window.picsellAttr.push('pricing_email');
+      if(typeof window.fbq==='function')fbq('trackCustom','fb_generate_lead',{form_name:'pricing_email'});
+    }).catch(function(){fail(EN?'Network error. Try again.':'Помилка мережі. Спробуйте ще раз.');});
+  });
+})();
+</script>
