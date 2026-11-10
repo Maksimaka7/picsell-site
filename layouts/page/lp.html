@@ -4,7 +4,9 @@
      email option for people not ready to talk. noindex: these duplicate the
      solutions pages and must not compete with them in search. */}}
 {{ define "head-extra" }}
-<meta name="robots" content="noindex,follow"/>
+{{/* indexable: true turns a page into an SEO landing (in the sitemap, indexed,
+     with a long-form article below the hero); without it, an ad landing. */}}
+{{ if not .Params.indexable }}<meta name="robots" content="noindex,follow"/>{{ end }}
 <style>
 .lp{padding:112px 0 64px;}
 .lp-hero{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:48px;align-items:start;}
@@ -46,6 +48,19 @@
 .lp-faq summary{cursor:pointer;font-weight:600;color:var(--t1);font-size:15px;}
 .lp-faq details p{margin:10px 0 0;font-size:14px;line-height:1.55;color:var(--t2);}
 .lp-final{margin-top:56px;text-align:center;}
+.lp-article{max-width:820px;}
+.lp-article h2{font-family:'Geologica',sans-serif;font-size:clamp(22px,2.6vw,30px);font-weight:800;color:var(--t1);margin:40px 0 14px;line-height:1.2;}
+.lp-article h2:first-child{margin-top:0;}
+.lp-article h3{font-family:'Geologica',sans-serif;font-size:19px;font-weight:700;color:var(--t1);margin:24px 0 8px;}
+.lp-article p,.lp-article li{font-size:16px;line-height:1.7;color:var(--t2);}
+.lp-article ul{padding-left:20px;margin:8px 0 16px;}
+.lp-article li{margin:4px 0;}
+.lp-article strong{color:var(--t1);}
+.lp-article a{color:var(--blue);}
+.lp-article table{display:block;overflow-x:auto;max-width:100%;border-collapse:collapse;margin:12px 0 20px;font-size:14px;}
+.lp-article th,.lp-article td{border:1px solid var(--border);padding:10px 12px;text-align:left;vertical-align:top;color:var(--t2);}
+.lp-article th{background:var(--bg2);color:var(--t1);font-weight:600;}
+.lp-article .tbl{overflow-x:auto;}
 @media(max-width:960px){
   .lp{padding-top:96px;}
   .lp-hero{grid-template-columns:minmax(0,1fr);gap:28px;}
@@ -95,6 +110,8 @@
       </div>
     </div>
 
+    {{ with .Content }}<article class="lp-sec lp-article">{{ . }}</article>{{ end }}
+
     <div class="lp-sec">
       <h3>{{ $p.painsTitle }}</h3>
       <div class="lp-grid3">
@@ -127,7 +144,7 @@
   </div>
 </section>
 
-<script type="application/ld+json">
+<script type="application/ld+json" data-faq>
 {{ $qa := slice }}{{ range $p.faq }}{{ $qa = $qa | append (dict "@type" "Question" "name" .q "acceptedAnswer" (dict "@type" "Answer" "text" .a)) }}{{ end }}
 {{ dict "@context" "https://schema.org" "@type" "FAQPage" "mainEntity" $qa | jsonify | safeJS }}
 </script>
