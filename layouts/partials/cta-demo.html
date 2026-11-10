@@ -1,6 +1,16 @@
 {{ $en := strings.HasPrefix .RelPermalink "/en/" }}
 <!-- ══════════════════ SCREEN 11 — FINAL CTA + DEMO FORM (§12) ══════════════════ -->
-<style>#cta .form-input.err{border-color:var(--red);}</style>
+<style>#cta .form-input.err{border-color:var(--red);}
+/* Grid items default to min-width:auto, so the inputs' intrinsic width pushed the
+   card ~50px past a 390px screen (the overflow was hidden by .section's clip).
+   minmax(0,…) lets the columns shrink to the screen. */
+#cta .cta-inner>*{min-width:0;}
+#cta .form-row>*,#cta .form-group{min-width:0;}
+#cta .form-input{width:100%;min-width:0;box-sizing:border-box;}
+@media(max-width:1024px){#cta .cta-inner{grid-template-columns:minmax(0,1fr);}}
+#cta .eo{color:#E8ECF3;}#cta .eo-sub{color:rgba(232,236,243,.7);opacity:1;}
+#cta .eo-input{border-color:rgba(255,255,255,.18);}
+#cta .eo-input::placeholder{color:rgba(232,236,243,.45);}</style>
 <section id="cta" class="section">
   <div class="container">
     <div class="cta-inner">
@@ -23,64 +33,27 @@
           <div id="ctaFields">
             <h3 style="font-family:'Geologica',sans-serif;font-size:20px;font-weight:700;margin-bottom:var(--s3);">{{ if $en }}Book a personalized demo{{ else }}Замовте персональне демо{{ end }}</h3>
             <div class="form-grid">
-              <div class="form-row">
-                <div class="form-group">
-                  <label class="form-label">{{ if $en }}Name{{ else }}Ім'я{{ end }}</label>
-                  <input type="text" class="form-input" id="ctaName" placeholder="{{ if $en }}John{{ else }}Олексій{{ end }}">
-                </div>
-                <div class="form-group">
-                  <label class="form-label">Email *</label>
-                  <input type="email" class="form-input" id="ctaEmail" placeholder="your@company.com" autocomplete="email">
-                </div>
+              {{/* 3 fields (was 8): every extra field costs conversions, and the
+                   rest (company type, team size) Polina asks on the call. How the
+                   visitor found us is already in the attribution. */}}
+              <div class="form-group">
+                <label class="form-label">{{ if $en }}Name{{ else }}Ім'я{{ end }} *</label>
+                <input type="text" class="form-input" id="ctaName" placeholder="{{ if $en }}John{{ else }}Олексій{{ end }}" autocomplete="name">
               </div>
               <div class="form-row">
                 <div class="form-group">
-                  <label class="form-label">{{ if $en }}Phone{{ else }}Телефон{{ end }}</label>
-                  <input type="tel" class="form-input" id="ctaPhone" placeholder="+380 XX XXX XXXX">
+                  <label class="form-label">{{ if $en }}Phone{{ else }}Телефон{{ end }} *</label>
+                  <input type="tel" class="form-input" id="ctaPhone" placeholder="+380 XX XXX XXXX" autocomplete="tel" inputmode="tel">
                 </div>
                 <div class="form-group">
                   <label class="form-label">{{ if $en }}Company{{ else }}Компанія{{ end }}</label>
-                  <input type="text" class="form-input" id="ctaCompany" placeholder="{{ if $en }}Company name{{ else }}Назва компанії{{ end }}">
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="form-label">{{ if $en }}I represent{{ else }}Я представляю{{ end }}</label>
-                <select class="form-input form-select" id="ctaRepr">
-                  <option value="" disabled selected>{{ if $en }}Select{{ else }}Оберіть{{ end }}</option>
-                  <option>{{ if $en }}Manufacturer{{ else }}Виробник{{ end }}</option>
-                  <option>{{ if $en }}Distributor{{ else }}Дистриб'ютор{{ end }}</option>
-                  <option>{{ if $en }}Retail chain{{ else }}Роздрібна мережа{{ end }}</option>
-                  <option>HoReCa</option>
-                  <option>{{ if $en }}Other{{ else }}Інше{{ end }}</option>
-                </select>
-              </div>
-              <div class="form-row">
-                <div class="form-group">
-                  <label class="form-label">{{ if $en }}Field team size{{ else }}Розмір польової команди{{ end }}</label>
-                  <select class="form-input form-select" id="ctaTeam">
-                    <option value="" disabled selected>{{ if $en }}Select{{ else }}Оберіть{{ end }}</option>
-                    <option>{{ if $en }}up to 10{{ else }}до 10{{ end }}</option>
-                    <option>10–50</option>
-                    <option>51–100</option>
-                    <option>100+</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label class="form-label">{{ if $en }}How did you hear{{ else }}Звідки дізнались{{ end }}</label>
-                  <select class="form-input form-select" id="ctaSrc">
-                    <option value="" disabled selected>{{ if $en }}Select{{ else }}Оберіть{{ end }}</option>
-                    <option>{{ if $en }}Search{{ else }}Пошук{{ end }}</option>
-                    <option>LinkedIn</option>
-                    <option>{{ if $en }}Referral{{ else }}Рекомендація{{ end }}</option>
-                    <option>{{ if $en }}Ad{{ else }}Реклама{{ end }}</option>
-                    <option>{{ if $en }}Event{{ else }}Подія{{ end }}</option>
-                    <option>{{ if $en }}Other{{ else }}Інше{{ end }}</option>
-                  </select>
+                  <input type="text" class="form-input" id="ctaCompany" placeholder="{{ if $en }}Company name{{ else }}Назва компанії{{ end }}" autocomplete="organization">
                 </div>
               </div>
               <button type="button" class="btn btn-p btn-full" id="ctaSubmit">{{ if $en }}Book a demo →{{ else }}Замовити демо →{{ end }}</button>
               <div id="ctaMsg" style="display:none;font-size:13px;margin-top:10px;color:var(--red);"></div>
               <p class="form-note">🔒 {{ if $en }}We respond within 2 hours on business days. No obligations.{{ else }}Відповімо за 2 години в робочий день. Без зобовʼязань.{{ end }}</p>
+              {{ partial "email-offer.html" (dict "page" . "place" "homepage") }}
             </div>
           </div>
           <div id="ctaSuccess" class="form-success">
@@ -99,19 +72,18 @@
   var card=document.getElementById('ctaCard');
   if(!card) return;
   var EN=document.documentElement.lang==='en';
-  var emailEl=document.getElementById('ctaEmail'),btn=document.getElementById('ctaSubmit'),msg=document.getElementById('ctaMsg');
+  var nameEl=document.getElementById('ctaName'),phoneEl=document.getElementById('ctaPhone'),btn=document.getElementById('ctaSubmit'),msg=document.getElementById('ctaMsg');
   function showMsg(text){msg.textContent=text;msg.style.display='block';}
   function val(id){var e=document.getElementById(id);return e?(e.value||'').trim():'';}
   btn.addEventListener('click',function(){
-    var email=val('ctaEmail');
-    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){emailEl.classList.add('err');showMsg(EN?'Please enter a valid email.':'Введіть коректний email.');return;}
-    emailEl.classList.remove('err');
-    var repr=val('ctaRepr'),team=val('ctaTeam'),src=val('ctaSrc');
-    var parts=[];
-    if(repr)parts.push((EN?'type: ':'тип: ')+repr);
-    if(team)parts.push((EN?'team ':'команда ')+team);
-    if(src)parts.push((EN?'channel: ':'канал: ')+src);
-    var message=(EN?'Demo request':'Заявка на демо')+(parts.length?' | '+parts.join(' | '):'');
+    var name=val('ctaName'),phone=val('ctaPhone');
+    nameEl.classList.toggle('err',!name);
+    var digits=phone.replace(/\D/g,'');
+    phoneEl.classList.toggle('err',digits.length<9);
+    if(!name){showMsg(EN?'Please enter your name.':'Вкажіть, як до вас звертатися.');return;}
+    if(digits.length<9){showMsg(EN?'Please enter a phone number.':'Вкажіть номер телефону.');return;}
+    msg.style.display='none';
+    var message=EN?'Demo request':'Заявка на демо';
     /* Read at send time, not at page load: the visitor may have arrived on this
        page from a campaign landing several clicks ago. */
     var attr=window.picsellAttr?window.picsellAttr.payload():{};
@@ -119,7 +91,7 @@
     fetch('https://iblorvxgiashmdnfzbbs.supabase.co/functions/v1/submit-lead',{
       method:'POST',headers:{'Content-Type':'application/json'},
       body:JSON.stringify(Object.assign({
-        email:email,full_name:val('ctaName'),phone:val('ctaPhone'),company:val('ctaCompany'),
+        full_name:name,phone:phone,company:val('ctaCompany'),
         source:'website',form_id:'homepage',
         message:message,lang:(EN?'en':'uk')
       },attr))

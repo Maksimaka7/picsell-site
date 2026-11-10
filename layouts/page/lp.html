@@ -1,0 +1,164 @@
+{{/* Ad landing pages (/lp/*). One template, copy in front matter. Built for paid
+     traffic: one audience, one message, proof right under the promise, a 3-field
+     form above the fold on desktop and right after the hero on phones, plus the
+     email option for people not ready to talk. noindex: these duplicate the
+     solutions pages and must not compete with them in search. */}}
+{{ define "head-extra" }}
+<meta name="robots" content="noindex,follow"/>
+<style>
+.lp{padding:112px 0 64px;}
+.lp-hero{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:48px;align-items:start;}
+.lp-eyebrow{display:inline-block;font-family:'Orbitron',sans-serif;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-bottom:14px;}
+.lp h1{font-family:'Geologica',sans-serif;font-size:clamp(30px,4.2vw,48px);line-height:1.08;font-weight:800;color:var(--t1);margin:0 0 16px;}
+.lp h1 em{font-style:normal;color:var(--blue);}
+.lp-lead{font-size:18px;line-height:1.55;color:var(--t2);margin:0 0 24px;}
+.lp-points{list-style:none;padding:0;margin:0 0 28px;display:grid;gap:12px;}
+.lp-points li{display:flex;gap:12px;font-size:15px;line-height:1.45;color:var(--t1);}
+.lp-points li::before{content:'✓';flex:none;width:22px;height:22px;border-radius:50%;background:rgba(0,87,255,.10);color:var(--blue);font-weight:700;font-size:12px;display:flex;align-items:center;justify-content:center;}
+.lp-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;}
+.lp-stat{background:var(--bg3);border:1px solid var(--border);border-radius:14px;padding:14px;}
+.lp-stat b{display:block;font-family:'Geologica',sans-serif;font-size:24px;font-weight:800;color:var(--blue);}
+.lp-stat span{font-size:12px;color:var(--t2);line-height:1.35;display:block;margin-top:2px;}
+.lp-proof-note{font-size:12px;color:var(--t3);margin-top:8px;}
+.lp-card{background:var(--bg3);border:1px solid var(--border);border-radius:20px;padding:28px;box-shadow:0 24px 60px rgba(15,30,55,.10);position:sticky;top:96px;}
+.lp-card h2{font-family:'Geologica',sans-serif;font-size:21px;font-weight:700;margin:0 0 4px;color:var(--t1);}
+.lp-card .lp-card-sub{font-size:13px;color:var(--t2);margin:0 0 18px;}
+.lp-f{display:grid;gap:12px;}
+.lp-f label{font-size:12px;font-weight:600;color:var(--t2);display:block;margin-bottom:4px;}
+.lp-f input{width:100%;padding:13px 14px;border-radius:10px;border:1px solid var(--border);background:var(--bg1);font:inherit;font-size:15px;color:var(--t1);}
+.lp-f input:focus{outline:none;border-color:var(--blue);}
+.lp-f input.err{border-color:var(--red);}
+.lp-msg{display:none;font-size:13px;color:var(--red);}
+.lp-note{font-size:12px;color:var(--t3);text-align:center;margin-top:4px;}
+.lp-done{display:none;text-align:center;padding:24px 0;}
+.lp-done b{display:block;font-family:'Geologica',sans-serif;font-size:20px;margin:8px 0;color:var(--t1);}
+.lp-sec{padding:56px 0 0;}
+.lp-sec h3{font-family:'Geologica',sans-serif;font-size:clamp(22px,2.6vw,30px);font-weight:800;color:var(--t1);margin:0 0 20px;}
+.lp-grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;}
+.lp-box{background:var(--bg3);border:1px solid var(--border);border-radius:16px;padding:22px;}
+.lp-box .lp-pain{font-size:13px;color:var(--t3);margin-bottom:8px;}
+.lp-box b{display:block;font-family:'Geologica',sans-serif;font-size:17px;color:var(--t1);margin-bottom:6px;}
+.lp-box p{font-size:14px;line-height:1.5;color:var(--t2);margin:0;}
+.lp-steps{counter-reset:s;}
+.lp-steps .lp-box b::before{counter-increment:s;content:counter(s);display:inline-flex;width:26px;height:26px;border-radius:8px;background:var(--blue);color:#fff;font-size:13px;align-items:center;justify-content:center;margin-right:10px;}
+.lp-logos{display:flex;flex-wrap:wrap;gap:10px 28px;align-items:center;font-family:'Geologica',sans-serif;font-weight:700;font-size:18px;color:var(--t3);}
+.lp-faq details{background:var(--bg3);border:1px solid var(--border);border-radius:14px;padding:16px 18px;margin-bottom:10px;}
+.lp-faq summary{cursor:pointer;font-weight:600;color:var(--t1);font-size:15px;}
+.lp-faq details p{margin:10px 0 0;font-size:14px;line-height:1.55;color:var(--t2);}
+.lp-final{margin-top:56px;text-align:center;}
+@media(max-width:960px){
+  .lp{padding-top:96px;}
+  .lp-hero{grid-template-columns:minmax(0,1fr);gap:28px;}
+  .lp-card{position:static;}
+  .lp-grid3{grid-template-columns:minmax(0,1fr);}
+  .lp-stats{grid-template-columns:repeat(2,minmax(0,1fr));}
+}
+@media(max-width:480px){.lp-card{padding:22px 18px;}.lp-lead{font-size:16px;}}
+</style>
+{{ end }}
+
+{{ define "main" }}
+{{ $p := .Params }}
+<section class="lp">
+  <div class="container">
+    <div class="lp-hero">
+      <div>
+        <span class="lp-eyebrow">{{ $p.eyebrow }}</span>
+        <h1>{{ $p.headline | safeHTML }}</h1>
+        <p class="lp-lead">{{ $p.lead }}</p>
+        <ul class="lp-points">{{ range $p.points }}<li>{{ . }}</li>{{ end }}</ul>
+        <div class="lp-stats">
+          {{ range $p.stats }}<div class="lp-stat"><b>{{ .v }}</b><span>{{ .t }}</span></div>{{ end }}
+        </div>
+        <div class="lp-proof-note">Кейс Lactalis — <a href="/case-lactalis/" style="color:var(--blue);">як це було</a></div>
+      </div>
+
+      <div class="lp-card" id="lpCard">
+        <div id="lpFields">
+          <h2>{{ $p.formTitle | default "Замовте демо на ваших точках" }}</h2>
+          <p class="lp-card-sub">30 хвилин, без зобовʼязань. Передзвонимо за 2 години в робочий день.</p>
+          <div class="lp-f">
+            <div><label for="lpName">Імʼя *</label><input id="lpName" type="text" autocomplete="name" placeholder="Олексій"></div>
+            <div><label for="lpPhone">Телефон *</label><input id="lpPhone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+380 XX XXX XXXX"></div>
+            <div><label for="lpCompany">Компанія</label><input id="lpCompany" type="text" autocomplete="organization" placeholder="Назва компанії"></div>
+            <button type="button" class="btn btn-p btn-full" id="lpSubmit">Замовити демо →</button>
+            <div class="lp-msg" id="lpMsg" role="alert"></div>
+            <div class="lp-note">🔒 Ваші дані бачить лише відділ продажів PICSELL</div>
+          </div>
+          {{ partial "email-offer.html" (dict "page" . "place" (printf "lp-%s" $p.lpKey)) }}
+        </div>
+        <div class="lp-done" id="lpDone">
+          <div style="font-size:40px;">🎉</div>
+          <b>Дякуємо! Заявку отримано.</b>
+          <p style="color:var(--t2);font-size:14px;margin:0;">Менеджер звʼяжеться з вами протягом 2 годин у робочий день.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="lp-sec">
+      <h3>{{ $p.painsTitle }}</h3>
+      <div class="lp-grid3">
+        {{ range $p.pains }}<div class="lp-box"><div class="lp-pain">{{ .pain }}</div><b>{{ .title }}</b><p>{{ .text }}</p></div>{{ end }}
+      </div>
+    </div>
+
+    <div class="lp-sec">
+      <h3>Як запускаємо</h3>
+      <div class="lp-grid3 lp-steps">
+        <div class="lp-box"><b>Демо на ваших даних</b><p>Показуємо PICSELL на ваших точках і SKU — 30 хвилин онлайн.</p></div>
+        <div class="lp-box"><b>Пілот на 2–4 тижні</b><p>Налаштовуємо асортимент, маршрути й звіти. Навчання агента — близько 30 хвилин.</p></div>
+        <div class="lp-box"><b>Масштаб на всю команду</b><p>Підключаємо всі регіони. Lactalis повністю перейшов на PICSELL за 4 тижні.</p></div>
+      </div>
+    </div>
+
+    <div class="lp-sec">
+      <h3>Нам довіряють</h3>
+      <div class="lp-logos"><span>Lactalis</span><span>Henkel</span><span>Schwarzkopf</span><span>Diageo</span><span>Colgate</span><span>Bayadera</span><span>Masafi</span><span>IDS Borjomi</span></div>
+    </div>
+
+    <div class="lp-sec lp-faq">
+      <h3>Часті питання</h3>
+      {{ range $p.faq }}<details><summary>{{ .q }}</summary><p>{{ .a }}</p></details>{{ end }}
+    </div>
+
+    <div class="lp-final">
+      <a href="#lpCard" class="btn btn-p btn-lg">Замовити демо →</a>
+    </div>
+  </div>
+</section>
+
+<script type="application/ld+json">
+{{ $qa := slice }}{{ range $p.faq }}{{ $qa = $qa | append (dict "@type" "Question" "name" .q "acceptedAnswer" (dict "@type" "Answer" "text" .a)) }}{{ end }}
+{{ dict "@context" "https://schema.org" "@type" "FAQPage" "mainEntity" $qa | jsonify | safeJS }}
+</script>
+
+<script>
+(function(){
+  var btn=document.getElementById('lpSubmit'); if(!btn) return;
+  var key={{ $p.lpKey }};
+  var nameEl=document.getElementById('lpName'),phoneEl=document.getElementById('lpPhone'),msg=document.getElementById('lpMsg');
+  function fail(t){msg.textContent=t;msg.style.display='block';btn.disabled=false;btn.textContent='Замовити демо →';}
+  btn.addEventListener('click',function(){
+    var name=nameEl.value.trim(),phone=phoneEl.value.trim(),digits=phone.replace(/\D/g,'');
+    nameEl.classList.toggle('err',!name);phoneEl.classList.toggle('err',digits.length<9);
+    if(!name){fail('Вкажіть, як до вас звертатися.');return;}
+    if(digits.length<9){fail('Вкажіть номер телефону.');return;}
+    msg.style.display='none';btn.disabled=true;btn.textContent='Надсилаємо…';
+    var attr=window.picsellAttr?window.picsellAttr.payload():{};
+    fetch('https://iblorvxgiashmdnfzbbs.supabase.co/functions/v1/submit-lead',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(Object.assign({
+        full_name:name,phone:phone,company:document.getElementById('lpCompany').value.trim(),
+        source:'website',form_id:'landing',message:'Заявка на демо з лендингу: '+key,lang:'uk'
+      },attr))
+    }).then(function(res){
+      if(!res.ok){fail('Щось пішло не так. Спробуйте ще раз.');return;}
+      document.getElementById('lpFields').style.display='none';document.getElementById('lpDone').style.display='block';
+      if(window.gtag)gtag('event','generate_lead',{event_category:'conversion',event_label:'landing_'+key,value:1,currency:'USD'});
+      if(window.picsellAttr)window.picsellAttr.push('landing_'+key);
+      if(typeof window.fbq==='function')fbq('trackCustom','fb_generate_lead',{form_name:'landing_'+key});
+    }).catch(function(){fail('Помилка мережі. Спробуйте ще раз.');});
+  });
+})();
+</script>
+{{ end }}
