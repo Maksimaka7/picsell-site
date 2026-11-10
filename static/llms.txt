@@ -1,0 +1,37 @@
+# PICSELL
+
+> PICSELL is a Ukrainian retail-execution platform for FMCG manufacturers and distributors: Vision AI shelf recognition, Sales Force Automation (SFA) for field teams, HoReCa Intelligence and competitive market monitoring — one mobile app for every field role plus web analytics. Site in Ukrainian (https://picsell.ai/) and English (https://picsell.ai/en/). Part of Imperia Holding, Kyiv, Ukraine.
+
+Key facts:
+- Who it is for: FMCG brands (manufacturers) and distributors running merchandisers, sales reps and supervisors in retail stores and HoReCa (restaurants, bars, cafés).
+- What it does: GPS-verified routes and visits, tasks with photo reports, Store Check and Perfect Store, assortment matrices, price monitoring, orders, KPI tracking, offline-first mobile app; Vision AI recognises products on shelf photos (out-of-stock, share of shelf, planogram compliance) in about 60 seconds per audit.
+- Clients include Lactalis, Henkel, Schwarzkopf, Diageo, Colgate, Bayadera, Masafi and IDS Borjomi (see the Lactalis case study).
+- Pricing (per user per month, UAH; final price agreed individually): merchandiser ₴1,400, sales rep ₴1,400, supervisor ₴1,000, other user ₴900. Radar and HoReCa add-ons from ₴20,000. Calculator: https://picsell.ai/en/calculator/
+- Contacts: sales +380 77 880 98 88, support +380 67 363 06 44, info@picsell.ai. Free demo on request: https://picsell.ai/en/demo/
+
+## Product
+- [Core — field execution foundation](https://picsell.ai/en/core/): routes and visits with GPS, photo-report tasks, Store Check, Perfect Store, assortment and price monitoring, merch planning
+- [Vision AI — shelf recognition](https://picsell.ai/en/vision-ai/): OOS detection, share of shelf, planogram compliance
+- [SFA — field sales app](https://picsell.ai/en/sales-app/): route planning, orders, visit control, KPIs for sales reps
+- [HoReCa Intelligence](https://picsell.ai/en/horeca/): brand presence in restaurant and bar menus, menu audits
+- [Radar — competitive intelligence](https://picsell.ai/en/radar/): competitor prices and activity across channels
+- [Analytics](https://picsell.ai/en/analytics/): BI dashboards, Perfect Store score, distributor KPIs
+
+## Solutions
+- [For FMCG brands](https://picsell.ai/en/solutions-brands/)
+- [For distributors](https://picsell.ai/en/solutions-distributors/)
+- [For HoReCa](https://picsell.ai/en/solutions-horeca/)
+- Roles: [merchandiser](https://picsell.ai/en/roles/merchandiser/), [sales rep](https://picsell.ai/en/roles/sales-rep/), [supervisor](https://picsell.ai/en/roles/supervisor/), [regional manager](https://picsell.ai/en/roles/regional-manager/)
+
+## Proof and pricing
+- [Lactalis case study](https://picsell.ai/en/case-lactalis/)
+- [Case studies](https://picsell.ai/en/case-studies/)
+- [Pricing](https://picsell.ai/en/pricing/)
+- [Book a demo](https://picsell.ai/en/demo/)
+
+## Українською
+- [Головна](https://picsell.ai/), [Vision AI](https://picsell.ai/vision-ai/), [Польові продажі (SFA)](https://picsell.ai/sales-app/), [HoReCa](https://picsell.ai/horeca/), [Ціни](https://picsell.ai/pricing/), [Калькулятор](https://picsell.ai/calculator/), [Замовити демо](https://picsell.ai/demo/)
+
+## Optional
+- [Blog](https://picsell.ai/en/blog/): Vision AI, OSA / out-of-stock, Perfect Store audits, SFA productivity, HoReCa trends
+- [About PICSELL](https://picsell.ai/en/about/)
