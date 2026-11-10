@@ -1,0 +1,22 @@
+{{/* FAQPage for the pages whose FAQ is hand-written HTML (.faq-item with .faq-q
+     and .faq-a — pricing, sales-app, solutions-horeca, case studies…). Built in
+     the browser from the visible questions, so it can never drift from the
+     text; Google reads JSON-LD added by script. Skipped where the page already
+     declares a FAQPage server-side (the /lp/ and SEO landing template). */}}
+<script>
+(function(){
+  if(document.querySelector('script[type="application/ld+json"][data-faq]'))return;
+  var items=document.querySelectorAll('.faq-item'); if(!items.length)return;
+  var qa=[];
+  items.forEach(function(it){
+    var q=it.querySelector('.faq-q'),a=it.querySelector('.faq-a'); if(!q||!a)return;
+    var qt=q.cloneNode(true); qt.querySelectorAll('.faq-icon').forEach(function(n){n.remove();});
+    var name=qt.textContent.replace(/\s+/g,' ').trim(), text=a.textContent.replace(/\s+/g,' ').trim();
+    if(name&&text)qa.push({'@type':'Question',name:name,acceptedAnswer:{'@type':'Answer',text:text}});
+  });
+  if(!qa.length)return;
+  var s=document.createElement('script'); s.type='application/ld+json';
+  s.text=JSON.stringify({'@context':'https://schema.org','@type':'FAQPage',mainEntity:qa});
+  document.head.appendChild(s);
+})();
+</script>

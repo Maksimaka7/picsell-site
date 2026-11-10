@@ -1,0 +1,40 @@
+{{/* SoftwareApplication + prices for the product pages, so Google and AI
+     assistants can read what each product is and what it costs straight from
+     the page. Prices mirror the calculator (per user per month, UAH; Radar and
+     HoReCa are add-ons from ₴20,000/month). Keyed by path so the content files
+     stay untouched; EN pages share the UA entry via the "/en" prefix strip. */}}
+{{ $path := strings.TrimPrefix "/en" .RelPermalink }}
+{{ $en := strings.HasPrefix .RelPermalink "/en/" }}
+{{ $map := dict
+  "/core/"      (dict "name" "PICSELL Core" "low" 900 "high" 1400)
+  "/vision-ai/" (dict "name" "PICSELL Vision AI" "low" 0 "high" 0)
+  "/sales-app/" (dict "name" "PICSELL SFA" "low" 900 "high" 1400)
+  "/pricing/"   (dict "name" "PICSELL" "low" 900 "high" 1400)
+  "/radar/"     (dict "name" "PICSELL Radar" "low" 20000 "high" 20000)
+  "/horeca/"    (dict "name" "PICSELL HoReCa Intelligence" "low" 20000 "high" 20000)
+}}
+{{ with index $map $path }}
+{{ $desc := $.Params.seoDescription | default $.Description | default site.Params.description }}
+{{ $unit := cond (eq .low 20000) (cond $en "per month" "на місяць") (cond $en "per user per month" "за користувача на місяць") }}
+{{ $ld := dict
+  "@context" "https://schema.org"
+  "@type" "SoftwareApplication"
+  "name" .name
+  "url" $.Permalink
+  "description" $desc
+  "applicationCategory" "BusinessApplication"
+  "operatingSystem" "Android, iOS, Web"
+  "inLanguage" (cond $en "en" "uk")
+  "publisher" (dict "@id" "https://picsell.ai/#organization")
+}}
+{{/* Vision AI is sold inside the Growth/Enterprise plans, not per role — no
+     price claim for it (low 0 = no offers). */}}
+{{ if gt .low 0 }}{{ $ld = merge $ld (dict "offers" (dict
+    "@type" "AggregateOffer"
+    "priceCurrency" "UAH"
+    "lowPrice" (string .low)
+    "highPrice" (string .high)
+    "description" $unit
+    "url" (cond $en "https://picsell.ai/en/pricing/" "https://picsell.ai/pricing/"))) }}{{ end }}
+<script type="application/ld+json">{{ $ld | jsonify | safeJS }}</script>
+{{ end }}

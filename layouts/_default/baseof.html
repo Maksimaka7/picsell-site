@@ -12,6 +12,7 @@
 {{ partial "head.html" . }}
 {{ if $.Scratch.Get "light" }}{{ partial "theme-light.html" . }}{{ end }}
 {{ block "head-extra" . }}{{ end }}
+{{ partial "product-schema.html" . }}
 </head>
 <body class="{{ if $.Scratch.Get "light" }}theme-light{{ end }}{{ if .IsHome }} is-home{{ end }}" style="overflow-x:hidden;">
 <!-- Google Tag Manager (noscript) -->
@@ -51,6 +52,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 {{ partial "mobile-contact.html" . }}
 {{ block "scripts" . }}{{ end }}
 {{ partial "analytics-events.html" . }}
+{{ partial "faq-schema.html" . }}
 <!-- Netlify Identity Widget for CMS -->
 <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 <script>
