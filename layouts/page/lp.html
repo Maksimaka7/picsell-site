@@ -101,6 +101,7 @@
             <div class="lp-note">🔒 Ваші дані бачить лише відділ продажів PICSELL</div>
           </div>
           {{ partial "email-offer.html" (dict "page" . "place" (printf "lp-%s" $p.lpKey)) }}
+          {{ if in site.Data.shots.offerLine $p.lpKey }}{{ partial "photo-offer.html" (dict "page" . "style" "line") }}{{ end }}
         </div>
         <div class="lp-done" id="lpDone">
           <div style="font-size:40px;">🎉</div>
@@ -109,6 +110,12 @@
         </div>
       </div>
     </div>
+
+    {{/* Product screens, the trust block and the "20 photos" offer — which page
+         gets what is decided by lpKey in data/shots.yaml. */}}
+    {{ if index site.Data.shots.sets $p.lpKey }}{{ partial "shots.html" (dict "page" . "set" $p.lpKey "bare" true) }}{{ end }}
+    {{ if in site.Data.shots.trust $p.lpKey }}{{ partial "trust.html" (dict "page" . "bare" true) }}{{ end }}
+    {{ if in site.Data.shots.offer $p.lpKey }}{{ partial "photo-offer.html" (dict "page" . "style" "box") }}{{ end }}
 
     {{ with .Content }}<article class="lp-sec lp-article">{{ . }}</article>{{ end }}
 

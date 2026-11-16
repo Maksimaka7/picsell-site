@@ -1,0 +1,103 @@
+{{/* Integrations page. Buyers of field-sales software ask "does it work with
+     our 1C / SAP?" before anything else, and the site had no page answering
+     it. One template for UA and EN; all copy is in the content file's front
+     matter. Facts: sales deck (Nov 2026) + the ERP list already on /sales-app/. */}}
+{{ define "head-extra" }}
+<style>
+.ig{padding:128px 0 72px;}
+.ig-hero{max-width:860px;}
+.ig h1{font-family:'Geologica',sans-serif;font-size:clamp(32px,4.6vw,52px);font-weight:900;line-height:1.1;letter-spacing:-.02em;color:var(--t1);margin:14px 0 16px;}
+.ig h1 em{font-style:normal;color:var(--blue);}
+.ig-lead{font-size:18px;line-height:1.6;color:var(--t2);margin:0 0 24px;}
+.ig-chips{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 28px;}
+.ig-chip{font-family:'Geologica',sans-serif;font-weight:600;font-size:14px;color:var(--t1);background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:10px 16px;}
+.ig-sec{padding-top:64px;}
+.ig-sec h2{font-family:'Geologica',sans-serif;font-size:clamp(24px,3vw,32px);font-weight:800;line-height:1.2;color:var(--t1);margin:0 0 8px;}
+.ig-sub{font-size:16px;color:var(--t2);margin:0 0 24px;max-width:760px;line-height:1.6;}
+.ig-flow{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;}
+.ig-box{background:var(--bg3);border:1px solid var(--border);border-radius:18px;padding:24px;box-shadow:0 1px 2px rgba(15,30,55,.04),0 12px 30px rgba(15,30,55,.06);}
+.ig-box .ig-dir{font-family:'Orbitron',sans-serif;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-bottom:10px;}
+.ig-box b{display:block;font-family:'Geologica',sans-serif;font-size:18px;font-weight:800;color:var(--t1);margin-bottom:10px;}
+.ig-box p{font-size:15px;line-height:1.55;color:var(--t2);margin:0;}
+.ig-tags{display:flex;flex-wrap:wrap;gap:8px;}
+.ig-tags span{font-size:14px;color:var(--t1);background:rgba(0,87,255,.07);border-radius:999px;padding:6px 12px;}
+.ig-grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;}
+.ig-status{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:32px;align-items:center;}
+.ig-status img{display:block;width:100%;height:auto;border:1px solid var(--border);border-radius:16px;box-shadow:0 10px 30px rgba(15,30,55,.10);}
+.ig-steps{counter-reset:s;}
+.ig-steps .ig-box b::before{counter-increment:s;content:counter(s);display:inline-flex;width:26px;height:26px;border-radius:8px;background:var(--blue);color:#fff;font-size:13px;align-items:center;justify-content:center;margin-right:10px;}
+.ig-faq details{background:var(--bg3);border:1px solid var(--border);border-radius:14px;padding:16px 18px;margin-bottom:10px;}
+.ig-faq summary{cursor:pointer;font-weight:600;color:var(--t1);font-size:15px;}
+.ig-faq details p{margin:10px 0 0;font-size:15px;line-height:1.6;color:var(--t2);}
+.ig-cta{margin-top:64px;background:#0B1F33;border-radius:20px;padding:36px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;}
+.ig-cta h2{color:#fff;margin:0 0 6px;}
+.ig-cta p{color:rgba(255,255,255,.78);margin:0;font-size:15px;}
+.ig-cta .btn-g{color:#fff;border-color:rgba(255,255,255,.35);}
+@media(max-width:900px){.ig{padding-top:104px;}.ig-flow,.ig-grid3,.ig-status{grid-template-columns:minmax(0,1fr);}.ig-cta{padding:26px 20px;}}
+</style>
+{{ end }}
+
+{{ define "main" }}
+{{ $p := .Params }}
+<section class="ig">
+  <div class="container">
+    <div class="ig-hero">
+      <span class="tag">{{ $p.eyebrow }}</span>
+      <h1>{{ $p.headline | safeHTML }}</h1>
+      <p class="ig-lead">{{ $p.lead }}</p>
+      <div class="ig-chips">{{ range $p.systems }}<span class="ig-chip">{{ . }}</span>{{ end }}</div>
+      <a href="{{ "/demo/" | relLangURL }}" class="btn btn-p btn-lg">{{ $p.ctaPrimary }} →</a>
+    </div>
+
+    <div class="ig-sec">
+      <h2>{{ $p.flowTitle }}</h2>
+      <p class="ig-sub">{{ $p.flowSub }}</p>
+      <div class="ig-flow">
+        {{ range $p.flow }}<div class="ig-box"><div class="ig-dir">{{ .dir }}</div><b>{{ .title }}</b><div class="ig-tags">{{ range .items }}<span>{{ . }}</span>{{ end }}</div></div>{{ end }}
+      </div>
+    </div>
+
+    <div class="ig-sec ig-status">
+      <div>
+        <h2>{{ $p.statusTitle }}</h2>
+        <p class="ig-sub">{{ $p.statusText }}</p>
+      </div>
+      <img src="/images/product/ill-client.webp" width="1280" height="765" loading="lazy" decoding="async" alt="{{ $p.statusAlt }}">
+    </div>
+
+    <div class="ig-sec">
+      <h2>{{ $p.moreTitle }}</h2>
+      <p class="ig-sub">{{ $p.moreSub }}</p>
+      <div class="ig-grid3">
+        {{ range $p.more }}<div class="ig-box"><b>{{ .title }}</b><p>{{ .text }}</p></div>{{ end }}
+      </div>
+    </div>
+
+    <div class="ig-sec">
+      <h2>{{ $p.stepsTitle }}</h2>
+      <p class="ig-sub">{{ $p.stepsSub }}</p>
+      <div class="ig-grid3 ig-steps">
+        {{ range $p.steps }}<div class="ig-box"><b>{{ .title }}</b><p>{{ .text }}</p></div>{{ end }}
+      </div>
+    </div>
+
+    <div class="ig-sec ig-faq">
+      <h2 style="margin-bottom:20px;">{{ $p.faqTitle }}</h2>
+      {{ range $p.faq }}<details><summary>{{ .q }}</summary><p>{{ .a }}</p></details>{{ end }}
+    </div>
+
+    <div class="ig-cta">
+      <div><h2>{{ $p.ctaTitle }}</h2><p>{{ $p.ctaText }}</p></div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <a href="{{ "/demo/" | relLangURL }}" class="btn btn-p btn-lg">{{ $p.ctaPrimary }} →</a>
+        <a href="{{ "/pricing/" | relLangURL }}" class="btn btn-g btn-lg">{{ $p.ctaSecondary }}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script type="application/ld+json" data-faq>
+{{ $qa := slice }}{{ range $p.faq }}{{ $qa = $qa | append (dict "@type" "Question" "name" .q "acceptedAnswer" (dict "@type" "Answer" "text" .a)) }}{{ end }}
+{{ dict "@context" "https://schema.org" "@type" "FAQPage" "mainEntity" $qa | jsonify | safeJS }}
+</script>
+{{ end }}
