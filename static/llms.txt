@@ -5,6 +5,9 @@
 Key facts:
 - Who it is for: FMCG brands (manufacturers) and distributors running merchandisers, sales reps and supervisors in retail stores and HoReCa (restaurants, bars, cafés).
 - What it does: GPS-verified routes and visits, tasks with photo reports, Store Check and Perfect Store, assortment matrices, price monitoring, orders, KPI tracking, offline-first mobile app; Vision AI recognises products on shelf photos (out-of-stock, share of shelf, planogram compliance) in about 60 seconds per audit.
+- Trust and control: a visit starts only within the outlet's GPS radius and spoofed GPS is flagged; every photo from the in-app camera is watermarked with outlet, date and time; supervisors approve or reject photos and a rejection creates a corrective task.
+- Also in the platform: team chats inside PICSELL, a planogram builder with plan-vs-fact checks in every visit, and monthly sales planning (target, actuals from the accounting system, required daily pace).
+- Try before a demo: email 20 photos of your shelves to info@picsell.ai and the team shows what PICSELL Vision recognises on them.
 - Clients include Lactalis, Henkel, Schwarzkopf, Diageo, Colgate, Bayadera, Masafi and IDS Borjomi (see the Lactalis case study).
 - Pricing (per user per month, UAH; final price agreed individually): merchandiser ₴1,400, sales rep ₴1,400, supervisor ₴1,000, other user ₴900. Radar and HoReCa add-ons from ₴20,000. Calculator: https://picsell.ai/en/calculator/
 - Contacts: sales +380 77 880 98 88, support +380 67 363 06 44, info@picsell.ai. Free demo on request: https://picsell.ai/en/demo/
@@ -16,6 +19,7 @@ Key facts:
 - [HoReCa Intelligence](https://picsell.ai/en/horeca/): brand presence in restaurant and bar menus, menu audits
 - [Radar — competitive intelligence](https://picsell.ai/en/radar/): competitor prices and activity across channels
 - [Analytics](https://picsell.ai/en/analytics/): BI dashboards, Perfect Store score, distributor KPIs
+- [Integrations](https://picsell.ai/en/integrations/): two-way exchange with 1C, BAS, SAP, Oracle, Microsoft Dynamics 365 or your own ERP through an open API (Swagger docs); products, prices, stock, accounts, debts and payments in, orders and returns back; Power BI reports; .csv/.xlsx import
 
 ## Solutions
 - [For FMCG brands](https://picsell.ai/en/solutions-brands/)
@@ -30,7 +34,7 @@ Key facts:
 - [Book a demo](https://picsell.ai/en/demo/)
 
 ## Українською
-- [Головна](https://picsell.ai/), [Vision AI](https://picsell.ai/vision-ai/), [Польові продажі (SFA)](https://picsell.ai/sales-app/), [HoReCa](https://picsell.ai/horeca/), [Ціни](https://picsell.ai/pricing/), [Калькулятор](https://picsell.ai/calculator/), [Замовити демо](https://picsell.ai/demo/)
+- [Головна](https://picsell.ai/), [Vision AI](https://picsell.ai/vision-ai/), [Польові продажі (SFA)](https://picsell.ai/sales-app/), [HoReCa](https://picsell.ai/horeca/), [Інтеграції](https://picsell.ai/integrations/), [Ціни](https://picsell.ai/pricing/), [Калькулятор](https://picsell.ai/calculator/), [Замовити демо](https://picsell.ai/demo/)
 
 ## Optional
 - [Blog](https://picsell.ai/en/blog/): Vision AI, OSA / out-of-stock, Perfect Store audits, SFA productivity, HoReCa trends
