@@ -1,0 +1,24 @@
+{{/* Extra sections for the two big hand-written product pages (vision-ai,
+     sales-app; UA and EN). They are appended after the page's own markup and
+     then moved in front of its closing CTA section by the script below, so the
+     50 KB page templates stay untouched. The content is in the HTML either
+     way; only its position depends on the script. */}}
+{{ $path := strings.TrimPrefix "/en" .RelPermalink }}
+{{ if or (eq $path "/vision-ai/") (eq $path "/sales-app/") }}
+<div id="pageExtras">
+  {{ if eq $path "/vision-ai/" }}
+    {{ partial "shots.html" (dict "page" . "set" "vision") }}
+    {{ partial "photo-offer.html" (dict "page" . "style" "band") }}
+  {{ else }}
+    {{ partial "shots.html" (dict "page" . "set" "sfa") }}
+    {{ partial "trust.html" (dict "page" .) }}
+  {{ end }}
+</div>
+<script>
+(function(){
+  var x=document.getElementById('pageExtras'); if(!x) return;
+  var main=x.parentNode, secs=main.querySelectorAll(':scope > section');
+  var last=secs[secs.length-1]; if(last) main.insertBefore(x,last);
+})();
+</script>
+{{ end }}

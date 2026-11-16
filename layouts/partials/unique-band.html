@@ -1,4 +1,10 @@
 {{ $en := strings.HasPrefix .RelPermalink "/en/" }}
+{{/* Product screens, the trust block and the "20 photos" offer sit right above
+     this band on the homepage (the band is homepage-only), added here so the
+     52 KB index.html does not have to change. */}}
+{{ partial "shots.html" (dict "page" . "set" "home") }}
+{{ partial "trust.html" (dict "page" .) }}
+{{ partial "photo-offer.html" (dict "page" . "style" "band") }}
 <!-- ══════════════════ SCREEN 5 — UNIQUE BAND · HoReCa + Radar (§8) ══════════════════ -->
 <style>
 #unique{background:var(--bg2);}

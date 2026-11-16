@@ -1,0 +1,44 @@
+{{/* "Дані, яким можна вірити": the three checks that make a field report
+     trustworthy — GPS radius, watermark on every photo, supervisor review with
+     a corrective task. From the sales deck (Nov 2026). The map in the GPS card
+     is an OpenStreetMap tile, hence the attribution line.
+     Usage: {{ partial "trust.html" (dict "page" .) }}  (+ "bare" true inside a container) */}}
+{{ $en := strings.HasPrefix .page.RelPermalink "/en/" }}
+<style>
+.trust{background:var(--bg2);}
+.trust.tr-bare{background:none;}
+.tr-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;}
+.tr-card{background:var(--bg3);border:1px solid var(--border);border-radius:18px;overflow:hidden;box-shadow:0 1px 2px rgba(15,30,55,.04),0 12px 30px rgba(15,30,55,.07);display:flex;flex-direction:column;}
+.tr-card img{display:block;width:100%;height:auto;border-bottom:1px solid var(--border);}
+.tr-body{padding:20px 22px 22px;}
+.tr-body b{display:block;font-family:'Geologica',sans-serif;font-size:19px;font-weight:800;color:var(--t1);margin-bottom:6px;}
+.tr-body p{font-size:14.5px;line-height:1.55;color:var(--t2);margin:0;}
+.tr-osm{font-size:10px;color:var(--t3);margin-top:8px;display:block;}
+@media(max-width:900px){.tr-grid{grid-template-columns:minmax(0,1fr);}}
+</style>
+{{ if .bare }}<div class="lp-sec trust tr-bare"><h3>{{ if $en }}Data you can trust{{ else }}Дані, яким можна вірити{{ end }}</h3>{{ else }}
+<section class="section trust"><div class="container">
+  <div class="sec-head reveal">
+    <span class="tag">{{ if $en }}Field team control{{ else }}Контроль польової команди{{ end }}</span>
+    <h2>{{ if $en }}Data you <span class="highlight">can trust</span>{{ else }}Дані, яким <span class="highlight">можна вірити</span>{{ end }}</h2>
+    <p>{{ if $en }}Confirmed visits and reviewed photos instead of photo reports in messengers.{{ else }}Підтверджені візити й перевірені фото — замість фотозвітів у месенджерах.{{ end }}</p>
+  </div>{{ end }}
+  <div class="tr-grid">
+    <div class="tr-card">
+      <img src="/images/product/ill-gps.webp" width="863" height="657" loading="lazy" decoding="async" alt="{{ if $en }}GPS check: the visit starts only within the outlet radius{{ else }}Перевірка GPS: візит стартує лише в радіусі точки{{ end }}">
+      <div class="tr-body"><b>{{ if $en }}GPS check{{ else }}Перевірка GPS{{ end }}</b>
+        <p>{{ if $en }}A visit starts only within the outlet radius, and the check can be made mandatory. The supervisor sees spoofed geolocation.{{ else }}Візит стартує лише в радіусі точки, перевірку можна зробити примусовою. Підміну геолокації видно супервайзеру.{{ end }}</p>
+        <span class="tr-osm">{{ if $en }}Map{{ else }}Карта{{ end }} © OpenStreetMap</span></div>
+    </div>
+    <div class="tr-card">
+      <img src="/images/product/ill-watermark.webp" width="862" height="657" loading="lazy" decoding="async" alt="{{ if $en }}Watermark with outlet, date and time on every photo{{ else }}Водяний знак із точкою, датою і часом на кожному фото{{ end }}">
+      <div class="tr-body"><b>{{ if $en }}Watermark{{ else }}Водяний знак{{ end }}</b>
+        <p>{{ if $en }}The outlet name, date and time are embedded in every photo taken with the in-app camera. An old picture from the gallery cannot be passed off as a new one.{{ else }}Назва точки, дата й час вшиваються в кожне фото з камери застосунку. Підмінити фото старим знімком із галереї неможливо.{{ end }}</p></div>
+    </div>
+    <div class="tr-card">
+      <img src="/images/product/ill-photocheck.webp" width="862" height="657" loading="lazy" decoding="async" alt="{{ if $en }}Photo review with a corrective task{{ else }}Перевірка фото з коригувальним завданням{{ end }}">
+      <div class="tr-body"><b>{{ if $en }}Photo review{{ else }}Перевірка фото{{ end }}</b>
+        <p>{{ if $en }}The supervisor approves or rejects a photo with a reason, marks the problem on it, and the employee gets a task right away.{{ else }}Супервайзер приймає або відхиляє фото з причиною, позначає проблему на фото, і працівник одразу отримує завдання.{{ end }}</p></div>
+    </div>
+  </div>
+{{ if .bare }}</div>{{ else }}</div></section>{{ end }}

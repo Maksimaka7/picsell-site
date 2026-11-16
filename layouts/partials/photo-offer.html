@@ -1,0 +1,49 @@
+{{/* "Надішліть 20 фото ваших полиць — покажемо результат": a lighter step than a
+     demo call, from the sales deck. Photos go by email (confirmed by Maksim,
+     16.11.2026), so this is a mailto: — the request lands in the info@ mailbox,
+     not in CC as a lead. The click is still counted as a contact in GA4.
+     Usage: {{ partial "photo-offer.html" (dict "page" . "style" "band") }}
+            style: band (full-width section) | box (inside a container) | line (inside a form card) */}}
+{{ $en := strings.HasPrefix .page.RelPermalink "/en/" }}
+{{ $mail := site.Params.email | default "info@picsell.ai" }}
+{{ $subj := cond $en "20 shelf photos for PICSELL Vision" "20 фото полиць для PICSELL Vision" }}
+{{ $href := printf "mailto:%s?subject=%s" $mail (replace $subj " " "%20") }}
+{{ $style := .style | default "band" }}
+{{ if not (.page.Store.Get "poCss") }}{{ .page.Store.Set "poCss" true }}
+<style>
+.po-band{padding:0 0 72px;background:var(--bg2);}
+.po{background:#0B1F33;color:#fff;border-radius:20px;padding:30px 36px;display:flex;align-items:center;justify-content:space-between;gap:28px;}
+.po h3{font-family:'Geologica',sans-serif;font-size:clamp(20px,2.4vw,28px);font-weight:800;line-height:1.2;margin:0 0 8px;color:#fff;}
+.po h3 em{font-style:normal;color:#35B6F2;}
+.po p{font-size:15px;line-height:1.55;color:rgba(255,255,255,.78);margin:0;max-width:640px;}
+.po p a{color:#fff;text-decoration:underline;}
+.po-btn{flex:none;display:inline-flex;align-items:center;gap:8px;background:#fff;color:#0B1F33;font-family:'Geologica',sans-serif;font-weight:700;font-size:15px;padding:14px 22px;border-radius:12px;text-decoration:none;white-space:nowrap;}
+.po-btn:hover{background:#EAF2FF;}
+.po-line{margin-top:16px;padding-top:14px;border-top:1px dashed rgba(127,140,160,.35);font-size:13px;line-height:1.5;color:var(--t2);}
+.po-line b{display:block;font-family:'Geologica',sans-serif;font-size:15px;color:var(--t1);margin-bottom:2px;}
+.po-line a{color:var(--blue);font-weight:600;}
+@media(max-width:800px){.po{flex-direction:column;align-items:flex-start;padding:24px 20px;}.po-btn{width:100%;justify-content:center;}}
+</style>
+{{ end }}
+{{ if eq $style "line" }}
+<div class="po-line"><b>{{ if $en }}Or send 20 photos of your shelves{{ else }}Або надішліть 20 фото ваших полиць{{ end }}</b>{{ if $en }}Email them to{{ else }}На{{ end }} <a href="{{ $href | safeURL }}" data-po="line">{{ $mail }}</a>{{ if $en }} — we'll show what PICSELL Vision sees on them.{{ else }} — покажемо, що на них бачить PICSELL Vision.{{ end }}</div>
+{{ else }}
+{{ if eq $style "band" }}<div class="po-band"><div class="container">{{ else }}<div class="lp-sec">{{ end }}
+  <div class="po">
+    <div>
+      <h3>{{ if $en }}Send 20 photos of your shelves — <em>we'll show the result</em>{{ else }}Надішліть 20 фото ваших полиць — <em>покажемо результат</em>{{ end }}</h3>
+      <p>{{ if $en }}Email the photos to <a href="{{ $href | safeURL }}" data-po="text">{{ $mail }}</a>. We'll run them through PICSELL Vision and show what the system sees on your shelf: products, prices, out-of-stocks and share of shelf.{{ else }}Надішліть фото на <a href="{{ $href | safeURL }}" data-po="text">{{ $mail }}</a>. Розпізнаємо їх у PICSELL Vision і покажемо, що система бачить на вашій полиці: товари, ціни, відсутні позиції й частку полиці.{{ end }}</p>
+    </div>
+    <a class="po-btn" href="{{ $href | safeURL }}" data-po="button">✉ {{ if $en }}Send photos by email{{ else }}Надіслати фото на email{{ end }}</a>
+  </div>
+{{ if eq $style "band" }}</div></div>{{ else }}</div>{{ end }}
+{{ end }}
+{{ if not (.page.Store.Get "poJs") }}{{ .page.Store.Set "poJs" true }}
+<script>
+document.addEventListener('click',function(e){
+  var a=e.target.closest&&e.target.closest('a[data-po]'); if(!a) return;
+  try{(window.dataLayer=window.dataLayer||[]).push({event:'contact_click',contact_method:'email_20_photos',contact_place:a.getAttribute('data-po')});}catch(_){}
+  if(window.gtag)gtag('event','contact',{method:'email_20_photos',event_label:a.getAttribute('data-po')});
+});
+</script>
+{{ end }}

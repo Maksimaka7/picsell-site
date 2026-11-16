@@ -1,0 +1,115 @@
+{{/* Product gallery: real app / web-cabinet screens with a few bullets each,
+     switched by tabs. The site described the product but never showed it.
+     Copy and the list of screens per page live in data/shots.yaml.
+     Usage: {{ partial "shots.html" (dict "page" . "set" "home") }}
+            add "bare" true inside a container that already has its own section. */}}
+{{ $page := .page }}
+{{ $en := strings.HasPrefix $page.RelPermalink "/en/" }}
+{{ $lang := cond $en "en" "uk" }}
+{{ $set := index site.Data.shots.sets .set }}
+{{ if $set }}
+{{ $h := index $set $lang | default $set.uk }}
+{{ $bare := .bare }}
+{{ if not ($page.Store.Get "shotsCss") }}{{ $page.Store.Set "shotsCss" true }}
+<style>
+.shots{background:var(--bg1);}
+.shots.sh-bare{background:none;}
+.sh-tabs{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:0 0 28px;}
+.sh-bare .sh-tabs{justify-content:flex-start;}
+.sh-tab{font:inherit;font-family:'Geologica',sans-serif;font-size:14px;font-weight:600;color:var(--t2);background:var(--bg3);border:1px solid var(--border);border-radius:999px;padding:9px 16px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:color .2s,border-color .2s,background .2s;}
+.sh-tab:hover{color:var(--t1);border-color:rgba(0,87,255,.35);}
+.sh-tab.is-on{background:var(--blue);border-color:var(--blue);color:#fff;}
+.sh-new{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:rgba(0,87,255,.10);color:var(--blue);border-radius:999px;padding:2px 7px;}
+.sh-tab.is-on .sh-new{background:rgba(255,255,255,.22);color:#fff;}
+.sh-panel{display:grid;grid-template-columns:minmax(0,.72fr) minmax(0,1.6fr);gap:36px;align-items:center;background:var(--bg3);border:1px solid var(--border);border-radius:20px;padding:36px;box-shadow:0 1px 2px rgba(15,30,55,.04),0 14px 36px rgba(15,30,55,.07);margin-bottom:20px;}
+.sh-panel.k-phone,.sh-panel.k-phones{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);}
+.shots.js .sh-panel{display:none;margin-bottom:0;}
+.shots.js .sh-panel.is-on{display:grid;}
+.sh-text h3{font-family:'Geologica',sans-serif;font-size:clamp(20px,2.2vw,26px);font-weight:800;line-height:1.2;color:var(--t1);margin:0 0 16px;}
+.sh-text ul{list-style:none;padding:0;margin:0;display:grid;gap:11px;}
+.sh-text li{position:relative;padding-left:28px;font-size:15px;line-height:1.5;color:var(--t2);}
+.sh-text li::before{content:'✓';position:absolute;left:0;top:1px;width:19px;height:19px;border-radius:50%;background:rgba(0,87,255,.10);color:var(--blue);font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;}
+.sh-media{min-width:0;text-align:center;}
+.sh-media img{display:block;max-width:100%;height:auto;}
+.sh-frame{display:block;border:1px solid var(--border);border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 10px 30px rgba(15,30,55,.10);cursor:zoom-in;}
+.k-web .sh-frame::before{content:'';display:block;height:24px;border-bottom:1px solid var(--border);background:radial-gradient(circle at 16px 12px,#C9D0DB 4px,transparent 5px),radial-gradient(circle at 30px 12px,#C9D0DB 4px,transparent 5px),radial-gradient(circle at 44px 12px,#C9D0DB 4px,transparent 5px),#EEF1F6;}
+.sh-phones{display:flex;justify-content:center;gap:14px;}
+.sh-ph{flex:0 1 230px;min-width:0;border:7px solid #0B1F33;border-radius:26px;overflow:hidden;background:#0B1F33;box-shadow:0 16px 36px rgba(15,30,55,.18);cursor:zoom-in;}
+.k-phones .sh-ph{flex-basis:190px;border-width:5px;border-radius:20px;}
+.k-phones .sh-ph:nth-child(2){margin-top:-18px;}
+.sh-cap{font-size:12px;color:var(--t3);margin-top:12px;}
+.sh-zoom{position:fixed;inset:0;z-index:2000;background:rgba(8,16,30,.86);display:none;align-items:center;justify-content:center;padding:20px;cursor:zoom-out;}
+.sh-zoom.open{display:flex;}
+.sh-zoom img{max-width:100%;max-height:100%;border-radius:10px;box-shadow:0 20px 60px rgba(0,0,0,.5);}
+@media(max-width:900px){
+  .sh-panel,.sh-panel.k-phone,.sh-panel.k-phones{grid-template-columns:minmax(0,1fr);gap:24px;padding:22px 18px;}
+  .sh-tabs{justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:6px;margin-bottom:18px;scrollbar-width:none;}
+  .sh-tabs::-webkit-scrollbar{display:none;}
+  .sh-tab{flex:none;}
+  .sh-ph{flex-basis:200px;}
+  .k-phones .sh-ph{flex-basis:0;flex-grow:1;border-width:3px;border-radius:12px;}
+  .k-phones .sh-ph:nth-child(2){margin-top:0;}
+  .sh-phones{gap:8px;}
+}
+</style>
+{{ end }}
+{{ if $bare }}<div class="lp-sec shots sh-bare" data-shots>{{ else }}<section class="section shots" data-shots><div class="container">{{ end }}
+  {{ if $bare }}<h3>{{ $h.title }} {{ $h.hl }}</h3>{{ else }}
+  <div class="sec-head reveal">
+    <span class="tag">{{ $h.tag }}</span>
+    <h2>{{ $h.title }} <span class="highlight">{{ $h.hl }}</span></h2>
+    {{ with $h.sub }}<p>{{ . }}</p>{{ end }}
+  </div>{{ end }}
+  {{ if gt (len $set.items) 1 }}
+  <div class="sh-tabs" role="tablist">
+    {{ range $i, $k := $set.items }}{{ $it := index site.Data.shots.items $k }}{{ $t := index $it $lang | default $it.uk }}
+    <button type="button" class="sh-tab{{ if eq $i 0 }} is-on{{ end }}" role="tab" aria-selected="{{ if eq $i 0 }}true{{ else }}false{{ end }}" data-k="{{ $k }}">{{ $t.tab }}{{ if $it.isNew }}<span class="sh-new">{{ if $en }}New{{ else }}Нове{{ end }}</span>{{ end }}</button>
+    {{ end }}
+  </div>
+  {{ end }}
+  {{ range $i, $k := $set.items }}{{ $it := index site.Data.shots.items $k }}{{ $t := index $it $lang | default $it.uk }}
+  <div class="sh-panel k-{{ $it.kind }}{{ if eq $i 0 }} is-on{{ end }}" data-k="{{ $k }}" role="tabpanel">
+    <div class="sh-text">
+      <h3>{{ $t.title }}</h3>
+      <ul>{{ range $t.points }}<li>{{ . }}</li>{{ end }}</ul>
+    </div>
+    <div class="sh-media">
+      {{ if or (eq $it.kind "phone") (eq $it.kind "phones") }}
+      <div class="sh-phones">{{ range $it.imgs }}<span class="sh-ph"><img src="/images/product/{{ . }}.webp" width="576" height="1280" loading="lazy" decoding="async" alt="{{ $t.title }} — PICSELL"></span>{{ end }}</div>
+      {{ else }}
+      {{ range $it.imgs }}<span class="sh-frame"><img src="/images/product/{{ . }}.webp" width="{{ $it.w | default 1568 }}" height="{{ $it.h | default 744 }}" loading="lazy" decoding="async" alt="{{ $t.title }} — PICSELL"></span>{{ end }}
+      {{ end }}
+      <div class="sh-cap">{{ if $en }}Product interface, demo data · Ukrainian UI · click to enlarge{{ else }}Інтерфейс PICSELL, демо-дані · натисніть, щоб збільшити{{ end }}</div>
+    </div>
+  </div>
+  {{ end }}
+{{ if $bare }}</div>{{ else }}</div></section>{{ end }}
+{{ if not ($page.Store.Get "shotsJs") }}{{ $page.Store.Set "shotsJs" true }}
+<script>
+(function(){
+  document.querySelectorAll('[data-shots]').forEach(function(box){
+    if(box.__sh) return; box.__sh=1;
+    var tabs=box.querySelectorAll('.sh-tab'), panels=box.querySelectorAll('.sh-panel');
+    if(tabs.length){
+      box.classList.add('js');
+      tabs.forEach(function(tab){tab.addEventListener('click',function(){
+        var k=tab.getAttribute('data-k');
+        tabs.forEach(function(t){var on=t===tab;t.classList.toggle('is-on',on);t.setAttribute('aria-selected',on?'true':'false');});
+        panels.forEach(function(p){p.classList.toggle('is-on',p.getAttribute('data-k')===k);});
+        try{(window.dataLayer=window.dataLayer||[]).push({event:'product_shot_view',shot:k});}catch(_){}
+      });});
+    }
+  });
+  var z=document.querySelector('.sh-zoom');
+  if(!z){z=document.createElement('div');z.className='sh-zoom';z.innerHTML='<img alt="">';document.body.appendChild(z);
+    z.addEventListener('click',function(){z.classList.remove('open');});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape')z.classList.remove('open');});}
+  document.addEventListener('click',function(e){
+    var f=e.target.closest&&e.target.closest('.sh-frame,.sh-ph'); if(!f) return;
+    var im=f.querySelector('img'); if(!im) return;
+    z.querySelector('img').src=im.currentSrc||im.src; z.classList.add('open');
+  });
+})();
+</script>
+{{ end }}
+{{ end }}
