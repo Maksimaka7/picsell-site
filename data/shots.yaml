@@ -1,0 +1,299 @@
+# Product screens for the "shots" gallery (layouts/partials/shots.html).
+# Images live in static/images/product/<img>.webp and come from the sales deck
+# "Усе, що вміє PICSELL" (Nov 2026): real app / web-cabinet screenshots (kind
+# phone / web) and the deck's own UI illustrations (kind ill). Every string is
+# quoted on purpose: Netlify's Hugo 0.139 reads bare YAML 1.1 scalars loosely.
+
+items:
+  visit:
+    kind: "phone"
+    imgs: ["app-visit"]
+    uk:
+      tab: "Візит у застосунку"
+      title: "Візит мерчандайзера — за хвилини"
+      points:
+        - "Маршрут на день списком і в календарі, позапланова точка в один дотик."
+        - "Старт візиту з перевіркою GPS: застосунок перевіряє, що людина в радіусі точки."
+        - "На екрані візиту — готовність, час у точці й обовʼязкові завдання, що лишились."
+        - "Офлайн: дані зберігаються на телефоні й відправляються, щойно зʼявиться мережа."
+    en:
+      tab: "Visit in the app"
+      title: "A merchandiser visit takes minutes"
+      points:
+        - "Route for the day as a list and in a calendar; an unplanned outlet in one tap."
+        - "A visit starts with a GPS check: the app confirms the person is within the outlet radius."
+        - "The visit screen shows progress, time in store and the mandatory tasks still open."
+        - "Offline: data is kept on the phone and sent as soon as the network is back."
+  tasks:
+    kind: "phone"
+    imgs: ["app-tasks"]
+    uk:
+      tab: "Звіти в точці"
+      title: "Усе, що треба зібрати в точці, — в одному візиті"
+      points:
+        - "Фотозвіти з камери застосунку: водяний знак із точкою, датою і часом."
+        - "Завдання з пріоритетом і строком; відповідь числом, текстом, фото чи списком."
+        - "Опитування за брендом, категорією й товаром, сканер штрихкоду."
+        - "Моніторинг цін, додаткові місця продажу, перевірка «Ідеальний магазин»."
+    en:
+      tab: "In-store reports"
+      title: "Everything you need from the outlet — in one visit"
+      points:
+        - "Photo reports from the in-app camera, watermarked with outlet, date and time."
+        - "Tasks with priority and deadline; answers as a number, text, photo or list."
+        - "Surveys by brand, category and product, with a barcode scanner."
+        - "Price monitoring, secondary placements and the Perfect Store check."
+  photos:
+    kind: "web"
+    imgs: ["web-photos"]
+    uk:
+      tab: "Перевірка фото"
+      title: "Перевірка сотні фото — за хвилини"
+      points:
+        - "Фільтри за періодом, регіоном, мережею, точкою й мерчандайзером."
+        - "Черга перевірки із зумом і гарячими клавішами."
+        - "Масове затвердження й вивантаження фото архівом."
+        - "Відхилення з причиною — і працівник одразу отримує коригувальне завдання."
+    en:
+      tab: "Photo review"
+      title: "Review a hundred photos in minutes"
+      points:
+        - "Filters by period, region, chain, outlet and merchandiser."
+        - "A review queue with zoom and keyboard shortcuts."
+        - "Bulk approval and photo export as an archive."
+        - "Reject with a reason — the employee gets a corrective task right away."
+  overview:
+    kind: "web"
+    imgs: ["web-overview"]
+    uk:
+      tab: "Огляд команди"
+      title: "Уся команда — на одному екрані"
+      points:
+        - "Ключові показники з трендом до минулого місяця: візити, звіти, відповіді."
+        - "Статуси візитів і воронка перевірки фото."
+        - "Візити за регіонами й рейтинг команди."
+        - "Глобальний пошук: точки, люди, візити, опитування."
+    en:
+      tab: "Team overview"
+      title: "The whole team on one screen"
+      points:
+        - "Key figures with the trend against last month: visits, reports, answers."
+        - "Visit statuses and the photo-review funnel."
+        - "Visits by region and a team ranking."
+        - "Global search: outlets, people, visits, surveys."
+  visits:
+    kind: "web"
+    imgs: ["web-visits"]
+    uk:
+      tab: "Візити й маршрути"
+      title: "Хто де, хто що покриває, хто відсутній"
+      points:
+        - "Планувальник маршруту: тижнева база, разові візити на дату, пропуск точки."
+        - "Онлайн-моніторинг: карта дня, відвідані точки, «За планом / Поза маршрутом»."
+        - "Призначення точок і команд супервайзерам."
+        - "Сегменти команди: активні, відсутні сьогодні, новачки."
+    en:
+      tab: "Visits and routes"
+      title: "Who is where, who covers what, who is absent"
+      points:
+        - "Route planner: weekly base, one-off visits on a date, skipping an outlet."
+        - "Live monitoring: map of the day, visited outlets, on plan / off route."
+        - "Outlets and teams assigned to supervisors."
+        - "Team segments: active, absent today, newcomers."
+  webtasks:
+    kind: "web"
+    imgs: ["web-tasks"]
+    uk:
+      tab: "Завдання мережі"
+      title: "Поставити задачу всій мережі — одним файлом"
+      points:
+        - "Завдання на точку, мережу, групу точок або контрагента; шаблони й періодичність."
+        - "Контроль: прострочені, негативні відповіді, черга на оцінку."
+        - "Імпорт із .csv і .xlsx: завдання й асортиментні матриці з перевіркою рядків."
+        - "Конструктор опитувань і документи для команди: інструкції, прайси, планограми."
+    en:
+      tab: "Chain-wide tasks"
+      title: "Set a task for a whole chain with one file"
+      points:
+        - "Tasks for an outlet, a chain, a group of outlets or an account; templates and recurrence."
+        - "Control: overdue tasks, negative answers, a queue of answers to assess."
+        - "Import from .csv and .xlsx: tasks and assortment matrices with row checks."
+        - "A survey builder and documents for the team: instructions, price lists, planograms."
+  orders:
+    kind: "phones"
+    imgs: ["app-orders", "app-order-detail", "app-debts"]
+    uk:
+      tab: "Замовлення торгового"
+      title: "Мобільний офіс торгового представника"
+      points:
+        - "Замовлення: нове, «ідентичне» попередньому або порожнє з причиною відмови."
+        - "Перерахунок цін після обробки в обліковій системі — торговий бачить різницю та промознижку."
+        - "Повернення з привʼязкою до візиту."
+        - "Борги й оплати: прострочка контрагента, оплата прямо у візиті."
+        - "Офлайн-довідники товарів, цін, залишків і контрагентів."
+    en:
+      tab: "Sales rep orders"
+      title: "A sales rep's mobile office"
+      points:
+        - "Orders: new, identical to the previous one, or empty with a refusal reason."
+        - "Prices are recalculated after the accounting system processes the order — the rep sees the difference and the promo discount."
+        - "Returns linked to the visit."
+        - "Debts and payments: overdue amounts per account, payment right in the visit."
+        - "Offline catalogues of products, prices, stock and accounts."
+  client:
+    kind: "ill"
+    imgs: ["ill-client"]
+    w: 1280
+    h: 765
+    uk:
+      tab: "Картка клієнта"
+      title: "Картка клієнта — усе в одному місці"
+      points:
+        - "Замовлення, повернення, оплати, борги з прострочкою, адреси й контакти."
+        - "Життєвий цикл клієнта рахується автоматично: новий → постійний → втрачений."
+        - "Статус обміну з обліковою системою: синхронізовано, очікує, помилка."
+        - "Завдання на контрагента й точка з адреси в один клік."
+    en:
+      tab: "Account card"
+      title: "The account card — everything in one place"
+      points:
+        - "Orders, returns, payments, overdue debts, addresses and contacts."
+        - "The customer lifecycle is calculated automatically: new → regular → lost."
+        - "Sync status with the accounting system: synced, pending, error."
+        - "A task for the account and an outlet from an address in one click."
+  shelf:
+    kind: "ill"
+    imgs: ["ill-shelf"]
+    w: 1280
+    h: 770
+    uk:
+      tab: "Розпізнавання полиці"
+      title: "Одне фото полиці → усі дані"
+      points:
+        - "Товари й SKU, ціни та промо."
+        - "Немає на полиці (OOS) і частка полиці проти конкурентів."
+        - "Рівень очей і POSM."
+        - "Порівняння з планограмою."
+    en:
+      tab: "Shelf recognition"
+      title: "One shelf photo → all the data"
+      points:
+        - "Products and SKUs, prices and promo."
+        - "Out-of-stock and share of shelf against competitors."
+        - "Eye level and POSM."
+        - "Comparison with the planogram."
+  chat:
+    kind: "ill"
+    isNew: true
+    imgs: ["ill-chat"]
+    w: 1280
+    h: 787
+    uk:
+      tab: "Чати"
+      title: "Переписка з полем — у PICSELL, а не в Telegram"
+      points:
+        - "Особисті чати супервайзера з мерчандайзерами та командний чат."
+        - "Вкладення: фото, PDF, Word, Excel."
+        - "Push-сповіщення й лічильник непрочитаних."
+        - "Поділитися в чат візитом, фотозвітом чи точкою."
+        - "Листування й фото належать вашій компанії та лежать поруч із даними візиту."
+    en:
+      tab: "Chats"
+      title: "Talk to the field in PICSELL, not in Telegram"
+      points:
+        - "Direct chats between a supervisor and merchandisers, plus a team chat."
+        - "Attachments: photos, PDF, Word, Excel."
+        - "Push notifications and an unread counter."
+        - "Share a visit, a photo report or an outlet to a chat."
+        - "The messages and photos belong to your company and sit next to the visit data."
+  planogram:
+    kind: "ill"
+    isNew: true
+    imgs: ["ill-planogram"]
+    w: 1280
+    h: 768
+    uk:
+      tab: "Планограми"
+      title: "Спроєктуйте полицю → перевірте факт"
+      points:
+        - "Конструктор: стелажі, полиці, фейсинги, ціна, «золота полиця»; імпорт з Excel."
+        - "Одна планограма на точку, групу, мережу або тип точки."
+        - "У візиті — схема й опитувальник по полицях, згенерований автоматично."
+        - "План/факт: відсутність, недобір фейсингів, «не на своїй полиці», ціна не за планом, % відповідності й завдання на виправлення."
+    en:
+      tab: "Planograms"
+      title: "Design the shelf → check the fact"
+      points:
+        - "Builder: racks, shelves, facings, price, the golden shelf; import from Excel."
+        - "One planogram per outlet, group, chain or outlet type."
+        - "In the visit: the layout and a shelf-by-shelf survey generated automatically."
+        - "Plan vs fact: missing items, too few facings, wrong shelf, price off plan, compliance % and a task to fix it."
+  plan:
+    kind: "ill"
+    isNew: true
+    imgs: ["ill-plan"]
+    w: 1280
+    h: 755
+    uk:
+      tab: "План продажів"
+      title: "Ціль на місяць — і темп, щоб її виконати"
+      points:
+        - "Чотири розділи плану: продажі, клієнтська база й дистрибуція, оплати й борги, польова активність."
+        - "План із факту минулого місяця + %, копією або з нуля."
+        - "Продажі беруться з вашої облікової системи."
+        - "«Не купили цього місяця»: додати в маршрут, поставити завдання, написати."
+        - "«Мій план» у мобільному застосунку, офлайн."
+    en:
+      tab: "Sales plan"
+      title: "A monthly target — and the pace to hit it"
+      points:
+        - "Four plan sections: sales, customer base and distribution, payments and debts, field activity."
+        - "Build the plan from last month's actuals + %, from a copy or from scratch."
+        - "Sales figures come from your accounting system."
+        - "Haven't bought this month: add to a route, set a task, send a message."
+        - "My plan in the mobile app, offline."
+
+sets:
+  home:
+    items: ["visit", "photos", "overview", "orders", "chat", "planogram", "plan"]
+    uk: { tag: "Продукт наживо", title: "Як PICSELL виглядає", hl: "у роботі", sub: "Екрани мобільного застосунку й веб-кабінету — те, що бачать ваша команда і керівник." }
+    en: { tag: "The product, live", title: "What PICSELL looks like", hl: "at work", sub: "Screens of the mobile app and the web cabinet — what your team and your managers see." }
+  vision:
+    items: ["shelf", "planogram", "photos"]
+    uk: { tag: "Vision AI у роботі", title: "Від фото полиці —", hl: "до рішення", sub: "Що система бачить на фото і що з цим робить супервайзер." }
+    en: { tag: "Vision AI at work", title: "From a shelf photo", hl: "to a decision", sub: "What the system sees in a photo and what the supervisor does with it." }
+  sfa:
+    items: ["orders", "client", "plan", "visits"]
+    uk: { tag: "Продукт наживо", title: "Як це виглядає", hl: "у торгового й керівника", sub: "Замовлення, борги, картка клієнта й план продажів — в одній системі." }
+    en: { tag: "The product, live", title: "What it looks like", hl: "for the rep and the manager", sub: "Orders, debts, the account card and the sales plan — in one system." }
+  core:
+    items: ["overview", "visits", "webtasks", "chat"]
+    uk: { tag: "Веб-кабінет", title: "Core", hl: "у роботі", sub: "Кабінет супервайзера й менеджера." }
+    en: { tag: "Web cabinet", title: "Core", hl: "at work", sub: "The supervisor's and manager's cabinet." }
+  seo-merch:
+    items: ["visit", "tasks", "photos", "chat"]
+    uk: { tag: "Продукт наживо", title: "Як програма виглядає", hl: "у роботі", sub: "Екрани застосунку мерчандайзера й кабінету керівника." }
+  seo-photo:
+    items: ["photos", "tasks", "chat"]
+    uk: { tag: "Продукт наживо", title: "Як виглядає фотозвіт", hl: "у PICSELL", sub: "Від зйомки в точці до перевірки супервайзером." }
+  seo-sfa:
+    items: ["visits", "orders", "plan"]
+    uk: { tag: "Продукт наживо", title: "Що бачить", hl: "керівник продажів", sub: "Візити, замовлення й виконання плану по кожному торговому." }
+  seo-audit:
+    items: ["shelf", "planogram"]
+    uk: { tag: "Vision AI у роботі", title: "Що система бачить", hl: "на фото полиці", sub: "Розпізнавання й перевірка планограми." }
+  brands:
+    items: ["shelf", "planogram"]
+    uk: { tag: "Продукт наживо", title: "Що ви побачите", hl: "на демо", sub: "Розпізнавання полиці й перевірка планограми." }
+  distributors:
+    items: ["orders", "plan"]
+    uk: { tag: "Продукт наживо", title: "Що ви побачите", hl: "на демо", sub: "Замовлення торгового й виконання плану продажів." }
+  merch:
+    items: ["visit", "photos"]
+    uk: { tag: "Продукт наживо", title: "Що ви побачите", hl: "на демо", sub: "Візит у застосунку й перевірка фото в кабінеті." }
+
+# Which lpKeys (layouts/page/lp.html) also get the "Дані, яким можна вірити"
+# block, the "20 фото" offer as a box, or the offer as a line in the form card.
+trust: ["seo-photo", "seo-sfa", "seo-merch"]
+offer: ["seo-audit"]
+offerLine: ["brands", "merch"]
