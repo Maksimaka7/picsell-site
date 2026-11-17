@@ -106,3 +106,106 @@
   };
 })();
 </script>
+
+<script>
+/* ── Lead guard: keeps form-filling bots out of the CRM ──────────────────────
+   Oct–Nov 2026: 19 of 29 site "leads" were spam, 18 through the demo form.
+   Half were a bot that runs the page's JS and types random strings
+   ("HYyVAZonCmKoLVGsWJxhEf", "Ztohm LLC"); nothing on the site checked for it.
+   Every lead form posts to submit-lead and merges picsellAttr.payload() into
+   the body, so both jobs are done here, once, for all forms:
+
+   1. payload() also carries g_* fields (time on page, real key / pointer
+      events, honeypot value). submit-lead ignores unknown fields today; the
+      server-side check that reads them is a separate CC task.
+   2. A send that is certainly a bot never leaves the browser: the fetch to
+      submit-lead is answered locally with a 429, so the form shows its error
+      state and no lead, Telegram ping or ad conversion is produced.
+      "Certainly" = the hidden field is filled, or the name is a random
+      mixed-case token, or the page saw no real (isTrusted) input at all.
+      People cannot trip any of the three: the field is off-screen and out of
+      the tab order, no name looks like that, and a tap, click or key press is
+      needed to submit anything.
+   Leads typed by real people who are simply not our customers are not a job
+   for the browser — those are triaged on the server. */
+(function(){
+  var ENDPOINT = '/functions/v1/submit-lead';
+  var t0 = Date.now(), tFirst = 0, keys = 0, ptr = 0;
+  function seen(kind){ return function(e){ if (!e || !e.isTrusted) return; if (!tFirst) tFirst = Date.now(); if (kind === 'k') keys++; else ptr++; }; }
+  try{
+    addEventListener('keydown', seen('k'), true);
+    addEventListener('input', seen('k'), true);
+    addEventListener('pointerdown', seen('p'), true);
+    addEventListener('touchstart', seen('p'), { capture:true, passive:true });
+    addEventListener('click', seen('p'), true);
+  }catch(e){}
+
+  /* Honeypot: one off-screen text field next to every email / phone input of a
+     visible form. The name is one no browser autofill maps to anything. */
+  function plant(){
+    try{
+      document.querySelectorAll('input[type="email"],input[type="tel"]').forEach(function(inp){
+        if (inp.__hp || inp.closest('[hidden]') || !inp.parentNode) return;
+        inp.__hp = 1;
+        var w = document.createElement('div');
+        w.setAttribute('aria-hidden', 'true');
+        w.style.cssText = 'position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;';
+        w.innerHTML = '<label>Leave this field empty <input type="text" name="fax_number" tabindex="-1" autocomplete="off" data-hp></label>';
+        inp.parentNode.appendChild(w);
+      });
+    }catch(e){}
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', plant); else plant();
+
+  function hpValue(){
+    var v = '';
+    try{ document.querySelectorAll('input[data-hp],input[name="bot-field"]').forEach(function(i){ if (i.value) v = i.value; }); }catch(e){}
+    return v;
+  }
+  /* One token, 15+ Latin letters, at least five capitals and five lowercase
+     mixed together — the signature of the random-string bot, never a name. */
+  function gibberish(s){
+    s = (s || '').trim();
+    if (!/^[A-Za-z]{15,}$/.test(s)) return false;
+    return (s.match(/[A-Z]/g) || []).length >= 5 && (s.match(/[a-z]/g) || []).length >= 5;
+  }
+  function verdict(body){
+    if (hpValue()) return 'honeypot';
+    if (body && gibberish(body.full_name || body.name)) return 'gibberish_name';
+    if (keys + ptr === 0) return 'no_real_input';
+    return '';
+  }
+  function fields(){
+    return { g_v: 1, g_ms: Date.now() - t0, g_fill: tFirst ? Date.now() - tFirst : -1,
+             g_keys: keys, g_ptr: ptr, g_hp: hpValue().slice(0, 60) };
+  }
+  window.picsellGuard = { verdict: verdict, fields: fields };
+
+  /* 1. guard fields ride along with the attribution payload. */
+  try{
+    var pa = window.picsellAttr, orig = pa && pa.payload;
+    if (orig) pa.payload = function(){
+      var out = orig.call(pa), g = fields(), k;
+      for (k in g) out[k] = g[k];
+      return out;
+    };
+  }catch(e){}
+
+  /* 2. certain bots are answered locally. */
+  var nativeFetch = window.fetch;
+  if (nativeFetch && window.Response) window.fetch = function(input, init){
+    try{
+      var url = typeof input === 'string' ? input : (input && input.url) || '';
+      if (url.indexOf(ENDPOINT) !== -1 && init && typeof init.body === 'string'){
+        var why = verdict(JSON.parse(init.body));
+        if (why){
+          try{ (window.dataLayer = window.dataLayer || []).push({ event:'lead_blocked', block_reason: why }); }catch(_){}
+          return Promise.resolve(new Response(JSON.stringify({ ok:false, blocked:true }),
+            { status: 429, headers: { 'Content-Type':'application/json' } }));
+        }
+      }
+    }catch(e){}
+    return nativeFetch.apply(this, arguments);
+  };
+})();
+</script>

@@ -1,0 +1,38 @@
+{{/* "Pick a demo slot yourself" on every thank-you state. Six of the ten real
+     leads in Oct–Nov 2026 arrived in the evening or at the weekend, when nobody
+     can call back within the promised two hours; a booking link lets the
+     visitor fix a time while still on the page.
+     Off until params.bookingUrl is set in config.toml (Polina's Google
+     Calendar appointment schedule or any other booking page). */}}
+{{ with site.Params.bookingUrl }}
+{{ $en := strings.HasPrefix $.RelPermalink "/en/" }}
+<style>
+.bk{margin-top:20px;padding:18px;border:1px solid rgba(0,87,255,.25);background:rgba(0,87,255,.06);border-radius:14px;text-align:center;}
+.bk b{display:block;font-family:'Geologica',sans-serif;font-size:16px;font-weight:700;color:var(--t1);margin-bottom:4px;}
+.bk span{display:block;font-size:14px;line-height:1.5;color:var(--t2);margin-bottom:14px;}
+#cta .bk{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.22);}
+#cta .bk b{color:#fff;}#cta .bk span{color:rgba(255,255,255,.75);}
+</style>
+<script>
+(function(){
+  var URL_ = {{ . }};
+  function add(){
+    document.querySelectorAll('#demoFormSuccess,#ctaSuccess,#lpDone').forEach(function(box){
+      if (box.querySelector('.bk')) return;
+      var d = document.createElement('div'); d.className = 'bk';
+      d.innerHTML = '<b>{{ if $en }}Don’t want to wait for a call?{{ else }}Не хочете чекати дзвінка?{{ end }}</b>'
+        + '<span>{{ if $en }}Pick a demo slot yourself — 30 minutes online.{{ else }}Оберіть зручний час демо самі — 30 хвилин онлайн.{{ end }}</span>'
+        + '<a class="btn btn-p" target="_blank" rel="noopener" data-bk>{{ if $en }}Choose a time →{{ else }}Обрати час демо →{{ end }}</a>';
+      d.querySelector('a').href = URL_;
+      box.appendChild(d);
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', add); else add();
+  document.addEventListener('click', function(e){
+    var a = e.target.closest && e.target.closest('a[data-bk]'); if (!a) return;
+    try{ (window.dataLayer = window.dataLayer || []).push({ event:'booking_click', booking_place: location.pathname }); }catch(_){}
+    if (window.gtag) gtag('event', 'booking_click', { event_category:'conversion', event_label: location.pathname });
+  });
+})();
+</script>
+{{ end }}

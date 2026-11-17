@@ -30,6 +30,10 @@
   var demoForm = document.getElementById('demoForm');
   if(demoForm){
     demoForm.addEventListener('submit', function(){
+      /* A send the lead guard (partials/attribution.html) blocks as a bot is
+         not a lead — keep it out of the GA4 conversion too. */
+      var nm = demoForm.querySelector('[name="name"]');
+      if (window.picsellGuard && window.picsellGuard.verdict({ full_name: nm ? nm.value : '' })) return;
       gtag('event', 'generate_lead', {
         'event_category': 'conversion',
         'event_label': 'demo_request',
