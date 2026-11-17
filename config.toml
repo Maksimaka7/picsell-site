@@ -30,6 +30,10 @@ defaultContentLanguageInSubdir = false
   domain = "picsell.ai"
   email = "info@picsell.ai"
   ogImage = "/images/og-default.png"
+  # Booking page for demo calls (e.g. a Google Calendar appointment schedule).
+  # While empty, the "pick a demo slot yourself" block on the thank-you states
+  # stays off — see layouts/partials/booking.html.
+  bookingUrl = ""
 
 [permalinks]
   [permalinks.page]
