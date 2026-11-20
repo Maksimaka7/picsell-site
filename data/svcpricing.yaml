@@ -1,0 +1,74 @@
+# Tariffs behind the calculators on /radar/ (shelf) and /horeca/.
+# Read by layouts/partials/svc-calc.html; change a number here and both
+# languages follow. All amounts are UAH per month.
+#
+# Formula (same for both services):
+#   subtotal = base + extra stores + extra units
+#   monthly  = max(base, subtotal × frequency k), rounded to ₴500, + options
+#   annual   = monthly × annual (billed for the year)
+# "Units" are products (SKU) for shelf and venues for horeca. Tiers are
+# [up to N, price per extra unit]; the first incSites / incUnits are in the base.
+
+shelf:
+  base: 20000
+  incSites: 5
+  siteTiers: [[15, 2000], [27, 1500]]
+  incUnits: 100
+  unitTiers: [[500, 25], [2000, 12], [5000, 6]]
+  unitStops: [50, 100, 200, 300, 500, 750, 1000, 1500, 2000, 3000, 5000]
+  unitDefault: 300
+  annual: 0.8
+  freq:
+    - { id: "w1", k: 0.7, runs: 4, uk: "Раз на тиждень", en: "Weekly" }
+    - { id: "w3", k: 0.85, runs: 13, uk: "3 рази на тиждень", en: "3 times a week" }
+    - { id: "d1", k: 1, runs: 30, uk: "Щодня", en: "Daily", default: true }
+    - { id: "d2", k: 1.3, runs: 60, uk: "Двічі на день", en: "Twice a day" }
+  options:
+    - { id: "promo", price: 5000, uk: "Акції мереж", ukNote: "Акційні розділи 7 мереж: ціна, назва акції, дати", en: "Chain promotions", enNote: "Promo sections of 7 chains: price, promotion name, dates" }
+    - { id: "assort", price: 5000, uk: "Зміни асортименту", ukNote: "Що зʼявилося, змінилося й зникло в категоріях 4 мереж", en: "Assortment changes", enNote: "What appeared, changed and disappeared in the categories of 4 chains" }
+  groups:
+    - uk: "Мережі й маркетплейси"
+      en: "Chains and marketplaces"
+      stores:
+        - { uk: "Rozetka", en: "Rozetka", sel: true }
+        - { uk: "Епіцентр", en: "Epicentr", sel: true }
+        - { uk: "Сільпо", en: "Silpo", sel: true }
+        - { uk: "АТБ", en: "ATB", sel: true }
+        - { uk: "Varus", en: "Varus", sel: true }
+        - { uk: "Maudau", en: "Maudau" }
+        - { uk: "MakeUp", en: "MakeUp" }
+        - { uk: "Notino", en: "Notino" }
+        - { uk: "Фора", en: "Fora" }
+        - { uk: "Fozzy", en: "Fozzy" }
+        - { uk: "Metro", en: "Metro" }
+        - { uk: "Zakaz.ua", en: "Zakaz.ua" }
+        - { uk: "MegaMarket", en: "MegaMarket" }
+        - { uk: "Ашан", en: "Auchan" }
+        - { uk: "Таврія В", en: "Tavria V" }
+        - { uk: "Копійка", en: "Kopiyka" }
+        - { uk: "Рукавичка", en: "Rukavychka" }
+    - uk: "Алкогольні магазини"
+      en: "Alcohol retailers"
+      stores:
+        - { uk: "Bayadera", en: "Bayadera" }
+        - { uk: "OkWine", en: "OkWine" }
+        - { uk: "WineTime", en: "WineTime" }
+        - { uk: "GoodWine", en: "GoodWine" }
+        - { uk: "WinePoint", en: "WinePoint" }
+        - { uk: "VintageMarket", en: "VintageMarket" }
+        - { uk: "AlcoMag", en: "AlcoMag" }
+        - { uk: "RumkaOnline", en: "RumkaOnline" }
+        - { uk: "WineWine", en: "WineWine" }
+        - { uk: "WineWorld", en: "WineWorld" }
+
+horeca:
+  base: 20000
+  incUnits: 500
+  unitTiers: [[1000, 20], [2500, 10], [5000, 8], [10000, 6]]
+  unitStops: [100, 250, 500, 750, 1000, 1500, 2000, 2500, 3500, 5000, 7500, 10000]
+  unitDefault: 1000
+  annual: 0.8
+  freq:
+    - { id: "q1", k: 0.7, runs: 0.33, uk: "Раз на квартал", en: "Quarterly" }
+    - { id: "m1", k: 1, runs: 1, uk: "Щомісяця", en: "Monthly", default: true }
+    - { id: "m2", k: 1.3, runs: 2, uk: "Двічі на місяць", en: "Twice a month" }

@@ -22,6 +22,11 @@
 /* add-ons */
 .calc-addon{border:1px solid var(--border);border-radius:var(--r3);padding:14px 16px;margin-bottom:12px;transition:border-color .2s;}
 .calc-addon.on{border-color:rgba(0,87,255,.4);background:rgba(0,87,255,.03);}
+.calc-svc{display:block;position:relative;padding-right:40px;text-decoration:none;}
+.calc-svc:hover{border-color:rgba(0,87,255,.4);}
+.calc-svc strong{display:block;font-family:'Geologica',sans-serif;font-weight:700;font-size:15px;color:var(--t1);}
+.calc-svc span{font-size:12px;color:var(--t2);}
+.calc-svc::after{content:'→';position:absolute;right:16px;top:50%;transform:translateY(-50%);color:var(--blue);font-weight:700;}
 .calc-addon-top{display:flex;align-items:flex-start;gap:11px;cursor:pointer;}
 .calc-addon-top input{width:18px;height:18px;margin-top:2px;accent-color:var(--blue);cursor:pointer;flex-shrink:0;}
 .calc-addon-top strong{font-family:'Geologica',sans-serif;font-weight:700;font-size:15px;color:var(--t1);display:block;}
@@ -94,15 +99,11 @@
           </div>
         </div>
 
-        <div class="calc-block-h" style="margin-top:var(--s4);">Add-ons</div>
-        <div class="calc-addon" id="addonRadar" data-base="20000" data-per="5000">
-          <label class="calc-addon-top"><input type="checkbox" class="calc-addon-cb"><span><strong>Digital Shelf</strong><span>{{ if $en }}Competitive intelligence · from ₴20 000 + ₴5 000 × site{{ else }}Конкурентна розвідка · від ₴20 000 + ₴5 000 × площадка{{ end }}</span></span></label>
-          <div class="calc-addon-x"><span>{{ if $en }}Sites{{ else }}Площадок{{ end }}:</span><input type="number" min="1" value="1" class="calc-addon-q" data-addon="Radar"></div>
-        </div>
-        <div class="calc-addon" id="addonHoreca" data-base="20000" data-per="10">
-          <label class="calc-addon-top"><input type="checkbox" class="calc-addon-cb"><span><strong>HoReCa Intelligence</strong><span>{{ if $en }}from ₴20 000 + ₴10 × menu item{{ else }}від ₴20 000 + ₴10 × позиція меню{{ end }}</span></span></label>
-          <div class="calc-addon-x"><span>{{ if $en }}Menu items{{ else }}Позицій меню{{ end }}:</span><input type="number" min="1" value="100" class="calc-addon-q" data-addon="HoReCa"></div>
-        </div>
+        <div class="calc-block-h" style="margin-top:var(--s4);">{{ if $en }}Data services{{ else }}Сервіси даних{{ end }}</div>
+        {{/* Digital Shelf and HoReCa are bought on their own and priced by stores,
+             products and frequency, not by seats — each has a calculator on its page. */}}
+        <a class="calc-addon calc-svc" href="{{ "/radar/" | relLangURL }}#svCalc"><strong>Digital Shelf</strong><span>{{ if $en }}Price monitoring in online stores. Own calculator: stores, products, frequency{{ else }}Моніторинг цін в онлайн-магазинах. Окремий калькулятор: магазини, товари, частота{{ end }}</span></a>
+        <a class="calc-addon calc-svc" href="{{ "/horeca/" | relLangURL }}#svCalc"><strong>HoReCa</strong><span>{{ if $en }}Menu analytics for venues. Own calculator: venues and update frequency{{ else }}Аналітика меню закладів. Окремий калькулятор: заклади й частота оновлення{{ end }}</span></a>
       </div>
 
       <!-- summary -->
@@ -150,8 +151,8 @@
     });
     var radar=0,horeca=0;
     var ar=document.getElementById('addonRadar'), ah=document.getElementById('addonHoreca');
-    if(ar.classList.contains('on')){var q=num(ar.querySelector('.calc-addon-q'));radar=parseInt(ar.getAttribute('data-base'),10)+parseInt(ar.getAttribute('data-per'),10)*q;lines.push('Radar('+q+')');}
-    if(ah.classList.contains('on')){var q2=num(ah.querySelector('.calc-addon-q'));horeca=parseInt(ah.getAttribute('data-base'),10)+parseInt(ah.getAttribute('data-per'),10)*q2;lines.push('HoReCa('+q2+')');}
+    if(ar&&ar.classList.contains('on')){var q=num(ar.querySelector('.calc-addon-q'));radar=parseInt(ar.getAttribute('data-base'),10)+parseInt(ar.getAttribute('data-per'),10)*q;lines.push('Radar('+q+')');}
+    if(ah&&ah.classList.contains('on')){var q2=num(ah.querySelector('.calc-addon-q'));horeca=parseInt(ah.getAttribute('data-base'),10)+parseInt(ah.getAttribute('data-per'),10)*q2;lines.push('HoReCa('+q2+')');}
     var monthly=seats+radar+horeca;
     return {seats:seats,radar:radar,horeca:horeca,monthly:monthly,annual:monthly*12*0.8,lines:lines};
   }
