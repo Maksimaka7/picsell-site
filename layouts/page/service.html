@@ -185,6 +185,9 @@
 {{ $p := .Params }}
 {{ $en := strings.HasPrefix .RelPermalink "/en/" }}
 {{ $f := $p.form }}
+{{/* Own calculator for the service: shown when data/svcpricing.yaml has an entry
+     for this page and partials/svc-calc.html exists. */}}
+{{ $calc := false }}{{ if templates.Exists "partials/svc-calc.html" }}{{ with site.Data.svcpricing }}{{ $calc = index . ($p.mock | default "-") }}{{ end }}{{ end }}
 <section class="sv">
   <div class="container">
     <div class="sv-hero">
@@ -193,7 +196,7 @@
         <h1>{{ $p.headline | safeHTML }}</h1>
         <p class="sv-lead">{{ $p.lead }}</p>
         <ul class="sv-points">{{ range $p.points }}<li>{{ . }}</li>{{ end }}</ul>
-        {{ with $p.priceLine }}<div class="sv-price">{{ . }} <a href="{{ "/calculator/" | relLangURL }}">{{ if $en }}calculator →{{ else }}калькулятор →{{ end }}</a></div>{{ end }}
+        {{ with $p.priceLine }}<div class="sv-price">{{ . }} {{ if $calc }}<a href="#svCalc">{{ if $en }}calculate yours →{{ else }}порахувати свою →{{ end }}</a>{{ else }}<a href="{{ "/calculator/" | relLangURL }}">{{ if $en }}calculator →{{ else }}калькулятор →{{ end }}</a>{{ end }}</div>{{ end }}
         <div class="sv-trust"><span>{{ if $en }}Trusted by:{{ else }}Нам довіряють:{{ end }}</span><b>Lactalis</b><b>Henkel</b><b>Schwarzkopf</b><b>Diageo</b><b>Colgate</b><b>Bayadera</b><b>IDS Borjomi</b></div>
       </div>
 
@@ -225,7 +228,7 @@
     </div>
 
     {{ with $p.mock }}
-    <div class="sv-sec">
+    <div class="sv-sec sv-demo" data-demo="{{ . }}">
       <h2>{{ $p.mockTitle }}</h2>
       <p class="sv-sub">{{ $p.mockSub }}</p>
       {{ partial (printf "mock-%s.html" .) $ }}
@@ -269,6 +272,8 @@
       </div>
     </div>
 
+    {{ if $calc }}{{ partial "svc-calc.html" (dict "page" . "kind" $p.mock "cfg" $calc) }}{{ end }}
+
     <div class="sv-sec">
       <h2>{{ $p.compareTitle }}</h2>
       <p class="sv-sub">{{ $p.compareSub }}</p>
@@ -300,6 +305,8 @@
   </div>
 </section>
 
+{{ partial "svc-fx.html" . }}
+
 <script type="application/ld+json" data-faq>
 {{ $qa := slice }}{{ range $p.faq }}{{ $qa = $qa | append (dict "@type" "Question" "name" .q "acceptedAnswer" (dict "@type" "Answer" "text" .a)) }}{{ end }}
 {{ dict "@context" "https://schema.org" "@type" "FAQPage" "mainEntity" $qa | jsonify | safeJS }}
@@ -322,7 +329,7 @@
       method:'POST',headers:{'Content-Type':'application/json'},
       body:JSON.stringify(Object.assign({
         full_name:name,phone:phone,company:document.getElementById('svCompany').value.trim(),
-        source:'website',form_id:formId,message:note,lang:(EN?'en':'uk')
+        source:'website',form_id:formId,message:note+(window.svCalcNote?' | '+window.svCalcNote:''),lang:(EN?'en':'uk')
       },attr))
     }).then(function(res){
       if(!res.ok){fail(EN?'Something went wrong. Try again.':'Щось пішло не так. Спробуйте ще раз.');return;}

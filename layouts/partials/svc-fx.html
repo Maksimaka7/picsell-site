@@ -1,0 +1,218 @@
+{{/* Interactive layer for the service pages (/radar/, /horeca/). The product
+     screens in partials/mock-*.html stay plain HTML; this script makes them
+     respond: on Digital Shelf a click on a product redraws its price history
+     and the chart answers the pointer, on HoReCa the bar list is "read" line by
+     line and each line is tied to its row in the result table. Everything is
+     demo data that mirrors the numbers already printed in the mock. Without
+     JavaScript, or with reduced motion, the static screen is shown as is. */}}
+{{ $en := strings.HasPrefix .RelPermalink "/en/" }}
+<style>
+.sv-demo{margin-top:72px;padding:56px 0 44px;background:#071A2B;box-shadow:0 0 0 100vmax #071A2B;clip-path:inset(0 -100vmax);}
+.sv-demo>h2{color:#fff;}
+.sv-demo .sv-sub{color:rgba(255,255,255,.74);margin-bottom:14px;}
+.sv-demo .sv-cap{color:rgba(255,255,255,.55);}
+.sv-demo .mk{border-color:rgba(255,255,255,.16);box-shadow:0 30px 80px rgba(0,0,0,.45);}
+.sv-try{display:flex;align-items:center;gap:10px;font-size:13.5px;font-weight:600;color:#8AD8F7;margin:0 0 22px;}
+.sv-try::before{content:'';flex:none;width:8px;height:8px;border-radius:50%;background:#00A3E0;animation:svPulse 1.8s infinite;}
+@keyframes svPulse{0%{box-shadow:0 0 0 0 rgba(0,163,224,.6)}70%{box-shadow:0 0 0 9px rgba(0,163,224,0)}100%{box-shadow:0 0 0 0 rgba(0,163,224,0)}}
+.mk-leg.is-f span{cursor:pointer;border:1px solid #D5DEE6;border-radius:999px;padding:4px 10px;background:#fff;user-select:none;transition:background .15s,color .15s,border-color .15s;}
+.mk-leg.is-f span:hover{border-color:#00A3E0;}
+.mk-leg.is-f span.on{background:#0A2236;border-color:#0A2236;color:#fff;}
+.mk-leg.is-f span:focus-visible,.mk-t tr[data-p]:focus-visible,.mk-replay:focus-visible{outline:2px solid #00A3E0;outline-offset:2px;}
+.mk-t tr[data-p]{cursor:pointer;}
+.mk-t tr[data-p]:hover td{background:#F6F9FB;}
+.mk-t tr[data-p].is-on td{background:#EAF6FC;}
+.mk-t tr[data-p].is-on td:first-child{box-shadow:inset 3px 0 0 #00A3E0;}
+.mk-t .pc{transition:opacity .2s;}
+.mk-t[data-f="lo"] .pc:not(.lo),.mk-t[data-f="pr"] .pc:not(.pr),.mk-t[data-f="hi"] .pc:not(.hi),.mk-t[data-f="ok"] .pc.lo,.mk-t[data-f="ok"] .pc.pr,.mk-t[data-f="ok"] .pc.hi,.mk-t[data-f="ok"] .pc.na{opacity:.16;}
+.mk-chart{cursor:crosshair;touch-action:pan-y;}
+.mk-chart .ln{stroke-dasharray:1;stroke-dashoffset:1;animation:svDraw .8s ease forwards;}
+@keyframes svDraw{to{stroke-dashoffset:0}}
+.mk-map circle{transition:opacity .2s;}
+.mk-paper{position:relative;overflow:hidden;}
+.mk-paper p{transition:border-color .25s,background .25s,box-shadow .2s;}
+.mk-paper.is-scan p.own:not(.rec),.mk-paper.is-scan p.cmp:not(.rec){border-color:transparent;background:none;}
+.mk-paper p em{font-style:normal;font-family:system-ui,sans-serif;font-size:9.5px;font-weight:700;border-radius:999px;padding:1px 7px;margin-left:6px;white-space:nowrap;opacity:0;transition:opacity .3s;}
+.mk-paper p.rec em{opacity:1;}
+.mk-paper p.own em{background:#D6EEF9;color:#0B7FB0;}
+.mk-paper p.cmp em{background:#F8E3BF;color:#A8690B;}
+.mk-paper p.hl{box-shadow:0 0 0 3px rgba(0,163,224,.28);}
+.mk-t tr.hl td{background:#EAF6FC;}
+.mk-t tr.pend td{opacity:.14;}
+.mk-t tr td{transition:opacity .35s,background .15s;}
+.mk-scanbar{position:absolute;left:0;right:0;top:0;height:44px;background:linear-gradient(180deg,rgba(0,163,224,0),rgba(0,163,224,.26));border-bottom:2px solid #00A3E0;pointer-events:none;opacity:0;}
+.mk-replay{display:inline-flex;align-items:center;gap:6px;margin-top:12px;font:inherit;font-size:12px;font-weight:600;color:#0B7FB0;background:#E1F3FB;border:0;border-radius:999px;padding:6px 12px;cursor:pointer;}
+.mk-replay:hover{background:#CDEAF8;}
+.mk[data-live] .mk-bar u s,.mk[data-live] .mk-rg u s{transition:width .9s cubic-bezier(.2,.7,.2,1);}
+@media(max-width:960px){.sv-demo{margin-top:52px;padding:40px 0 32px;}}
+@media(prefers-reduced-motion:reduce){.mk-chart .ln{animation:none;stroke-dashoffset:0;}.sv-try::before{animation:none;}.mk[data-live] .mk-bar u s,.mk[data-live] .mk-rg u s{transition:none;}}
+</style>
+<script>
+(function(){
+  var EN={{ $en }};
+  var calm=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function all(root,sel){return Array.prototype.slice.call(root.querySelectorAll(sel));}
+  function seen(el,fn,share){
+    if(!('IntersectionObserver' in window)){fn();return;}
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){io.disconnect();fn();}});},{threshold:share||0.35});
+    io.observe(el);
+  }
+  function chips(leg,keys,apply){
+    leg.classList.add('is-f');
+    all(leg,'span').forEach(function(sp,i){
+      sp.setAttribute('role','button');sp.setAttribute('tabindex','0');sp.setAttribute('aria-pressed','false');
+      function go(){
+        var on=!sp.classList.contains('on');
+        all(leg,'span').forEach(function(o){o.classList.remove('on');o.setAttribute('aria-pressed','false');});
+        if(on){sp.classList.add('on');sp.setAttribute('aria-pressed','true');}
+        apply(on?keys[i]:'');
+      }
+      sp.addEventListener('click',go);
+      sp.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();go();}});
+    });
+  }
+
+  /* ── Digital Shelf: price history per product ── */
+  function shelf(mk){
+    var card=mk.querySelector('.mk-card'),svg=card&&card.querySelector('svg'),sub=card&&card.querySelector('.mk-s');
+    var table=mk.querySelector('.mk-t.wide');
+    if(!svg||!table) return;
+    var rows=all(table,'tr').slice(1);
+    /* [day, price] change points for Rozetka, Епіцентр, Сільпо over 30 days;
+       the last value of each series equals the price in the table below. */
+    var D=[
+      {s:[[[0,399],[10,389]],[[0,389],[5,379],[13,365],[20,349]],[[0,386],[22,292]]],promo:[22,29,'Акція в Сільпо −25%']},
+      {s:[[[0,459],[16,449]],[[0,455],[8,429],[19,399],[25,376]],[[0,459]]]},
+      {s:[[[0,225],[7,219]],[[0,215],[14,209]],[[0,219],[21,164]]],promo:[21,29,'Акція в Сільпо −25%']},
+      {s:[[[0,189],[12,185],[24,null]],[[0,185],[17,179]],[[0,189]]]}
+    ];
+    var C=['#0A2236','#00A3E0','#7A5AF8'],N=['Rozetka','Епіцентр','Сільпо'];
+    var DAYS=30,X0=34,X1=590,Y0=22,Y1=196,cur=null;
+    function dt(i){var d=new Date(2026,9,20+i);return ('0'+d.getDate()).slice(-2)+'.'+('0'+(d.getMonth()+1)).slice(-2);}
+    function at(se,day){var v=null,i;for(i=0;i<se.length;i++){if(se[i][0]<=day)v=se[i][1];}return v;}
+    function r1(n){return Math.round(n*10)/10;}
+    function draw(k){
+      var d=D[k],row=rows[k]; if(!d||!row) return;
+      var rrp=parseInt(row.children[1].textContent,10),lo=rrp,hi=rrp;
+      d.s.forEach(function(se){se.forEach(function(p){if(p[1]!=null){lo=Math.min(lo,p[1]);hi=Math.max(hi,p[1]);}});});
+      var pad=Math.max((hi-lo)*0.2,8);lo=Math.floor((lo-pad)/10)*10;hi=Math.ceil((hi+pad)/10)*10;
+      function x(day){return r1(X0+(X1-X0)*day/(DAYS-1));}
+      function y(p){return r1(Y1-(Y1-Y0)*(p-lo)/(hi-lo));}
+      var h='',g,i;
+      for(g=0;g<=4;g++){var pv=lo+(hi-lo)*g/4,yy=y(pv);h+='<line x1="'+X0+'" x2="'+X1+'" y1="'+yy+'" y2="'+yy+'" stroke="#EEF2F5"/><text x="0" y="'+(yy+3)+'" font-size="9" fill="#8A9AA8" font-family="monospace">'+Math.round(pv)+'</text>';}
+      if(d.promo){var px=x(d.promo[0]),pw=r1(x(d.promo[1])-px);h+='<rect x="'+px+'" y="'+Y0+'" width="'+pw+'" height="'+(Y1-Y0)+'" fill="#FBEBD0" opacity=".7"/><text x="'+r1(px+pw/2)+'" y="'+(Y0+12)+'" text-anchor="middle" font-size="9.5" font-weight="700" fill="#A8690B" font-family="sans-serif">'+d.promo[2]+'</text>';}
+      h+='<path d="M'+X0+','+y(rrp)+' H'+X1+'" stroke="#0A2236" stroke-width="1.5" stroke-dasharray="5 4" fill="none"/><text x="'+(X0+4)+'" y="'+(y(rrp)-6)+'" font-size="9.5" font-weight="700" fill="#3A5166" stroke="#fff" stroke-width="3" paint-order="stroke" font-family="sans-serif">РРЦ '+rrp+'</text>';
+      d.s.forEach(function(se,n){
+        var p='',end=null,last=null;
+        se.forEach(function(pt,j){
+          if(j===0){p='M'+x(pt[0])+','+y(pt[1]);last=pt[1];}
+          else if(pt[1]==null){p+=' H'+x(pt[0]);end=pt[0];}
+          else{p+=' H'+x(pt[0])+' V'+y(pt[1]);last=pt[1];}
+        });
+        if(end==null)p+=' H'+X1;
+        h+='<path class="ln" pathLength="1" d="'+p+'" stroke="'+C[n]+'" stroke-width="2.2" fill="none"/>';
+        if(end==null)h+='<circle cx="'+X1+'" cy="'+y(last)+'" r="3.5" fill="'+C[n]+'"/>';
+        else h+='<circle cx="'+x(end)+'" cy="'+y(last)+'" r="3.5" fill="#fff" stroke="'+C[n]+'" stroke-width="2"/><text x="'+(x(end)+7)+'" y="'+(y(last)-6)+'" font-size="9" fill="#62778A" font-family="sans-serif">немає в наявності</text>';
+      });
+      [0,7,14,21,29].forEach(function(day){h+='<text x="'+x(day)+'" y="216" text-anchor="'+(day===0?'start':day===29?'end':'middle')+'" font-size="9" fill="#8A9AA8" font-family="monospace">'+dt(day)+'</text>';});
+      h+='<g class="hv" style="display:none"></g><rect x="'+X0+'" y="0" width="'+(X1-X0)+'" height="204" fill="transparent"/>';
+      svg.innerHTML=h;
+      cur={d:d,x:x,rrp:rrp};
+      rows.forEach(function(r,j){r.classList.toggle('is-on',j===k);r.setAttribute('aria-selected',j===k?'true':'false');});
+      var b=row.querySelector('td b'),sm=row.querySelector('td small');
+      if(sub&&b)sub.textContent=b.textContent+(sm?', '+sm.textContent:'')+' · РРЦ '+rrp+' грн';
+    }
+    function tip(day){
+      var hv=svg.querySelector('.hv'); if(!hv||!cur) return;
+      var xx=cur.x(day),left=xx>390,bx=left?xx-188:xx+10,h='<line x1="'+xx+'" x2="'+xx+'" y1="'+Y0+'" y2="'+Y1+'" stroke="#0A2236" stroke-width="1" opacity=".45"/>';
+      h+='<g transform="translate('+bx+',30)"><rect width="178" height="72" rx="7" fill="#0A2236"/><text x="10" y="16" font-size="9.5" font-weight="700" fill="#9FC3D6" font-family="monospace">'+dt(day)+'</text>';
+      cur.d.s.forEach(function(se,n){
+        var v=at(se,day),t=v==null?'немає':v+' грн',dv=v==null?'':Math.round((v/cur.rrp-1)*100);
+        if(dv!==''){dv=dv===0?'= РРЦ':(dv>0?'+':'−')+Math.abs(dv)+'%';}
+        h+='<circle cx="14" cy="'+(29+n*15)+'" r="3.5" fill="'+(n===0?'#fff':C[n])+'"/><text x="23" y="'+(32+n*15)+'" font-size="10" fill="#fff" font-family="sans-serif">'+N[n]+'</text><text x="168" y="'+(32+n*15)+'" text-anchor="end" font-size="10" font-weight="700" fill="#fff" font-family="monospace">'+t+(dv?' '+dv:'')+'</text>';
+      });
+      hv.innerHTML=h+'</g>';hv.style.display='';
+    }
+    svg.classList.add('mk-chart');
+    svg.addEventListener('pointermove',function(e){
+      var r=svg.getBoundingClientRect(),vx=(e.clientX-r.left)/r.width*600;
+      tip(Math.max(0,Math.min(DAYS-1,Math.round((vx-X0)/(X1-X0)*(DAYS-1)))));
+    });
+    svg.addEventListener('pointerleave',function(){var hv=svg.querySelector('.hv');if(hv)hv.style.display='none';});
+    rows.forEach(function(r,k){
+      r.setAttribute('data-p',k);r.setAttribute('tabindex','0');
+      r.addEventListener('click',function(){draw(k);});
+      r.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();draw(k);}});
+    });
+    var leg=table.parentNode.parentNode.querySelector('.mk-leg');
+    if(leg)chips(leg,['lo','pr','ok','hi'],function(f){if(f)table.setAttribute('data-f',f);else table.removeAttribute('data-f');});
+    draw(0);
+  }
+
+  /* ── HoReCa: the bar list is read line by line ── */
+  function horeca(mk){
+    var paper=mk.querySelector('.mk-paper'); if(!paper) return;
+    var lines=all(paper,'p'),byName={};
+    all(mk,'.mk-t tr').forEach(function(tr){var td=tr.querySelector('td');if(td&&tr.querySelector('.tg'))byName[td.textContent.trim()]=tr;});
+    lines.forEach(function(p){
+      var sp=p.querySelector('span'),own=p.classList.contains('own'),cmp=p.classList.contains('cmp');
+      if(!sp||(!own&&!cmp)) return;
+      var tr=byName[sp.textContent.trim()];
+      var em=document.createElement('em');em.textContent=own?'Ваш':'Конкурент';sp.appendChild(em);
+      p._row=tr;
+      function hl(on){p.classList.toggle('hl',on);if(tr)tr.classList.toggle('hl',on);}
+      p.addEventListener('mouseenter',function(){hl(true);});p.addEventListener('mouseleave',function(){hl(false);});
+      if(tr){tr.addEventListener('mouseenter',function(){hl(true);});tr.addEventListener('mouseleave',function(){hl(false);});}
+    });
+    var bar=document.createElement('div');bar.className='mk-scanbar';paper.appendChild(bar);
+    var timers=[];
+    function scan(){
+      timers.forEach(clearTimeout);timers=[];
+      if(calm||!bar.animate){lines.forEach(function(p){p.classList.add('rec');});return;}
+      paper.classList.add('is-scan');
+      lines.forEach(function(p){p.classList.remove('rec');if(p._row)p._row.classList.add('pend');});
+      var H=paper.offsetHeight,T=2600;
+      bar.animate([{transform:'translateY(-44px)',opacity:1},{transform:'translateY('+H+'px)',opacity:1}],{duration:T,easing:'linear'});
+      lines.forEach(function(p){
+        timers.push(setTimeout(function(){p.classList.add('rec');if(p._row)p._row.classList.remove('pend');},T*(p.offsetTop+p.offsetHeight+44)/(H+44)));
+      });
+    }
+    var menu=mk.querySelector('.mk-menu');
+    if(menu&&!calm){
+      var btn=document.createElement('button');btn.type='button';btn.className='mk-replay';btn.textContent='↻ Розпізнати ще раз';
+      btn.addEventListener('click',scan);menu.parentNode.appendChild(btn);
+    }
+    seen(paper,scan,0.5);
+    /* bars grow when the screen comes into view */
+    var bars=all(mk,'.mk-bar u s, .mk-rg u s');
+    if(!calm&&bars.length){
+      bars.forEach(function(s){s._w=s.style.width;s.style.width='0';});
+      seen(mk,function(){setTimeout(function(){bars.forEach(function(s){s.style.width=s._w;});},150);},0.15);
+    }
+    /* map legend filters the venues by analysis state */
+    var map=mk.querySelector('.mk-map'),leg=map&&map.closest('.mk-card').querySelector('.mk-leg');
+    if(leg)chips(leg,['#00A3E0','#E8A33D','#9FB0BD'],function(f){
+      all(map,'circle[r="4"]').forEach(function(c){c.style.opacity=(!f||c.getAttribute('fill')===f)?'1':'.12';});
+    });
+  }
+
+  all(document,'.sv-demo').forEach(function(sec){
+    var kind=sec.getAttribute('data-demo'),mk=sec.querySelector('.mk'); if(!mk) return;
+    mk.setAttribute('data-live','1');
+    var sub=sec.querySelector('.sv-sub'),hint=document.createElement('div');hint.className='sv-try';
+    var touch=window.matchMedia&&window.matchMedia('(hover: none)').matches;
+    hint.textContent=kind==='shelf'
+      ?(EN?'The report is live: click a product in the table or move across the chart.':'Звіт живий: натисніть на товар у таблиці або проведіть по графіку.')
+      :touch?(EN?'The screen is live: tap a state in the map legend or read the bar list again.':'Екран живий: натисніть на стан у легенді карти або розпізнайте меню ще раз.')
+      :(EN?'The screen is live: point at a menu line or click a state in the map legend.':'Екран живий: наведіть на рядок меню або натисніть на стан у легенді карти.');
+    if(sub)sub.parentNode.insertBefore(hint,sub.nextSibling);
+    try{if(kind==='shelf')shelf(mk);else if(kind==='horeca')horeca(mk);}catch(e){}
+  });
+
+  /* whole-number stats count up once */
+  if(!calm)all(document,'.sv-stat b').forEach(function(b){
+    var n=parseInt(b.textContent,10); if(!/^\d+$/.test(b.textContent.trim())||n<2) return;
+    seen(b,function(){var t0=null;function step(t){if(!t0)t0=t;var k=Math.min(1,(t-t0)/800);b.textContent=Math.round(n*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(step);}requestAnimationFrame(step);},0.6);
+  });
+})();
+</script>
