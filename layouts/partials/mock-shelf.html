@@ -1,0 +1,54 @@
+{{/* Product screen for /radar/ (Digital Shelf): a live HTML version of the demo
+     report. It shows only what the parser collects — prices, promo prices,
+     availability, RRP with history, promotions with dates, assortment events
+     (appeared / changed / disappeared / returned). The comparison with the RRP
+     is done in the Power BI reports, which is what this screen stands for.
+     Products are invented, numbers are demo data; the page caption says so. */}}
+<div class="mk" aria-label="PICSELL Digital Shelf — приклад звіту">
+  <div class="mk-side">
+    <div class="mk-logo">PICSELL<small>DIGITAL SHELF</small></div>
+    <div class="mk-nav"><div class="on">Огляд цін</div><div>Відхилення від РРЦ</div><div>Акції</div><div>Асортимент</div><div>Історія цін</div><div>Майданчики</div></div>
+    <div class="mk-foot">Ціни зібрано сьогодні о 07:30</div>
+  </div>
+  <div class="mk-main">
+    <div class="mk-top">
+      <div><div class="mk-h">Ціни на ваші товари в онлайн-магазинах</div><div class="mk-s">Порівняння з рекомендованою роздрібною ціною (РРЦ) · 17 майданчиків</div></div>
+      <div class="mk-pills"><span class="on">Побутова хімія</span><span>Догляд за волоссям</span><span>Останні 30 днів</span></div>
+    </div>
+    <div class="mk-kpis">
+      <div class="mk-kpi"><b>640</b><strong>Товарів під моніторингом</strong><span>ваші й конкурентів</span></div>
+      <div class="mk-kpi"><b>17</b><strong>Майданчиків</strong><span>маркетплейси й сайти мереж</span></div>
+      <div class="mk-kpi red"><b>23</b><strong>Ціна нижче РРЦ</strong><span>9 з них нижче на 15% і більше</span></div>
+      <div class="mk-kpi hero"><b>41</b><strong>Активна акція</strong><span>з акційною ціною й датами</span></div>
+      <div class="mk-kpi"><b>9</b><strong>Немає в наявності</strong><span>за останнім збором</span></div>
+    </div>
+    <div class="mk-row">
+      <div class="mk-card">
+        <h4>Історія ціни</h4><div class="mk-s">Гель для прання «Аква-Кристал», 2 л · РРЦ 389 грн</div>
+        <div class="mk-leg"><span><i style="background:#0A2236"></i>Rozetka</span><span><i style="background:#00A3E0"></i>Епіцентр</span><span><i style="background:#7A5AF8"></i>Сільпо</span><span><i style="background:#fff;border:1.5px dashed #0A2236"></i>РРЦ</span><span><i style="background:#FBEBD0;border-radius:2px"></i>Акція</span></div>
+        <svg viewBox="0 0 600 226" role="img" aria-label="Історія ціни товару в трьох магазинах порівняно з РРЦ" style="display:block;width:100%;height:auto"><line x1="30" x2="590" y1="20.0" y2="20.0" stroke="#EEF2F5"/><text x="0" y="23.0" font-size="9" fill="#8A9AA8" font-family="monospace">420</text><line x1="30" x2="590" y1="65.0" y2="65.0" stroke="#EEF2F5"/><text x="0" y="68.0" font-size="9" fill="#8A9AA8" font-family="monospace">380</text><line x1="30" x2="590" y1="110.0" y2="110.0" stroke="#EEF2F5"/><text x="0" y="113.0" font-size="9" fill="#8A9AA8" font-family="monospace">340</text><line x1="30" x2="590" y1="155.0" y2="155.0" stroke="#EEF2F5"/><text x="0" y="158.0" font-size="9" fill="#8A9AA8" font-family="monospace">300</text><line x1="30" x2="590" y1="200.0" y2="200.0" stroke="#EEF2F5"/><text x="0" y="203.0" font-size="9" fill="#8A9AA8" font-family="monospace">260</text><rect x="239" y="20" width="132" height="180" fill="#FBEBD0" opacity=".7"/><text x="305" y="32" text-anchor="middle" font-size="9.5" font-weight="700" fill="#A8690B" font-family="sans-serif">Акція в Сільпо −25%</text><path d="M30,54.9 H590" stroke="#0A2236" stroke-width="1.5" stroke-dasharray="5 4" fill="none"/><path d="M30,43.6 H220 V54.9 H590" stroke="#0A2236" stroke-width="2" fill="none"/><path d="M30,54.9 H125 V66.1 H277 V81.9 H409 V99.9 H590" stroke="#00A3E0" stroke-width="2.2" fill="none"/><path d="M30,58.2 H239 V164.0 H371 V59.4 H590" stroke="#7A5AF8" stroke-width="2.2" fill="none"/><circle cx="590" cy="99.9" r="3.5" fill="#00A3E0"/><g transform="translate(486,107.9)"><rect width="98" height="17" rx="4" fill="#FBE0DF"/><text x="49" y="12" text-anchor="middle" font-size="9.5" font-weight="700" fill="#B5332E" font-family="sans-serif">Епіцентр 349 · −10%</text></g><text x="588" y="48.9" text-anchor="end" font-size="9.5" font-weight="700" fill="#3A5166" font-family="sans-serif">РРЦ 389</text><text x="40" y="218" text-anchor="middle" font-size="9" fill="#8A9AA8" font-family="monospace">20.10</text><text x="163" y="218" text-anchor="middle" font-size="9" fill="#8A9AA8" font-family="monospace">27.10</text><text x="296" y="218" text-anchor="middle" font-size="9" fill="#8A9AA8" font-family="monospace">03.11</text><text x="428" y="218" text-anchor="middle" font-size="9" fill="#8A9AA8" font-family="monospace">10.11</text><text x="575" y="218" text-anchor="middle" font-size="9" fill="#8A9AA8" font-family="monospace">18.11</text></svg>
+      </div>
+      <div class="mk-card mk-hide-m">
+        <h4>Акції та зміни асортименту</h4><div class="mk-s">За останнім збором</div>
+        <div class="mk-ev">
+          <div><i style="background:#E8A33D"></i><span><b>Акція −20% · Varus · 12.11–24.11</b><span>Засіб для туалету «Чиста оселя», 750 мл · 95 грн</span></span></div>
+          <div><i style="background:#1E9E55"></i><span><b>Зʼявився в категорії</b><span>Засоби для прання · MegaMarket · 3 позиції конкурента</span></span></div>
+          <div><i style="background:#7A5AF8"></i><span><b>Змінився</b><span>Кондиціонер «Свіжа хвиля» · Zakaz.ua · обʼєм 1,5 л → 1,35 л</span></span></div>
+          <div><i style="background:#D9534F"></i><span><b>Зник із категорії</b><span>Шампунь «Ліра» Обʼєм, 400 мл · Сільпо · два збори поспіль</span></span></div>
+          <div><i style="background:#00A3E0"></i><span><b>Повернувся</b><span>Гель для прання «Аква-Кристал», 2 л · Varus</span></span></div>
+        </div>
+      </div>
+    </div>
+    <div class="mk-card">
+      <h4>Ціни за майданчиками</h4><div class="mk-s">Поточна ціна і відхилення від РРЦ</div>
+      <div class="mk-leg"><span><i style="background:#FBE0DF;border-radius:2px"></i>Нижче РРЦ більш ніж на 5%</span><span><i style="background:#FBEBD0;border-radius:2px"></i>Акція</span><span><i style="background:#EEF2F5;border-radius:2px"></i>У межах РРЦ</span><span><i style="background:#DDF3E4;border-radius:2px"></i>Вище РРЦ</span></div>
+      <div class="mk-x"><table class="mk-t wide">
+        <tr><th>Товар</th><th class="n">РРЦ</th><th class="n">Rozetka</th><th class="n">Епіцентр</th><th class="n">MakeUp</th><th class="n">Сільпо</th><th class="n">АТБ</th><th class="n">Varus</th></tr>
+        <tr><td><b>Гель для прання «Аква-Кристал»</b><small>2 л</small></td><td class="n">389</td><td class="n"><span class="pc">389 грн<small>= РРЦ</small></span></td><td class="n"><span class="pc lo">349 грн<small>−10%</small></span></td><td class="n"><span class="pc na">не продається</span></td><td class="n"><span class="pc pr">292 грн<small>акція −25%</small></span></td><td class="n"><span class="pc">379 грн<small>−3%</small></span></td><td class="n"><span class="pc">395 грн<small>+2%</small></span></td></tr>
+        <tr><td><b>Капсули для прання «Аква-Кристал»</b><small>30 шт</small></td><td class="n">459</td><td class="n"><span class="pc">449 грн<small>−2%</small></span></td><td class="n"><span class="pc lo">376 грн<small>−18%</small></span></td><td class="n"><span class="pc">465 грн<small>+1%</small></span></td><td class="n"><span class="pc">459 грн<small>= РРЦ</small></span></td><td class="n"><span class="pc na">не продається</span></td><td class="n"><span class="pc">442 грн<small>−4%</small></span></td></tr>
+        <tr><td><b>Кондиціонер «Свіжа хвиля»</b><small>1,5 л</small></td><td class="n">219</td><td class="n"><span class="pc">219 грн<small>= РРЦ</small></span></td><td class="n"><span class="pc">209 грн<small>−5%</small></span></td><td class="n"><span class="pc">225 грн<small>+3%</small></span></td><td class="n"><span class="pc pr">164 грн<small>акція −25%</small></span></td><td class="n"><span class="pc">215 грн<small>−2%</small></span></td><td class="n"><span class="pc hi">229 грн<small>+5%</small></span></td></tr>
+        <tr><td><b>Шампунь «Ліра» Обʼєм</b><small>400 мл</small></td><td class="n">189</td><td class="n"><span class="pc na">немає в наявності</span></td><td class="n"><span class="pc lo">179 грн<small>−5%</small></span></td><td class="n"><span class="pc">186 грн<small>−2%</small></span></td><td class="n"><span class="pc">189 грн<small>= РРЦ</small></span></td><td class="n"><span class="pc lo">172 грн<small>−9%</small></span></td><td class="n"><span class="pc hi">195 грн<small>+3%</small></span></td></tr>
+      </table></div>
+    </div>
+  </div>
+</div>

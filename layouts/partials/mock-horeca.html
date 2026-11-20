@@ -1,0 +1,92 @@
+{{/* Product screen for /horeca/: a live HTML version of the demo dashboard.
+     Labels follow the analyzer's code (three coverage states, own / competitor
+     split, the fields of a recognised position and cocktail). Venues and brands
+     are invented, numbers are demo data; the page caption says so. The UI stays
+     Ukrainian on the EN page as well — it is a picture of the product. */}}
+<div class="mk" aria-label="PICSELL HoReCa — приклад екрана">
+  <div class="mk-side">
+    <div class="mk-logo">PICSELL<small>HORECA</small></div>
+    <div class="mk-nav"><div class="on">Огляд</div><div>Заклади</div><div>Меню й барні карти</div><div>Коктейлі</div><div>Ціни</div><div>Звіти</div></div>
+    <div class="mk-foot">Останній прогін сьогодні · наступний за розкладом</div>
+  </div>
+  <div class="mk-main">
+    <div class="mk-top">
+      <div><div class="mk-h">Присутність бренду в меню закладів</div><div class="mk-s">Ресторани, бари, кафе й готелі · останні 30 днів</div></div>
+      <div class="mk-pills"><span class="on">Усі регіони</span><span>Алкогольні напої</span><span>Останні 30 днів</span></div>
+    </div>
+    <div class="mk-kpis">
+      <div class="mk-kpi"><b>8 600</b><strong>Закладів у базі</strong><span>ресторани, бари, кафе й готелі</span></div>
+      <div class="mk-kpi"><b>5 400</b><strong>Меню розібрано</strong><span>63% бази · сайт, PDF або фото</span></div>
+      <div class="mk-kpi hero"><b>31%</b><strong>Ваша частка в меню</strong><span>3 412 позицій проти 7 580 у конкурентів</span></div>
+      <div class="mk-kpi"><b>214</b><strong>Коктейлі з брендом</strong><span>зі складом та інгредієнтами</span></div>
+      <div class="mk-kpi"><b>24</b><strong>Регіони у базі</strong><span>області та міста</span></div>
+    </div>
+    <div class="mk-row">
+      <div class="mk-card">
+        <h4>Карта охоплення</h4><div class="mk-s">Кожна точка — заклад, колір за станом аналізу</div>
+        <div class="mk-leg"><span><i style="background:#00A3E0"></i>Меню прочитано</span><span><i style="background:#E8A33D"></i>Порожній результат</span><span><i style="background:#9FB0BD"></i>Ще не проаналізовано</span></div>
+        <div class="mk-two">
+          <div class="mk-map"><svg viewBox="0 0 380 220" role="img" aria-label="Карта охоплення: заклади за станом аналізу"><rect width="380" height="220" fill="#E6ECF0"/><path d="M250 0 C232 40 268 70 246 110 C228 144 262 176 240 220 L290 220 C304 180 276 150 292 112 C308 74 282 40 296 0 Z" fill="#C7DCEA"/><path d="M0 70 L380 96 M0 150 L380 132 M70 0 L96 220 M150 0 L140 220 M0 20 L210 220 M330 0 L190 220" stroke="#fff" stroke-width="3" fill="none" opacity=".9"/><path d="M20 40 h60 v34 h-60z M300 150 h50 v40 h-50z M110 170 h44 v30 h-44z" fill="#D5E6D3" opacity=".8"/>{{ range split "174,138,e 259,140,f 259,135,f 168,124,f 87,152,f 205,173,p 135,99,p 307,141,f 209,134,f 206,95,f 152,88,f 210,123,f 162,80,f 131,95,f 216,58,f 122,96,p 183,85,p 238,146,e 231,156,f 138,59,f 228,94,e 122,89,f 270,37,f 179,106,e 72,17,p 177,157,e 258,124,f 206,127,e 222,140,f 208,106,f 68,93,p 223,94,f 109,182,p 213,138,f 197,164,f 190,122,f 135,156,p 163,73,e 181,106,p 214,38,e 141,143,f 175,107,f 199,141,f 191,118,f 237,141,f 250,79,f" " " }}{{ $d := split . "," }}<circle cx="{{ index $d 0 }}" cy="{{ index $d 1 }}" r="4" fill="{{ index (dict "f" "#00A3E0" "e" "#E8A33D" "p" "#9FB0BD") (index $d 2) }}" stroke="#fff" stroke-width="1.2"/>{{ end }}<circle cx="196" cy="112" r="7" fill="none" stroke="#0A2236" stroke-width="2"/><circle cx="196" cy="112" r="3.5" fill="#00A3E0"/><g transform="translate(208,98)"><rect width="118" height="32" rx="6" fill="#0A2236"/><text x="9" y="14" fill="#fff" font-size="10" font-weight="700" font-family="sans-serif">Хмільна гавань</text><text x="9" y="26" fill="#9FC3D6" font-size="8.5" font-family="sans-serif">3 ваші позиції з 6</text></g></svg></div>
+          <div>
+            <div class="mk-rg"><div><span>Київ</span><em>1 650 / 2 100</em></div><u><s style="width:79%"></s></u></div>
+            <div class="mk-rg"><div><span>Київська обл.</span><em>900 / 1 300</em></div><u><s style="width:69%"></s></u></div>
+            <div class="mk-rg"><div><span>Львів</span><em>1 150 / 1 500</em></div><u><s style="width:77%"></s></u></div>
+            <div class="mk-rg"><div><span>Одеса</span><em>980 / 1 400</em></div><u><s style="width:70%"></s></u></div>
+          </div>
+        </div>
+      </div>
+      <div class="mk-card">
+        <h4>Частка в меню за категоріями</h4><div class="mk-s">Позиції вашого бренду серед усіх позицій категорії</div>
+        <div class="mk-leg"><span><i style="background:#00A3E0"></i>Ваш бренд</span><span><i style="background:#C9D5DE"></i>Конкуренти</span></div>
+        <div class="mk-bar"><span>Горілка</span><u><s style="width:34%"></s></u><em>34%</em></div>
+        <div class="mk-bar"><span>Пиво</span><u><s style="width:32%"></s></u><em>32%</em></div>
+        <div class="mk-bar"><span>Джин</span><u><s style="width:35%"></s></u><em>35%</em></div>
+        <div class="mk-bar"><span>Ром</span><u><s style="width:35%"></s></u><em>35%</em></div>
+        <div class="mk-bar"><span>Лікер</span><u><s style="width:26%"></s></u><em>26%</em></div>
+        <div class="mk-bar"><span>Віскі</span><u><s style="width:23%"></s></u><em>23%</em></div>
+      </div>
+    </div>
+    <div class="mk-row">
+      <div class="mk-card">
+        <h4>Розпізнане меню</h4><div class="mk-s">Бар «Хмільна гавань», Київ · барна карта, сторінка 2 · <span class="tg ok">✓ Розпізнано автоматично</span></div>
+        <div class="mk-menu"><div class="mk-paper">
+          <h5>БАРНА КАРТА</h5>
+          <h6>Віскі · 50 мл</h6>
+          <p class="cmp"><i>1</i><span>Бленд «Гленвуд»</span><small>50 мл</small><b>135</b></p>
+          <p class="own"><i>2</i><span>«Дубовий берег» 12 років</span><small>50 мл</small><b>165</b></p>
+          <p><i>3</i><span>Бурбон домашній</span><small>50 мл</small><b>110</b></p>
+          <p class="own"><i>4</i><span>«Дубовий берег» Original</span><small>50 мл</small><b>129</b></p>
+          <p class="cmp"><i>5</i><span>Односолодовий «Айла Рок»</span><small>50 мл</small><b>240</b></p>
+          <h6>Джин · 50 мл</h6>
+          <p class="own"><i>1</i><span>«Ластівка» Dry Gin</span><small>50 мл</small><b>115</b></p>
+          <p class="cmp"><i>2</i><span>London Dry «Кенсінг»</span><small>50 мл</small><b>125</b></p>
+        </div></div>
+      </div>
+      <div class="mk-card mk-hide-m">
+        <h4>Що побачила система</h4><div class="mk-s">Назва в меню, лінійка, місце в розділі, ціна й обʼєм</div>
+        <div class="mk-x"><table class="mk-t">
+          <tr><th>Позиція в меню</th><th>Бренд</th><th class="n">Місце</th><th class="n">Ціна</th></tr>
+          <tr><td>«Дубовий берег» 12 років</td><td><span class="tg own">Ваш</span></td><td class="n">2 з 5</td><td class="n">165 грн</td></tr>
+          <tr><td>«Дубовий берег» Original</td><td><span class="tg own">Ваш</span></td><td class="n">4 з 5</td><td class="n">129 грн</td></tr>
+          <tr><td>«Ластівка» Dry Gin</td><td><span class="tg own">Ваш</span></td><td class="n">1 з 2</td><td class="n">115 грн</td></tr>
+          <tr><td>Бленд «Гленвуд»</td><td><span class="tg cmp">Конкурент</span></td><td class="n">1 з 5</td><td class="n">135 грн</td></tr>
+          <tr><td>Односолодовий «Айла Рок»</td><td><span class="tg cmp">Конкурент</span></td><td class="n">5 з 5</td><td class="n">240 грн</td></tr>
+          <tr><td>London Dry «Кенсінг»</td><td><span class="tg cmp">Конкурент</span></td><td class="n">2 з 2</td><td class="n">125 грн</td></tr>
+          <tr><th>Коктейль</th><th colspan="2">Інгредієнти з вашим брендом</th><th class="n">Ціна</th></tr>
+          <tr><td>Гавань Сауер</td><td colspan="2">«Дубовий берег» Original, лимон, цукровий сироп</td><td class="n">210 грн</td></tr>
+          <tr><td>Ластівка Тонік</td><td colspan="2">«Ластівка» Dry Gin, тонік, огірок</td><td class="n">185 грн</td></tr>
+        </table></div>
+      </div>
+    </div>
+    <div class="mk-card mk-hide-m">
+      <h4>Заклади</h4><div class="mk-s">Остання перевірка меню та рейтинг Google</div>
+      <div class="mk-x"><table class="mk-t">
+        <tr><th>Заклад</th><th>Місто</th><th class="n">Рейтинг · відгуки</th><th class="n">Ваші позиції</th><th class="n">Конкуренти</th><th class="n">Частка</th><th>Стан</th></tr>
+        <tr><td><b>Хмільна гавань</b></td><td>Київ</td><td class="n">4.6 · 312</td><td class="n">3</td><td class="n">3</td><td class="n">50%</td><td><span class="tg own">Меню прочитано</span></td></tr>
+        <tr><td><b>Тераса на Подолі</b></td><td>Київ</td><td class="n">4.5 · 540</td><td class="n">4</td><td class="n">9</td><td class="n">31%</td><td><span class="tg own">Меню прочитано</span></td></tr>
+        <tr><td><b>Синій кіт</b></td><td>Львів</td><td class="n">4.1 · 86</td><td class="n">0</td><td class="n">4</td><td class="n">0%</td><td><span class="tg own">Меню прочитано</span></td></tr>
+        <tr><td><b>Бар 27</b></td><td>Одеса</td><td class="n">4.7 · 421</td><td class="n">5</td><td class="n">6</td><td class="n">45%</td><td><span class="tg ok">Новий заклад</span></td></tr>
+      </table></div>
+    </div>
+  </div>
+</div>
