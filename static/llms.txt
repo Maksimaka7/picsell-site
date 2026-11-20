@@ -16,8 +16,8 @@ Key facts:
 - [Core — field execution foundation](https://picsell.ai/en/core/): routes and visits with GPS, photo-report tasks, Store Check, Perfect Store, assortment and price monitoring, merch planning
 - [Vision AI — shelf recognition](https://picsell.ai/en/vision-ai/): OOS detection, share of shelf, planogram compliance
 - [SFA — field sales app](https://picsell.ai/en/sales-app/): route planning, orders, visit control, KPIs for sales reps
-- [HoReCa Intelligence](https://picsell.ai/en/horeca/): brand presence in restaurant and bar menus, menu audits
-- [Radar — competitive intelligence](https://picsell.ai/en/radar/): competitor prices and activity across channels
+- [HoReCa — menu analytics](https://picsell.ai/en/horeca/): collects venue menus and bar lists (website, PDF, photo), recognises every item and cocktail with AI, marks each as the client's brand or a competitor by the client's SKU directory, and shows share of menu, position in the section, prices, a coverage map by region and a venue base imported from Google Places (with rating and review count). For drinks brands and distributors. From ₴20,000 a month; free audit of 50 venues at the demo.
+- [Digital Shelf — price monitoring](https://picsell.ai/en/radar/): daily collection of price, discounted price and availability from 27 Ukrainian online stores (Rozetka, Epicentr, Maudau, MakeUp, Notino, Silpo, ATB, Varus, Fora, Fozzy, Metro, Zakaz.ua, MegaMarket, Auchan, Tavria V, Kopiyka, Rukavychka; alcohol: Bayadera, OkWine, WineTime, GoodWine, WinePoint, VintageMarket, AlcoMag, RumkaOnline, WineWine, WineWorld); RRP with validity dates and history; promotions of 7 chains; assortment changes in categories of Silpo, Varus, MegaMarket and Zakaz.ua; wholesale prices (Metro, Fozzy), promo-code price (Notino), EU-delivery variant (MakeUp); full history; reports in Power BI. From ₴20,000 a month.
 - [Analytics](https://picsell.ai/en/analytics/): BI dashboards, Perfect Store score, distributor KPIs
 - [Integrations](https://picsell.ai/en/integrations/): two-way exchange with 1C, BAS, SAP, Oracle, Microsoft Dynamics 365 or your own ERP through an open API (Swagger docs); products, prices, stock, accounts, debts and payments in, orders and returns back; Power BI reports; .csv/.xlsx import
 
@@ -34,7 +34,7 @@ Key facts:
 - [Book a demo](https://picsell.ai/en/demo/)
 
 ## Українською
-- [Головна](https://picsell.ai/), [Vision AI](https://picsell.ai/vision-ai/), [Польові продажі (SFA)](https://picsell.ai/sales-app/), [HoReCa](https://picsell.ai/horeca/), [Інтеграції](https://picsell.ai/integrations/), [Ціни](https://picsell.ai/pricing/), [Калькулятор](https://picsell.ai/calculator/), [Замовити демо](https://picsell.ai/demo/)
+- [Головна](https://picsell.ai/), [Vision AI](https://picsell.ai/vision-ai/), [Польові продажі (SFA)](https://picsell.ai/sales-app/), [HoReCa — аналітика меню](https://picsell.ai/horeca/), [Digital Shelf — моніторинг цін](https://picsell.ai/radar/), [Інтеграції](https://picsell.ai/integrations/), [Ціни](https://picsell.ai/pricing/), [Калькулятор](https://picsell.ai/calculator/), [Замовити демо](https://picsell.ai/demo/)
 
 ## Optional
 - [Blog](https://picsell.ai/en/blog/): Vision AI, OSA / out-of-stock, Perfect Store audits, SFA productivity, HoReCa trends
