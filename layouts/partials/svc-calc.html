@@ -1,0 +1,235 @@
+{{/* Calculator for one data service, built into its page (/radar/ → shelf,
+     /horeca/ → horeca). The general calculator prices app seats by role; these
+     two services are bought on their own and are priced by what drives their
+     cost: stores × products × frequency for price monitoring, venues ×
+     frequency for menu analytics. Tariffs live in data/svcpricing.yaml (the
+     formula is described there). The estimate travels with the lead: it is put
+     into window.svCalcNote, which the form on the page appends to the message.
+     Usage: {{ partial "svc-calc.html" (dict "page" . "kind" "shelf" "cfg" $cfg) }} */}}
+{{ $page := .page }}{{ $kind := .kind }}{{ $c := .cfg }}
+{{ $en := strings.HasPrefix $page.RelPermalink "/en/" }}
+{{ $lang := cond $en "en" "uk" }}
+{{ $shelf := eq $kind "shelf" }}
+<style>
+.sc-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,.9fr);gap:24px;align-items:start;}
+.sc-in{background:var(--bg3);border:1px solid var(--border);border-radius:18px;padding:6px 26px;}
+.sc-b{padding:20px 0;border-bottom:1px solid var(--border);}
+.sc-b:last-child{border-bottom:none;}
+.sc-h{display:flex;justify-content:space-between;align-items:baseline;gap:6px 14px;flex-wrap:wrap;margin-bottom:12px;}
+.sc-h b{font-family:'Geologica',sans-serif;font-size:16px;font-weight:700;color:var(--t1);}
+.sc-h span{font-size:13px;color:var(--t2);}
+.sc-h output{font-family:'Geologica',sans-serif;font-size:22px;font-weight:800;color:var(--blue);line-height:1;}
+.sc-tools{display:flex;gap:16px;}
+.sc-tools button{font:inherit;font-size:13px;font-weight:600;color:var(--blue);background:none;border:0;padding:0;cursor:pointer;}
+.sc-gl{font-size:12px;font-weight:600;color:var(--t3);margin:14px 0 8px;}
+.sc-chips{display:flex;flex-wrap:wrap;gap:8px;}
+.sc-chip{font:inherit;font-size:14px;font-weight:600;color:var(--t1);background:var(--bg1);border:1px solid var(--border);border-radius:999px;padding:7px 14px;cursor:pointer;transition:background .15s,border-color .15s,color .15s;}
+.sc-chip:hover{border-color:rgba(0,87,255,.45);}
+.sc-chip.is-on{background:var(--blue);border-color:var(--blue);color:#fff;}
+.sc-warn{display:none;font-size:13px;color:var(--red);margin-top:10px;}
+.sc-range{display:block;width:100%;height:30px;margin:0;accent-color:var(--blue);cursor:pointer;}
+.sc-scale{display:flex;justify-content:space-between;font-size:12px;color:var(--t3);}
+.sc-seg{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:4px;background:var(--bg1);border:1px solid var(--border);border-radius:12px;padding:4px;}
+.sc-seg button{font:inherit;font-size:13.5px;font-weight:600;color:var(--t2);background:none;border:0;border-radius:9px;padding:10px 6px;cursor:pointer;}
+.sc-seg button.is-on{background:var(--bg3);color:var(--t1);box-shadow:0 1px 4px rgba(15,30,55,.16);}
+.sc-opt{display:flex;gap:12px;align-items:flex-start;padding:9px 0;cursor:pointer;}
+.sc-opt input{flex:none;width:18px;height:18px;margin:2px 0 0;accent-color:var(--blue);}
+.sc-opt b{display:block;font-size:14.5px;font-weight:600;color:var(--t1);}
+.sc-opt span span{display:block;font-size:13px;line-height:1.45;color:var(--t2);}
+.sc-opt em{margin-left:auto;font-style:normal;font-weight:700;font-size:14px;color:var(--t1);white-space:nowrap;}
+.sc-chip:focus-visible,.sc-seg button:focus-visible,.sc-bill button:focus-visible,.sc-tools button:focus-visible{outline:2px solid #00A3E0;outline-offset:2px;}
+.sc-sum{background:#0A2236;color:#fff;border-radius:18px;padding:24px;position:sticky;top:96px;}
+.sc-bill{display:grid;grid-template-columns:1fr 1fr;gap:4px;background:rgba(255,255,255,.09);border-radius:10px;padding:4px;margin-bottom:22px;}
+.sc-bill button{font:inherit;font-size:13px;font-weight:600;color:rgba(255,255,255,.72);background:none;border:0;border-radius:7px;padding:8px 6px;cursor:pointer;}
+.sc-bill button.is-on{background:#fff;color:#0A2236;}
+.sc-bill i{font-style:normal;color:#00A3E0;margin-left:4px;}
+.sc-total{font-family:'Geologica',sans-serif;font-weight:800;font-size:44px;line-height:1;letter-spacing:-.02em;white-space:nowrap;}
+.sc-total small{font-size:16px;font-weight:600;letter-spacing:0;color:rgba(255,255,255,.65);margin-left:6px;}
+.sc-totsub{font-size:13px;color:rgba(255,255,255,.65);margin:8px 0 18px;min-height:19px;}
+.sc-lines{border-top:1px solid rgba(255,255,255,.14);padding-top:14px;display:grid;gap:8px;font-size:13.5px;line-height:1.4;}
+.sc-lines div{display:flex;justify-content:space-between;gap:12px;color:rgba(255,255,255,.82);}
+.sc-lines b{font-weight:600;color:#fff;white-space:nowrap;}
+.sc-fact{margin:16px 0;padding:11px 14px;border-radius:10px;background:rgba(0,163,224,.15);font-size:13px;line-height:1.5;color:#BFE8F9;}
+.sc-inc{list-style:none;padding:0;margin:16px 0 0;display:grid;gap:6px;font-size:13px;line-height:1.45;color:rgba(255,255,255,.82);}
+.sc-inc li{position:relative;padding-left:20px;}
+.sc-inc li::before{content:'✓';position:absolute;left:0;color:#00A3E0;font-weight:700;}
+.sc-disc{font-size:12px;line-height:1.5;color:rgba(255,255,255,.52);margin:12px 0 0;}
+.sv-echo{display:none;font-size:13px;line-height:1.45;color:var(--t1);background:rgba(0,87,255,.07);border:1px solid rgba(0,87,255,.18);border-radius:10px;padding:10px 12px;margin:0 0 14px;}
+.sv-echo b{font-weight:700;}
+@media(max-width:960px){
+  .sc-grid{grid-template-columns:minmax(0,1fr);}
+  .sc-sum{position:static;}
+  .sc-in{padding:2px 18px;}
+  .sc-total{font-size:38px;}
+}
+@media(max-width:520px){.sc-seg[data-n="4"]{grid-auto-flow:row;grid-template-columns:1fr 1fr;}.sc-seg button{font-size:13px;padding:10px 4px;}.sc-opt em{font-size:13px;}}
+</style>
+
+<div class="sv-sec" id="svCalc">
+  {{ if $shelf }}
+  <h2>{{ if $en }}Estimate the cost of monitoring{{ else }}Порахуйте вартість моніторингу{{ end }}</h2>
+  <p class="sv-sub">{{ if $en }}The price depends on three things: how many stores, how many products and how often we collect. Pick yours and the total updates at once.{{ else }}Ціна залежить від трьох речей: скільки магазинів, скільки товарів і як часто збирати. Оберіть свої — сума оновиться одразу.{{ end }}</p>
+  {{ else }}
+  <h2>{{ if $en }}Estimate the cost of menu analytics{{ else }}Порахуйте вартість аналітики меню{{ end }}</h2>
+  <p class="sv-sub">{{ if $en }}The price depends on how many venues are in your base and how often their menus are re-read.{{ else }}Ціна залежить від кількості закладів у вашій базі та від того, як часто перечитувати їхні меню.{{ end }}</p>
+  {{ end }}
+  <div class="sc-grid">
+    <div class="sc-in">
+      {{ with $c.groups }}
+      <div class="sc-b">
+        <div class="sc-h"><b>{{ if $en }}Stores{{ else }}Магазини{{ end }}</b><span id="scSites"></span>
+          <div class="sc-tools"><button type="button" id="scAll">{{ if $en }}Select all{{ else }}Обрати всі{{ end }}</button><button type="button" id="scNone">{{ if $en }}Clear{{ else }}Скинути{{ end }}</button></div>
+        </div>
+        {{ range . }}
+        <div class="sc-gl">{{ index . $lang }}</div>
+        <div class="sc-chips">{{ range .stores }}<button type="button" class="sc-chip{{ if .sel }} is-on{{ end }}" aria-pressed="{{ if .sel }}true{{ else }}false{{ end }}">{{ index . $lang }}</button>{{ end }}</div>
+        {{ end }}
+        <div class="sc-warn" id="scWarn">{{ if $en }}Select at least one store.{{ else }}Оберіть хоча б один магазин.{{ end }}</div>
+      </div>
+      {{ end }}
+      <div class="sc-b">
+        <div class="sc-h"><label for="scUnits"><b>{{ if $shelf }}{{ if $en }}Products (SKU), yours and competitors'{{ else }}Товари (SKU), ваші й конкурентів{{ end }}{{ else }}{{ if $en }}Venues in the base{{ else }}Заклади в базі{{ end }}{{ end }}</b></label><output id="scUnitsVal" for="scUnits"></output></div>
+        <input class="sc-range" type="range" id="scUnits" min="0" max="{{ sub (len $c.unitStops) 1 }}" step="1" value="0">
+        <div class="sc-scale"><span id="scMin"></span><span id="scMax"></span></div>
+      </div>
+      <div class="sc-b">
+        <div class="sc-h"><b>{{ if $shelf }}{{ if $en }}How often we collect{{ else }}Як часто збирати{{ end }}{{ else }}{{ if $en }}How often menus are re-read{{ else }}Як часто перечитувати меню{{ end }}{{ end }}</b></div>
+        <div class="sc-seg" id="scFreq" role="group" data-n="{{ len $c.freq }}">{{ range $c.freq }}<button type="button" class="{{ if .default }}is-on{{ end }}" aria-pressed="{{ if .default }}true{{ else }}false{{ end }}">{{ index . $lang }}</button>{{ end }}</div>
+      </div>
+      {{ with $c.options }}
+      <div class="sc-b">
+        <div class="sc-h"><b>{{ if $en }}Add to the monitoring{{ else }}Додати до моніторингу{{ end }}</b></div>
+        {{ range . }}<label class="sc-opt"><input type="checkbox"><span><b>{{ index . $lang }}</b><span>{{ index . (printf "%sNote" $lang) }}</span></span><em>+₴{{ lang.FormatNumberCustom 0 .price "-|,| " "|" }}</em></label>{{ end }}
+      </div>
+      {{ end }}
+    </div>
+
+    <aside class="sc-sum">
+      <div class="sc-bill" id="scBill" role="group"><button type="button" class="is-on" aria-pressed="true">{{ if $en }}Monthly{{ else }}Щомісяця{{ end }}</button><button type="button" aria-pressed="false">{{ if $en }}Annual contract{{ else }}Річний контракт{{ end }}<i>−{{ sub 100 (int (mul $c.annual 100)) }}%</i></button></div>
+      <div aria-live="polite">
+        <div class="sc-total"><span id="scPrice">₴{{ lang.FormatNumberCustom 0 $c.base "-|,| " "|" }}</span><small>/ {{ if $en }}mo{{ else }}міс{{ end }}</small></div>
+        <div class="sc-totsub" id="scSub"></div>
+      </div>
+      <div class="sc-lines" id="scLines"></div>
+      <div class="sc-fact" id="scFact"></div>
+      <a href="#svCard" class="btn btn-p btn-full" id="scGo">{{ if $en }}Get a quote for this setup{{ else }}Отримати пропозицію на цей набір{{ end }} →</a>
+      <ul class="sc-inc">
+        {{ if $shelf }}
+        <li>{{ if $en }}Collection set up for your product list{{ else }}Налаштування збору під ваш список товарів{{ end }}</li>
+        <li>{{ if $en }}Power BI reports and the full price history{{ else }}Звіти Power BI і повна історія цін{{ end }}</li>
+        <li>{{ if $en }}RRP control with validity dates{{ else }}Контроль РРЦ з датами дії{{ end }}</li>
+        {{ else }}
+        <li>{{ if $en }}Venue base from Google Places{{ else }}База закладів із Google Places{{ end }}</li>
+        <li>{{ if $en }}Recognition of menu items and cocktails{{ else }}Розпізнавання позицій меню й коктейлів{{ end }}</li>
+        <li>{{ if $en }}The first audit of 50 venues is free{{ else }}Перший аудит 50 закладів — безкоштовно{{ end }}</li>
+        {{ end }}
+      </ul>
+      <p class="sc-disc">{{ if $en }}An estimate. We fix the exact price after the demo, once the scope is agreed.{{ else }}Орієнтовно. Точну ціну фіксуємо після демо, коли узгоджено обсяг.{{ end }}</p>
+    </aside>
+  </div>
+</div>
+
+<script>
+(function(){
+  var root=document.getElementById('svCalc'); if(!root) return;
+  var C={{ $c | jsonify | safeJS }},EN={{ $en }},KIND={{ $kind }},SHELF=KIND==='shelf',L=EN?'en':'uk';
+  function $(id){return document.getElementById(id);}
+  function all(sel){return Array.prototype.slice.call(root.querySelectorAll(sel));}
+  function num(n){return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g,' ');}
+  function fmt(n){return '₴'+num(n);}
+  function pl(n,a,b,c){if(EN)return n===1?a:b;var m=n%100,k=n%10;return (m>10&&m<20)?c:(k===1?a:(k>=2&&k<=4?b:c));}
+  var W=EN?{store:['store','stores'],unit:SHELF?['product','products']:['venue','venues'],check:['price check','price checks']}
+          :{store:['магазин','магазини','магазинів'],unit:SHELF?['товар','товари','товарів']:['заклад','заклади','закладів'],check:['перевірка цін','перевірки цін','перевірок цін']};
+  function w(k,n){var a=W[k];return pl(n,a[0],a[1],a[2]||a[1]);}
+  /* price of the units above the included ones, tier by tier */
+  function tiered(count,inc,tiers){
+    var sum=0,from=inc,i,to;
+    for(i=0;i<tiers.length&&count>from;i++){to=Math.min(count,tiers[i][0]);if(to>from){sum+=(to-from)*tiers[i][1];from=to;}}
+    return sum;
+  }
+  var chips=all('.sc-chip'),range=$('scUnits'),stops=C.unitStops,freqBtns=all('#scFreq button'),opts=all('.sc-opt input'),bills=all('#scBill button');
+  var fi=0,annual=false,touched=false;
+  C.freq.forEach(function(f,i){if(f.default)fi=i;});
+  range.value=Math.max(0,stops.indexOf(C.unitDefault));
+  $('scMin').textContent=num(stops[0]);$('scMax').textContent=num(stops[stops.length-1])+'+';
+
+  function state(){
+    var sites=chips.filter(function(c){return c.classList.contains('is-on');}).length;
+    var units=stops[+range.value],top=+range.value===stops.length-1,f=C.freq[fi];
+    var sx=C.siteTiers?tiered(Math.max(sites,1),C.incSites,C.siteTiers):0;
+    var ux=tiered(units,C.incUnits,C.unitTiers);
+    var sub=C.base+sx+ux,adj=Math.max(C.base,Math.round(sub*f.k/500)*500),opt=0,names=[];
+    opts.forEach(function(cb,i){if(cb.checked){opt+=C.options[i].price;names.push(C.options[i]);}});
+    return {sites:sites,units:units,top:top,f:f,sx:sx,ux:ux,sub:sub,adj:adj,opt:opt,names:names,monthly:adj+opt};
+  }
+  function line(label,val){return '<div><span>'+label+'</span><b>'+val+'</b></div>';}
+  function render(){
+    var s=state(),price=annual?s.monthly*C.annual:s.monthly,h='';
+    $('scUnitsVal').textContent=num(s.units)+(s.top?'+':'');
+    if(chips.length){$('scSites').textContent=(EN?'Selected ':'Обрано ')+s.sites+(EN?' of ':' з ')+chips.length;$('scWarn').style.display=s.sites?'none':'block';}
+    $('scPrice').textContent=(s.top?(EN?'from ':'від '):'')+fmt(price);
+    $('scSub').textContent=annual
+      ?(EN?fmt(price*12)+' for the year instead of '+fmt(s.monthly*12):fmt(price*12)+' за рік замість '+fmt(s.monthly*12))
+      :(EN?'or '+fmt(s.monthly*C.annual)+' / mo on an annual contract':'або '+fmt(s.monthly*C.annual)+' / міс за річним контрактом');
+    h+=line(SHELF
+      ?(EN?'Base: up to '+C.incSites+' stores and '+C.incUnits+' products':'База: до '+C.incSites+' магазинів і '+C.incUnits+' товарів')
+      :(EN?'Base: up to '+num(C.incUnits)+' venues':'База: до '+num(C.incUnits)+' закладів'),fmt(C.base));
+    if(s.sx)h+=line('+ '+(s.sites-C.incSites)+' '+w('store',s.sites-C.incSites),fmt(s.sx));
+    if(s.ux)h+=line('+ '+num(s.units-C.incUnits)+' '+w('unit',s.units-C.incUnits),fmt(s.ux));
+    if(s.adj!==s.sub)h+=line(s.f[L],(s.adj>s.sub?'+':'−')+fmt(Math.abs(s.adj-s.sub)));
+    s.names.forEach(function(o){h+=line(o[L],'+'+fmt(o.price));});
+    if(annual)h+=line(EN?'Annual contract':'Річний контракт','−'+fmt(s.monthly-price));
+    $('scLines').innerHTML=h;
+    var per=s.monthly/s.units,fact;
+    if(SHELF){
+      var checks=Math.round(s.units*Math.max(s.sites,1)*s.f.runs);
+      fact='≈ '+num(checks)+' '+w('check',checks)+(EN?' a month, ':' на місяць, ')+fmt(per)+(EN?' per product':' за товар');
+    }else{
+      fact=(EN?'≈ ':'≈ ')+'₴'+(per<10?per.toFixed(1).replace('.',EN?'.':','):Math.round(per))+(EN?' per venue a month':' за заклад на місяць');
+    }
+    $('scFact').textContent=fact;
+    if(touched){
+      var parts=[];
+      if(SHELF){
+        var picked=chips.filter(function(c){return c.classList.contains('is-on');}).map(function(c){return c.textContent;});
+        parts.push(s.sites+' '+w('store',s.sites)+(picked.length&&picked.length<chips.length?' ('+picked.join(', ')+')':''));
+      }
+      parts.push(num(s.units)+(s.top?'+':'')+' '+w('unit',s.units));
+      parts.push(s.f[L].toLowerCase());
+      s.names.forEach(function(o){parts.push(o[L].toLowerCase());});
+      var sum=fmt(price)+(EN?'/mo':'/міс')+(annual?(EN?' (annual contract)':' (річний контракт)'):'');
+      window.svCalcNote=(EN?'Calculator: ':'Калькулятор: ')+parts.join(', ')+' — '+sum;
+      var echo=$('svEcho');
+      if(echo){
+        var short=parts.slice();if(SHELF)short[0]=s.sites+' '+w('store',s.sites);
+        echo.innerHTML='';var b=document.createElement('b');b.textContent=(EN?'Your estimate: ':'Ваш розрахунок: ')+sum;
+        echo.appendChild(b);echo.appendChild(document.createTextNode(' · '+short.join(', ')));echo.style.display='block';
+      }
+    }
+  }
+  function touch(){
+    if(!touched){touched=true;try{if(window.gtag)gtag('event','service_calc_use',{event_label:KIND});}catch(e){}}
+    render();
+  }
+  function press(btns,i){btns.forEach(function(b,j){b.classList.toggle('is-on',j===i);b.setAttribute('aria-pressed',j===i?'true':'false');});}
+  chips.forEach(function(c){c.addEventListener('click',function(){var on=!c.classList.contains('is-on');c.classList.toggle('is-on',on);c.setAttribute('aria-pressed',on?'true':'false');touch();});});
+  function setAll(on){chips.forEach(function(c){c.classList.toggle('is-on',on);c.setAttribute('aria-pressed',on?'true':'false');});touch();}
+  if($('scAll')){$('scAll').addEventListener('click',function(){setAll(true);});$('scNone').addEventListener('click',function(){setAll(false);});}
+  range.addEventListener('input',touch);
+  freqBtns.forEach(function(b,i){b.addEventListener('click',function(){fi=i;press(freqBtns,i);touch();});});
+  opts.forEach(function(cb){cb.addEventListener('change',touch);});
+  bills.forEach(function(b,i){b.addEventListener('click',function(){annual=i===1;press(bills,i);touch();});});
+
+  /* the estimate is echoed above the form fields once the visitor has used the calculator */
+  var fields=document.getElementById('svFields'),form=fields&&fields.querySelector('.sv-f');
+  if(form){var e=document.createElement('div');e.className='sv-echo';e.id='svEcho';fields.insertBefore(e,form);}
+  $('scGo').addEventListener('click',function(ev){
+    var card=document.getElementById('svCard'); if(!card) return;
+    ev.preventDefault();touched=true;render();
+    try{if(window.gtag)gtag('event','service_calc_cta',{event_label:KIND,value:state().monthly,currency:'UAH'});}catch(e){}
+    card.scrollIntoView({behavior:'smooth',block:'center'});
+    var n=document.getElementById('svName');if(n)setTimeout(function(){try{n.focus({preventScroll:true});}catch(e){n.focus();}},650);
+  });
+  render();
+})();
+</script>
