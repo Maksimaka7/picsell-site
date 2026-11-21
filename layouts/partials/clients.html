@@ -5,8 +5,12 @@
      sections. Usage:
        {{ partial "clients.html" (dict "page" .) }}
        {{ partial "clients.html" (dict "page" . "size" "sm") }}          smaller tiles
-       {{ partial "clients.html" (dict "page" . "only" (slice "henkel" "lactalis")) }} */}}
-{{ $page := .page }}{{ $only := .only }}
+       {{ partial "clients.html" (dict "page" . "only" (slice "henkel" "lactalis")) }}
+       {{ partial "clients.html" (dict "page" . "eager" true) }}          no lazy loading — for
+                                                                          the homepage marquee,
+                                                                          where tiles slide in
+                                                                          from outside the screen */}}
+{{ $page := .page }}{{ $only := .only }}{{ $eager := .eager }}
 {{ if not ($page.Store.Get "clientsCss") }}{{ $page.Store.Set "clientsCss" true }}
 <style>
 .cl-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;}
@@ -18,4 +22,4 @@
 .cl-sm .cl-tile img{height:calc(var(--lh) * .76px);}
 </style>
 {{ end }}
-{{ range site.Data.clients.list }}{{ if or (not $only) (in $only .key) }}<span class="cl-tile{{ if .dark }} is-dark{{ end }}"><img src="/images/clients/{{ .file }}" width="{{ .w }}" height="{{ .h }}" alt="{{ .name }}" style="--lh:{{ .lh }}" loading="lazy" decoding="async"></span>{{ end }}{{ end }}
+{{ range site.Data.clients.list }}{{ if or (not $only) (in $only .key) }}<span class="cl-tile{{ if .dark }} is-dark{{ end }}"><img src="/images/clients/{{ .file }}" width="{{ .w }}" height="{{ .h }}" alt="{{ .name }}" style="--lh:{{ .lh }}"{{ if not $eager }} loading="lazy"{{ end }} decoding="async"></span>{{ end }}{{ end }}
