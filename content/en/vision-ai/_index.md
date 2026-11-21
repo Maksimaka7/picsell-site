@@ -12,6 +12,7 @@ url: "/en/vision-ai/"
 extraFaqTitle: "Vision AI FAQ"
 extraFaq:
   - { q: "What does Vision AI recognise in a shelf photo?", a: "Products on the shelf by SKU — yours and competitors' — empty facings (OOS), share of shelf, price tags and POS materials. From that the system calculates compliance with display standards and a Perfect Store score for every outlet." }
+  - { q: "How accurate is Vision AI recognition?", a: "The neural network recognises products with 99% accuracy. People additionally verify the edge cases, so the final data comes close to 100%." }
   - { q: "How long does recognition take?", a: "A photo is processed in under 2 seconds, and a full shelf audit in an outlet takes about a minute. The manager gets an alert about an empty position within 2 minutes of the photo." }
   - { q: "Does recognition work without internet?", a: "Yes. Photos are stored on the phone and synchronised as soon as a connection appears, so the merchandiser does not depend on coverage in the store." }
   - { q: "How does the system protect against fake photo reports?", a: "Photos can only be taken with the in-app camera, not uploaded from the gallery. Every shot gets a GPS tag, and its metadata and shooting angle are checked automatically." }

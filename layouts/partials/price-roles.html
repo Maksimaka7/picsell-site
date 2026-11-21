@@ -1,0 +1,95 @@
+{{/* /pricing/, built around roles. PICSELL is priced per seat by role; the old
+     Starter / Growth / Enterprise plans are no longer sold (confirmed 21 Nov
+     2026). What each seat includes follows the product pages; what costs
+     nothing follows the commercial-proposal rules: setup, training and the
+     integration with 1C or any other accounting system are free. */}}
+{{ $en := strings.HasPrefix .RelPermalink "/en/" }}
+<style>
+.pr{padding:0 0 72px;}
+.pr h2{font-family:'Geologica',sans-serif;font-size:clamp(24px,3vw,34px);font-weight:800;line-height:1.18;color:var(--t1);margin:0 0 8px;text-align:center;}
+.pr-sub{font-size:16px;line-height:1.6;color:var(--t2);margin:0 auto 26px;max-width:720px;text-align:center;}
+.pr-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;}
+.pr-c{background:var(--bg3);border:1px solid var(--border);border-radius:16px;padding:22px 20px;}
+.pr-c h3{font-family:'Geologica',sans-serif;font-size:17px;font-weight:700;color:var(--t1);margin:0 0 2px;}
+.pr-c .pr-p{font-size:13px;color:var(--t2);margin:0 0 14px;}
+.pr-c .pr-p b{color:var(--blue);font-weight:700;}
+.pr-c ul{list-style:none;padding:0;margin:0;display:grid;gap:9px;}
+.pr-c li{position:relative;padding-left:22px;font-size:14px;line-height:1.45;color:var(--t1);}
+.pr-c li::before{content:'✓';position:absolute;left:0;top:0;color:var(--blue);font-weight:700;}
+.pr-free{margin-top:56px;background:#0A2236;border-radius:20px;padding:34px 36px;color:#fff;}
+.pr-free h2{color:#fff;text-align:left;margin-bottom:6px;}
+.pr-free p{font-size:15.5px;line-height:1.6;color:rgba(255,255,255,.76);margin:0 0 22px;max-width:760px;}
+.pr-fg{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;}
+.pr-f{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:16px;}
+.pr-f b{display:block;font-family:'Geologica',sans-serif;font-size:15px;font-weight:700;margin-bottom:4px;}
+.pr-f span{display:block;font-size:13px;line-height:1.45;color:rgba(255,255,255,.72);}
+.pr-pilot{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;margin-top:14px;background:rgba(0,163,224,.16);border-radius:14px;padding:16px 18px;}
+.pr-pilot div{font-size:15px;line-height:1.5;color:#fff;max-width:720px;}
+.pr-pilot div b{font-weight:700;}
+@media(max-width:1000px){.pr-grid,.pr-fg{grid-template-columns:repeat(2,minmax(0,1fr));}}
+@media(max-width:600px){.pr-grid,.pr-fg{grid-template-columns:minmax(0,1fr);}.pr-free{padding:26px 20px;}.pr{padding-bottom:48px;}}
+</style>
+<section class="pr">
+  <div class="container">
+    <h2>{{ if $en }}What each seat includes{{ else }}Що входить у кожне місце{{ end }}</h2>
+    <p class="pr-sub">{{ if $en }}There are no plans to choose between: you pick the roles your team has and pay for those seats.{{ else }}Тарифів на вибір немає: ви обираєте ролі, які є у вашій команді, і платите за ці місця.{{ end }}</p>
+    <div class="pr-grid">
+      <div class="pr-c">
+        <h3>{{ if $en }}Merchandiser{{ else }}Мерчандайзер{{ end }}</h3>
+        <div class="pr-p"><b>₴1 400</b> · Core + Vision</div>
+        <ul>
+          <li>{{ if $en }}Route and visits confirmed by GPS{{ else }}Маршрут і візити з підтвердженням за GPS{{ end }}</li>
+          <li>{{ if $en }}Photo reports from the in-app camera{{ else }}Фотозвіти з камери застосунку{{ end }}</li>
+          <li>{{ if $en }}Store Check and Perfect Store{{ else }}Store Check і Perfect Store{{ end }}</li>
+          <li>{{ if $en }}Vision AI: out-of-stock, share of shelf, price tags{{ else }}Vision AI: OOS, частка полиці, цінники{{ end }}</li>
+          <li>{{ if $en }}Works without internet{{ else }}Працює без інтернету{{ end }}</li>
+        </ul>
+      </div>
+      <div class="pr-c">
+        <h3>{{ if $en }}Sales rep{{ else }}Торговий представник{{ end }}</h3>
+        <div class="pr-p"><b>₴1 400</b> · Core + Field</div>
+        <ul>
+          <li>{{ if $en }}Orders with Smart Orders suggestions{{ else }}Замовлення з підказками Smart Orders{{ end }}</li>
+          <li>{{ if $en }}Route planning on the map{{ else }}Планування маршруту на карті{{ end }}</li>
+          <li>{{ if $en }}Customer card: order history and debts{{ else }}Картка клієнта: історія замовлень і борги{{ end }}</li>
+          <li>{{ if $en }}Store Check during the visit{{ else }}Store Check під час візиту{{ end }}</li>
+          <li>{{ if $en }}Works without internet{{ else }}Працює без інтернету{{ end }}</li>
+        </ul>
+      </div>
+      <div class="pr-c">
+        <h3>{{ if $en }}Supervisor{{ else }}Супервайзер{{ end }}</h3>
+        <div class="pr-p"><b>₴1 000</b> · Core + Analytics</div>
+        <ul>
+          <li>{{ if $en }}Team map and GPS check of every visit{{ else }}Карта команди й GPS-контроль кожного візиту{{ end }}</li>
+          <li>{{ if $en }}Approving and rejecting photo reports{{ else }}Підтвердження й відхилення фотозвітів{{ end }}</li>
+          <li>{{ if $en }}Tasks for the team{{ else }}Задачі для команди{{ end }}</li>
+          <li>{{ if $en }}KPIs and Power BI dashboards{{ else }}KPI та дашборди Power BI{{ end }}</li>
+        </ul>
+      </div>
+      <div class="pr-c">
+        <h3>{{ if $en }}Other user{{ else }}Інший користувач{{ end }}</h3>
+        <div class="pr-p"><b>₴900</b> · Core</div>
+        <ul>
+          <li>{{ if $en }}Web cabinet access by role{{ else }}Доступ до веб-кабінету за роллю{{ end }}</li>
+          <li>{{ if $en }}Reports and dashboards{{ else }}Звіти й дашборди{{ end }}</li>
+          <li>{{ if $en }}Administrator accounts are free{{ else }}Адміністратори — безкоштовно{{ end }}</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pr-free">
+      <h2>{{ if $en }}What you do not pay for{{ else }}За що ви не платите{{ end }}</h2>
+      <p>{{ if $en }}You pay for seats only. Getting started and connecting to your systems are on us.{{ else }}Ви платите лише за робочі місця. Запуск і підключення до ваших систем — за наш рахунок.{{ end }}</p>
+      <div class="pr-fg">
+        <div class="pr-f"><b>{{ if $en }}Setup{{ else }}Налаштування{{ end }}</b><span>{{ if $en }}Cabinets, roles, outlets, assortment and matrices{{ else }}Кабінети, ролі, торгові точки, асортимент і матриці{{ end }}</span></div>
+        <div class="pr-f"><b>{{ if $en }}Team training{{ else }}Навчання команди{{ end }}</b><span>{{ if $en }}For field staff and managers{{ else }}Для польових співробітників і керівників{{ end }}</span></div>
+        <div class="pr-f"><b>{{ if $en }}Integration{{ else }}Інтеграція{{ end }}</b><span>{{ if $en }}With 1C, BAS, SAP, Oracle or your own accounting system{{ else }}З 1С, BAS, SAP, Oracle чи вашою обліковою системою{{ end }}</span></div>
+        <div class="pr-f"><b>{{ if $en }}Support{{ else }}Підтримка{{ end }}</b><span>{{ if $en }}Telegram and chat inside the app{{ else }}Telegram і чат у застосунку{{ end }}</span></div>
+      </div>
+      <div class="pr-pilot">
+        <div>{{ if $en }}<b>Start with a pilot:</b> 30 days on 50 outlets with your real data, a full launch rather than a sandbox.{{ else }}<b>Почніть із пілота:</b> 30 днів на 50 торгових точках із вашими реальними даними — повноцінний запуск, а не пісочниця.{{ end }}</div>
+        <a href="#quickDemo" class="btn btn-p">{{ if $en }}Discuss a pilot{{ else }}Обговорити пілот{{ end }} →</a>
+      </div>
+    </div>
+  </div>
+</section>

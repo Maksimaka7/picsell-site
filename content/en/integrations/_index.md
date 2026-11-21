@@ -35,7 +35,7 @@ more:
   - { title: "Push notifications", text: "Employees learn about recalculated order prices and new chat messages in the app right away." }
   - { title: "Support", text: "Support requests with a log and a screenshot straight from the app, plus a call-me-back button." }
 stepsTitle: "How an integration goes"
-stepsSub: "Usually 1–2 weeks. Basic integration is included in the Starter plan, extended in Growth, custom in Enterprise."
+stepsSub: "Usually 1–2 weeks. Integration is included in the price — you do not pay for it separately."
 steps:
   - { title: "Agree on the data", text: "At the demo we find out which system you run and which master data and documents need to be exchanged." }
   - { title: "Connect the exchange", text: "Your technical team gets API access and the Swagger documentation and sets up the exchange." }

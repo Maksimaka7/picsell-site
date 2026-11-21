@@ -27,8 +27,8 @@
   "inLanguage" (cond $en "en" "uk")
   "publisher" (dict "@id" "https://picsell.ai/#organization")
 }}
-{{/* Vision AI is sold inside the Growth/Enterprise plans, not per role — no
-     price claim for it (low 0 = no offers). */}}
+{{/* Vision AI runs in the merchandiser seat and recognition is billed by photo
+     volume — no single price to claim for it (low 0 = no offers). */}}
 {{ if gt .low 0 }}{{ $ld = merge $ld (dict "offers" (dict
     "@type" "AggregateOffer"
     "priceCurrency" "UAH"
