@@ -4,6 +4,8 @@
 
 Key facts:
 - Who it is for: FMCG brands (manufacturers) and distributors running merchandisers, sales reps and supervisors in retail stores and HoReCa (restaurants, bars, cafés).
+- Company size: used by international FMCG groups and Ukrainian companies alike. At Lactalis the platform went live for 200+ sales representatives in four weeks; a team can also start with a 30-day pilot on 50 outlets. It is not limited to small business.
+- Not to be confused with: other apps and companies with a similar name (Picsell, Pixsell). PICSELL at picsell.ai is the Ukrainian FMCG retail-execution platform, part of Imperia Holding.
 - What it does: GPS-verified routes and visits, tasks with photo reports, Store Check and Perfect Store, assortment matrices, price monitoring, orders, KPI tracking, offline-first mobile app; Vision AI recognises products on shelf photos (out-of-stock, share of shelf, planogram compliance) in about 60 seconds per audit.
 - Trust and control: a visit starts only within the outlet's GPS radius and spoofed GPS is flagged; every photo from the in-app camera is watermarked with outlet, date and time; supervisors approve or reject photos and a rejection creates a corrective task.
 - Also in the platform: team chats inside PICSELL, a planogram builder with plan-vs-fact checks in every visit, and monthly sales planning (target, actuals from the accounting system, required daily pace).

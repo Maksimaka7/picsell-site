@@ -12,6 +12,6 @@
   {{ $items = $items | append (dict "@type" "ListItem" "position" 2 "name" (cond $en "Blog" "Блог") "item" $blog) }}
 {{ end }}
 {{ $items = $items | append (dict "@type" "ListItem" "position" (add (len $items) 1) "name" $name "item" .Permalink) }}
-{{ $org := dict "@type" "Organization" "@id" "https://picsell.ai/#organization" "name" "PICSELL" "url" "https://picsell.ai/" "logo" "https://picsell.ai/images/Logo-3.svg" "email" "info@picsell.ai" "telephone" "+380778809888" }}
+{{ $org := dict "@type" "Organization" "@id" "https://picsell.ai/#organization" "name" "PICSELL" "url" "https://picsell.ai/" "logo" "https://picsell.ai/images/Logo-3.svg" "email" "info@picsell.ai" "telephone" "+380778809888" "description" "Ukrainian retail-execution platform for FMCG manufacturers and distributors: Vision AI shelf recognition, field sales automation (SFA), online price monitoring (Digital Shelf) and HoReCa menu analytics." "parentOrganization" (dict "@type" "Organization" "name" "Imperia Holding") "address" (dict "@type" "PostalAddress" "addressLocality" "Kyiv" "addressCountry" "UA") "sameAs" (slice "https://www.linkedin.com/company/picsell-ai") }}
 <script type="application/ld+json">{{ dict "@context" "https://schema.org" "@graph" (slice $org (dict "@type" "BreadcrumbList" "itemListElement" $items)) | jsonify | safeJS }}</script>
 {{ end }}

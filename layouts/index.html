@@ -10,10 +10,12 @@
   "applicationCategory": "BusinessApplication",
   "operatingSystem": "Web, iOS, Android",
   "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD",
-    "description": "{{ if strings.HasPrefix .RelPermalink "/en/" }}Demo on request{{ else }}Демо за запитом{{ end }}"
+    "@type": "AggregateOffer",
+    "priceCurrency": "UAH",
+    "lowPrice": "900",
+    "highPrice": "1400",
+    "description": "{{ if strings.HasPrefix .RelPermalink "/en/" }}Per user per month, by role; setup, training and integration included; 30-day pilot on 50 outlets{{ else }}За користувача на місяць, залежно від ролі; налаштування, навчання й інтеграція входять у вартість; пілот 30 днів на 50 точках{{ end }}",
+    "url": "{{ if strings.HasPrefix .RelPermalink "/en/" }}https://picsell.ai/en/pricing/{{ else }}https://picsell.ai/pricing/{{ end }}"
   },
   "publisher": { "@id": "https://picsell.ai/#organization" }
 }
