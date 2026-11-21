@@ -1,24 +1,50 @@
-{{/* Extra sections for the two big hand-written product pages (vision-ai,
-     sales-app; UA and EN). They are appended after the page's own markup and
-     then moved in front of its closing CTA section by the script below, so the
-     50 KB page templates stay untouched. The content is in the HTML either
-     way; only its position depends on the script. */}}
+{{/* Extra sections appended to hand-written page templates without editing the
+     50 KB templates themselves: product screens for vision-ai and sales-app, an
+     FAQ where the page had none (front matter `extraFaq`), and a short request
+     form on every product, solution, role and case page that only linked to
+     /demo/. The block is rendered after the page's own markup and moved in
+     front of its closing CTA by the script below; the content is in the HTML
+     either way, only its position depends on the script. */}}
 {{ $path := strings.TrimPrefix "/en" .RelPermalink }}
-{{ if or (eq $path "/vision-ai/") (eq $path "/sales-app/") }}
-<div id="pageExtras">
+{{ $en := strings.HasPrefix .RelPermalink "/en/" }}
+{{ $shots := or (eq $path "/vision-ai/") (eq $path "/sales-app/") }}
+{{ $lead := in (slice "/vision-ai/" "/sales-app/" "/core/" "/analytics/" "/pricing/" "/integrations/" "/solutions-brands/" "/solutions-distributors/" "/solutions-horeca/" "/roles/" "/roles/merchandiser/" "/roles/sales-rep/" "/roles/supervisor/" "/roles/regional-manager/" "/case-lactalis/" "/case-studies/" "/about/") $path }}
+{{ if or $shots $lead .Params.extraFaq }}
+<div id="pageExtras" data-move="{{ if $shots }}last{{ else }}cta{{ end }}">
   {{ if eq $path "/vision-ai/" }}
     {{ partial "shots.html" (dict "page" . "set" "vision") }}
     {{ partial "photo-offer.html" (dict "page" . "style" "band") }}
-  {{ else }}
+  {{ else if eq $path "/sales-app/" }}
     {{ partial "shots.html" (dict "page" . "set" "sfa") }}
     {{ partial "trust.html" (dict "page" .) }}
   {{ end }}
+  {{ with .Params.extraFaq }}
+  <style>
+  .px-faq{padding:72px 0 0;}
+  .px-faq h2{font-family:'Geologica',sans-serif;font-size:clamp(24px,3vw,34px);font-weight:800;line-height:1.18;color:var(--t1);margin:0 0 20px;}
+  .px-faq details{background:var(--bg3);border:1px solid var(--border);border-radius:14px;padding:16px 18px;margin-bottom:10px;}
+  .px-faq summary{cursor:pointer;font-weight:600;color:var(--t1);font-size:15.5px;}
+  .px-faq details p{margin:10px 0 0;font-size:15px;line-height:1.6;color:var(--t2);}
+  @media(max-width:900px){.px-faq{padding-top:48px;}}
+  </style>
+  <section class="px-faq"><div class="container" style="max-width:880px;">
+    <h2>{{ $.Params.extraFaqTitle | default (cond $en "Frequently asked questions" "Часті питання") }}</h2>
+    {{ range . }}<details><summary>{{ .q }}</summary><p>{{ .a }}</p></details>{{ end }}
+  </div></section>
+  <script type="application/ld+json" data-faq>
+  {{ $qa := slice }}{{ range . }}{{ $qa = $qa | append (dict "@type" "Question" "name" .q "acceptedAnswer" (dict "@type" "Answer" "text" .a)) }}{{ end }}
+  {{ dict "@context" "https://schema.org" "@type" "FAQPage" "mainEntity" $qa | jsonify | safeJS }}
+  </script>
+  {{ end }}
+  {{ if $lead }}{{ partial "lead-inline.html" (dict "page" .) }}{{ end }}
 </div>
 <script>
 (function(){
   var x=document.getElementById('pageExtras'); if(!x) return;
-  var main=x.parentNode, secs=main.querySelectorAll(':scope > section');
-  var last=secs[secs.length-1]; if(last) main.insertBefore(x,last);
+  var main=x.parentNode,secs=main.querySelectorAll(':scope > section');
+  var cta=main.querySelector(':scope > .cta-band, :scope > #cta-section');
+  var target=cta||(x.getAttribute('data-move')==='last'?secs[secs.length-1]:null);
+  if(target) main.insertBefore(x,target);
 })();
 </script>
 {{ end }}

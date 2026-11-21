@@ -1,0 +1,88 @@
+{{/* Short request form for pages that only linked to /demo/ (product, solution,
+     role and case pages). A visitor from an ad or from search can leave a
+     number where they are, without a second page. Leads go to the CC form
+     "product-page"; the page they came from is in the message and in the GA4
+     label (page_<slug>). Usage: {{ partial "lead-inline.html" (dict "page" .) }} */}}
+{{ $page := .page }}
+{{ $en := strings.HasPrefix $page.RelPermalink "/en/" }}
+{{ $path := strings.TrimPrefix "/en" $page.RelPermalink }}
+{{ $slug := replace (strings.Trim $path "/") "/" "-" }}
+<style>
+.li{padding:72px 0;}
+.li-box{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:40px;align-items:center;background:var(--bg3);border:1px solid rgba(0,87,255,.22);border-radius:22px;padding:40px;box-shadow:0 24px 60px rgba(15,30,55,.09);}
+.li-t h2{font-family:'Geologica',sans-serif;font-size:clamp(24px,3vw,34px);font-weight:800;line-height:1.15;color:var(--t1);margin:0 0 10px;}
+.li-t p{font-size:16px;line-height:1.6;color:var(--t2);margin:0 0 18px;}
+.li-t ul{list-style:none;padding:0;margin:0;display:grid;gap:10px;}
+.li-t li{position:relative;padding-left:30px;font-size:15px;line-height:1.45;color:var(--t1);}
+.li-t li::before{content:'✓';position:absolute;left:0;top:0;width:21px;height:21px;border-radius:50%;background:rgba(0,87,255,.10);color:var(--blue);font-weight:700;font-size:12px;display:flex;align-items:center;justify-content:center;}
+.li-f{display:grid;gap:12px;}
+.li-f label{display:block;font-size:12px;font-weight:600;color:var(--t2);margin-bottom:4px;}
+.li-f input{width:100%;padding:13px 14px;border-radius:10px;border:1px solid var(--border);background:var(--bg1);font:inherit;font-size:15px;color:var(--t1);}
+.li-f input:focus{outline:none;border-color:var(--blue);}
+.li-f input.err{border-color:var(--red);}
+.li-msg{display:none;font-size:13px;color:var(--red);}
+.li-note{font-size:12px;color:var(--t3);text-align:center;}
+.li-done{display:none;text-align:center;padding:20px 0;}
+.li-done b{display:block;font-family:'Geologica',sans-serif;font-size:20px;margin:8px 0;color:var(--t1);}
+@media(max-width:900px){.li{padding:48px 0;}.li-box{grid-template-columns:minmax(0,1fr);gap:24px;padding:24px 18px;}}
+</style>
+<section class="li" id="quickDemo">
+  <div class="container">
+    <div class="li-box">
+      <div class="li-t">
+        <h2>{{ if $en }}See PICSELL on your own tasks in 30 minutes{{ else }}Покажемо PICSELL на ваших задачах за 30 хвилин{{ end }}</h2>
+        <p>{{ if $en }}Leave a number and we call back within 2 hours on a business day.{{ else }}Залиште номер — передзвонимо протягом 2 годин у робочий день.{{ end }}</p>
+        <ul>
+          <li>{{ if $en }}We go through your setup: team, channels, accounting system{{ else }}Розберемо вашу ситуацію: команда, канали, облікова система{{ end }}</li>
+          <li>{{ if $en }}We show the app and the web cabinet on live data{{ else }}Покажемо застосунок і кабінет на живих даних{{ end }}</li>
+          <li>{{ if $en }}We estimate the cost for your team{{ else }}Порахуємо вартість для вашої команди{{ end }}</li>
+        </ul>
+      </div>
+      <div>
+        <div class="li-f" id="liFields">
+          <div><label for="liName">{{ if $en }}Name *{{ else }}Імʼя *{{ end }}</label><input id="liName" type="text" autocomplete="name" placeholder="{{ if $en }}John{{ else }}Олексій{{ end }}"></div>
+          <div><label for="liPhone">{{ if $en }}Phone *{{ else }}Телефон *{{ end }}</label><input id="liPhone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+380 XX XXX XXXX"></div>
+          <div><label for="liCompany">{{ if $en }}Company{{ else }}Компанія{{ end }}</label><input id="liCompany" type="text" autocomplete="organization" placeholder="{{ if $en }}Company name{{ else }}Назва компанії{{ end }}"></div>
+          <button type="button" class="btn btn-p btn-full" id="liSubmit">{{ if $en }}Book a demo{{ else }}Замовити демо{{ end }} →</button>
+          <div class="li-msg" id="liMsg" role="alert"></div>
+          <div class="li-note">🔒 {{ if $en }}Only the PICSELL sales team sees your details{{ else }}Ваші дані бачить лише відділ продажів PICSELL{{ end }}</div>
+        </div>
+        {{/* id lpDone: partials/booking.html adds the "pick a slot" block to it. */}}
+        <div class="li-done" id="lpDone">
+          <div style="font-size:40px;">🎉</div>
+          <b>{{ if $en }}Thank you! Request received.{{ else }}Дякуємо! Заявку отримано.{{ end }}</b>
+          <p style="color:var(--t2);font-size:14px;margin:0;">{{ if $en }}A manager will contact you within 2 hours on a business day.{{ else }}Менеджер звʼяжеться з вами протягом 2 годин у робочий день.{{ end }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+(function(){
+  var btn=document.getElementById('liSubmit'); if(!btn) return;
+  var EN={{ $en }},label={{ printf "page_%s" $slug }},from={{ $page.RelPermalink }},btnText=btn.textContent;
+  var nameEl=document.getElementById('liName'),phoneEl=document.getElementById('liPhone'),msg=document.getElementById('liMsg');
+  function fail(t){msg.textContent=t;msg.style.display='block';btn.disabled=false;btn.textContent=btnText;}
+  btn.addEventListener('click',function(){
+    var name=nameEl.value.trim(),phone=phoneEl.value.trim(),digits=phone.replace(/\D/g,'');
+    nameEl.classList.toggle('err',!name);phoneEl.classList.toggle('err',digits.length<9);
+    if(!name){fail(EN?'Please tell us your name.':'Вкажіть, як до вас звертатися.');return;}
+    if(digits.length<9){fail(EN?'Please enter a phone number.':'Вкажіть номер телефону.');return;}
+    msg.style.display='none';btn.disabled=true;btn.textContent=EN?'Sending…':'Надсилаємо…';
+    var attr=window.picsellAttr?window.picsellAttr.payload():{};
+    fetch('https://iblorvxgiashmdnfzbbs.supabase.co/functions/v1/submit-lead',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(Object.assign({
+        full_name:name,phone:phone,company:document.getElementById('liCompany').value.trim(),
+        source:'website',form_id:'product-page',message:(EN?'Request from the form on ':'Заявка з форми на сторінці ')+from,lang:(EN?'en':'uk')
+      },attr))
+    }).then(function(res){
+      if(!res.ok){fail(EN?'Something went wrong. Try again.':'Щось пішло не так. Спробуйте ще раз.');return;}
+      document.getElementById('liFields').style.display='none';document.getElementById('lpDone').style.display='block';
+      if(window.gtag)gtag('event','generate_lead',{event_category:'conversion',event_label:label,value:1,currency:'USD'});
+      if(window.picsellAttr)window.picsellAttr.push(label);
+      if(typeof window.fbq==='function')fbq('trackCustom','fb_generate_lead',{form_name:label});
+    }).catch(function(){fail(EN?'Network error. Try again.':'Помилка мережі. Спробуйте ще раз.');});
+  });
+})();
+</script>
