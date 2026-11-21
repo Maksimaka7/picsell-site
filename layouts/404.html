@@ -1,0 +1,24 @@
+{{/* Netlify serves this for any missing URL. Without it visitors from an old ad,
+     a mistyped link or a removed page got Netlify's blank default with no way
+     back into the site. One page for both languages: the URL may not say which. */}}
+{{ define "main" }}
+<section style="padding:150px 0 110px;">
+  <div class="container" style="max-width:760px;text-align:center;">
+    <h1 style="font-family:'Geologica',sans-serif;font-size:clamp(30px,4.5vw,48px);font-weight:800;line-height:1.1;color:var(--t1);margin:0 0 14px;">Такої сторінки немає</h1>
+    <p style="font-size:17px;line-height:1.6;color:var(--t2);margin:0 0 28px;">Посилання застаріло або в адресі помилка. Ось куди зазвичай ідуть далі.</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:26px;">
+      <a href="/demo/" class="btn btn-p btn-lg">Замовити демо</a>
+      <a href="/" class="btn btn-s btn-lg">На головну</a>
+    </div>
+    <p style="font-size:15px;line-height:2;color:var(--t2);margin:0 0 34px;">
+      <a href="/vision-ai/" style="color:var(--blue);font-weight:600;">Vision AI</a> ·
+      <a href="/sales-app/" style="color:var(--blue);font-weight:600;">Польові продажі</a> ·
+      <a href="/radar/" style="color:var(--blue);font-weight:600;">Digital Shelf</a> ·
+      <a href="/horeca/" style="color:var(--blue);font-weight:600;">HoReCa</a> ·
+      <a href="/pricing/" style="color:var(--blue);font-weight:600;">Ціни</a> ·
+      <a href="/blog/" style="color:var(--blue);font-weight:600;">Блог</a>
+    </p>
+    <p lang="en" style="font-size:14px;color:var(--t3);margin:0;">This page does not exist. <a href="/en/" style="color:var(--blue);font-weight:600;">Go to the English site</a></p>
+  </div>
+</section>
+{{ end }}

@@ -135,40 +135,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Google Fonts: Geologica critical (preload), Orbitron async -->
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Geologica:wght@400;500;700;900&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+{{/* Text fonts load without blocking the first paint (they held it back by
+     ~0.7 s on mobile): the page shows in the fallback face and swaps. One
+     request for both families; 800 is used by the service pages. */}}
+{{ $fonts := "https://fonts.googleapis.com/css2?family=Geologica:wght@400;500;700;800;900&family=Inter:wght@400;500;600;700&display=swap" }}
+<link rel="preload" as="style" href="{{ $fonts }}"/>
+<link href="{{ $fonts }}" rel="stylesheet" media="print" onload="this.media='all'"/>
+<noscript><link href="{{ $fonts }}" rel="stylesheet"/></noscript>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'"/>
 <noscript><link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap" rel="stylesheet"/></noscript>
 
-<!-- Language persistence: redirect nav links to /en/ when on EN version -->
-<script>
-(function(){
-  var isEN = window.location.pathname.indexOf('/en/') === 0;
-  if(!isEN) return;
-  document.addEventListener('DOMContentLoaded', function(){
-    var links = document.querySelectorAll('a[href]');
-    links.forEach(function(a){
-      var href = a.getAttribute('href');
-      if(!href) return;
-      // Skip: already /en/, external, anchors, tel, mailto, admin, images
-      if(href.indexOf('/en/') === 0) return;
-      if(href.indexOf('http') === 0) return;
-      if(href.indexOf('#') === 0) return;
-      if(href.indexOf('tel:') === 0) return;
-      if(href.indexOf('mailto:') === 0) return;
-      if(href.indexOf('/admin') === 0) return;
-      if(href.indexOf('/images') === 0) return;
-      if(href.indexOf('/privacy') === 0) return;
-      if(href.indexOf('/terms') === 0) return;
-      if(href.indexOf('/blog/') === 0) return; // blog articles are UK only
-      // Convert /slug/ to /en/slug/
-      if(href.match(/^\/[a-z]/)){ 
-        a.setAttribute('href', '/en' + href);
-      }
-    });
-  });
-})();
-</script>
+{{/* English pages get their /en/ links at build time: scripts/fix-en-links.mjs. */}}
 
 <!-- Netlify Identity: only load on /admin/ -->
 <script>

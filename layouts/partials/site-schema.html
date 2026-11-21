@@ -1,0 +1,17 @@
+{{/* Organization + BreadcrumbList for every inner page. The homepage carries the
+     full Organization and WebSite records; other pages only referenced them by
+     @id, which a crawler reading one page cannot resolve — 33 pages had no
+     structured data at all. Breadcrumbs: Home → (Blog →) Page. */}}
+{{ if and (not .IsHome) (ne .Kind "404") }}
+{{ $en := strings.HasPrefix .RelPermalink "/en/" }}
+{{ $home := cond $en "https://picsell.ai/en/" "https://picsell.ai/" }}
+{{ $blog := printf "%sblog/" $home }}
+{{ $name := .Params.breadcrumb | default .Title | default .Params.seoTitle | default "PICSELL" }}
+{{ $items := slice (dict "@type" "ListItem" "position" 1 "name" "PICSELL" "item" $home) }}
+{{ if and (in .RelPermalink "/blog/") (ne .Permalink $blog) }}
+  {{ $items = $items | append (dict "@type" "ListItem" "position" 2 "name" (cond $en "Blog" "Блог") "item" $blog) }}
+{{ end }}
+{{ $items = $items | append (dict "@type" "ListItem" "position" (add (len $items) 1) "name" $name "item" .Permalink) }}
+{{ $org := dict "@type" "Organization" "@id" "https://picsell.ai/#organization" "name" "PICSELL" "url" "https://picsell.ai/" "logo" "https://picsell.ai/images/Logo-3.svg" "email" "info@picsell.ai" "telephone" "+380778809888" }}
+<script type="application/ld+json">{{ dict "@context" "https://schema.org" "@graph" (slice $org (dict "@type" "BreadcrumbList" "itemListElement" $items)) | jsonify | safeJS }}</script>
+{{ end }}

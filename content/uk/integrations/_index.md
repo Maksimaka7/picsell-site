@@ -2,7 +2,7 @@
 translationKey: "integrations"
 title: "Інтеграції PICSELL: 1С, BAS, SAP, Oracle, Power BI, API"
 seoTitle: "Інтеграції PICSELL: 1С, BAS, SAP, Oracle, Power BI, відкритий API"
-seoDescription: "PICSELL обмінюється даними з обліковою системою через відкритий API: товари, ціни, залишки, контрагенти, борги й оплати — у PICSELL, замовлення й повернення — назад. Power BI, імпорт .csv і .xlsx, Swagger."
+seoDescription: "Обмін даними з 1С, BAS, SAP, Oracle чи вашою ERP через відкритий API: товари, ціни, залишки й борги — у PICSELL, замовлення й повернення — назад. Звіти Power BI."
 keywords: "інтеграція з 1С, інтеграція BAS, SFA інтеграція з обліковою системою, мобільна торгівля 1С, інтеграція SAP торгові агенти, Power BI FMCG, API мобільна торгівля"
 type: "page"
 layout: "integrations"

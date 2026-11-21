@@ -1,8 +1,8 @@
 ---
 translationKey: "horeca"
 title: "HoReCa analytics: brand presence in restaurant and bar menus — PICSELL"
-seoTitle: "HoReCa menu analytics: brand presence in restaurant and bar menus | PICSELL"
-seoDescription: "PICSELL HoReCa collects venue menus and bar lists from a website, a PDF or a photo, recognises every item and cocktail and shows where your brand is on the menu and where only competitors are — by city and region. Free audit of 50 venues."
+seoTitle: "HoReCa menu analytics: your brand on venue menus | PICSELL"
+seoDescription: "We collect venue menus from websites, PDFs and photos and show where your brand is on the menu and where only competitors are. Free audit of 50 venues."
 ogTitle: "PICSELL HoReCa — where your brand stands in venue menus"
 ogDescription: "Menu analytics for restaurants, bars, cafés and hotels: share of menu, position in the section, prices, cocktails and a coverage map by region."
 keywords: "HoReCa analytics, menu analysis, bar menu monitoring, brand presence on menus, share of menu, on-premise analytics for drinks brands, menu audit"

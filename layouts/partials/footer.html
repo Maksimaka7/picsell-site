@@ -58,6 +58,7 @@
     <div class="footer-col">
       <div class="footer-col-title">{{ if strings.HasPrefix .RelPermalink "/en/" }}Products{{ else }}Продукти{{ end }}</div>
       <ul>
+        <li><a href="{{ "/core/" | relLangURL }}">Core</a></li>
         <li><a href="{{ "/vision-ai/" | relLangURL }}">Vision AI</a></li>
         <li><a href="{{ "/sales-app/" | relLangURL }}">Sales App</a></li>
         <li><a href="{{ "/horeca/" | relLangURL }}">HoReCa Intelligence</a></li>

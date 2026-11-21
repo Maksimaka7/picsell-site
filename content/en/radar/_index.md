@@ -1,8 +1,8 @@
 ---
 translationKey: "radar"
 title: "Competitor price monitoring and RRP control in online stores — PICSELL Digital Shelf"
-seoTitle: "Competitor price monitoring and RRP control in Ukrainian online stores | PICSELL Digital Shelf"
-seoDescription: "Daily monitoring of prices, discounts, availability and promotions in 27 Ukrainian online stores: Rozetka, Epicentr, Silpo, ATB, Varus, MakeUp and more. RRP control, full price history, assortment changes. From ₴20,000 a month."
+seoTitle: "Competitor price monitoring & RRP control, Ukraine | PICSELL"
+seoDescription: "Daily monitoring of prices, discounts, availability and promotions in 27 Ukrainian online stores: Rozetka, Silpo, ATB, Epicentr. RRP control. From ₴20,000 a month."
 ogTitle: "PICSELL Digital Shelf — price and promo monitoring in online stores"
 ogDescription: "Prices, discounts, availability and promotions for your products and competitors' in 27 Ukrainian online stores — daily, with full history and RRP control."
 keywords: "competitor price monitoring Ukraine, online price monitoring, price scraping, RRP monitoring, MAP monitoring, promo monitoring, digital shelf analytics Ukraine"

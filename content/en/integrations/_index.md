@@ -2,7 +2,7 @@
 translationKey: "integrations"
 title: "PICSELL integrations: 1C, BAS, SAP, Oracle, Power BI, API"
 seoTitle: "PICSELL integrations: 1C, BAS, SAP, Oracle, Power BI, open API"
-seoDescription: "PICSELL exchanges data with your accounting system or ERP through an open API: products, prices, stock, accounts, debts and payments flow in; orders and returns flow back. Power BI, .csv and .xlsx import, Swagger."
+seoDescription: "Two-way exchange with 1C, BAS, SAP, Oracle or your ERP through an open API: products, prices, stock and debts in, orders and returns back. Power BI reports."
 keywords: "SFA ERP integration, field sales app SAP integration, 1C integration, Oracle integration, Power BI FMCG, retail execution API"
 type: "page"
 layout: "integrations"

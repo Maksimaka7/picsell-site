@@ -1,6 +1,7 @@
 [build]
   publish = "public"
-  command = "hugo --gc --minify"
+  # fix-en-links: English pages link to English pages in the built HTML (see the script).
+  command = "hugo --gc --minify && node scripts/fix-en-links.mjs public"
   functions = "netlify/functions"
 
 [functions]

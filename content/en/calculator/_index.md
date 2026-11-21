@@ -2,7 +2,7 @@
 translationKey: "calculator"
 title: "PICSELL pricing calculator"
 seoTitle: "PICSELL pricing calculator — estimate by role"
-seoDescription: "Estimate the cost of PICSELL by role: merchandiser, sales rep, supervisor. Digital Shelf and HoReCa have their own calculators. Monthly or annual billing. Final pricing agreed individually."
+seoDescription: "Estimate the cost of PICSELL by role: merchandiser, sales rep, supervisor. Digital Shelf and HoReCa have their own calculators. Monthly or annual billing."
 keywords: "PICSELL pricing calculator, SFA price, Vision AI cost, merchandising pricing"
 type: "page"
 layout: "calculator"
