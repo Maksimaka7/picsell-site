@@ -19,9 +19,8 @@
 .sv-points li::before{content:'✓';position:absolute;left:0;top:0;width:22px;height:22px;border-radius:50%;background:rgba(0,87,255,.10);color:var(--blue);font-weight:700;font-size:12px;display:flex;align-items:center;justify-content:center;}
 .sv-price{display:inline-flex;align-items:center;gap:8px;font-family:'Geologica',sans-serif;font-weight:700;font-size:15px;color:var(--t1);background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:9px 14px;margin-bottom:18px;}
 .sv-price a{color:var(--blue);font-weight:600;font-size:13px;}
-.sv-trust{font-size:13px;color:var(--t3);line-height:1.7;display:flex;flex-wrap:wrap;gap:2px 14px;}
-.sv-trust span{flex-basis:100%;}
-.sv-trust b{font-family:'Geologica',sans-serif;font-weight:700;color:var(--t2);white-space:nowrap;}
+.sv-trust{font-size:13px;color:var(--t3);line-height:1.7;}
+.sv-trust>span{display:block;margin-bottom:8px;}
 .sv-card{background:var(--bg3);border:1px solid var(--border);border-radius:20px;padding:28px;box-shadow:0 24px 60px rgba(15,30,55,.10);position:sticky;top:96px;}
 .sv-card h2{font-family:'Geologica',sans-serif;font-size:21px;font-weight:700;line-height:1.25;margin:0 0 6px;color:var(--t1);}
 .sv-card-sub{font-size:13px;color:var(--t2);margin:0 0 18px;line-height:1.5;}
@@ -197,7 +196,7 @@
         <p class="sv-lead">{{ $p.lead }}</p>
         <ul class="sv-points">{{ range $p.points }}<li>{{ . }}</li>{{ end }}</ul>
         {{ with $p.priceLine }}<div class="sv-price">{{ . }} {{ if $calc }}<a href="#svCalc">{{ if $en }}calculate yours →{{ else }}порахувати свою →{{ end }}</a>{{ else }}<a href="{{ "/calculator/" | relLangURL }}">{{ if $en }}calculator →{{ else }}калькулятор →{{ end }}</a>{{ end }}</div>{{ end }}
-        <div class="sv-trust"><span>{{ if $en }}Trusted by:{{ else }}Нам довіряють:{{ end }}</span><b>Lactalis</b><b>Henkel</b><b>Schwarzkopf</b><b>Diageo</b><b>Colgate</b><b>Bayadera</b><b>IDS Borjomi</b></div>
+        <div class="sv-trust"><span>{{ if $en }}Trusted by:{{ else }}Нам довіряють:{{ end }}</span><div class="cl-row cl-sm">{{ partial "clients.html" (dict "page" .) }}</div></div>
       </div>
 
       <div class="sv-card" id="svCard">

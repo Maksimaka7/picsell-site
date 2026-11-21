@@ -161,7 +161,7 @@
   .hero--video .hero-ctas .btn-lg{padding:16px 22px;font-size:16px;}
 }
 
-/* Screen 2 — Trust strip (text wordmark placeholders until real client logos supplied) */
+/* Screen 2 — Trust strip: client logos on white tiles (partials/clients.html) */
 .logos-strip{padding:var(--s6) 0;background:#0B0E14;overflow:hidden;}
 .logos-caption{text-align:center;font-family:'Orbitron',sans-serif;font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--t3);margin-bottom:var(--s4);}
 /* Full-bleed running marquee — track is 3 identical sets of the 6 logos;
@@ -172,6 +172,7 @@
 .logos-marquee:hover .logos-track{animation-play-state:paused;}
 .logos-set{display:flex;align-items:center;flex:none;}
 .logos-set .logo-client{margin:0 calc(var(--s6) / 2);}
+.logos-set .cl-tile{margin:0 9px;}
 @keyframes logos-scroll{from{transform:translateX(0);}to{transform:translateX(calc(-100% / 3));}}
 .logo-client{font-family:'Geologica',sans-serif;font-weight:700;font-size:21px;letter-spacing:.02em;color:var(--t3);opacity:.6;filter:grayscale(1);transition:color .3s,opacity .3s,filter .3s,transform .3s;cursor:default;white-space:nowrap;}
 .logo-client:hover{color:var(--t1);opacity:1;filter:grayscale(0);transform:translateY(-2px);}
@@ -433,34 +434,13 @@
   <div class="logos-marquee">
     <div class="logos-track">
       <div class="logos-set">
-        <div class="logo-client">Lactalis</div>
-        <div class="logo-client">Henkel</div>
-        <div class="logo-client">Bayadera</div>
-        <div class="logo-client">Schwarzkopf</div>
-        <div class="logo-client">Diageo</div>
-        <div class="logo-client">Colgate</div>
-        <div class="logo-client">Masafi</div>
-        <div class="logo-client">IDS Borjomi</div>
+        {{ partial "clients.html" (dict "page" .) }}
       </div>
       <div class="logos-set" aria-hidden="true">
-        <div class="logo-client">Lactalis</div>
-        <div class="logo-client">Henkel</div>
-        <div class="logo-client">Bayadera</div>
-        <div class="logo-client">Schwarzkopf</div>
-        <div class="logo-client">Diageo</div>
-        <div class="logo-client">Colgate</div>
-        <div class="logo-client">Masafi</div>
-        <div class="logo-client">IDS Borjomi</div>
+        {{ partial "clients.html" (dict "page" .) }}
       </div>
       <div class="logos-set" aria-hidden="true">
-        <div class="logo-client">Lactalis</div>
-        <div class="logo-client">Henkel</div>
-        <div class="logo-client">Bayadera</div>
-        <div class="logo-client">Schwarzkopf</div>
-        <div class="logo-client">Diageo</div>
-        <div class="logo-client">Colgate</div>
-        <div class="logo-client">Masafi</div>
-        <div class="logo-client">IDS Borjomi</div>
+        {{ partial "clients.html" (dict "page" .) }}
       </div>
     </div>
   </div>
@@ -589,34 +569,13 @@
   <div class="logos-marquee">
     <div class="logos-track">
       <div class="logos-set">
-        <div class="logo-client">Lactalis</div>
-        <div class="logo-client">Henkel</div>
-        <div class="logo-client">Bayadera</div>
-        <div class="logo-client">Schwarzkopf</div>
-        <div class="logo-client">Diageo</div>
-        <div class="logo-client">Colgate</div>
-        <div class="logo-client">Masafi</div>
-        <div class="logo-client">IDS Borjomi</div>
+        {{ partial "clients.html" (dict "page" .) }}
       </div>
       <div class="logos-set" aria-hidden="true">
-        <div class="logo-client">Lactalis</div>
-        <div class="logo-client">Henkel</div>
-        <div class="logo-client">Bayadera</div>
-        <div class="logo-client">Schwarzkopf</div>
-        <div class="logo-client">Diageo</div>
-        <div class="logo-client">Colgate</div>
-        <div class="logo-client">Masafi</div>
-        <div class="logo-client">IDS Borjomi</div>
+        {{ partial "clients.html" (dict "page" .) }}
       </div>
       <div class="logos-set" aria-hidden="true">
-        <div class="logo-client">Lactalis</div>
-        <div class="logo-client">Henkel</div>
-        <div class="logo-client">Bayadera</div>
-        <div class="logo-client">Schwarzkopf</div>
-        <div class="logo-client">Diageo</div>
-        <div class="logo-client">Colgate</div>
-        <div class="logo-client">Masafi</div>
-        <div class="logo-client">IDS Borjomi</div>
+        {{ partial "clients.html" (dict "page" .) }}
       </div>
     </div>
   </div>

@@ -1,0 +1,14 @@
+# Client logos for the "Нам довіряють" rows (partials/clients.html).
+# Files live in static/images/clients/; w/h are the pixel size of the file,
+# lh is the height in px the logo is shown at so that wide wordmarks and
+# compact emblems look the same weight in a row.
+list:
+  - { key: "lactalis", name: "Lactalis", file: "lactalis.webp", w: 294, h: 104, lh: 27 }
+  - { key: "henkel", name: "Henkel", file: "henkel.webp", w: 227, h: 132, lh: 34 }
+  - { key: "bayadera", name: "Bayadera", file: "bayadera.webp", w: 420, h: 60, lh: 17 }
+  - { key: "schwarzkopf", name: "Schwarzkopf", file: "schwarzkopf.webp", w: 219, h: 129, lh: 34 }
+  - { key: "diageo", name: "Diageo", file: "diageo.webp", w: 294, h: 75, lh: 22 }
+  - { key: "colgate", name: "Colgate", file: "colgate.webp", w: 293, h: 81, lh: 24 }
+  - { key: "masafi", name: "Masafi", file: "masafi.webp", w: 288, h: 113, lh: 30, dark: true }
+  - { key: "borjomi", name: "IDS Borjomi", file: "borjomi.webp", w: 148, h: 132, lh: 38 }
+  - { key: "petimpex", name: "PetImpex", file: "petimpex.webp", w: 288, h: 113, lh: 30 }

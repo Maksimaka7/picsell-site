@@ -1,0 +1,21 @@
+{{/* Row of client logos ("Нам довіряють"). The site used text wordmarks as
+     placeholders until real logos were supplied; the logos now come from the
+     sales deck (Nov 2026) and are listed in data/clients.yaml.
+     Each logo sits on a white tile so it reads the same on light and dark
+     sections. Usage:
+       {{ partial "clients.html" (dict "page" .) }}
+       {{ partial "clients.html" (dict "page" . "size" "sm") }}          smaller tiles
+       {{ partial "clients.html" (dict "page" . "only" (slice "henkel" "lactalis")) }} */}}
+{{ $page := .page }}{{ $only := .only }}
+{{ if not ($page.Store.Get "clientsCss") }}{{ $page.Store.Set "clientsCss" true }}
+<style>
+.cl-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;}
+.cl-row.is-center{justify-content:center;}
+.cl-tile{flex:none;display:inline-flex;align-items:center;justify-content:center;height:60px;min-width:96px;padding:0 18px;background:#fff;border:1px solid #E3E9F1;border-radius:14px;box-shadow:0 1px 2px rgba(15,30,55,.04);}
+.cl-tile.is-dark{background:#0F1E37;border-color:#0F1E37;}
+.cl-tile img{display:block;width:auto;height:calc(var(--lh) * 1px);max-width:none;}
+.cl-sm .cl-tile{height:46px;min-width:74px;padding:0 13px;border-radius:11px;}
+.cl-sm .cl-tile img{height:calc(var(--lh) * .76px);}
+</style>
+{{ end }}
+{{ range site.Data.clients.list }}{{ if or (not $only) (in $only .key) }}<span class="cl-tile{{ if .dark }} is-dark{{ end }}"><img src="/images/clients/{{ .file }}" width="{{ .w }}" height="{{ .h }}" alt="{{ .name }}" style="--lh:{{ .lh }}" loading="lazy" decoding="async"></span>{{ end }}{{ end }}
