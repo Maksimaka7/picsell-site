@@ -88,7 +88,7 @@ faq:
   - { q: "How does RRP control work?", a: "You provide recommended retail prices with validity dates. The system stores them with their change history, and the report shows each store's deviation from the RRP next to its price." }
   - { q: "Can I track competitor prices?", a: "Yes. Any product can be added to monitoring by the link to its page in a store — yours and competitors'." }
   - { q: "In what form do I get the data?", a: "In Power BI reports: prices by store, deviations from the RRP, price history, promotions and assortment changes." }
-  - { q: "How much does price monitoring cost?", a: "From ₴20,000 a month. We give the exact price after the demo, once the scope is clear: how many products and in which stores need to be tracked." }
+  - { q: "How much does price monitoring cost?", a: "From ₴20,000 a month: that covers up to 5 stores and up to 100 products collected daily. Beyond that the price depends on the number of stores, products and collection frequency — estimate your setup in the calculator on this page. Onboarding and setup are free, and an annual contract is 20% off." }
 ctaTitle: "Take a look at your digital shelf"
 ctaText: "In 30 minutes we'll show what the report looks like and estimate the cost for your product list."
 related:

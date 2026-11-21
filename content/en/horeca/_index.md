@@ -87,7 +87,7 @@ faq:
   - { q: "Where does the venue base come from?", a: "The base is filled by import from Google Places: name, address, city and region, website, rating and review count." }
   - { q: "How often is the data updated?", a: "On a schedule set for the task. A menu that has not changed since last time is not analysed again — the previous result is reused." }
   - { q: "Who is it for?", a: "For drinks brands and distributors selling to the HoReCa channel: bar-list items and cocktails are recognised, and venues can be filtered by whether alcohol is on the menu." }
-  - { q: "How much does it cost?", a: "From ₴20,000 a month. The first step is free: at the demo we show an audit of your brand's presence in the menus of 50 venues." }
+  - { q: "How much does it cost?", a: "From ₴20,000 a month: that covers up to 500 venues with menus re-read monthly. Beyond that the price depends on the number of venues and the update frequency — estimate it in the calculator on this page. Onboarding is free, and so is the first step: an audit of your brand's presence in the menus of 50 venues." }
 ctaTitle: "Find out where your brand really is"
 ctaText: "Free audit: we'll show your brand's presence in the menus of 50 venues at a 30-minute demo."
 related:
